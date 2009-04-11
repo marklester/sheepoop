@@ -1,6 +1,7 @@
-package view;
+package sheep.view;
 
-import model.Avatar;
+import sheep.controller.InventoryActionListener;
+import sheep.model.entities.Avatar;
 
 public class InventoryViewport extends view.Component {
 

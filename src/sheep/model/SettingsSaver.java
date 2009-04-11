@@ -1,6 +1,6 @@
-package model;
+package sheep.model;
 
-import view.JFrame;
+import javax.swing.JFrame;
 
 public class SettingsSaver {
 

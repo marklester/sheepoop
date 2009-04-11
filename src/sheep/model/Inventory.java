@@ -1,4 +1,7 @@
-package model;
+package sheep.model;
+
+import sheep.model.entities.Entity;
+import sheep.model.items.Takeable;
 
 public class Inventory {
 	private List<model.Takeable> items;

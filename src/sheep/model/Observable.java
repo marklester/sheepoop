@@ -1,10 +1,10 @@
-package model;
+package sheep.model;
 
-public interface Observable<T extends model.ObservationType> {
+public interface Observable<T extends ObservationType> {
 
-	public void registerObserver(model.Observer<T> observer);
+	public void registerObserver(Observer<T> observer);
 
-	public void removeObserver(model.Observer<T> observer);
+	public void removeObserver(Observer<T> observer);
 
 	public void notifyObservers();
 }

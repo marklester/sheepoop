@@ -1,10 +1,8 @@
 package controller;
 
-import view.View;
-import model.Model;
 import java.util.Vector;
-import controller.Action;
-import model.Observer;
+
+import sheep.controller.actions.Action;
 
 public class Controller implements Observer {
 	private View view;

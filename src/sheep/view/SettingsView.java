@@ -1,4 +1,4 @@
-package view;
+package sheep.view;
 
 public class SettingsView extends view.Component {
 	view.WelcomeView unnamed_WelcomeView_;

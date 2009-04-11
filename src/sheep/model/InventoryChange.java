@@ -1,17 +1,19 @@
-package model;
+package sheep.model;
 
-public class InventoryChange implements model.ObservationType {
-	model.InventoryChangeType unnamed_InventoryChangeType_;
+import sheep.model.items.Takeable;
 
-	public InventoryChange(model.Takeable item, model.InventoryChangeType changeType) {
+public class InventoryChange implements ObservationType {
+	InventoryChangeType changeType;
+
+	public InventoryChange(Takeable item, InventoryChangeType changeType) {
 		throw new UnsupportedOperationException();
 	}
 
-	public model.InventoryChangeType getChangeType() {
+	public InventoryChangeType getChangeType() {
 		throw new UnsupportedOperationException();
 	}
 
-	public model.Takeable getItem() {
+	public Takeable getItem() {
 		throw new UnsupportedOperationException();
 	}
 }

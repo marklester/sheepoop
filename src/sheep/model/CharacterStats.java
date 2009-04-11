@@ -1,4 +1,6 @@
-package model;
+package sheep.model;
+
+import sheep.model.entities.Character;
 
 public class CharacterStats {
 	public Map<model.StatType, int> stats;

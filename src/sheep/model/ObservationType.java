@@ -1,4 +1,5 @@
-package model;
+package sheep.model;
 
 public interface ObservationType {
+	
 }

@@ -1,26 +1,30 @@
-package model;
+package sheep.model;
+
+import sheep.model.entities.Entity;
 
 public abstract class Locatable {
-	public model.Location loc;
-	public model.GameMap map;
-	model.GameMap unnamed_GameMap_;
-	model.Location unnamed_Location_;
+	
+	public Location loc;
+	public GameMap map;
+	private GameMap gameMap;
+	private Location location;
+	private String id;
 
 	public Locatable(String id) {
-		throw new UnsupportedOperationException();
+		this.id = id;
 	}
 
 	public abstract void accept(LocatableVisitor v);
 
-	public void touch(model.Entity entity) {
+	public void touch(Entity entity) {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean blocks(model.Entity entity) {
+	public boolean blocks(Entity entity) {
 		throw new UnsupportedOperationException();
 	}
 
 	public String getID() {
-		throw new UnsupportedOperationException();
+		return this.id;
 	}
 }

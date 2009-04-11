@@ -1,4 +1,4 @@
-package model;
+package sheep.model;
 
-public class TimeChange implements model.ObservationType {
+public class TimeChange implements ObservationType {
 }

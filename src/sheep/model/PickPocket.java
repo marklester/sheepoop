@@ -1,4 +1,4 @@
-package model;
+package sheep.model;
 
 public class PickPocket extends model.PerformableSkill {
 

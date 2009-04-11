@@ -1,6 +1,6 @@
-package view;
+package sheep.view;
 
-import model.Avatar;
+import sheep.model.entities.Avatar;
 
 /**
  * Will be drawn on top of the AreaViewPort. 

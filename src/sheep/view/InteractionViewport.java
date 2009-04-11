@@ -1,8 +1,8 @@
-package view;
+package sheep.view;
 
-import model.Avatar;
-import model.NPC;
-import controller.InteractionViewportListener;
+import sheep.controller.InteractionViewportListener;
+import sheep.model.entities.Avatar;
+import sheep.model.entities.NPC;
 
 public class InteractionViewport extends view.Component {
 

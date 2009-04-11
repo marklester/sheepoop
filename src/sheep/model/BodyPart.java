@@ -1,4 +1,4 @@
-package model;
+package sheep.model;
 
 public enum BodyPart {
 	public Object HEAD;

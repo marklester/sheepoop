@@ -1,12 +1,11 @@
-package view;
+package sheep.view;
 
-import model.Item;
-import model.Character;
-import model.Entity;
-import model.Terrain;
-import model.Decal;
-import model.AreaEffect;
-import model.LocatableVisitor;
+import sheep.model.Decal;
+import sheep.model.LocatableVisitor;
+import sheep.model.areaeffects.AreaEffect;
+import sheep.model.entities.Vehicle;
+import sheep.model.items.Item;
+import sheep.model.terrains.Terrain;
 
 public class LocationDrawingVisitor implements LocatableVisitor {
 	view.AreaViewport unnamed_AreaViewport_;

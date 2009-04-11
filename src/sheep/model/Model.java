@@ -1,14 +1,17 @@
-package model;
+package sheep.model;
 
-public class Model implements model.Observable {
+import sheep.model.entities.Avatar;
+import sheep.model.entities.Entity;
+
+public class Model implements Observable<GameStateChange> {
 	private boolean isPaused;
-	public model.Time time;
-	public model.GameStateType gameState;
-	public model.Avatar avatar;
-	public model.Entity mover;
-	model.GameMap unnamed_GameMap_;
-	model.Time unnamed_Time_;
-	model.GameStateType unnamed_GameStateType_;
+	public Time time;
+	public GameStateType gameState;
+	public Avatar avatar;
+	public Entity mover;
+	GameMap unnamed_GameMap_;
+	Time unnamed_Time_;
+	GameStateType unnamed_GameStateType_;
 
 	public void pauseTime() {
 		throw new UnsupportedOperationException();
@@ -22,15 +25,15 @@ public class Model implements model.Observable {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setMap(model.GameMap map) {
+	public void setMap(GameMap map) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void registerObserver(model.Observer<T> observer) {
+	public void registerObserver(Observer<GameStateChange> observer) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void removeObserver(model.Observer<T> observer) {
+	public void removeObserver(Observer<GameStateChange> observer) {
 		throw new UnsupportedOperationException();
 	}
 
