@@ -1,10 +1,18 @@
 package sheep.view;
 
+import java.awt.Component;
+import java.awt.Image;
+import java.util.List;
+
 import sheep.model.GameMap;
+import sheep.model.Locatable;
+import sheep.model.Location;
 import sheep.model.entities.Avatar;
 
-public class AreaViewport extends view.Component {
-	view.LocationDrawingVisitor unnamed_LocationDrawingVisitor_;
+public class AreaViewport extends Component {
+	private static final long serialVersionUID = 8296336314571261983L;
+	
+	LocationDrawingVisitor locationDrawingVisitor;
 
 	public AreaViewport(Avatar avatar, GameMap map) {
 		throw new UnsupportedOperationException();

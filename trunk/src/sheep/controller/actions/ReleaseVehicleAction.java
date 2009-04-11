@@ -1,8 +1,8 @@
-package controller;
+package sheep.controller.actions;
 
-import sheep.controller.actions.Action;
+import javax.swing.Action;
 
-public class ReleaseVehicleAction implements controller.Action {
+public class ReleaseVehicleAction implements Action {
 
 	public ReleaseVehicleAction() {
 		throw new UnsupportedOperationException();

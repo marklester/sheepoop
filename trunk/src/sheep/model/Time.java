@@ -2,7 +2,6 @@ package sheep.model;
 
 public class Time implements Observable<TimeChange> {
 	public static Time instance;
-	Model unnamed_Model_;
 
 	private Time() {
 		throw new UnsupportedOperationException();

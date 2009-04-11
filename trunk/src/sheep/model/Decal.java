@@ -1,8 +1,12 @@
 package sheep.model;
 
-public class Decal extends model.Locatable {
+public class Decal extends Locatable {
+
+	public Decal(String id) {
+		super(id);
+	}
 
 	public void accept(LocatableVisitor v) {
-		throw new UnsupportedOperationException();
+		v.visit(this);
 	}
 }

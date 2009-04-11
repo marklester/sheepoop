@@ -1,6 +1,6 @@
-package controller;
+package sheep.controller;
 
-public class SettingsActionListener implements controller.ActionListener {
+public class SettingsActionListener implements ActionListener {
 
 	public SettingsActionListener() {
 		throw new UnsupportedOperationException();

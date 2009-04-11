@@ -4,6 +4,10 @@ import sheep.model.entities.Entity;
 
 public abstract class Takeable extends Item {
 
+	public Takeable(String id) {
+		super(id);
+	}
+
 	/**
 	 * entity.addtoInventory(this)
 	 */

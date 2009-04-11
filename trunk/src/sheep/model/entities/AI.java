@@ -8,10 +8,12 @@ import sheep.model.TimeChange;
  * maybe use state pattern for different controller types
  */
 public abstract class AI implements Observer<TimeChange> {
-	NPC npc;
+	private final NPC npc;
+	private final GameMap map;
 
 	public AI(NPC npc, GameMap map) {
-		throw new UnsupportedOperationException();
+		this.npc = npc;
+		this.map = map;
 	}
 
 	public abstract void update(TimeChange msg);

@@ -1,5 +1,6 @@
-package sheep.model;
+package sheep.model.entities;
 
+import sheep.model.ObservationType;
 import sheep.model.items.Takeable;
 
 public class InventoryChange implements ObservationType {

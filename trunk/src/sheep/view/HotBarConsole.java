@@ -7,9 +7,12 @@ import sheep.model.entities.Avatar;
  * Shows what things are bound to the hotkeys
  * Only allows performable skills
  */
-public class HotBarConsole extends view.Overlay {
+public class HotBarConsole extends Overlay {
 
-	public HotBarConsole(Avatar avatar) {
+	private Avatar avatar;
+	
+	public HotBarConsole(int posX, int posY, Avatar avatar) {
+		super(posX, posY);
 		throw new UnsupportedOperationException();
 	}
 }

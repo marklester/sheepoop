@@ -1,20 +1,24 @@
-package controller;
+package sheep.controller;
 
 import java.util.Vector;
 
-import sheep.controller.actions.Action;
+import javax.swing.Action;
 
-public class Controller implements Observer {
+import sheep.model.GameStateChange;
+import sheep.model.Model;
+import sheep.model.Observer;
+import sheep.view.View;
+
+public class Controller implements Observer<GameStateChange> {
 	private View view;
 	private Model model;
-	Vector<Action> unnamed_Action_ = new Vector<Action>();
-	controller.InteractionViewportListener unnamed_InteractionViewportListener_;
+	Vector<Action> action = new Vector<Action>();
+	InteractionViewportListener interactionViewportListener;
 
 	public Controller(Model model, View view) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void update(Object object) {
-		throw new UnsupportedOperationException();
+	public void update(GameStateChange msg) {
 	}
 }
