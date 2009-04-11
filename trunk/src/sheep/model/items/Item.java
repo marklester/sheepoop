@@ -1,8 +1,8 @@
 package sheep.model.items;
 
-import sheep.model.Locatable;
-import sheep.model.LocatableVisitor;
 import sheep.model.entities.Entity;
+import sheep.model.gamemap.Locatable;
+import sheep.model.gamemap.LocatableVisitor;
 
 /**
  * 

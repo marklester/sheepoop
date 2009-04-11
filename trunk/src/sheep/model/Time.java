@@ -4,14 +4,15 @@ import java.io.Serializable;
 
 public class Time implements Observable<TimeChange>, Serializable {
 	private static final long serialVersionUID = 1061923003822374910L;
-	public static Time instance;
+	
+	public static Time instance = new Time();
 
 	private Time() {
-		throw new UnsupportedOperationException();
+		
 	}
 
 	public static Time getInstance() {
-		throw new UnsupportedOperationException();
+		return instance;
 	}
 
 	public void pause() {

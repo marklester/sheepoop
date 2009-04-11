@@ -1,8 +1,5 @@
 package sheep.view;
 
-import java.awt.Component;
-import java.util.Vector;
-
 import javax.swing.JFrame;
 
 import sheep.model.Model;
@@ -11,10 +8,10 @@ public class View extends JFrame {
 	
 	private static final long serialVersionUID = 2015429639828183235L;
 	private Model model;
-	Vector<Component> unnamed_Component_ = new Vector<Component>();
+	private TradeViewport tradeViewport;
 
 	public View(Model model) {
-		throw new UnsupportedOperationException();
+		this.model = model;
 	}
 
 	public void render() {
@@ -22,14 +19,11 @@ public class View extends JFrame {
 	}
 
 	public void showTradeViewport() {
-		throw new UnsupportedOperationException();
+		tradeViewport.setVisible(true);
 	}
 
 	public TradeViewport getTradeViewport() {
 		throw new UnsupportedOperationException();
 	}
 
-	public void update(Object object) {
-		throw new UnsupportedOperationException();
-	}
 }

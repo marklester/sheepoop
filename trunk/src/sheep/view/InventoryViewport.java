@@ -7,6 +7,8 @@ import sheep.model.entities.Avatar;
 
 public class InventoryViewport extends Component {
 
+	private static final long serialVersionUID = 6239705575773260473L;
+
 	public InventoryViewport(Avatar avatar) {
 		throw new UnsupportedOperationException();
 	}

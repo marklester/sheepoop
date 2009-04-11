@@ -4,8 +4,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import sheep.model.Direction;
 import sheep.model.entities.Entity;
+import sheep.model.gamemap.Direction;
 
 public class StartMovingAction extends AbstractAction {
 

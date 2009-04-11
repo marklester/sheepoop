@@ -1,8 +1,8 @@
 package sheep.model.terrains;
 
-import sheep.model.Locatable;
-import sheep.model.LocatableVisitor;
 import sheep.model.entities.Entity;
+import sheep.model.gamemap.Locatable;
+import sheep.model.gamemap.LocatableVisitor;
 
 public abstract class Terrain extends Locatable {
 
@@ -23,6 +23,6 @@ public abstract class Terrain extends Locatable {
 	}
 
 	public void accept(LocatableVisitor v) {
-		throw new UnsupportedOperationException();
+		v.visit(this);
 	}
 }

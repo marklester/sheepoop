@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import sheep.model.entities.Avatar;
 import sheep.model.entities.Entity;
+import sheep.model.gamemap.GameMap;
 
 public class Model implements Observable<GameStateChange>, Serializable {
 	private static final long serialVersionUID = -3924966363628308694L;

@@ -2,11 +2,11 @@ package sheep.view;
 
 import java.awt.Image;
 
-import sheep.model.Decal;
-import sheep.model.LocatableVisitor;
 import sheep.model.areaeffects.AreaEffect;
 import sheep.model.entities.Entity;
 import sheep.model.entities.Vehicle;
+import sheep.model.gamemap.Decal;
+import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.items.Item;
 import sheep.model.terrains.Terrain;
 

@@ -2,9 +2,9 @@ package sheep.model.entities;
 
 import java.io.Serializable;
 
-import sheep.model.GameMap;
 import sheep.model.Observer;
 import sheep.model.TimeChange;
+import sheep.model.gamemap.GameMap;
 
 /**
  * maybe use state pattern for different controller types
