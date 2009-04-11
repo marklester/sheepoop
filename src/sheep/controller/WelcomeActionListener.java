@@ -1,5 +1,8 @@
 package sheep.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  * Creates the Model
  * Creates the View
@@ -12,7 +15,8 @@ public class WelcomeActionListener implements ActionListener {
 		throw new UnsupportedOperationException();
 	}
 
-	public void actionPerformed() {
-		throw new UnsupportedOperationException();
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
 	}
+
 }

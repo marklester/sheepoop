@@ -1,11 +1,10 @@
 package sheep.model.items;
 
-public class Melee extends Weapon {
+public abstract class Melee extends Weapon {
 
-	/**
-	 * this should actually attack
-	 */
-	public void actionPerformed() {
-		throw new UnsupportedOperationException();
+	public Melee(String id) {
+		super(id);
 	}
+
+
 }

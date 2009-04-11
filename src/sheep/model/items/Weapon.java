@@ -1,11 +1,17 @@
 package sheep.model.items;
 
-import javax.swing.Action;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import sheep.model.entities.Entity;
 import sheep.model.skills.PassiveSkill;
 
-public abstract class Weapon extends Takeable implements Action {
+public abstract class Weapon extends Takeable implements ActionListener {
+	
+	public Weapon(String id) {
+		super(id);
+	}
+
 	public PassiveSkill skill;
 
 	/**
@@ -19,5 +25,9 @@ public abstract class Weapon extends Takeable implements Action {
 	/**
 	 * this should actually attack
 	 */
-	public abstract void actionPerformed();
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+	}
+
+	
 }

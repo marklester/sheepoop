@@ -1,22 +1,12 @@
 package sheep.model.entities;
 
-import sheep.model.entities.model;
+import sheep.model.occupations.Occupation;
 
-public class Avatar extends model.Character {
+public class Avatar extends Character {
 
-	public void update(Object object) {
-		throw new UnsupportedOperationException();
+	public Avatar(String id, Occupation occupation) {
+		super(id, occupation);
 	}
 
-	public void registerObserver(model.Observer<T> observer) {
-		throw new UnsupportedOperationException();
-	}
 
-	public void removeObserver(model.Observer<T> observer) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void notifyObservers() {
-		throw new UnsupportedOperationException();
-	}
 }

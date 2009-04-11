@@ -2,9 +2,12 @@ package sheep.model.items;
 
 import sheep.model.entities.Entity;
 
-public class OneShot extends Item {
+public abstract class OneShot extends Item {
 
-	public void touch(Entity entity) {
-		throw new UnsupportedOperationException();
+	public OneShot(String id) {
+		super(id);
 	}
+
+	public abstract void touch(Entity entity);
+	
 }
