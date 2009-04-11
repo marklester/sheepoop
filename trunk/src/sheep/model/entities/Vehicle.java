@@ -4,9 +4,14 @@ import sheep.model.LocatableVisitor;
 import sheep.model.Observer;
 
 public class Vehicle extends Entity {
+	
 	public Character occupant;
 	public VehicleStatType stats;
 	public Character driver;
+
+	public Vehicle(String id) {
+		super(id);
+	}
 
 	public void accept(LocatableVisitor v) {
 		throw new UnsupportedOperationException();
@@ -28,19 +33,16 @@ public class Vehicle extends Entity {
 		throw new UnsupportedOperationException();
 	}
 
-	public void update(Object object) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void registerObserver(Observer<StatChange> observer) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void removeObserver(Observer<StatChange> observer) {
-		throw new UnsupportedOperationException();
-	}
-
+	@Override
 	public void notifyObservers() {
-		throw new UnsupportedOperationException();
 	}
+
+	@Override
+	public void registerObserver(Observer<StatChange> observer) {
+	}
+
+	@Override
+	public void removeObserver(Observer<StatChange> observer) {
+	}
+
 }

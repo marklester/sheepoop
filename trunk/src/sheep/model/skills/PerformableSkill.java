@@ -1,21 +1,42 @@
 package sheep.model.skills;
 
-import javax.swing.Action;
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
 
 import sheep.model.entities.Character;
-import sheep.model.entities.Entity;
 
-public abstract class PerformableSkill implements Action {
+/**
+ * 
+ * @author Phil Freo
+ */
+
+public abstract class PerformableSkill extends AbstractAction {
+	private static final long serialVersionUID = -8562441519176962234L;
+	
 	public int points;
-	Character character;
+	private final Character character;
 
-	public PerformableSkill(Entity entity) {
-		throw new UnsupportedOperationException();
+	public PerformableSkill(Character character) {
+		this.character = character;
+		this.points = 0;
 	}
 
 	public void addPoints(int amt) {
-		throw new UnsupportedOperationException();
+		this.points += amt;
 	}
 
-	public abstract void actionPerformed();
+	public Character getCharacter() {
+		return character;
+	}
+	
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public abstract void actionPerformed(ActionEvent e);
 }

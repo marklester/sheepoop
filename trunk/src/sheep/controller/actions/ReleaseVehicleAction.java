@@ -1,14 +1,19 @@
 package sheep.controller.actions;
 
-import javax.swing.Action;
+import java.awt.event.ActionEvent;
 
-public class ReleaseVehicleAction implements Action {
+import javax.swing.AbstractAction;
+
+public class ReleaseVehicleAction extends AbstractAction {
+
+	private static final long serialVersionUID = -1934297505909650891L;
 
 	public ReleaseVehicleAction() {
 		throw new UnsupportedOperationException();
 	}
 
-	public void actionPerformed() {
-		throw new UnsupportedOperationException();
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
 	}
+
 }

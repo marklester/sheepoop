@@ -4,6 +4,8 @@ import sheep.model.Direction;
 import sheep.model.Locatable;
 import sheep.model.LocatableVisitor;
 import sheep.model.Observable;
+import sheep.model.Observer;
+import sheep.model.TimeChange;
 import sheep.model.Vector2D;
 
 public abstract class Entity extends Locatable implements Moveable, Observable<StatChange> {
@@ -35,7 +37,8 @@ public abstract class Entity extends Locatable implements Moveable, Observable<S
 
 	public abstract int getSpeed();
 
-	public void tick() {
-		throw new UnsupportedOperationException();
+	@Override
+	public void update(TimeChange msg) {
 	}
+
 }

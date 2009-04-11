@@ -6,6 +6,8 @@ import java.util.Map;
 import sheep.model.BodyPart;
 import sheep.model.LocatableVisitor;
 import sheep.model.Observable;
+import sheep.model.Observer;
+import sheep.model.TimeChange;
 import sheep.model.items.Armor;
 import sheep.model.items.Takeable;
 import sheep.model.items.Weapon;
@@ -13,7 +15,7 @@ import sheep.model.occupations.Occupation;
 import sheep.model.skills.PassiveSkill;
 import sheep.model.skills.PerformableSkill;
 
-public abstract class Character extends Entity implements Observable<InventoryChange>, Observable<StatChange> {
+public abstract class Character extends Entity implements Observable {
 	private Inventory inventory;
 	private Occupation occupation;
 	/**
@@ -28,7 +30,8 @@ public abstract class Character extends Entity implements Observable<InventoryCh
 	private CharacterStats characterStats;
 	private PerformableSkill performableSkill;
 
-	public Character(Occupation occupation) {
+	public Character(String id, Occupation occupation) {
+		super(id);
 		this.occupation = occupation;
 	}
 
@@ -98,4 +101,18 @@ public abstract class Character extends Entity implements Observable<InventoryCh
 	public void setInteractingCharacter(Character c) {
 		throw new UnsupportedOperationException();
 	}
+
+	@Override
+	public void update(TimeChange msg) {
+	}
+
+	public void notifyObservers() {
+	}
+
+	public void registerObserver(Observer<StatChange> observer) {
+	}
+
+	public void removeObserver(Observer<StatChange> observer) {
+	}
+	
 }

@@ -1,5 +1,8 @@
 package sheep.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import sheep.model.Model;
 import sheep.view.View;
 
@@ -12,7 +15,7 @@ public class InteractionViewportListener implements ActionListener {
 		throw new UnsupportedOperationException();
 	}
 
-	public void actionPerformed() {
-		throw new UnsupportedOperationException();
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
 	}
 }

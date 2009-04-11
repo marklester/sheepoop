@@ -1,8 +1,19 @@
 package sheep.model.skills;
 
-public class RemoveTrap extends model.PerformableSkill {
+import java.awt.event.ActionEvent;
 
-	public void actionPerformed() {
-		throw new UnsupportedOperationException();
+import sheep.model.entities.Character;
+
+public class RemoveTrap extends PerformableSkill {
+	
+	private static final long serialVersionUID = -6400640105850953368L;
+
+	public RemoveTrap(Character character) {
+		super(character);
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	}
+
 }

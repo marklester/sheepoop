@@ -1,10 +1,15 @@
 package sheep.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class TradeButtonsActionListener implements ActionListener {
 	InteractionViewportListener interactionViewportListener;
 	TradeFacilitator tradeFacilitator;
-
-	public void actionPerformed() {
-		throw new UnsupportedOperationException();
+	
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
 	}
+
+	
 }

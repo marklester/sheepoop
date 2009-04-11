@@ -10,8 +10,8 @@ public class NPC extends Character {
 	private AI ai;
 	
 
-	public NPC(Occupation occupation, Model model) {
-		super(occupation);
+	public NPC(String id, Occupation occupation, Model model) {
+		super(id, occupation);
 		this.model = model;
 	}
 
@@ -23,19 +23,4 @@ public class NPC extends Character {
 		throw new UnsupportedOperationException();
 	}
 
-	public void update(Object object) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void registerObserver(Observer<StatChange> observer) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void removeObserver(Observer<StatChange> observer) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void notifyObservers() {
-		throw new UnsupportedOperationException();
-	}
 }
