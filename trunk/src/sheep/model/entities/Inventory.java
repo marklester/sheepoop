@@ -1,24 +1,28 @@
 package sheep.model.entities;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Vector;
 
 import sheep.model.items.Takeable;
 
+/**
+ * 
+ * @author Phil Freo
+ */
 public class Inventory implements Serializable {
 	private static final long serialVersionUID = -2623162576357507941L;
-	private List<Takeable> items;
-	private Entity entity;
+	
+	private Vector<Takeable> items;
 
 	public void add(Takeable item) {
-		throw new UnsupportedOperationException();
+		items.add(item);
 	}
 
 	public boolean remove(Takeable item) {
-		throw new UnsupportedOperationException();
+		return items.remove(item);
 	}
 
 	public Iterable<Takeable> get() {
-		throw new UnsupportedOperationException();
+		return items;
 	}
 }

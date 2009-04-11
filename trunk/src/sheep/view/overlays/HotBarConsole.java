@@ -13,6 +13,6 @@ public class HotBarConsole extends Overlay {
 	
 	public HotBarConsole(int posX, int posY, Avatar avatar) {
 		super(posX, posY);
-		throw new UnsupportedOperationException();
+		this.avatar = avatar;
 	}
 }

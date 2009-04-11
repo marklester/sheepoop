@@ -8,8 +8,7 @@ import sheep.view.View;
 
 
 public class InteractionViewportListener implements ActionListener {
-	Controller controller;
-	TradeButtonsActionListener tradeButtonsActionListener;
+	private TradeButtonsActionListener tradeButtonsActionListener;
 
 	public InteractionViewportListener(Model model, View view) {
 		throw new UnsupportedOperationException();

@@ -12,11 +12,12 @@ import sheep.view.View;
 public class Controller implements Observer<GameStateChange> {
 	private View view;
 	private Model model;
-	Vector<Action> action = new Vector<Action>();
-	InteractionViewportListener interactionViewportListener;
+	private Vector<Action> action = new Vector<Action>();
+	private InteractionViewportListener interactionViewportListener;
 
 	public Controller(Model model, View view) {
-		throw new UnsupportedOperationException();
+		this.model = model;
+		this.view = view;
 	}
 
 	public void update(GameStateChange msg) {

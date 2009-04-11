@@ -12,6 +12,6 @@ public class AngryAI extends AI {
 	}
 
 	public void update(TimeChange msg) {
-		throw new UnsupportedOperationException();
+		
 	}
 }

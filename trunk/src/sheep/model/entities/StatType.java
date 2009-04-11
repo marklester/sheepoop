@@ -1,5 +1,9 @@
 package sheep.model.entities;
 
+/**
+ * 
+ * @author Phil Freo
+ */
 public enum StatType {
 	SPEED, LIVES_LEFT, STRENGTH, AGILITY, INTELLECT, HARDINESS, EXPERIENCE, LEVEL, LIFE, MANA, OFFENSIVE_RATING, DEFENSIVE_RATING, ARMOR_RATING, MAX_MANA, MAX_LIFE;
 }

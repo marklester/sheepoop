@@ -7,10 +7,12 @@ import sheep.model.TimeChange;
 import sheep.model.gamemap.GameMap;
 
 /**
- * maybe use state pattern for different controller types
+ * 
+ * @author Phil Freo
  */
 public abstract class AI implements Observer<TimeChange>, Serializable {
 	private static final long serialVersionUID = 7551024229134848584L;
+	
 	private final NPC npc;
 	private final GameMap map;
 
@@ -20,4 +22,12 @@ public abstract class AI implements Observer<TimeChange>, Serializable {
 	}
 
 	public abstract void update(TimeChange msg);
+	
+	public NPC getNPC() {
+		return this.npc;
+	}
+	
+	public GameMap getGameMap() {
+		return this.map;
+	}
 }

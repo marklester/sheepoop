@@ -6,6 +6,10 @@ import sheep.model.entities.Vehicle;
 import sheep.model.items.Item;
 import sheep.model.terrains.Terrain;
 
+/**
+ * 
+ * @author Phil Freo
+ */
 public interface LocatableVisitor {
 
 	public void visit(Item obj);

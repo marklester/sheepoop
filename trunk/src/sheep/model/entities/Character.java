@@ -6,7 +6,9 @@ import java.util.Map;
 import sheep.model.Observable;
 import sheep.model.Observer;
 import sheep.model.TimeChange;
+import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.LocatableVisitor;
+import sheep.model.gamemap.Location;
 import sheep.model.items.Armor;
 import sheep.model.items.Takeable;
 import sheep.model.items.weapons.Weapon;
@@ -15,6 +17,7 @@ import sheep.model.skills.PassiveSkill;
 import sheep.model.skills.PerformableSkill;
 
 public abstract class Character extends Entity implements Observable<TalkMessage>, Observable<InventoryChange> {
+
 	private static final long serialVersionUID = 1069820547179793745L;
 	
 	private Inventory inventory;
@@ -31,8 +34,8 @@ public abstract class Character extends Entity implements Observable<TalkMessage
 	private CharacterStats characterStats;
 	private PerformableSkill performableSkill;
 
-	public Character(String id, Occupation occupation) {
-		super(id);
+	public Character(String id, GameMap map, Location loc, Occupation occupation) {
+		super(id, map, loc);
 		this.occupation = occupation;
 	}
 

@@ -11,7 +11,7 @@ public class DumbAI extends AI {
 		super(npc, map);
 	}
 
-	@Override
 	public void update(TimeChange msg) {
+
 	}
 }
