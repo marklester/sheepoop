@@ -1,9 +1,12 @@
-package controller;
+package sheep.controller;
+
+import sheep.model.Model;
+import sheep.view.View;
 
 
-public class InteractionViewportListener implements controller.ActionListener {
-	controller.Controller unnamed_Controller_;
-	controller.TradeButtonsActionListener unnamed_TradeButtonsActionListener_;
+public class InteractionViewportListener implements ActionListener {
+	Controller controller;
+	TradeButtonsActionListener tradeButtonsActionListener;
 
 	public InteractionViewportListener(Model model, View view) {
 		throw new UnsupportedOperationException();

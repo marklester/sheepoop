@@ -1,30 +1,31 @@
-package controller;
+package sheep.controller;
 
 import sheep.model.entities.Avatar;
 import sheep.model.entities.NPC;
+import sheep.model.items.Takeable;
 
 public class TradeFacilitator {
 	private Avatar avatar;
 	private NPC npc;
-	controller.TradeButtonsActionListener unnamed_TradeButtonsActionListener_;
+	TradeButtonsActionListener tradeButtonsActionListener;
 
 	public TradeFacilitator(Avatar avatar, NPC npc) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void buyItem(TakeableItem item) {
+	public void buyItem(Takeable item) {
 		throw new UnsupportedOperationException();
 	}
 
-	public float getItemBuyPrice(TakeableItem item) {
+	public float getItemBuyPrice(Takeable item) {
 		throw new UnsupportedOperationException();
 	}
 
-	public float getItemSellPrice(TakeableItem item) {
+	public float getItemSellPrice(Takeable item) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void sellItem(TakeableItem item) {
+	public void sellItem(Takeable item) {
 		throw new UnsupportedOperationException();
 	}
 }

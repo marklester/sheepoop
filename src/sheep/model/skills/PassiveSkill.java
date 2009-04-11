@@ -1,4 +1,4 @@
-package sheep.model;
+package sheep.model.skills;
 
 public enum PassiveSkill {
 	BARGAIN, ONE_HANDED_WEAPON, TWO_HANDED_WEAPON, ENCHANTMENT, BRAWLING, DETECT_TRAP, STAFF, BANE, BOON, RANGED_WEAPON;

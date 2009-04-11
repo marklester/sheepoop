@@ -1,6 +1,6 @@
-package controller;
+package sheep.controller;
 
-public class InventoryActionListener implements controller.ActionListener {
+public class InventoryActionListener implements ActionListener {
 
 	public InventoryActionListener() {
 		throw new UnsupportedOperationException();

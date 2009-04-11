@@ -2,8 +2,8 @@ package sheep.model.items;
 
 import javax.swing.Action;
 
-import sheep.model.PassiveSkill;
 import sheep.model.entities.Entity;
+import sheep.model.skills.PassiveSkill;
 
 public abstract class Weapon extends Takeable implements Action {
 	public PassiveSkill skill;

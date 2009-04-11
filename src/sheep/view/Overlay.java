@@ -1,10 +1,10 @@
 package sheep.view;
 
 public abstract class Overlay {
-	public int posX;
-	public int posY;
-	public int widthX;
-	public int height;
+	private int posX;
+	private int posY;
+	private int widthX;
+	private int height;
 
 	public Overlay(int posX, int posY) {
 		throw new UnsupportedOperationException();

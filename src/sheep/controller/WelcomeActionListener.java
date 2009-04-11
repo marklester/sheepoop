@@ -1,4 +1,4 @@
-package controller;
+package sheep.controller;
 
 /**
  * Creates the Model
@@ -6,7 +6,7 @@ package controller;
  * Creates the Controller with the model & view
  * Load default key bindings (may be overridden by SettingsActionListener)
  */
-public class WelcomeActionListener implements controller.ActionListener {
+public class WelcomeActionListener implements ActionListener {
 
 	public WelcomeActionListener() {
 		throw new UnsupportedOperationException();

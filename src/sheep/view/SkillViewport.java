@@ -1,8 +1,10 @@
 package sheep.view;
 
+import java.awt.Component;
+
 import sheep.model.entities.Avatar;
 
-public class SkillViewport extends view.Component {
+public class SkillViewport extends Component {
 
 	public SkillViewport(Avatar avatar) {
 		throw new UnsupportedOperationException();

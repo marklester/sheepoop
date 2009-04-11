@@ -1,11 +1,19 @@
 package sheep.model;
 
 public class Location {
-	public int x;
-	public int y;
-	model.Locatable unnamed_Locatable_;
+	private int x;
+	private int y;
 
 	public Location(int x, int y) {
-		throw new UnsupportedOperationException();
+		this.x = x;
+		this.y = y;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
 	}
 }

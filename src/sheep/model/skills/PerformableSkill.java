@@ -1,13 +1,15 @@
-package sheep.model;
+package sheep.model.skills;
+
+import javax.swing.Action;
 
 import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
 
-public abstract class PerformableSkill implements model.Action {
+public abstract class PerformableSkill implements Action {
 	public int points;
-	model.Character unnamed_Character_;
+	Character character;
 
-	public PerformableSkill(model.Entity entity) {
+	public PerformableSkill(Entity entity) {
 		throw new UnsupportedOperationException();
 	}
 

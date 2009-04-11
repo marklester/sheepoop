@@ -3,42 +3,37 @@ package sheep.model.entities;
 import java.util.List;
 import java.util.Map;
 
-import sheep.model.Armor;
 import sheep.model.BodyPart;
-import sheep.model.CharacterStats;
-import sheep.model.Inventory;
-import sheep.model.InventoryChange;
 import sheep.model.LocatableVisitor;
 import sheep.model.Observable;
-import sheep.model.Occupation;
-import sheep.model.PassiveSkill;
-import sheep.model.PerformableSkill;
-import sheep.model.StatChange;
-import sheep.model.StatType;
+import sheep.model.items.Armor;
 import sheep.model.items.Takeable;
 import sheep.model.items.Weapon;
+import sheep.model.occupations.Occupation;
+import sheep.model.skills.PassiveSkill;
+import sheep.model.skills.PerformableSkill;
 
 public abstract class Character extends Entity implements Observable<InventoryChange>, Observable<StatChange> {
-	public Inventory inventory;
-	public Occupation occupation;
+	private Inventory inventory;
+	private Occupation occupation;
 	/**
 	 * attack has direction stats, skill-rating, weapon current equipped
 	 */
-	public CharacterStats stats;
-	public Weapon weapon;
-	public Map<BodyPart, Armor> armor;
-	public Map<PassiveSkill, Integer> passiveSkills;
-	public List<PerformableSkill> performableSkills;
-	Vehicle unnamed_Vehicle_;
-	CharacterStats unnamed_CharacterStats_;
-	PerformableSkill unnamed_PerformableSkill_;
+	private CharacterStats stats;
+	private Weapon weapon;
+	private Map<BodyPart, Armor> armor;
+	private Map<PassiveSkill, Integer> passiveSkills;
+	private List<PerformableSkill> performableSkills;
+	private Vehicle vehicle;
+	private CharacterStats characterStats;
+	private PerformableSkill performableSkill;
 
 	public Character(Occupation occupation) {
-		throw new UnsupportedOperationException();
+		this.occupation = occupation;
 	}
 
 	public void accept(LocatableVisitor v) {
-		throw new UnsupportedOperationException();
+		v.visit(this);
 	}
 
 	/**

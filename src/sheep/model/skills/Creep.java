@@ -1,6 +1,6 @@
-package sheep.model;
+package sheep.model.skills;
 
-public class BindWounds extends model.PerformableSkill {
+public class Creep extends PerformableSkill {
 
 	public void actionPerformed() {
 		throw new UnsupportedOperationException();

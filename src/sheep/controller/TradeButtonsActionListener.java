@@ -1,8 +1,8 @@
-package controller;
+package sheep.controller;
 
-public class TradeButtonsActionListener implements controller.ActionListener {
-	controller.InteractionViewportListener unnamed_InteractionViewportListener_;
-	controller.TradeFacilitator unnamed_TradeFacilitator_;
+public class TradeButtonsActionListener implements ActionListener {
+	InteractionViewportListener interactionViewportListener;
+	TradeFacilitator tradeFacilitator;
 
 	public void actionPerformed() {
 		throw new UnsupportedOperationException();

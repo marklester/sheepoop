@@ -1,20 +1,20 @@
 package sheep.model.entities;
 
-public class DumbAI extends model.AI {
+import sheep.model.GameMap;
+import sheep.model.TimeChange;
 
-	public DumbAI(model.NPC npc, model.GameMap map) {
-		throw new UnsupportedOperationException();
+
+public class DumbAI extends AI {
+
+	public DumbAI(NPC npc, GameMap map) {
+		super(npc, map);
 	}
 
 	public void tick() {
 		throw new UnsupportedOperationException();
 	}
 
-	public void update(Object object) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void update(T msg) {
-		throw new UnsupportedOperationException();
+	@Override
+	public void update(TimeChange msg) {
 	}
 }

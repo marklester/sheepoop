@@ -1,4 +1,6 @@
-package sheep.model;
+package sheep.model.entities;
+
+import sheep.model.ObservationType;
 
 public class StatChange implements ObservationType {
 

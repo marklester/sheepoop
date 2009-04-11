@@ -1,7 +1,9 @@
 package sheep.view;
 
-public class SettingsView extends view.Component {
-	view.WelcomeView unnamed_WelcomeView_;
+import java.awt.Component;
+
+public class SettingsView extends Component {
+	private WelcomeView welcomeView;
 
 	public SettingsView() {
 		throw new UnsupportedOperationException();

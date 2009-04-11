@@ -1,21 +1,23 @@
 package sheep.model.entities;
 
+import sheep.model.Direction;
+import sheep.model.Locatable;
 import sheep.model.LocatableVisitor;
-import sheep.model.StatType;
+import sheep.model.Observable;
+import sheep.model.Vector2D;
 
-import com.sun.xml.internal.ws.handler.HandlerProcessor.Direction;
+public abstract class Entity extends Locatable implements Moveable, Observable<StatChange> {
 
-public abstract class Entity extends model.Locatable implements model.Moveable, model.Observable {
 	public Direction facingDirection;
-	model.Inventory unnamed_Inventory_;
+	private Inventory inventory;
 
-	public Entity() {
-		throw new UnsupportedOperationException();
+	public Entity(String id) {
+		super(id);
 	}
 
 	public abstract void accept(LocatableVisitor v);
 
-	public abstract boolean blocks(model.Entity entity);
+	public abstract boolean blocks(Entity entity);
 
 	public void startMoving(Direction direction) {
 		throw new UnsupportedOperationException();
@@ -27,7 +29,7 @@ public abstract class Entity extends model.Locatable implements model.Moveable, 
 		throw new UnsupportedOperationException();
 	}
 
-	public model.Vector getVelocity() {
+	public Vector2D getVelocity() {
 		throw new UnsupportedOperationException();
 	}
 
