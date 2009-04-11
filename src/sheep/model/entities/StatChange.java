@@ -1,18 +1,31 @@
 package sheep.model.entities;
 
+import java.io.Serializable;
+
 import sheep.model.ObservationType;
 
-public class StatChange implements ObservationType {
+/**
+ * 
+ * @author Phil Freo
+ */
 
-	public StatChange(StatType statType) {
-		throw new UnsupportedOperationException();
+public class StatChange implements ObservationType, Serializable {
+
+	private static final long serialVersionUID = -2271788360212648314L;
+	
+	private final StatType statType;
+	private final int changeAmt;
+	
+	public StatChange(StatType statType, int changeAmt) {
+		this.statType = statType;
+		this.changeAmt = changeAmt;
 	}
 
 	public StatType getStatType() {
-		throw new UnsupportedOperationException();
+		return this.statType;
 	}
 
 	public int getChangeAmount() {
-		throw new UnsupportedOperationException();
+		return this.changeAmt;
 	}
 }

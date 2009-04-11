@@ -5,19 +5,13 @@ import sheep.model.entities.Entity;
 
 public class LevelUp extends AreaEffect {
 
+	private static final long serialVersionUID = 3262882635444792663L;
+
 	public LevelUp(String id) {
 		super(id);
 	}
 
-	public void tick() {
-		throw new UnsupportedOperationException();
-	}
-
 	public void applyEffect(Entity e) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void update(Object object) {
 		throw new UnsupportedOperationException();
 	}
 

@@ -5,19 +5,13 @@ import sheep.model.entities.Entity;
 
 public class HealDamage extends AreaEffect {
 
+	private static final long serialVersionUID = -4014549164957535326L;
+
 	public HealDamage(String id) {
 		super(id);
 	}
 
-	public void tick() {
-		throw new UnsupportedOperationException();
-	}
-
 	public void applyEffect(Entity e) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void update(Object object) {
 		throw new UnsupportedOperationException();
 	}
 

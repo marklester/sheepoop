@@ -15,7 +15,9 @@ import sheep.model.occupations.Occupation;
 import sheep.model.skills.PassiveSkill;
 import sheep.model.skills.PerformableSkill;
 
-public abstract class Character extends Entity implements Observable {
+public abstract class Character extends Entity implements Observable<TalkMessage>, Observable<InventoryChange> {
+	private static final long serialVersionUID = 1069820547179793745L;
+	
 	private Inventory inventory;
 	private Occupation occupation;
 	/**

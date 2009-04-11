@@ -1,6 +1,7 @@
 package sheep.model.skills;
 
 import java.awt.event.ActionEvent;
+import java.io.Serializable;
 
 import javax.swing.AbstractAction;
 
@@ -10,8 +11,7 @@ import sheep.model.entities.Character;
  * 
  * @author Phil Freo
  */
-
-public abstract class PerformableSkill extends AbstractAction {
+public abstract class PerformableSkill extends AbstractAction implements Serializable {
 	private static final long serialVersionUID = -8562441519176962234L;
 	
 	public int points;

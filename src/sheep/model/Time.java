@@ -1,6 +1,9 @@
 package sheep.model;
 
-public class Time implements Observable<TimeChange> {
+import java.io.Serializable;
+
+public class Time implements Observable<TimeChange>, Serializable {
+	private static final long serialVersionUID = 1061923003822374910L;
 	public static Time instance;
 
 	private Time() {

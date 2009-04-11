@@ -1,13 +1,14 @@
 package sheep.model.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import sheep.model.items.Takeable;
 
-public class Inventory {
+public class Inventory implements Serializable {
+	private static final long serialVersionUID = -2623162576357507941L;
 	private List<Takeable> items;
-	Entity entity;
-	Takeable takeable;
+	private Entity entity;
 
 	public void add(Takeable item) {
 		throw new UnsupportedOperationException();

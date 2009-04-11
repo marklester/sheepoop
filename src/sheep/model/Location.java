@@ -1,6 +1,10 @@
 package sheep.model;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable {
+	private static final long serialVersionUID = -2038681527744934091L;
+	
 	private int x;
 	private int y;
 

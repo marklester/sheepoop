@@ -1,5 +1,8 @@
 package sheep.model.occupations;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,28 +10,38 @@ import sheep.model.entities.CharacterStats;
 import sheep.model.skills.PassiveSkill;
 import sheep.model.skills.PerformableSkill;
 
-public abstract class Occupation {
-	public CharacterStats initialStats;
-	public List<PerformableSkill> skills;
-	private String id;
+/**
+ * 
+ * @author Phil Freo
+ */
+public abstract class Occupation implements Serializable {
+	
+	private static final long serialVersionUID = -1843039758287359854L;
+	public final CharacterStats initialStats;
+	public final ArrayList<PerformableSkill> performableSkills;
+	public final HashMap<PassiveSkill, Integer> passiveSkills;
+	private final String id;
 
 	public Occupation(String id, CharacterStats initialStats, List<PerformableSkill> performableSkills, Map<PassiveSkill, Integer> passiveSkills) {
-		throw new UnsupportedOperationException();
+		this.id = id;
+		this.performableSkills = (ArrayList<PerformableSkill>) performableSkills;
+		this.initialStats = initialStats;
+		this.passiveSkills = (HashMap<PassiveSkill, Integer>) passiveSkills;
 	}
 
 	public CharacterStats cloneStats() {
-		throw new UnsupportedOperationException();
+		return this.initialStats.clone();
 	}
 
 	public Map<PassiveSkill, Integer> clonePassiveSkills() {
-		throw new UnsupportedOperationException();
+		return (Map<PassiveSkill, Integer>) this.passiveSkills.clone();
 	}
 
-	public List<PerformableSkill> cloneUseableSkills() {
-		throw new UnsupportedOperationException();
+	public List<PerformableSkill> clonePerformableSkills() {
+		return (List<PerformableSkill>) this.performableSkills.clone();
 	}
 
 	public String getID() {
-		throw new UnsupportedOperationException();
+		return this.id;
 	}
 }
