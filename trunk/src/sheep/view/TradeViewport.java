@@ -1,10 +1,14 @@
-package view;
+package sheep.view;
 
-import model.Avatar;
-import model.NPC;
-import controller.TradeButtonsActionListener;
+import java.awt.Component;
 
-public class TradeViewport extends view.Component {
+import sheep.controller.TradeButtonsActionListener;
+import sheep.model.entities.Avatar;
+import sheep.model.entities.NPC;
+
+public class TradeViewport extends Component {
+
+	private static final long serialVersionUID = 3484298330273421838L;
 
 	public TradeViewport(Avatar avatar, NPC npc) {
 		throw new UnsupportedOperationException();

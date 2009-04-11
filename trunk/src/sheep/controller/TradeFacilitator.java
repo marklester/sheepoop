@@ -1,7 +1,7 @@
 package controller;
 
-import model.Avatar;
-import model.NPC;
+import sheep.model.entities.Avatar;
+import sheep.model.entities.NPC;
 
 public class TradeFacilitator {
 	private Avatar avatar;

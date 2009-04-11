@@ -1,9 +1,7 @@
-package view;
+package sheep.view;
 
-import model.Avatar;
-import model.GameMap;
-import model.Location;
-import model.Locatable;
+import sheep.model.GameMap;
+import sheep.model.entities.Avatar;
 
 public class AreaViewport extends view.Component {
 	view.LocationDrawingVisitor unnamed_LocationDrawingVisitor_;

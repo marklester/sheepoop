@@ -1,4 +1,4 @@
-package view;
+package sheep.view;
 
 public class ResourceLoader {
 	private Map<id_String, file_File> fileMap;

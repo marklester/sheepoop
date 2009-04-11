@@ -1,4 +1,4 @@
-package model;
+package sheep.model;
 
 public class Creep extends model.PerformableSkill {
 

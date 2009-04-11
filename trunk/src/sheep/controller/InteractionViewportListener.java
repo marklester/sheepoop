@@ -1,7 +1,5 @@
 package controller;
 
-import model.Model;
-import view.View;
 
 public class InteractionViewportListener implements controller.ActionListener {
 	controller.Controller unnamed_Controller_;

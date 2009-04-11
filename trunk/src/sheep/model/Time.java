@@ -1,14 +1,14 @@
-package model;
+package sheep.model;
 
-public class Time implements model.Observable {
-	public static model.Time instance;
-	model.Model unnamed_Model_;
+public class Time implements Observable<TimeChange> {
+	public static Time instance;
+	Model unnamed_Model_;
 
 	private Time() {
 		throw new UnsupportedOperationException();
 	}
 
-	public static model.Time getInstance() {
+	public static Time getInstance() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -20,11 +20,11 @@ public class Time implements model.Observable {
 		throw new UnsupportedOperationException();
 	}
 
-	public void registerObserver(model.Observer<T> observer) {
+	public void registerObserver(Observer<TimeChange> observer) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void removeObserver(model.Observer<T> observer) {
+	public void removeObserver(Observer<TimeChange> observer) {
 		throw new UnsupportedOperationException();
 	}
 

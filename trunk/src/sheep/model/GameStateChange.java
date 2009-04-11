@@ -1,17 +1,17 @@
-package model;
+package sheep.model;
 
-public class GameStateChange implements model.ObservationType {
-	model.GameStateType unnamed_GameStateType_;
+public class GameStateChange implements ObservationType {
+	GameStateType unnamed_GameStateType_;
 
-	public GameStateChange(model.GameStateType oldState, model.GameStateType newState) {
+	public GameStateChange(GameStateType oldState, GameStateType newState) {
 		throw new UnsupportedOperationException();
 	}
 
-	public model.GameStateType getOldState() {
+	public GameStateType getOldState() {
 		throw new UnsupportedOperationException();
 	}
 
-	public model.GameStateType getNewState() {
+	public GameStateType getNewState() {
 		throw new UnsupportedOperationException();
 	}
 }

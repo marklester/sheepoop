@@ -1,4 +1,4 @@
-package model;
+package sheep.model;
 
 public class GameMap {
 	public Map<model.Location, List<model.Locatable>> map;

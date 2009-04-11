@@ -1,20 +1,24 @@
-package model;
+package sheep.model;
+
+import sheep.model.areaeffects.AreaEffect;
+import sheep.model.entities.Entity;
+import sheep.model.entities.Vehicle;
+import sheep.model.items.Item;
+import sheep.model.terrains.Terrain;
 
 public interface LocatableVisitor {
 
-	public void visit(model.Item obj);
+	public void visit(Item obj);
 
 	public void visit(Vehicle obj);
 
-	public void visit(model.Character obj);
+	public void visit(Character obj);
 
-	public void visit(model.Vehicle obj);
+	public void visit(Entity obj);
 
-	public void visit(model.Entity obj);
+	public void visit(Terrain obj);
 
-	public void visit(model.Terrain obj);
+	public void visit(Decal obj);
 
-	public void visit(model.Decal obj);
-
-	public void visit(model.AreaEffect obj);
+	public void visit(AreaEffect obj);
 }
