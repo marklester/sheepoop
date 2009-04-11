@@ -8,6 +8,8 @@ import sheep.model.skills.PassiveSkill;
 
 public abstract class Weapon extends Takeable implements ActionListener {
 	
+	private static final long serialVersionUID = -6972197855931649857L;
+
 	public Weapon(String id) {
 		super(id);
 	}

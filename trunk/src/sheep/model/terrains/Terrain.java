@@ -6,6 +6,8 @@ import sheep.model.entities.Entity;
 
 public abstract class Terrain extends Locatable {
 
+	private static final long serialVersionUID = 7489043479583637533L;
+
 	public Terrain(String id) {
 		super(id);
 	}

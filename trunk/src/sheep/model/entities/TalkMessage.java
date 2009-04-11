@@ -2,6 +2,10 @@ package sheep.model.entities;
 
 import sheep.model.ObservationType;
 
+/**
+ * 
+ * @author Phil Freo
+ */
 public class TalkMessage implements ObservationType {
 
 	private final Character talker;

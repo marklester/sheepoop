@@ -5,6 +5,7 @@ import sheep.model.Observer;
 
 public class Vehicle extends Entity {
 	
+	private static final long serialVersionUID = -7212987040280996071L;
 	public Character occupant;
 	public VehicleStatType stats;
 	public Character driver;

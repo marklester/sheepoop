@@ -10,5 +10,6 @@ public class QuitAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.exit(0);
 	}
 }

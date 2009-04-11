@@ -1,9 +1,12 @@
 package sheep.model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class GameMap {
+public class GameMap implements Serializable {
+	
+	private static final long serialVersionUID = -6604540494991148223L;
 	
 	private Map<Location, List<Locatable>> map;
 

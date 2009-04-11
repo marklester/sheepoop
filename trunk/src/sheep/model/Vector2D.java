@@ -1,6 +1,9 @@
 package sheep.model;
 
-public class Vector2D {
+import java.io.Serializable;
+
+public class Vector2D implements Serializable {
+	private static final long serialVersionUID = 1398372928692423286L;
 	public float x;
 	public float y;
 

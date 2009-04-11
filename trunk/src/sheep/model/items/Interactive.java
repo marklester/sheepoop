@@ -2,7 +2,9 @@ package sheep.model.items;
 
 import sheep.model.entities.Entity;
 
-public class Interactive extends Item {
+public abstract class Interactive extends Item {
+
+	private static final long serialVersionUID = 4777965387803747234L;
 
 	public Interactive(String id) {
 		super(id);
@@ -15,8 +17,5 @@ public class Interactive extends Item {
 	public boolean blocks(Entity entity) {
 		throw new UnsupportedOperationException();
 	}
-
-	public String getID() {
-		throw new UnsupportedOperationException();
-	}
+	
 }

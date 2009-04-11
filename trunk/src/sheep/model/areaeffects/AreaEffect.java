@@ -6,31 +6,40 @@ import sheep.model.Observer;
 import sheep.model.TimeChange;
 import sheep.model.entities.Entity;
 
+/**
+ * 
+ * @author Phil Freo
+ */
+
 public abstract class AreaEffect extends Locatable implements Observer<TimeChange> {
 	
-	public AreaEffect(String id) {
-		super(id);
-	}
+	private static final long serialVersionUID = 9171920339367314786L;
 
 	public int rate;
 	private Entity entity;
 
-	public abstract void applyEffect(Entity e);
+	public AreaEffect(String id) {
+		super(id);
+	}
 
 	public void accept(LocatableVisitor v) {
 		v.visit(this);
 	}
 
-	public abstract void update(TimeChange msg);
-
 	/**
-	 * cache the entity & call applyEffect
+	 * Cache the entity & call applyEffect
+	 * @param the <code>Entity</code> that touches this AreaEffect
 	 */
 	public void touch(Entity entity) {
-		throw new UnsupportedOperationException();
+		this.entity = entity;
+		applyEffect(entity);
 	}
 
 	public Entity getLastEntity() {
-		throw new UnsupportedOperationException();
+		return entity;
 	}
+	
+	public abstract void applyEffect(Entity e);
+	
+	public abstract void update(TimeChange msg);
 }

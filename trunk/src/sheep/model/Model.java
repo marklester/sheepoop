@@ -1,9 +1,13 @@
 package sheep.model;
 
+import java.io.Serializable;
+
 import sheep.model.entities.Avatar;
 import sheep.model.entities.Entity;
 
-public class Model implements Observable<GameStateChange> {
+public class Model implements Observable<GameStateChange>, Serializable {
+	private static final long serialVersionUID = -3924966363628308694L;
+	
 	private boolean isPaused;
 	public Time time;
 	public GameStateType gameState;

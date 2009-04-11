@@ -1,8 +1,12 @@
 package sheep.model;
 
+import java.io.Serializable;
+
 import sheep.model.entities.Entity;
 
-public abstract class Locatable {
+public abstract class Locatable implements Serializable {
+	
+	private static final long serialVersionUID = 2983990245744613911L;
 	
 	public Location loc;
 	public GameMap map;

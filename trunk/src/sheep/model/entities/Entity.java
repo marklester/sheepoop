@@ -10,6 +10,7 @@ import sheep.model.Vector2D;
 
 public abstract class Entity extends Locatable implements Moveable, Observable<StatChange> {
 
+	private static final long serialVersionUID = -8117857590532885266L;
 	public Direction facingDirection;
 	private Inventory inventory;
 

@@ -5,19 +5,13 @@ import sheep.model.entities.Entity;
 
 public class InstantDeath extends AreaEffect {
 
+	private static final long serialVersionUID = 7991051797350750281L;
+
 	public InstantDeath(String id) {
 		super(id);
 	}
 
-	public void tick() {
-		throw new UnsupportedOperationException();
-	}
-
 	public void applyEffect(Entity e) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void update(Object object) {
 		throw new UnsupportedOperationException();
 	}
 

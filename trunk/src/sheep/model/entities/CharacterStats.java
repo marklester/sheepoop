@@ -2,8 +2,8 @@ package sheep.model.entities;
 
 import java.util.Map;
 
-
-public class CharacterStats {
+public class CharacterStats implements Cloneable {
+	
 	public Map<StatType, Integer> stats;
 
 	public CharacterStats(Map<StatType, Integer> initialStats) {
@@ -19,6 +19,10 @@ public class CharacterStats {
 	}
 
 	public void set(StatType stat, int amt) {
+		throw new UnsupportedOperationException();
+	}
+	
+	public CharacterStats clone() {
 		throw new UnsupportedOperationException();
 	}
 }
