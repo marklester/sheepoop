@@ -3,14 +3,13 @@ package sheep.model.entities;
 import java.util.List;
 import java.util.Map;
 
-import sheep.model.BodyPart;
-import sheep.model.LocatableVisitor;
 import sheep.model.Observable;
 import sheep.model.Observer;
 import sheep.model.TimeChange;
+import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.items.Armor;
 import sheep.model.items.Takeable;
-import sheep.model.items.Weapon;
+import sheep.model.items.weapons.Weapon;
 import sheep.model.occupations.Occupation;
 import sheep.model.skills.PassiveSkill;
 import sheep.model.skills.PerformableSkill;

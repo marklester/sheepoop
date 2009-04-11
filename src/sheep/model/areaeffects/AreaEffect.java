@@ -1,10 +1,10 @@
 package sheep.model.areaeffects;
 
-import sheep.model.Locatable;
-import sheep.model.LocatableVisitor;
 import sheep.model.Observer;
 import sheep.model.TimeChange;
 import sheep.model.entities.Entity;
+import sheep.model.gamemap.Locatable;
+import sheep.model.gamemap.LocatableVisitor;
 
 /**
  * 

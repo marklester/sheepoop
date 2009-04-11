@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import sheep.model.entities.Entity;
-import sheep.model.items.Weapon;
+import sheep.model.items.weapons.Weapon;
 
 public class UseWeaponAction extends AbstractAction {
 

@@ -1,7 +1,7 @@
 package sheep.model.entities;
 
-import sheep.model.GameMap;
 import sheep.model.TimeChange;
+import sheep.model.gamemap.GameMap;
 
 public class AngryAI extends AI {
 

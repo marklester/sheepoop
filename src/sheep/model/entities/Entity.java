@@ -1,12 +1,12 @@
 package sheep.model.entities;
 
-import sheep.model.Direction;
-import sheep.model.Locatable;
-import sheep.model.LocatableVisitor;
 import sheep.model.Observable;
 import sheep.model.Observer;
 import sheep.model.TimeChange;
-import sheep.model.Vector2D;
+import sheep.model.gamemap.Direction;
+import sheep.model.gamemap.Locatable;
+import sheep.model.gamemap.LocatableVisitor;
+import util.math.Vector2D;
 
 public abstract class Entity extends Locatable implements Moveable, Observable<StatChange> {
 

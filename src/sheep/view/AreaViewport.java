@@ -4,10 +4,10 @@ import java.awt.Component;
 import java.awt.Image;
 import java.util.List;
 
-import sheep.model.GameMap;
-import sheep.model.Locatable;
-import sheep.model.Location;
 import sheep.model.entities.Avatar;
+import sheep.model.gamemap.GameMap;
+import sheep.model.gamemap.Locatable;
+import sheep.model.gamemap.Location;
 
 public class AreaViewport extends Component {
 	private static final long serialVersionUID = 8296336314571261983L;

@@ -1,7 +1,7 @@
 package sheep.model.entities;
 
-import sheep.model.LocatableVisitor;
 import sheep.model.Observer;
+import sheep.model.gamemap.LocatableVisitor;
 
 public class Vehicle extends Entity {
 	
@@ -15,7 +15,7 @@ public class Vehicle extends Entity {
 	}
 
 	public void accept(LocatableVisitor v) {
-		throw new UnsupportedOperationException();
+		v.visit(this);
 	}
 
 	public boolean blocks(Entity entity) {
