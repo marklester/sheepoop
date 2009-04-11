@@ -2,13 +2,15 @@ package sheep.model.areaeffects;
 
 import sheep.model.TimeChange;
 import sheep.model.entities.Entity;
+import sheep.model.gamemap.GameMap;
+import sheep.model.gamemap.Location;
 
 public class LevelUp extends AreaEffect {
 
 	private static final long serialVersionUID = 3262882635444792663L;
 
-	public LevelUp(String id) {
-		super(id);
+	public LevelUp(GameMap map, Location loc) {
+		super("LevelUp", map, loc);
 	}
 
 	public void applyEffect(Entity e) {
@@ -16,6 +18,6 @@ public class LevelUp extends AreaEffect {
 	}
 
 	public void update(TimeChange msg) {
-		throw new UnsupportedOperationException();
+		
 	}
 }

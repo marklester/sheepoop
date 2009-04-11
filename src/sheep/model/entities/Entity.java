@@ -4,8 +4,10 @@ import sheep.model.Observable;
 import sheep.model.Observer;
 import sheep.model.TimeChange;
 import sheep.model.gamemap.Direction;
+import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.LocatableVisitor;
+import sheep.model.gamemap.Location;
 import util.math.Vector2D;
 
 public abstract class Entity extends Locatable implements Moveable, Observable<StatChange> {
@@ -13,9 +15,9 @@ public abstract class Entity extends Locatable implements Moveable, Observable<S
 	private static final long serialVersionUID = -8117857590532885266L;
 	public Direction facingDirection;
 	private Inventory inventory;
-
-	public Entity(String id) {
-		super(id);
+	
+	public Entity(String id, GameMap map, Location loc) {
+		super(id, map, loc);
 	}
 
 	public abstract void accept(LocatableVisitor v);

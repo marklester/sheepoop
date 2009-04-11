@@ -12,7 +12,7 @@ public class InteractionViewport extends Component {
 
 	private Avatar avatar;
 	private NPC npc;
-	InteractionViewportListener actionListener;
+	private InteractionViewportListener actionListener;
 	
 	public InteractionViewport(Avatar avatar, NPC npc) {
 		this.avatar = avatar;

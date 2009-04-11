@@ -1,28 +1,41 @@
 package sheep.model.entities;
 
-import java.util.Map;
+import java.util.HashMap;
 
+/**
+ * 
+ * @author Phil Freo
+ */
 public class CharacterStats implements Cloneable {
-	
-	public Map<StatType, Integer> stats;
 
-	public CharacterStats(Map<StatType, Integer> initialStats) {
-		throw new UnsupportedOperationException();
+	private HashMap<StatType, Integer> stats = new HashMap<StatType, Integer>();
+
+	public CharacterStats(HashMap<StatType, Integer> initialStats) {
+		this.stats = initialStats;
 	}
 
 	public void change(StatType stat, int changeAmt) {
-		throw new UnsupportedOperationException();
+		int oldAmt = this.stats.get(stat);
+		int newAmt = oldAmt + changeAmt;
+		this.stats.put(stat, newAmt);
 	}
 
 	public int get(StatType stat) {
-		throw new UnsupportedOperationException();
+		return stats.get(stat);
 	}
 
 	public void set(StatType stat, int amt) {
-		throw new UnsupportedOperationException();
+		stats.put(stat, amt);
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public CharacterStats clone() {
-		throw new UnsupportedOperationException();
+		try {
+			CharacterStats result = (CharacterStats) super.clone();
+			result.stats = (HashMap<StatType, Integer>) stats.clone();
+			return result;
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException("CharacterStats could not be cloned");
+		}
 	}
 }

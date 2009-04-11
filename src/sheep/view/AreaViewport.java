@@ -1,15 +1,17 @@
 package sheep.view;
 
-import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.util.List;
+
+import javax.swing.JComponent;
 
 import sheep.model.entities.Avatar;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
 
-public class AreaViewport extends Component {
+public class AreaViewport extends JComponent {
 	private static final long serialVersionUID = 8296336314571261983L;
 	
 	LocationDrawingVisitor locationDrawingVisitor;
@@ -29,7 +31,8 @@ public class AreaViewport extends Component {
 	 * 
 	 * now draw everything in the cache on the screen, and black for the locations not in the cache
 	 */
-	public void paint(Object graphics_g) {
+	@Override
+	public void paint(Graphics g) {
 		throw new UnsupportedOperationException();
 	}
 

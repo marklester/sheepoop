@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 public class InventoryActionListener implements ActionListener {
 
 	public InventoryActionListener() {
-		throw new UnsupportedOperationException();
+
 	}
 
 	@Override

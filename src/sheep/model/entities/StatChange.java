@@ -8,7 +8,6 @@ import sheep.model.ObservationType;
  * 
  * @author Phil Freo
  */
-
 public class StatChange implements ObservationType, Serializable {
 
 	private static final long serialVersionUID = -2271788360212648314L;

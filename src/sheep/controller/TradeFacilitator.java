@@ -5,12 +5,12 @@ import sheep.model.entities.NPC;
 import sheep.model.items.Takeable;
 
 public class TradeFacilitator {
-	private Avatar avatar;
-	private NPC npc;
-	TradeButtonsActionListener tradeButtonsActionListener;
+	private final Avatar avatar;
+	private final NPC npc;
 
 	public TradeFacilitator(Avatar avatar, NPC npc) {
-		throw new UnsupportedOperationException();
+		this.avatar = avatar;
+		this.npc = npc;
 	}
 
 	public void buyItem(Takeable item) {

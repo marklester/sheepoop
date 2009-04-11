@@ -1,17 +1,19 @@
 package sheep.model.entities;
 
 import sheep.model.Observer;
+import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.LocatableVisitor;
+import sheep.model.gamemap.Location;
 
 public class Vehicle extends Entity {
-	
+
 	private static final long serialVersionUID = -7212987040280996071L;
 	public Character occupant;
 	public VehicleStatType stats;
 	public Character driver;
-
-	public Vehicle(String id) {
-		super(id);
+	
+	public Vehicle(String id, GameMap map, Location loc) {
+		super(id, map, loc);
 	}
 
 	public void accept(LocatableVisitor v) {

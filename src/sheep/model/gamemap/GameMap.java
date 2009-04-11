@@ -1,6 +1,7 @@
 package sheep.model.gamemap;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -13,7 +14,11 @@ public class GameMap implements Serializable {
 	
 	private static final long serialVersionUID = -6604540494991148223L;
 	
-	private Map<Location, Vector<Locatable>> map;
+	private HashMap<Location, Vector<Locatable>> map;
+	
+	public GameMap() {
+		 this.map = new HashMap<Location, Vector<Locatable>>();
+	}
 
 	public Vector<Locatable> get(Location loc) {
 		Vector<Locatable> list = map.get(loc);

@@ -9,7 +9,6 @@ import sheep.model.items.Takeable;
  * 
  * @author Phil Freo
  */
-
 public class InventoryChange implements ObservationType, Serializable {
 	private static final long serialVersionUID = 108425969770910129L;
 	
