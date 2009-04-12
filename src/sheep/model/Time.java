@@ -1,14 +1,17 @@
 package sheep.model;
 
 import java.io.Serializable;
+import java.util.Vector;
 
-public class Time implements Observable<TimeChange>, Serializable {
+public class Time implements Serializable {
+
 	private static final long serialVersionUID = 1061923003822374910L;
-	
-	public static Time instance = new Time();
+
+	private static Time instance = new Time();
+	private Vector<TimeObserver> observers = new Vector<TimeObserver>();
 
 	private Time() {
-		
+
 	}
 
 	public static Time getInstance() {
@@ -23,15 +26,19 @@ public class Time implements Observable<TimeChange>, Serializable {
 		throw new UnsupportedOperationException();
 	}
 
-	public void registerObserver(Observer<TimeChange> observer) {
-		throw new UnsupportedOperationException();
+	public void registerObserver(TimeObserver observer) {
+		if (!observers.contains(observer)) {
+			observers.add(observer);
+		}
 	}
 
-	public void removeObserver(Observer<TimeChange> observer) {
-		throw new UnsupportedOperationException();
+	public void removeObserver(TimeObserver observer) {
+		observers.remove(observer);
 	}
 
 	public void notifyObservers() {
-		throw new UnsupportedOperationException();
+		for (TimeObserver observer : this.observers) {
+			observer.tick();
+		}
 	}
 }

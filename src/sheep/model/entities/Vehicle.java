@@ -1,6 +1,7 @@
 package sheep.model.entities;
 
-import sheep.model.Observer;
+import java.util.Vector;
+
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
@@ -8,10 +9,10 @@ import sheep.model.gamemap.Location;
 public class Vehicle extends Entity {
 
 	private static final long serialVersionUID = -7212987040280996071L;
-	public Character occupant;
-	public VehicleStatType stats;
-	public Character driver;
-	
+	private VehicleStatType stats;
+	private Character driver;
+	private Vector<StatChangeObserver> statChangeObservers = new Vector<StatChangeObserver>();
+
 	public Vehicle(String id, GameMap map, Location loc) {
 		super(id, map, loc);
 	}
@@ -35,17 +36,28 @@ public class Vehicle extends Entity {
 	public void touch(Entity entity) {
 		throw new UnsupportedOperationException();
 	}
-
+	
+	public Character getDriver() {
+		return driver;
+	}
+	
 	@Override
-	public void notifyObservers() {
+	public void notifyStatChangeObservers(StatChange msg) {
+		for (StatChangeObserver observer : this.statChangeObservers) {
+			observer.update(msg);
+		}
 	}
 
 	@Override
-	public void registerObserver(Observer<StatChange> observer) {
+	public void registerObserver(StatChangeObserver observer) {
+		if (!statChangeObservers.contains(observer)) {
+			statChangeObservers.add(observer);
+		}
 	}
 
 	@Override
-	public void removeObserver(Observer<StatChange> observer) {
+	public void removeObserver(StatChangeObserver observer) {
+		statChangeObservers.remove(observer);
 	}
 
 }

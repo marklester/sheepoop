@@ -1,16 +1,15 @@
-package sheep.model.entities;
+package sheep.model.entities.npc;
 
 import java.io.Serializable;
 
-import sheep.model.Observer;
-import sheep.model.TimeChange;
+import sheep.model.TimeObserver;
 import sheep.model.gamemap.GameMap;
 
 /**
  * 
  * @author Phil Freo
  */
-public abstract class AI implements Observer<TimeChange>, Serializable {
+public abstract class AI implements TimeObserver, Serializable {
 	private static final long serialVersionUID = 7551024229134848584L;
 	
 	private final NPC npc;
@@ -21,7 +20,7 @@ public abstract class AI implements Observer<TimeChange>, Serializable {
 		this.map = map;
 	}
 
-	public abstract void update(TimeChange msg);
+	public abstract void tick();
 	
 	public NPC getNPC() {
 		return this.npc;

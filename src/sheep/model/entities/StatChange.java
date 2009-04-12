@@ -2,13 +2,11 @@ package sheep.model.entities;
 
 import java.io.Serializable;
 
-import sheep.model.ObservationType;
-
 /**
  * 
  * @author Phil Freo
  */
-public class StatChange implements ObservationType, Serializable {
+public class StatChange implements Serializable {
 
 	private static final long serialVersionUID = -2271788360212648314L;
 	

@@ -8,6 +8,13 @@ public class WelcomeView extends JFrame {
 	private SettingsView settingsView;
 
 	public WelcomeView() {
-		throw new UnsupportedOperationException();
+		setUpWindow();
+	}
+	
+	private void setUpWindow() {
+		this.setTitle("sheepoop - welcome screen");
+		this.setSize(800, 600);
+		this.setLocationRelativeTo(null); // center
+		this.setVisible(true);
 	}
 }

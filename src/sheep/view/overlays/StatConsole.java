@@ -2,11 +2,11 @@ package sheep.view.overlays;
 
 import java.awt.Graphics;
 
-import sheep.model.Observer;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.StatChange;
+import sheep.model.entities.StatChangeObserver;
 
-public class StatConsole extends Overlay implements Observer<StatChange> {
+public class StatConsole extends Overlay implements StatChangeObserver {
 
 	private Avatar avatar;
 	

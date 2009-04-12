@@ -1,6 +1,5 @@
-package sheep.model.entities;
+package sheep.model.entities.npc;
 
-import sheep.model.TimeChange;
 import sheep.model.gamemap.GameMap;
 
 public class DumbAI extends AI {
@@ -11,7 +10,7 @@ public class DumbAI extends AI {
 		super(npc, map);
 	}
 
-	public void update(TimeChange msg) {
+	public void tick() {
 
 	}
 }

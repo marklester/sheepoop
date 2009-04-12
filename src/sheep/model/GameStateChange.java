@@ -2,7 +2,11 @@ package sheep.model;
 
 import java.io.Serializable;
 
-public class GameStateChange implements ObservationType, Serializable {
+/**
+ * 
+ * @author Phil Freo
+ */
+public class GameStateChange implements Serializable {
 	private static final long serialVersionUID = 6410235624239393294L;
 	private final GameStateType oldState;
 	private final GameStateType newState;

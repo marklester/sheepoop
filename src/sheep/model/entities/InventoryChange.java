@@ -2,14 +2,13 @@ package sheep.model.entities;
 
 import java.io.Serializable;
 
-import sheep.model.ObservationType;
 import sheep.model.items.Takeable;
 
 /**
  * 
  * @author Phil Freo
  */
-public class InventoryChange implements ObservationType, Serializable {
+public class InventoryChange implements Serializable {
 	private static final long serialVersionUID = 108425969770910129L;
 	
 	private final InventoryChangeType changeType;

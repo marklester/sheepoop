@@ -1,14 +1,13 @@
 package sheep.model.entities;
 
-import sheep.model.Observer;
-import sheep.model.TimeChange;
+import sheep.model.TimeObserver;
 import sheep.model.gamemap.Direction;
 
 /**
  * 
  * @author Phil Freo
  */
-public interface Moveable extends Observer<TimeChange> {
+public interface Moveable extends TimeObserver {
 
 	public void startMoving(Direction direction);
 

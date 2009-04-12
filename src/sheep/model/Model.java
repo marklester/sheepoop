@@ -1,48 +1,82 @@
 package sheep.model;
 
 import java.io.Serializable;
+import java.util.Vector;
 
 import sheep.model.entities.Avatar;
 import sheep.model.entities.Entity;
 import sheep.model.gamemap.GameMap;
 
-public class Model implements Observable<GameStateChange>, Serializable {
+/**
+ * 
+ * @author Phil Freo
+ */
+public class Model implements Serializable {
 	private static final long serialVersionUID = -3924966363628308694L;
-	
+
 	private boolean isPaused;
-	public Time time;
-	public GameStateType gameState;
-	public Avatar avatar;
-	public Entity mover;
-	GameMap unnamed_GameMap_;
-	Time unnamed_Time_;
-	GameStateType unnamed_GameStateType_;
+	private Time time;
+	private GameStateType gameState;
+	private Avatar avatar;
+	private Entity mover;
+	private GameMap gameMap;
+	private Vector<GameStateObserver> gameStateObservers = new Vector<GameStateObserver>();
 
 	public void pauseTime() {
-		throw new UnsupportedOperationException();
+		time.pause();
 	}
 
 	public void startTime() {
-		throw new UnsupportedOperationException();
+		time.start();
 	}
 
 	public void setState(GameStateType state) {
-		throw new UnsupportedOperationException();
+		GameStateChange msg = new GameStateChange(this.gameState, state);
+		this.gameState = state;
+		notifyGameStateChangeObservers(msg);
 	}
 
 	public void setMap(GameMap map) {
-		throw new UnsupportedOperationException();
+		this.gameMap = map;
 	}
 
-	public void registerObserver(Observer<GameStateChange> observer) {
-		throw new UnsupportedOperationException();
+	public void registerObserver(GameStateObserver observer) {
+		if (!gameStateObservers.contains(observer)) {
+			gameStateObservers.add(observer);
+		}
 	}
 
-	public void removeObserver(Observer<GameStateChange> observer) {
-		throw new UnsupportedOperationException();
+	public void removeObserver(GameStateObserver observer) {
+		gameStateObservers.remove(observer);
 	}
 
-	public void notifyObservers() {
-		throw new UnsupportedOperationException();
+	public void notifyGameStateChangeObservers(GameStateChange msg) {
+		for (GameStateObserver observer : this.gameStateObservers) {
+			observer.update(msg);
+		}
+	}
+
+	public boolean isPaused() {
+		return isPaused;
+	}
+
+	public Time getTime() {
+		return time;
+	}
+
+	public GameStateType getGameState() {
+		return gameState;
+	}
+
+	public Avatar getAvatar() {
+		return avatar;
+	}
+
+	public Entity getMover() {
+		return mover;
+	}
+
+	public GameMap getGameMap() {
+		return gameMap;
 	}
 }
