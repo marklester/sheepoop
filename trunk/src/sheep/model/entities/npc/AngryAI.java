@@ -1,6 +1,5 @@
-package sheep.model.entities;
+package sheep.model.entities.npc;
 
-import sheep.model.TimeChange;
 import sheep.model.gamemap.GameMap;
 
 public class AngryAI extends AI {
@@ -11,7 +10,10 @@ public class AngryAI extends AI {
 		super(npc, map);
 	}
 
-	public void update(TimeChange msg) {
+	@Override
+	public void tick() {
 		
 	}
+
+
 }

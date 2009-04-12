@@ -1,6 +1,6 @@
 package sheep.model.gamemap;
 
-import util.math.Vector2D;
+import sheep.util.math.Vector2D;
 
 /**
  * 

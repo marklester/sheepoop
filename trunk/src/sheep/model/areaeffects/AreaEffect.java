@@ -1,7 +1,6 @@
 package sheep.model.areaeffects;
 
-import sheep.model.Observer;
-import sheep.model.TimeChange;
+import sheep.model.TimeObserver;
 import sheep.model.entities.Entity;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
@@ -12,7 +11,7 @@ import sheep.model.gamemap.Location;
  * 
  * @author Phil Freo
  */
-public abstract class AreaEffect extends Locatable implements Observer<TimeChange> {
+public abstract class AreaEffect extends Locatable implements TimeObserver {
 	
 	private static final long serialVersionUID = 9171920339367314786L;
 	
@@ -42,5 +41,5 @@ public abstract class AreaEffect extends Locatable implements Observer<TimeChang
 	
 	public abstract void applyEffect(Entity e);
 	
-	public abstract void update(TimeChange msg);
+	public abstract void tick();
 }

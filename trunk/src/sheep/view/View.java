@@ -12,6 +12,7 @@ public class View extends JFrame {
 
 	public View(Model model) {
 		this.model = model;
+		this.setVisible(true);
 	}
 
 	public void render() {

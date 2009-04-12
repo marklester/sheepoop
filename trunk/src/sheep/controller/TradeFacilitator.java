@@ -1,7 +1,7 @@
 package sheep.controller;
 
 import sheep.model.entities.Avatar;
-import sheep.model.entities.NPC;
+import sheep.model.entities.npc.NPC;
 import sheep.model.items.Takeable;
 
 public class TradeFacilitator {

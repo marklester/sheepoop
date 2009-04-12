@@ -2,10 +2,8 @@ package sheep.model.entities;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
-import sheep.model.Observable;
-import sheep.model.Observer;
-import sheep.model.TimeChange;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
@@ -16,15 +14,12 @@ import sheep.model.occupations.Occupation;
 import sheep.model.skills.PassiveSkill;
 import sheep.model.skills.PerformableSkill;
 
-public abstract class Character extends Entity implements Observable<TalkMessage>, Observable<InventoryChange> {
+public class Character extends Entity implements TalkMessageObservable, InventoryChangeObservable {
 
 	private static final long serialVersionUID = 1069820547179793745L;
 	
 	private Inventory inventory;
 	private Occupation occupation;
-	/**
-	 * attack has direction stats, skill-rating, weapon current equipped
-	 */
 	private CharacterStats stats;
 	private Weapon weapon;
 	private Map<BodyPart, Armor> armor;
@@ -33,6 +28,11 @@ public abstract class Character extends Entity implements Observable<TalkMessage
 	private Vehicle vehicle;
 	private CharacterStats characterStats;
 	private PerformableSkill performableSkill;
+	private Character interactingCharacter;
+	private Vector<TalkMessageObserver> talkObservers = new Vector<TalkMessageObserver>();
+	private Vector<InventoryChangeObserver> inventoryObservers = new Vector<InventoryChangeObserver>();
+	private Vector<StatChangeObserver> statChangeObservers = new Vector<StatChangeObserver>();
+
 
 	public Character(String id, GameMap map, Location loc, Occupation occupation) {
 		super(id, map, loc);
@@ -99,24 +99,68 @@ public abstract class Character extends Entity implements Observable<TalkMessage
 	}
 
 	public Character getInteractingCharacter() {
-		throw new UnsupportedOperationException();
+		return this.interactingCharacter;
 	}
 
 	public void setInteractingCharacter(Character c) {
-		throw new UnsupportedOperationException();
+		this.interactingCharacter = c;
 	}
 
 	@Override
-	public void update(TimeChange msg) {
+	public void notifyTalkMessageObservers(TalkMessage msg) {
+		for (TalkMessageObserver observer : this.talkObservers) {
+			observer.update(msg);
+		}
 	}
 
-	public void notifyObservers() {
+	@Override
+	public void registerObserver(TalkMessageObserver observer) {
+		if (!talkObservers.contains(observer)) {
+			talkObservers.add(observer);
+		}
 	}
 
-	public void registerObserver(Observer<StatChange> observer) {
+	@Override
+	public void removeObserver(TalkMessageObserver observer) {
+		talkObservers.remove(observer);
 	}
 
-	public void removeObserver(Observer<StatChange> observer) {
+	@Override
+	public void notifyInventoryChangeObservers(InventoryChange msg) {
+		for (InventoryChangeObserver observer : this.inventoryObservers) {
+			observer.update(msg);
+		}
+	}
+
+	@Override
+	public void registerObserver(InventoryChangeObserver observer) {
+		if (!inventoryObservers.contains(observer)) {
+			inventoryObservers.add(observer);
+		}
+	}
+
+	@Override
+	public void removeObserver(InventoryChangeObserver observer) {
+		inventoryObservers.remove(observer);
+	}
+
+	@Override
+	public void notifyStatChangeObservers(StatChange msg) {
+		for (StatChangeObserver observer : this.statChangeObservers) {
+			observer.update(msg);
+		}
+	}
+
+	@Override
+	public void registerObserver(StatChangeObserver observer) {
+		if (!statChangeObservers.contains(observer)) {
+			statChangeObservers.add(observer);
+		}
+	}
+
+	@Override
+	public void removeObserver(StatChangeObserver observer) {
+		statChangeObservers.remove(observer);
 	}
 	
 }

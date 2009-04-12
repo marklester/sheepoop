@@ -4,7 +4,7 @@ import java.awt.Component;
 
 import sheep.controller.TradeButtonsActionListener;
 import sheep.model.entities.Avatar;
-import sheep.model.entities.NPC;
+import sheep.model.entities.npc.NPC;
 
 public class TradeViewport extends Component {
 

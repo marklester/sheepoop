@@ -1,12 +1,15 @@
 package sheep;
 
+import sheep.view.loading.WelcomeView;
+
 public class RunGame {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Running Game");
+		
+		new WelcomeView();
 	}
 
 }

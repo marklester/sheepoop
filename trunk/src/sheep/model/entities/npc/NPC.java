@@ -1,6 +1,8 @@
-package sheep.model.entities;
+package sheep.model.entities.npc;
 
 import sheep.model.Model;
+import sheep.model.entities.Character;
+import sheep.model.entities.Entity;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 import sheep.model.occupations.Occupation;
