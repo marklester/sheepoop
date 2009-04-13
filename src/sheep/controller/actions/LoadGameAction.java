@@ -7,17 +7,17 @@ import javax.swing.Icon;
 
 import sheep.model.Model;
 
-public class StartGameAction extends AbstractAction {
+public class LoadGameAction extends AbstractAction {
 	
 	private static final long serialVersionUID = 1965146620020410561L;	
 	
-	public StartGameAction() {
+	public LoadGameAction() {
 	}
 	
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("New Game");
+		System.out.println("Load Game");
 
 	}
 
