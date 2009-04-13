@@ -35,10 +35,19 @@ public class ResourceLoader {
 		fileMap = new HashMap<String, String>();
 		imageMap = new HashMap<String, Image>();
 		fileMap.put("WelcomeScreenBG", IMG_DIR + "mapbg.gif");
+		fileMap.put("newGame", ICON_DIR + "newGame.png");
+		fileMap.put("loadGame", ICON_DIR + "loadGame.png");
+		fileMap.put("quitGame", ICON_DIR + "quitGame.png");
+		fileMap.put("settings", ICON_DIR + "settings.png");
 		
 		
 		//Welcome Screen images
 		imageMap.put("WelcomeScreenBG", getImage("WelcomeScreenBG"));
+		imageMap.put("newGame", getImage("newGame"));
+		//imageMap.put("loadGame", getImage("loadGame"));
+		//imageMap.put("quitGame", getImage("quitGame"));
+		//imageMap.put("settings", getImage("settings"));
+		
 	}
 	
 	public static ResourceLoader getInstance() {
