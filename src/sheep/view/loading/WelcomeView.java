@@ -11,6 +11,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import sheep.controller.actions.*;
 import util.ResourceLoader;
+import util.SheepButton;
 
 
 /*
@@ -81,12 +82,8 @@ public class WelcomeView extends JFrame {
 		LoadGameAction lga = new LoadGameAction();
 		
 		//Create the buttons
-		JButton ngBtn = new JButton(newG_icon);
-		JButton lgBtn = new JButton(loadG_icon);
-		ngBtn.setPreferredSize(btnDim);
-		lgBtn.setPreferredSize(btnDim);
-		ngBtn.addActionListener(nga);
-		lgBtn.addActionListener(lga);
+		SheepButton ngBtn = new SheepButton(newG_icon, nga, btnDim);
+		SheepButton lgBtn = new SheepButton(loadG_icon, lga, btnDim);
 		
 		//this.getContentPane().setLayout(new FlowLayout());
 		btnPanel.add(ngBtn);
