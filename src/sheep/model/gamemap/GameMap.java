@@ -11,13 +11,13 @@ import java.util.Vector;
  * @author Phil Freo
  */
 public class GameMap implements Serializable {
-	
+
 	private static final long serialVersionUID = -6604540494991148223L;
-	
+
 	private HashMap<Location, Vector<Locatable>> map;
-	
+
 	public GameMap() {
-		 this.map = new HashMap<Location, Vector<Locatable>>();
+		this.map = new HashMap<Location, Vector<Locatable>>();
 	}
 
 	public Vector<Locatable> get(Location loc) {
@@ -31,7 +31,9 @@ public class GameMap implements Serializable {
 
 	public void add(Location loc, Locatable obj) {
 		Vector<Locatable> locationList = get(loc);
-		locationList.add(obj);
+		if (!locationList.contains(obj)) {
+			locationList.add(obj);
+		}
 	}
 
 	public boolean remove(Location loc, Locatable obj) {
@@ -44,13 +46,16 @@ public class GameMap implements Serializable {
 		// Remove Locatable from old Location
 		Vector<Locatable> oldLocList = get(oldLoc);
 		oldLocList.remove(obj);
-		
+
 		// Add it to new Location
 		Vector<Locatable> newLocList = get(newLoc);
-		newLocList.add(obj);
+		if (!newLocList.contains(obj)) {
+			newLocList.add(obj);
+		}
 	}
 
 	public Map<Location, List<Locatable>> getMapSubset(int origin, int radius) {
+		// TODO
 		throw new UnsupportedOperationException();
 	}
 }
