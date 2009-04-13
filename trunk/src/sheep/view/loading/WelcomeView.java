@@ -3,15 +3,13 @@ package sheep.view.loading;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Image;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-
-import sheep.controller.actions.StartGameAction;
+import sheep.controller.actions.*;
 import util.ResourceLoader;
 
 
@@ -28,48 +26,71 @@ public class WelcomeView extends JFrame {
 	private SettingsView settingsView;
 	private JPanel bgPanel;
 	private JPanel btnPanel;
+	private Dimension scrDimension = new Dimension(800,600);
+	private Dimension btnDim = new Dimension(150,100);
 
 	public WelcomeView() {
-		setUpWindow();
+		setUpPanels();
 		addButtons();
+		this.setSize(scrDimension); //We'll change this later... make it full screen.
+		this.setLocationRelativeTo(null); // center
 		this.setVisible(true);
 	}
 	
-	private void setUpWindow() {
+	private void setUpPanels() {
 		this.setTitle("Sheepoop - Welcome Screen");
-		final Image bg = ResourceLoader.getInstance().getBGImage();
+		final ImageIcon bg = new ImageIcon(ResourceLoader.getInstance().getBGImage());
+		JLabel bgLabel = new JLabel(bg);
+		bgLabel.setBounds(0, 0, (int)scrDimension.getWidth(), (int)scrDimension.getHeight());
+		
+		//Create panels
+		bgPanel = new JPanel(null);
 		btnPanel = new JPanel(new FlowLayout());
-		bgPanel = new JPanel()
-		{
-			public void paintComponent(Graphics g) {		
-				Dimension d = getSize();
-				g.drawImage(bg, 0, 0, (int)d.getWidth(), (int)d.getHeight(), null);
-				super.paintComponents(g);
-			}
-		};
+		bgPanel.add(bgLabel);
+		
+		//Set properties of the panels
+		bgPanel.setPreferredSize(scrDimension);
 		bgPanel.setOpaque( false );
-		this.add(bgPanel);
-		//this.add(btnPanel);
-		this.setSize( new Dimension(1000, 800) ); //We'll change this later... make it full screen.
-		this.setLocationRelativeTo(null); // center
+		bgPanel.setBounds(0, 0, (int)scrDimension.getWidth(), (int)scrDimension.getHeight());
+		int yOff = (int)scrDimension.getHeight() - btnPanel.getHeight();
+		btnPanel.setBounds(0, yOff, (int)scrDimension.getWidth(), (int)btnDim.getHeight());
+		btnPanel.setOpaque(false);
+		
+		
+		//Add to the JFrame and its panes
+		JPanel content = (JPanel)this.getContentPane();
+		content.setOpaque(false);
+		content.add(btnPanel, BorderLayout.SOUTH);
+		
+		JLayeredPane layered = this.getLayeredPane();
+		layered.add(bgPanel, new Integer (Integer.MIN_VALUE));
+
+		
 	}
 	
 	private void addButtons() {
 		//Grab the resources
 		ResourceLoader rl = ResourceLoader.getInstance();
 		ImageIcon newG_icon = new ImageIcon(rl.getImage("newGame"));
-		//ImageIcon loadG_icon = new ImageIcon(rl.getImage("loadGame"));
+		ImageIcon loadG_icon = new ImageIcon(rl.getImage("loadGame"));
 		//ImageIcon settings_icon = new ImageIcon(rl.getImage("settings"));
 		//ImageIcon quitG_icon = new ImageIcon(rl.getImage("quitGame"));
 		
 		//Create the actions
-		StartGameAction sga = new StartGameAction(newG_icon);		
-		JButton but = new JButton(sga);
+		StartGameAction nga = new StartGameAction();
+		LoadGameAction lga = new LoadGameAction();
 		
-		
+		//Create the buttons
+		JButton ngBtn = new JButton(newG_icon);
+		JButton lgBtn = new JButton(loadG_icon);
+		ngBtn.setPreferredSize(btnDim);
+		lgBtn.setPreferredSize(btnDim);
+		ngBtn.addActionListener(nga);
+		lgBtn.addActionListener(lga);
 		
 		//this.getContentPane().setLayout(new FlowLayout());
-		btnPanel.add(but);
+		btnPanel.add(ngBtn);
+		btnPanel.add(lgBtn);
 		
 	}
 	
