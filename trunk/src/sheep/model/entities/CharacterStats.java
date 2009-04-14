@@ -24,10 +24,29 @@ public class CharacterStats implements Cloneable {
 	private void calculateDerivedStatistics()
 	{
 		stats.put(StatType.LEVEL, stats.get(StatType.EXPERIENCE)/1000);
-		stats.put(StatType.BASE_DEFENSIVE_RATING, stats.get(StatType.AGILITY)+stats.get(StatType.LEVEL)*3);
-		stats.put(StatType.MAX_LIFE, stats.get(StatType.HARDINESS)*2+stats.get(StatType.LEVEL)*stats.get(StatType.HARDINESS)/5);
-		stats.put(StatType.MAX_MANA, stats.get(StatType.INTELLECT)*2+stats.get(StatType.LEVEL)*stats.get(StatType.INTELLECT)/5);
-		stats.put(StatType.BASE_OFFENSIVE_RATING, stats.get(StatType.STRENGTH)*2+stats.get(StatType.LEVEL)*stats.get(StatType.STRENGTH)/5);
+		
+		int agility = stats.get(StatType.AGILITY);
+		int hardiness = stats.get(StatType.HARDINESS);
+		int intellect = stats.get(StatType.INTELLECT);
+		int strength = stats.get(StatType.STRENGTH);
+		int level = stats.get(StatType.LEVEL);
+		
+		stats.put(StatType.BASE_DEFENSIVE_RATING, agility+level*3);
+		stats.put(StatType.MAX_LIFE, hardiness*2+level*hardiness/5);
+		stats.put(StatType.MAX_MANA, intellect*2+level*intellect/5);
+		stats.put(StatType.BASE_OFFENSIVE_RATING, strength*2+level*strength/5);
+		
+		//See if character is dead and take appropriate actions
+		if((stats.get(StatType.DAMAGE)>0)&&(stats.get(StatType.DAMAGE)>(stats.get(StatType.MAX_LIFE))))
+		{
+			int oldLivesLeft = stats.get(StatType.LIVES_LEFT);
+			stats.put(StatType.LIVES_LEFT, oldLivesLeft-1);
+			stats.put(StatType.DAMAGE, 0);
+		}
+		int damage = stats.get(StatType.DAMAGE);
+		int maxLife = stats.get(StatType.MAX_LIFE);
+		
+		stats.put(StatType.LIFE, maxLife-damage);
 	}
 
 	public int get(StatType stat) {
