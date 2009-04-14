@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Vector;
 
 import sheep.model.entities.CharacterStats;
+import sheep.model.entities.StatType;
 import sheep.model.skills.PassiveSkill;
 import sheep.model.skills.PerformableSkill;
 
@@ -22,15 +23,30 @@ public abstract class Occupation implements Serializable {
 	public final HashMap<PassiveSkill, Integer> passiveSkills;
 	private final String id;
 
-	public Occupation(String id, CharacterStats initialStats, List<PerformableSkill> performableSkills, Map<PassiveSkill, Integer> passiveSkills) {
+	public Occupation(String id) {
 		this.id = id;
-		this.performableSkills = (Vector<PerformableSkill>) performableSkills;
-		this.initialStats = initialStats;
-		this.passiveSkills = (HashMap<PassiveSkill, Integer>) passiveSkills;
+		this.performableSkills = new Vector<PerformableSkill>();
+		this.initialStats = new CharacterStats(new HashMap<StatType,Integer>());
+		this.passiveSkills = new HashMap<PassiveSkill, Integer>();
 	}
 
 	public CharacterStats cloneStats() {
 		return this.initialStats.clone();
+	}
+	
+	protected void setInitialCharacterStat(StatType type, int value)
+	{
+		initialStats.set(type, value);
+	}
+	
+	protected void addPerformableSkill(PerformableSkill p)
+	{
+		performableSkills.add(p);
+	}
+	
+	protected void setInitialPassiveSkill(PassiveSkill p, int value)
+	{
+		passiveSkills.put(p, value);
 	}
 
 	@SuppressWarnings("unchecked")
