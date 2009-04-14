@@ -77,6 +77,7 @@ public class GameMap implements Serializable {
 				List<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
+					System.out.print("Locatable found here!");
 					mySubset.put(tLoc, curSpot);
 				}
 				tLoc = new Location(tLoc.getX()+2,tLoc.getY());
@@ -99,6 +100,7 @@ public class GameMap implements Serializable {
 				List<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
+					System.out.print("Locatable found here!");
 					mySubset.put(tLoc, curSpot);
 				}
 				tLoc = new Location(tLoc.getX()+2, tLoc.getY());
@@ -113,6 +115,7 @@ public class GameMap implements Serializable {
 				List<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
+					System.out.print("Locatable found here!");
 					mySubset.put(tLoc, curSpot);
 				}
 				tLoc = new Location(tLoc.getX()+2, tLoc.getY());
@@ -131,6 +134,7 @@ public class GameMap implements Serializable {
 				List<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
+					System.out.print("Locatable found here!");
 					mySubset.put(tLoc, curSpot);
 				}
 				tLoc = new Location(tLoc.getX()+2, tLoc.getY());
