@@ -162,5 +162,11 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	public void removeObserver(StatChangeObserver observer) {
 		statChangeObservers.remove(observer);
 	}
+
+	@Override
+	public int getStat(StatType stat)
+	{
+		return characterStats.get(stat);
+	}
 	
 }

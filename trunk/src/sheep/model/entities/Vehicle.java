@@ -60,4 +60,17 @@ public class Vehicle extends Entity {
 		statChangeObservers.remove(observer);
 	}
 
+	@Override
+	public int getStat(StatType stat)
+	{
+		if(driver == null)
+		{
+			return 0;
+		}
+		else
+		{
+			return driver.getStat(stat);
+		}
+	}
+
 }
