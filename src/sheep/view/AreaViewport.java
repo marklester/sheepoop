@@ -1,11 +1,12 @@
 package sheep.view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Vector;
 import java.util.Map.Entry;
 
 import javax.swing.JPanel;
@@ -63,13 +64,14 @@ public class AreaViewport extends JPanel {
 
 	private void drawTiles(Graphics2D g2) {
 		
-		Location center = new Location(7,7);//avatar.getLocation();
+		Location center = new Location(5, 5);//avatar.getLocation();
 		
-		int radius = 8; // TODO: calculate viewable locations
+		int radius = 4; // TODO: calculate viewable locations
 		
-		Map<Location, List<Locatable>> subMap = gameMap.getMapSubset(center, radius);		
+		HashMap<Location, Vector<Locatable>> subMap = gameMap.getMapSubset(center, radius);	
+		//subMap = gameMap.getMap();
 		
-		for ( Entry<Location,List<Locatable>> entry : subMap.entrySet()) {
+		for ( Entry<Location,Vector<Locatable>> entry : subMap.entrySet()) {
 			Location loc = entry.getKey();
 			List<Locatable> locatables = entry.getValue();
 			
@@ -82,7 +84,7 @@ public class AreaViewport extends JPanel {
 		// TODO
 		
 		// But for now we will just draw what came from the map subset
-		for ( Entry<Location,List<Locatable>> entry : subMap.entrySet()) {
+		for ( Entry<Location,Vector<Locatable>> entry : subMap.entrySet()) {
 			Location loc = entry.getKey();
 			BufferedImage img = getTileImage(loc);
 			
@@ -96,6 +98,11 @@ public class AreaViewport extends JPanel {
 			//System.out.println(loc);
 			//System.out.println(startX + "," + startY);
 			g2.drawImage(img, startX * loc.getX(), startY, null);
+			if (loc.equals(center)) {
+				// draw fake entity on tile
+				g2.setColor(Color.RED);
+				g2.fillOval(startX * loc.getX() + 30, startY + 30, 20, 20);
+			}
 		}
 	}
 
