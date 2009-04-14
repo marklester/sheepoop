@@ -24,7 +24,7 @@ public class MapCreatorTest {
 		model.setMap(map);
 		
 		// test avatar
-		Location startingLoc = new Location(4,5);
+		Location startingLoc = new Location(8, 5);
 		Avatar avatar = new Avatar("Summoner", map, startingLoc, new Summoner());
 		map.add(startingLoc, avatar);
 		model.setAvatar(avatar);
