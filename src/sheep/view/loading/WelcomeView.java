@@ -3,14 +3,18 @@ package sheep.view.loading;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import sheep.controller.actions.*;
+
+import sheep.controller.loading.CharacterSelectionListener;
+import sheep.controller.loading.WelcomeActionListener;
 import util.ResourceLoader;
-import util.SheepButton;
 
 
 /*
@@ -23,11 +27,23 @@ import util.SheepButton;
 public class WelcomeView extends JFrame {
 
 	private static final long serialVersionUID = 3905429913364344748L;
+	
+	public static final String NEW_GAME = "new game";
+	public static final String LOAD = "load";
+	
+	public static final String SUMMONER = "summoner";
+	public static final String SMASHER = "smasher";
+	public static final String SNEAK = "sneak";
+	
 	private SettingsView settingsView;
 	private JPanel bgPanel;
 	private JPanel btnPanel;
+	private CharacterSelectionListener charSelectionListener;
+	private ActionListener welcomeListener;
+	
 	private Dimension scrDimension = new Dimension(800,600);
 	private Dimension btnDim = new Dimension(150,100);
+
 
 	public WelcomeView() {
 		setUpPanels();
@@ -74,8 +90,16 @@ public class WelcomeView extends JFrame {
 		//ImageIcon quitG_icon = new ImageIcon(rl.getImage("quitGame"));
 		
 		//Create the buttons
-		SheepButton ngBtn = new SheepButton(newG_icon, new StartGameAction(this), btnDim);
-		SheepButton lgBtn = new SheepButton(loadG_icon, new LoadGameAction(this), btnDim);
+		JButton ngBtn = new JButton(newG_icon);
+		ngBtn.setPreferredSize(btnDim);
+		ngBtn.setActionCommand( NEW_GAME );
+		ngBtn.addActionListener( welcomeListener );
+		
+		JButton lgBtn = new JButton(loadG_icon);
+		lgBtn.setPreferredSize(btnDim);
+		lgBtn.setActionCommand( LOAD );
+		lgBtn.addActionListener( welcomeListener );
+		
 		btnPanel.add(ngBtn);
 		btnPanel.add(lgBtn);
 	}
@@ -87,11 +111,22 @@ public class WelcomeView extends JFrame {
 		ImageIcon sm = new ImageIcon(rl.getImage("smasher")); 
 		ImageIcon su = new ImageIcon(rl.getImage("summoner"));
 		ImageIcon sn = new ImageIcon(rl.getImage("sneak"));
-		Dimension icon_dim = new Dimension(sm.getIconWidth(), sm.getIconHeight());
+		Dimension iconDim = new Dimension(sm.getIconWidth(), sm.getIconHeight());
 		
-		SheepButton smBtn = new SheepButton(sm, new CharacterSelectAction(this), icon_dim, "smasher");
-		SheepButton suBtn = new SheepButton(su, new CharacterSelectAction(this), icon_dim, "summoner");
-		SheepButton snBtn = new SheepButton(sn, new CharacterSelectAction(this), icon_dim, "sneak");
+		JButton smBtn = new JButton(sm);
+		smBtn.setPreferredSize(iconDim);
+		smBtn.setActionCommand( SMASHER );
+		smBtn.addActionListener( charSelectionListener );
+		
+		JButton suBtn = new JButton(su);
+		suBtn.setPreferredSize(iconDim);
+		suBtn.setActionCommand( SUMMONER );
+		suBtn.addActionListener( charSelectionListener );
+		
+		JButton snBtn = new JButton(sn);
+		snBtn.setPreferredSize(iconDim);
+		snBtn.setActionCommand( SNEAK );
+		snBtn.addActionListener( charSelectionListener );
 		
 		//Create the panel & add buttons
 		JPanel chrPanel = new JPanel(new FlowLayout());
@@ -113,8 +148,14 @@ public class WelcomeView extends JFrame {
 		System.out.println(res);
 	}
 	
+	public void setWelcomeActionListener( WelcomeActionListener listener )
+	{
+		this.welcomeListener = listener;
+	}
 	
-	
+	public void setWelcomeActionListener( CharacterSelectionListener listener )
+	{
+		this.charSelectionListener = listener;
+	}
 	
 }
-
