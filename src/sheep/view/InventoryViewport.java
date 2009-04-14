@@ -47,7 +47,7 @@ public class InventoryViewport extends JPanel {
 	public InventoryViewport(Avatar av, int w, int h) {
 		super(new GridLayout(2,1));
 		this.setPreferredSize(new Dimension(w,h));
-		this.avatar = new Avatar(); //av;
+		this.avatar = av;
 		this.inv = avatar.getInventory();
 		resLoader = ResourceLoader.getInstance();
 		setupTop();

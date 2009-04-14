@@ -21,10 +21,6 @@ public class Model implements Serializable {
 	private Entity mover;
 	private GameMap gameMap;
 	private Vector<GameStateObserver> gameStateObservers = new Vector<GameStateObserver>();
-
-	public Model() {
-		
-	}
 	
 	public void pauseTime() {
 		time.pause();

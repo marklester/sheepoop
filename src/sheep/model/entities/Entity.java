@@ -15,10 +15,6 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	
 	private Direction facingDirection = Direction.N;
 	private Inventory inv;
-	
-	public Entity() {
-		//testing purposes
-	}
 
 	public Entity(String id, GameMap map, Location loc) {
 		super(id, map, loc);
