@@ -1,7 +1,6 @@
-package util;
+package sheep.view.util;
 
 import java.awt.Image;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -16,13 +15,13 @@ import javax.imageio.ImageIO;
 
 public class ResourceLoader {
 	
-	public static final String IMG_DIR = "res" + File.separator + "imgs";
-	public static final String ICON_DIR = IMG_DIR + File.separator + "icons";
-
 	private static ResourceLoader instance = new ResourceLoader();
-	private HashMap<String, File> fileMap;
+	private HashMap<String, String> fileMap;
 	private HashMap<String, Image> imageMap;
 
+	private static final String IMG_DIR = "res/imgs/";
+	private static final String ICON_DIR = IMG_DIR +  "icons/";
+	private static final String TERRAIN_DIR = IMG_DIR + "terrains/";
 	
 	
 	/**
@@ -32,17 +31,21 @@ public class ResourceLoader {
 	 *  
 	 */
 	
+	
 	private ResourceLoader() {
-		fileMap = new HashMap<String, File>();
+		fileMap = new HashMap<String, String>();
 		imageMap = new HashMap<String, Image>();
-		fileMap.put("WelcomeScreenBG", new File( IMG_DIR, "mapbg.gif") );
-		fileMap.put("newGame", new File( ICON_DIR, "newgame.png" ));
-		fileMap.put("loadGame", new File( ICON_DIR,  "loadgame.png") );
-		fileMap.put("quitGame", new File( ICON_DIR, "quitgame.png" ));
-		fileMap.put("settings", new File(ICON_DIR, "settings.png") );
-		fileMap.put("smasher", new File(ICON_DIR, "smasher.png") );
-		fileMap.put("summoner", new File(ICON_DIR, "summoner.png") );
-		fileMap.put("sneak", new File(ICON_DIR, "sneak.png") );
+		fileMap.put("WelcomeScreenBG", IMG_DIR + "mapbg.gif");
+		fileMap.put("newGame", ICON_DIR + "newGame.png");
+		fileMap.put("loadGame", ICON_DIR + "loadGame.png");
+		fileMap.put("quitGame", ICON_DIR + "quitGame.png");
+		fileMap.put("settings", ICON_DIR + "settings.png");
+		fileMap.put("smasher", ICON_DIR + "smasher.png");
+		fileMap.put("summoner", ICON_DIR + "summoner.png");
+		fileMap.put("sneak", ICON_DIR + "sneak.png");
+		fileMap.put("Water", TERRAIN_DIR + "water.png");
+		fileMap.put("Grass", TERRAIN_DIR + "grass.png");
+		fileMap.put("Mountain", TERRAIN_DIR + "mountains.png");
 		
 		//Welcome Screen images
 		imageMap.put("WelcomeScreenBG", getImage("WelcomeScreenBG"));
@@ -78,10 +81,10 @@ public class ResourceLoader {
 	
 	public FileInputStream getFileInputStream(String id) throws FileNotFoundException {
 		try {
-			return new FileInputStream( fileMap.get(id).getAbsolutePath() );
+			String s = fileMap.get(id);
+			return new FileInputStream(fileMap.get(id));
 		}
 		catch(FileNotFoundException e) {
-			System.out.println( id );
 			throw new FileNotFoundException();
 		}
 	}

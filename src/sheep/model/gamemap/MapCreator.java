@@ -1,6 +1,7 @@
 package sheep.model.gamemap;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -8,9 +9,13 @@ import sheep.model.terrains.Grass;
 import sheep.model.terrains.Mountain;
 import sheep.model.terrains.Water;
 
+/**
+ * 
+ * @author Bryan Rosander
+ */
 public class MapCreator
 {
-	public static GameMap createMap(String pathAndName) throws IOException
+	public static GameMap createMap(File pathAndName) throws IOException
 	{
 		GameMap myMap = new GameMap();
 		
