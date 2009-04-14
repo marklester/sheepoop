@@ -40,6 +40,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	public Character(String id, GameMap map, Location loc, Occupation occupation) {
 		super(id, map, loc);
 		this.occupation = occupation;
+		
 	}
 
 	public void accept(LocatableVisitor v) {

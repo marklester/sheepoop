@@ -13,7 +13,7 @@ public class Sneak extends Occupation {
 	
 	private static final long serialVersionUID = 8671860996265254633L;
 
-	public Sneak(Character c) {
+	public Sneak() {
 		super("Sneak");
 		setInitialCharacterStat(StatType.AGILITY, 25);
 		setInitialCharacterStat(StatType.HARDINESS, 12);
@@ -21,11 +21,11 @@ public class Sneak extends Occupation {
 		setInitialCharacterStat(StatType.SPEED, 20);
 		setInitialCharacterStat(StatType.STRENGTH, 12);
 		setInitialCharacterStat(StatType.LIVES_LEFT, 5);
-		addPerformableSkill(new Observation(c));
-		addPerformableSkill(new BindWounds(c));
-		addPerformableSkill(new Creep(c));
-		addPerformableSkill(new PickPocket(c));
-		addPerformableSkill(new RemoveTrap(c));
+		addPerformableSkill(new Observation());
+		addPerformableSkill(new BindWounds());
+		addPerformableSkill(new Creep());
+		addPerformableSkill(new PickPocket());
+		addPerformableSkill(new RemoveTrap());
 		setInitialPassiveSkill(PassiveSkill.BARGAIN, 0);
 		setInitialPassiveSkill(PassiveSkill.DETECT_TRAP, 0);
 		setInitialPassiveSkill(PassiveSkill.RANGED_WEAPON, 0);

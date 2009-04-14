@@ -15,10 +15,14 @@ public abstract class PerformableSkill extends AbstractAction implements Seriali
 	private static final long serialVersionUID = -8562441519176962234L;
 	
 	public int points;
-	private final Character character;
+	private Character character;
 
 	public PerformableSkill(Character character) {
 		this.character = character;
+		this.points = 0;
+	}
+	
+	public PerformableSkill() {
 		this.points = 0;
 	}
 
@@ -28,6 +32,10 @@ public abstract class PerformableSkill extends AbstractAction implements Seriali
 
 	public Character getCharacter() {
 		return character;
+	}
+	
+	public void setCharacter(Character c) {
+		this.character = c;
 	}
 	
 	public int getPoints() {

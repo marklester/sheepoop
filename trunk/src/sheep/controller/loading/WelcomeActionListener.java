@@ -13,10 +13,10 @@ import sheep.view.loading.WelcomeView;
  */
 public class WelcomeActionListener implements ActionListener {
 
-	private WelcomeView view;
+	private WelcomeView welcomeview;
 	
 	public WelcomeActionListener( WelcomeView view ) {
-		this.view = view;
+		this.welcomeview = view;
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class WelcomeActionListener implements ActionListener {
 		String command = ae.getActionCommand();
 		
 		if( command.equals( WelcomeView.NEW_GAME ) ) {
-			view.displayCharacterSelect();
+			welcomeview.displayCharacterSelect();
 		}
 		else if( command.equals( WelcomeView.LOAD ) ) {
 			
