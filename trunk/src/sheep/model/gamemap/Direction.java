@@ -28,7 +28,7 @@ public enum Direction {
 
 	public Vector2D getVector(Location l) {
 		int x = l.getX();
-		if(x%2==1)
+		if(Math.abs(x)%2==1)
 		{
 			return oddVector;
 		}
