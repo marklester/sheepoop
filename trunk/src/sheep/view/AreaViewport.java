@@ -1,24 +1,42 @@
 package sheep.view;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.List;
 
-import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 import sheep.model.entities.Avatar;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
+import sheep.view.overlays.StatConsole;
 
-public class AreaViewport extends JComponent {
+public class AreaViewport extends JPanel {
 	private static final long serialVersionUID = 8296336314571261983L;
 	
-	LocationDrawingVisitor locationDrawingVisitor;
+	private LocationDrawingVisitor locationDrawingVisitor;
+	private final GameMap gameMap;
+	private Avatar avatar;
+	private StatConsole stats;
 
 	public AreaViewport(Avatar avatar, GameMap map) {
-		throw new UnsupportedOperationException();
+		this.gameMap = map;
+		this.avatar = avatar;
 	}
+	
+	/**
+	 * To be called when the size of this component is known
+	 */
+	public void initialize() {
+		
+		// Create StatConsole
+		this.stats = new StatConsole(20, this.getHeight() - StatConsole.getHeight() - 20, this.avatar);	
+		
+	}
+	
+	
 
 	/**
 	 * Location center = model.getAvatar().getLocation()
@@ -33,7 +51,13 @@ public class AreaViewport extends JComponent {
 	 */
 	@Override
 	public void paint(Graphics g) {
-		throw new UnsupportedOperationException();
+		Graphics2D g2 = (Graphics2D) g;
+		super.paint(g);
+
+		// Paint tiles
+		
+		// Paint children
+		stats.paint(g2);
 	}
 
 	/**

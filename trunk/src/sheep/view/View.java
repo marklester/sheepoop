@@ -6,9 +6,7 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.LayoutManager;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -17,9 +15,11 @@ import sheep.model.Model;
 public class View extends JFrame {
 
 	private static final long serialVersionUID = 2015429639828183235L;
-	private Model model;
-	private TradeViewport tradeViewport;
 	private static final boolean FULL_SCREEN_MODE = true;
+	private final Model model;
+	private TradeViewport tradeViewport;
+	private AreaViewport areaViewport;
+	private JPanel sidebar;
 
 	public View(Model model) {
 		this.model = model;
@@ -35,7 +35,7 @@ public class View extends JFrame {
 		this.setTitle("Sheepoop");
 		
 		// Create area viewport
-		JPanel areaViewport = new JPanel();
+		areaViewport = new AreaViewport(this.model.getAvatar(), this.model.getGameMap());
 		areaViewport.setOpaque(true);
 		areaViewport.setBackground(Color.BLACK);
 		this.getContentPane().add(areaViewport, BorderLayout.CENTER);
@@ -47,7 +47,6 @@ public class View extends JFrame {
 		sidebar.setPreferredSize(new Dimension(400, 1));
 		this.getContentPane().add(sidebar, BorderLayout.EAST);
 		
-		
 		if (device.isFullScreenSupported() && FULL_SCREEN_MODE) {
 			setUndecorated(true);
 			setResizable(false);
@@ -58,6 +57,7 @@ public class View extends JFrame {
 			this.setVisible(true);
 		}
 
+		areaViewport.initialize();
 	}
 
 	public void render() {

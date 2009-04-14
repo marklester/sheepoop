@@ -29,5 +29,10 @@ public class MessageConsole extends Overlay implements StatChangeObserver, TalkM
 	public void update(InventoryChange msg) {
 	}
 
+	@Override
+	public void paint(Graphics2D g) {
+	}
+
+
 	
 }
