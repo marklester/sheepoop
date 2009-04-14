@@ -18,6 +18,16 @@ public class CharacterStats implements Cloneable {
 		int oldAmt = this.stats.get(stat);
 		int newAmt = oldAmt + changeAmt;
 		this.stats.put(stat, newAmt);
+		calculateDerivedStatistics();
+	}
+	
+	private void calculateDerivedStatistics()
+	{
+		stats.put(StatType.LEVEL, stats.get(StatType.EXPERIENCE)/1000);
+		stats.put(StatType.BASE_DEFENSIVE_RATING, stats.get(StatType.AGILITY)+stats.get(StatType.LEVEL)*3);
+		stats.put(StatType.MAX_LIFE, stats.get(StatType.HARDINESS)*2+stats.get(StatType.LEVEL)*stats.get(StatType.HARDINESS)/5);
+		stats.put(StatType.MAX_MANA, stats.get(StatType.INTELLECT)*2+stats.get(StatType.LEVEL)*stats.get(StatType.INTELLECT)/5);
+		stats.put(StatType.BASE_OFFENSIVE_RATING, stats.get(StatType.STRENGTH)*2+stats.get(StatType.LEVEL)*stats.get(StatType.STRENGTH)/5);
 	}
 
 	public int get(StatType stat) {
