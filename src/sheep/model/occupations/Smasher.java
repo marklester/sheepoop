@@ -11,7 +11,7 @@ public class Smasher extends Occupation {
 
 	private static final long serialVersionUID = 4472300793301277305L;
 	
-	public Smasher(Character c) {
+	public Smasher() {
 		super("Smasher");
 		setInitialCharacterStat(StatType.AGILITY, 15);
 		setInitialCharacterStat(StatType.HARDINESS, 25);
@@ -19,8 +19,8 @@ public class Smasher extends Occupation {
 		setInitialCharacterStat(StatType.SPEED, 15);
 		setInitialCharacterStat(StatType.STRENGTH, 15);
 		setInitialCharacterStat(StatType.LIVES_LEFT, 5);
-		addPerformableSkill(new Observation(c));
-		addPerformableSkill(new BindWounds(c));
+		addPerformableSkill(new Observation());
+		addPerformableSkill(new BindWounds());
 		setInitialPassiveSkill(PassiveSkill.BARGAIN, 0);
 		setInitialPassiveSkill(PassiveSkill.ONE_HANDED_WEAPON, 0);
 		setInitialPassiveSkill(PassiveSkill.TWO_HANDED_WEAPON, 0);

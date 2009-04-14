@@ -10,7 +10,7 @@ public class Summoner extends Occupation {
 	
 	private static final long serialVersionUID = -7063196676299952873L;
 
-	public Summoner(Character c) {
+	public Summoner() {
 		super("Smasher");
 		setInitialCharacterStat(StatType.AGILITY, 10);
 		setInitialCharacterStat(StatType.HARDINESS, 10);
@@ -18,8 +18,8 @@ public class Summoner extends Occupation {
 		setInitialCharacterStat(StatType.SPEED, 10);
 		setInitialCharacterStat(StatType.STRENGTH, 10);
 		setInitialCharacterStat(StatType.LIVES_LEFT, 5);
-		addPerformableSkill(new Observation(c));
-		addPerformableSkill(new BindWounds(c));
+		addPerformableSkill(new Observation());
+		addPerformableSkill(new BindWounds());
 		setInitialPassiveSkill(PassiveSkill.BARGAIN, 0);
 		setInitialPassiveSkill(PassiveSkill.BANE, 0);
 		setInitialPassiveSkill(PassiveSkill.BOON, 0);

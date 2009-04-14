@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 
 import sheep.controller.loading.CharacterSelectionListener;
 import sheep.controller.loading.WelcomeActionListener;
+import sheep.model.occupations.Occupation;
+import sheep.model.skills.PassiveSkill;
 import sheep.view.util.ResourceLoader;
 
 
@@ -29,7 +31,6 @@ public class WelcomeView extends JFrame {
 	
 	public static final String NEW_GAME = "new game";
 	public static final String LOAD = "load";
-	
 	public static final String SUMMONER = "summoner";
 	public static final String SMASHER = "smasher";
 	public static final String SNEAK = "sneak";
@@ -39,21 +40,19 @@ public class WelcomeView extends JFrame {
 	private JPanel btnPanel;
 	private CharacterSelectionListener charSelectionListener;
 	private ActionListener welcomeListener;
-	
 	private JButton ngBtn;
 	private JButton lgBtn;
-	
 	private JButton smBtn;
 	private JButton suBtn;
 	private JButton snBtn;
-	
 	private Dimension scrDimension = new Dimension(800,600);
 	private Dimension btnDim = new Dimension(150,100);
+	private Occupation selectedOccupation;
 
 
 	public WelcomeView() {
 		welcomeListener = new WelcomeActionListener(this);
-		charSelectionListener = new CharacterSelectionListener();
+		charSelectionListener = new CharacterSelectionListener(this);
 		
 		setUpPanels();
 		addButtons();
@@ -153,7 +152,11 @@ public class WelcomeView extends JFrame {
 		chrPanel.setVisible(true);
 	}
 	
-	public void setCharacter(String res) {
-		System.out.println(res);
-	}	
+	public void setSelectedOccupation(Occupation occ) {
+		this.selectedOccupation = occ;
+	}
+	
+	public Occupation getSelectedOccupation() {
+		return this.selectedOccupation;
+	}
 }
