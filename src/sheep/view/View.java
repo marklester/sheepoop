@@ -44,7 +44,7 @@ public class View extends JFrame {
 		JPanel sidebar = new JPanel();
 		sidebar.setOpaque(true);
 		sidebar.setBackground(Color.WHITE);
-		sidebar.setPreferredSize(new Dimension(400, 1));
+		sidebar.setSize(new Dimension(300, this.getHeight()));
 		this.getContentPane().add(sidebar, BorderLayout.EAST);
 		
 		if (device.isFullScreenSupported() && FULL_SCREEN_MODE) {

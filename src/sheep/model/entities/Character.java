@@ -33,6 +33,9 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	private Vector<InventoryChangeObserver> inventoryObservers = new Vector<InventoryChangeObserver>();
 	private Vector<StatChangeObserver> statChangeObservers = new Vector<StatChangeObserver>();
 
+	public Character() {
+		//testing purposes
+	}
 
 	public Character(String id, GameMap map, Location loc, Occupation occupation) {
 		super(id, map, loc);

@@ -14,6 +14,11 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	private static final long serialVersionUID = -8117857590532885266L;
 	
 	private Direction facingDirection = Direction.N;
+	private Inventory inv;
+	
+	public Entity() {
+		//testing purposes
+	}
 
 	public Entity(String id, GameMap map, Location loc) {
 		super(id, map, loc);
@@ -48,6 +53,10 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	@Override
 	public void tick() {
 		
+	}
+	
+	public Inventory getInventory() {
+		return this.inv;
 	}
 
 }

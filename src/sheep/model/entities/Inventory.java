@@ -25,4 +25,11 @@ public class Inventory implements Serializable {
 	public Iterable<Takeable> get() {
 		return items;
 	}
+	
+	public int getSize() {
+		if (items != null) 
+			return items.size();
+		else
+			return 0;
+	}
 }
