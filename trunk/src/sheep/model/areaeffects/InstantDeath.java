@@ -14,7 +14,7 @@ public class InstantDeath extends AreaEffect {
 	}
 	
 	public void applyEffect(Entity e) {
-		e.affectStat(StatType.LIFE, -e.getStat(StatType.LIFE));
+		e.affectStat(StatType.DAMAGE, e.getStat(StatType.LIFE));
 	}
 
 	@Override
