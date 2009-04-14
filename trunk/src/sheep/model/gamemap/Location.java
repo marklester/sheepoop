@@ -24,4 +24,15 @@ public class Location implements Serializable {
 	public int getY() {
 		return y;
 	}
+	public boolean equals(Location l2)
+	{
+		if((this.x==l2.x)&&(this.y==l2.y))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
