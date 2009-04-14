@@ -8,12 +8,13 @@ import sheep.model.entities.StatChangeObserver;
 
 public class StatConsole extends Overlay implements StatChangeObserver {
 
-	private Avatar avatar;
+	private final Avatar avatar;
 	
 	public StatConsole(int posX, int posY, Graphics g, Avatar avatar) {
 		super(posX, posY);
 		this.avatar = avatar;
-		throw new UnsupportedOperationException();
+
+
 	}
 
 	@Override

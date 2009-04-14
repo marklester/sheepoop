@@ -1,34 +1,64 @@
 package sheep.model;
 
 import java.io.Serializable;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
+/**
+ * 
+ * @author Phil Freo
+ */
 public class Time implements Serializable {
 
 	private static final long serialVersionUID = 1061923003822374910L;
 
+	private static final int TICKS_PER_SECOND = 30;
 	private static Time instance = new Time();
-	private Vector<TimeObserver> observers = new Vector<TimeObserver>();
+	private List<TimeObserver> observers;
+	private Timer timer = new Timer();
+	private boolean isPaused;
 
 	private Time() {
+		this.isPaused = true;
 
+		List<TimeObserver> observers = new ArrayList<TimeObserver>();
+		this.observers = Collections.synchronizedList(observers);
 	}
 
 	public static Time getInstance() {
 		return instance;
 	}
 
+	public boolean isPaused() {
+		return isPaused;
+	}
+
 	public void pause() {
-		throw new UnsupportedOperationException();
+		timer.cancel();
+		this.isPaused = true;
 	}
 
 	public void start() {
-		throw new UnsupportedOperationException();
+		// Make sure Timer isn't already going
+		if (!isPaused) {
+			return;
+		}
+
+		// Create timer
+		float millisBetweenTicks = 1f / (float) TICKS_PER_SECOND * 1000f;
+		timer.schedule(new TickTimeTask(), 0, (long) millisBetweenTicks);
+
+		this.isPaused = false;
 	}
 
 	public void registerObserver(TimeObserver observer) {
-		if (!observers.contains(observer)) {
-			observers.add(observer);
+		synchronized (observers) {
+			if (!observers.contains(observer)) {
+				observers.add(observer);
+			}
 		}
 	}
 
@@ -37,8 +67,19 @@ public class Time implements Serializable {
 	}
 
 	public void notifyObservers() {
-		for (TimeObserver observer : this.observers) {
-			observer.tick();
+		synchronized (observers) {
+			for (TimeObserver observer : this.observers) {
+				observer.tick();
+			}
 		}
+	}
+
+	private class TickTimeTask extends TimerTask {
+
+		@Override
+		public void run() {
+			notifyObservers();
+		}
+
 	}
 }
