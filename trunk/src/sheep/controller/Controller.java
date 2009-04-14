@@ -38,7 +38,7 @@ public class Controller implements GameStateObserver {
 		InputMap inputMap = view.getAreaViewport().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		ActionMap actionMap = view.getAreaViewport().getActionMap();
 		
-		inputMap.put(KeyStroke.getKeyStroke(0, KeyEvent.VK_ESCAPE), "quit");
+		inputMap.put( KeyStroke.getKeyStroke(KeyEvent.getKeyText(KeyEvent.VK_Q)), "quit" );
 		actionMap.put("quit", new QuitAction());
 		
 	}
