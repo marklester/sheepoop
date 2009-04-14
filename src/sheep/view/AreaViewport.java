@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
 
 import javax.swing.JPanel;
@@ -25,6 +24,7 @@ public class AreaViewport extends JPanel {
 	private Avatar avatar;
 	private StatConsole stats;
 	private HashMap<Location, BufferedImage> tileCache = new HashMap<Location, BufferedImage>();
+	private static int TILE_SIZE = 80;
 
 	public AreaViewport(Avatar avatar, GameMap map) {
 		this.gameMap = map;
@@ -63,16 +63,15 @@ public class AreaViewport extends JPanel {
 
 	private void drawTiles(Graphics2D g2) {
 		
-		Location center = new Location(3,3);//avatar.getLocation();
+		Location center = new Location(7,7);//avatar.getLocation();
 		
-		int radius = 4; // TODO: calculate viewable locations
+		int radius = 8; // TODO: calculate viewable locations
 		
 		Map<Location, List<Locatable>> subMap = gameMap.getMapSubset(center, radius);		
 		
 		for ( Entry<Location,List<Locatable>> entry : subMap.entrySet()) {
 			Location loc = entry.getKey();
 			List<Locatable> locatables = entry.getValue();
-			System.out.println(loc);
 			
 			BufferedImage tileImage = createTileImage(loc, locatables);
 			addToTileCache(loc, tileImage);
@@ -82,7 +81,22 @@ public class AreaViewport extends JPanel {
 		// and black for the locations not in the cache
 		// TODO
 		
-		
+		// But for now we will just draw what came from the map subset
+		for ( Entry<Location,List<Locatable>> entry : subMap.entrySet()) {
+			Location loc = entry.getKey();
+			BufferedImage img = getTileImage(loc);
+			
+			int startX = (int) ((TILE_SIZE / 2) + (TILE_SIZE / 2) * Math.tan(Math.PI / 6));
+			int startY = loc.getY() * TILE_SIZE;
+			if (loc.getX() % 2 != 0) {
+				// Odd x-positions are offset down
+				startY += (int) (TILE_SIZE / 2 + Math.cos(Math.PI / 3));
+			}
+			
+			//System.out.println(loc);
+			//System.out.println(startX + "," + startY);
+			g2.drawImage(img, startX * loc.getX(), startY, null);
+		}
 	}
 
 	private BufferedImage createTileImage(Location loc, List<Locatable> locatables) {
@@ -107,7 +121,7 @@ public class AreaViewport extends JPanel {
 		
 		if (ret == null) {
 			// Create and return a black image
-			ret = new BufferedImage(60, 60, BufferedImage.TYPE_INT_RGB);	// TODO - i just made this line up
+			ret = new BufferedImage(TILE_SIZE, TILE_SIZE, BufferedImage.TYPE_INT_RGB);	// TODO - i just made this line up
 		}
 		
 		return ret;
