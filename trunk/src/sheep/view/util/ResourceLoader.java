@@ -38,9 +38,9 @@ public class ResourceLoader {
 		fileMap = new HashMap<String, String>();
 		imageMap = new HashMap<String, Image>();
 		fileMap.put("WelcomeScreenBG", IMG_DIR + "mapbg.gif");
-		fileMap.put("newGame", ICON_DIR + "newGame.png");
-		fileMap.put("loadGame", ICON_DIR + "loadGame.png");
-		fileMap.put("quitGame", ICON_DIR + "quitGame.png");
+		fileMap.put("newGame", ICON_DIR + "newgame.png");
+		fileMap.put("loadGame", ICON_DIR + "loadgame.png");
+		fileMap.put("quitGame", ICON_DIR + "quitgame.png");
 		fileMap.put("settings", ICON_DIR + "settings.png");
 		fileMap.put("smasherBtn", ICON_DIR + "smasher.png");
 		fileMap.put("summonerBtn", ICON_DIR + "summoner.png");
