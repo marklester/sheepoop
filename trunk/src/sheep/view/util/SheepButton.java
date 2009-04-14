@@ -1,4 +1,4 @@
-package util;
+package sheep.view.util;
 
 import java.awt.Color;
 import java.awt.Dimension;

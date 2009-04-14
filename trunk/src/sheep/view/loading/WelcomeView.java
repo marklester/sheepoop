@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import sheep.controller.loading.CharacterSelectionListener;
 import sheep.controller.loading.WelcomeActionListener;
-import util.ResourceLoader;
+import sheep.view.util.ResourceLoader;
 
 
 /*
