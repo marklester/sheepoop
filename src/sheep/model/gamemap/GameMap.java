@@ -74,20 +74,21 @@ public class GameMap implements Serializable {
 				cols = radius + 1;
 			}
 			Location tLoc = curLoc;
-			//System.out.print("Opening Cone row " + (row+1) + ":");
+			System.out.print("Opening Cone row " + (row+1) + ":");
 			for(int col = 0; col < cols; col++)
 			{
-				//System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
+				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
 				Vector<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
-					//System.out.print("Locatable found here!");
+					System.out.print("Locatable found here!");
 					mySubset.put(tLoc, curSpot);
 				}
 				tLoc = new Location(tLoc.getX()+2,tLoc.getY());
 			}
-			//System.out.println();
+			System.out.println();
 			Vector2D sw = Direction.SW.getVector(curLoc);
+			System.out.println("CurLoc.x = " + curLoc.getX() + "... Getting next first tile in row, Direction: ("+sw.getX()+","+sw.getY()+") ");
 			curLoc = new Location(curLoc.getX()+(int)sw.getX(),curLoc.getY()+(int)sw.getY());
 		}
 		Vector2D ne = Direction.NE.getVector(curLoc);
@@ -97,53 +98,53 @@ public class GameMap implements Serializable {
 		for(int row = 0; row < radius; row++)
 		{
 			Location tLoc = curLoc;
-			//System.out.print("Inner row " + (row+1) + ":");
+			System.out.print("Inner row " + (row+1) + ":");
 			for(int col = 0; col < radius; col++)
 			{
-				//System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
+				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
 				Vector<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
-					//System.out.print("Locatable found here!");
+					System.out.print("Locatable found here!");
 					mySubset.put(tLoc, curSpot);
 				}
 				tLoc = new Location(tLoc.getX()+2, tLoc.getY());
 			}
-			//System.out.print("\nOuter row " + (row+1)+":");
+			System.out.print("\nOuter row " + (row+1)+":");
 			Vector2D sw = Direction.SW.getVector(curLoc);
 			curLoc = new Location(curLoc.getX()+(int)sw.getX(),curLoc.getY()+(int)sw.getY());
 			tLoc = curLoc;
 			for(int col = 0; col <= radius; col++)
 			{
-				//System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
+				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
 				Vector<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
-					//System.out.print("Locatable found here!");
+					System.out.print("Locatable found here!");
 					mySubset.put(tLoc, curSpot);
 				}
 				tLoc = new Location(tLoc.getX()+2, tLoc.getY());
 			}
-			//System.out.println();
+			System.out.println();
 			Vector2D se2 = Direction.SE.getVector(curLoc);
 			curLoc = new Location(curLoc.getX()+(int)se2.getX(),curLoc.getY()+(int)se2.getY());
 		}
 		for(int row = 0; row < radius; row++)
 		{
 			Location tLoc = curLoc;
-			//System.out.print("Closing cone row "+row+":");
+			System.out.print("Closing cone row "+row+":");
 			for(int col = 0; col < (radius - row); col++)
 			{
-				//System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
+				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
 				Vector<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
-					//System.out.print("Locatable found here!");
+					System.out.print("Locatable found here!");
 					mySubset.put(tLoc, curSpot);
 				}
 				tLoc = new Location(tLoc.getX()+2, tLoc.getY());
 			}
-			//System.out.println();
+			System.out.println();
 			Vector2D se2 = Direction.SE.getVector(curLoc);
 			curLoc = new Location(curLoc.getX()+(int)se2.getX(),curLoc.getY()+(int)se2.getY());
 		}
