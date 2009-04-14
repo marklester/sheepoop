@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import sheep.util.math.Vector2D;
+
 /**
  * 
  * @author Phil Freo
@@ -54,8 +56,73 @@ public class GameMap implements Serializable {
 		}
 	}
 
-	public Map<Location, List<Locatable>> getMapSubset(int origin, int radius) {
-		// TODO
-		throw new UnsupportedOperationException();
+	public Map<Location, List<Locatable>> getMapSubset(Location origin, int radius) {
+		int oX = origin.getX();
+		int oY = origin.getY();
+		Map<Location, List<Locatable>> mySubset = new HashMap<Location, List<Locatable>>();
+		int apex = oY - radius;
+		Location curLoc = new Location(oX,apex);
+		for(int row = 0; row <= radius;row++)
+		{
+			int cols = row + 1;
+			if(cols > radius +1)
+			{
+				cols = radius + 1;
+			}
+			Location tLoc = curLoc;
+//			System.out.print("Opening Cone row " + (row+1) + ":");
+			for(int col = 0; col < cols; col++)
+			{
+//				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
+				mySubset.put(tLoc, map.get(tLoc));
+				tLoc = new Location(tLoc.getX()+2,tLoc.getY());
+			}
+//			System.out.println();
+			Vector2D sw = Direction.SW.getVector(curLoc);
+			curLoc = new Location(curLoc.getX()+(int)sw.getX(),curLoc.getY()+(int)sw.getY());
+		}
+		Vector2D ne = Direction.NE.getVector(curLoc);
+		curLoc = new Location(curLoc.getX()+(int)ne.getX(),curLoc.getY()+(int)ne.getY());
+		Vector2D se = Direction.SE.getVector(curLoc);
+		curLoc = new Location(curLoc.getX()+(int)se.getX(),curLoc.getY()+(int)se.getY());
+		for(int row = 0; row < radius; row++)
+		{
+			Location tLoc = curLoc;
+//			System.out.print("Inner row " + (row+1) + ":");
+			for(int col = 0; col < radius; col++)
+			{
+//				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
+				mySubset.put(tLoc, map.get(tLoc));
+				tLoc = new Location(tLoc.getX()+2, tLoc.getY());
+			}
+//			System.out.print("\nOuter row " + (row+1)+":");
+			Vector2D sw = Direction.SW.getVector(curLoc);
+			curLoc = new Location(curLoc.getX()+(int)sw.getX(),curLoc.getY()+(int)sw.getY());
+			tLoc = curLoc;
+			for(int col = 0; col <= radius; col++)
+			{
+//				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
+				mySubset.put(tLoc, map.get(tLoc));
+				tLoc = new Location(tLoc.getX()+2, tLoc.getY());
+			}
+//			System.out.println();
+			Vector2D se2 = Direction.SE.getVector(curLoc);
+			curLoc = new Location(curLoc.getX()+(int)se2.getX(),curLoc.getY()+(int)se2.getY());
+		}
+		for(int row = 0; row < radius; row++)
+		{
+			Location tLoc = curLoc;
+//			System.out.print("Closing cone row "+row+":");
+			for(int col = 0; col < (radius - row); col++)
+			{
+//				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
+				mySubset.put(tLoc, map.get(tLoc));
+				tLoc = new Location(tLoc.getX()+2, tLoc.getY());
+			}
+//			System.out.println();
+			Vector2D se2 = Direction.SE.getVector(curLoc);
+			curLoc = new Location(curLoc.getX()+(int)se2.getX(),curLoc.getY()+(int)se2.getY());
+		}
+		return mySubset;
 	}
 }
