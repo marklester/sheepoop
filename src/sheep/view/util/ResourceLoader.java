@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -77,6 +78,10 @@ public class ResourceLoader {
 			imageMap.put(id, img);
 		}			
 		return img;
+	}
+	
+	public ImageIcon getImageIcon(String id) {
+		return new ImageIcon( getImage(id) );
 	}
 	
 	public FileInputStream getFileInputStream(String id) throws FileNotFoundException {
