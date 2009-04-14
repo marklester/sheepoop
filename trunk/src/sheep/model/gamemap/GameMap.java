@@ -56,10 +56,14 @@ public class GameMap implements Serializable {
 		}
 	}
 
-	public Map<Location, List<Locatable>> getMapSubset(Location origin, int radius) {
+	public HashMap<Location, Vector<Locatable>> getMap() {
+		return this.map;
+	}
+	
+	public HashMap<Location, Vector<Locatable>> getMapSubset(Location origin, int radius) {
 		int oX = origin.getX();
 		int oY = origin.getY();
-		Map<Location, List<Locatable>> mySubset = new HashMap<Location, List<Locatable>>();
+		HashMap<Location, Vector<Locatable>> mySubset = new HashMap<Location, Vector<Locatable>>();
 		int apex = oY - radius;
 		Location curLoc = new Location(oX,apex);
 		for(int row = 0; row <= radius;row++)
@@ -74,7 +78,7 @@ public class GameMap implements Serializable {
 			for(int col = 0; col < cols; col++)
 			{
 				//System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
-				List<Locatable> curSpot = map.get(tLoc);
+				Vector<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
 					//System.out.print("Locatable found here!");
@@ -97,7 +101,7 @@ public class GameMap implements Serializable {
 			for(int col = 0; col < radius; col++)
 			{
 				//System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
-				List<Locatable> curSpot = map.get(tLoc);
+				Vector<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
 					//System.out.print("Locatable found here!");
@@ -112,7 +116,7 @@ public class GameMap implements Serializable {
 			for(int col = 0; col <= radius; col++)
 			{
 				//System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
-				List<Locatable> curSpot = map.get(tLoc);
+				Vector<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
 					//System.out.print("Locatable found here!");
@@ -131,7 +135,7 @@ public class GameMap implements Serializable {
 			for(int col = 0; col < (radius - row); col++)
 			{
 				//System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
-				List<Locatable> curSpot = map.get(tLoc);
+				Vector<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
 					//System.out.print("Locatable found here!");
