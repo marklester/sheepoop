@@ -20,4 +20,9 @@ public class SheepButton extends JButton {
 		this.setPreferredSize(d);
 	}
 	
+	public SheepButton(ImageIcon icon, AbstractAction act, Dimension d, String cmd) {
+		this(icon, act, d);
+		this.setActionCommand(cmd);
+	}
+	
 }

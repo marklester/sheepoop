@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -57,7 +56,6 @@ public class WelcomeView extends JFrame {
 		btnPanel.setBounds(0, yOff, (int)scrDimension.getWidth(), (int)btnDim.getHeight());
 		btnPanel.setOpaque(false);
 		
-		
 		//Add to the JFrame and its panes
 		JPanel content = (JPanel)this.getContentPane();
 		content.setOpaque(false);
@@ -65,8 +63,6 @@ public class WelcomeView extends JFrame {
 		
 		JLayeredPane layered = this.getLayeredPane();
 		layered.add(bgPanel, new Integer (Integer.MIN_VALUE));
-
-		
 	}
 	
 	private void addButtons() {
@@ -77,19 +73,47 @@ public class WelcomeView extends JFrame {
 		//ImageIcon settings_icon = new ImageIcon(rl.getImage("settings"));
 		//ImageIcon quitG_icon = new ImageIcon(rl.getImage("quitGame"));
 		
-		//Create the actions
-		StartGameAction nga = new StartGameAction();
-		LoadGameAction lga = new LoadGameAction();
-		
 		//Create the buttons
-		SheepButton ngBtn = new SheepButton(newG_icon, nga, btnDim);
-		SheepButton lgBtn = new SheepButton(loadG_icon, lga, btnDim);
-		
-		//this.getContentPane().setLayout(new FlowLayout());
+		SheepButton ngBtn = new SheepButton(newG_icon, new StartGameAction(this), btnDim);
+		SheepButton lgBtn = new SheepButton(loadG_icon, new LoadGameAction(this), btnDim);
 		btnPanel.add(ngBtn);
 		btnPanel.add(lgBtn);
-		
 	}
+	
+	public void displayCharacterSelect() {	
+		
+		//Create the buttons
+		ResourceLoader rl = ResourceLoader.getInstance();
+		ImageIcon sm = new ImageIcon(rl.getImage("smasher")); 
+		ImageIcon su = new ImageIcon(rl.getImage("summoner"));
+		ImageIcon sn = new ImageIcon(rl.getImage("sneak"));
+		Dimension icon_dim = new Dimension(sm.getIconWidth(), sm.getIconHeight());
+		
+		SheepButton smBtn = new SheepButton(sm, new CharacterSelectAction(this), icon_dim, "smasher");
+		SheepButton suBtn = new SheepButton(su, new CharacterSelectAction(this), icon_dim, "summoner");
+		SheepButton snBtn = new SheepButton(sn, new CharacterSelectAction(this), icon_dim, "sneak");
+		
+		//Create the panel & add buttons
+		JPanel chrPanel = new JPanel(new FlowLayout());
+		chrPanel.add(smBtn);
+		chrPanel.add(suBtn);
+		chrPanel.add(snBtn);
+		
+		//Locate the new panel over the intro buttons panel
+		chrPanel.setPreferredSize(btnPanel.getPreferredSize());
+		chrPanel.setLocale(btnPanel.getLocale());
+		chrPanel.setOpaque(false);
+		btnPanel.setVisible(false);
+		
+		this.getContentPane().add(chrPanel, BorderLayout.SOUTH);
+		chrPanel.setVisible(true);
+	}
+	
+	public void setCharacter(String res) {
+		System.out.println(res);
+	}
+	
+	
 	
 	
 }
