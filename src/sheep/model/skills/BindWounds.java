@@ -3,6 +3,7 @@ package sheep.model.skills;
 import java.awt.event.ActionEvent;
 
 import sheep.model.entities.Character;
+import sheep.model.entities.StatType;
 
 public class BindWounds extends PerformableSkill {
 	
@@ -14,6 +15,7 @@ public class BindWounds extends PerformableSkill {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		getCharacter().affectStat(StatType.DAMAGE, (int)-Math.random()*5*getPoints());
 	}
 
 }
