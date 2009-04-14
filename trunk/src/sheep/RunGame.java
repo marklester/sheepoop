@@ -1,5 +1,7 @@
 package sheep;
 
+import sheep.controller.loading.CharacterSelectionListener;
+import sheep.controller.loading.WelcomeActionListener;
 import sheep.view.loading.WelcomeView;
 
 public class RunGame {
@@ -9,7 +11,7 @@ public class RunGame {
 	 */
 	public static void main(String[] args) {
 		
-		new WelcomeView();
+		WelcomeView view = new WelcomeView();
+		view.setVisible( true );	
 	}
-
 }

@@ -23,7 +23,6 @@ import util.ResourceLoader;
  * 
  */
 
-
 public class WelcomeView extends JFrame {
 
 	private static final long serialVersionUID = 3905429913364344748L;
@@ -41,16 +40,26 @@ public class WelcomeView extends JFrame {
 	private CharacterSelectionListener charSelectionListener;
 	private ActionListener welcomeListener;
 	
+	private JButton ngBtn;
+	private JButton lgBtn;
+	
+	private JButton smBtn;
+	private JButton suBtn;
+	private JButton snBtn;
+	
 	private Dimension scrDimension = new Dimension(800,600);
 	private Dimension btnDim = new Dimension(150,100);
 
 
 	public WelcomeView() {
+		welcomeListener = new WelcomeActionListener(this);
+		charSelectionListener = new CharacterSelectionListener();
+		
 		setUpPanels();
 		addButtons();
+		this.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(scrDimension); //We'll change this later... make it full screen.
 		this.setLocationRelativeTo(null); // center
-		this.setVisible(true);
 	}
 	
 	private void setUpPanels() {
@@ -90,12 +99,12 @@ public class WelcomeView extends JFrame {
 		//ImageIcon quitG_icon = new ImageIcon(rl.getImage("quitGame"));
 		
 		//Create the buttons
-		JButton ngBtn = new JButton(newG_icon);
+		ngBtn = new JButton(newG_icon);
 		ngBtn.setPreferredSize(btnDim);
 		ngBtn.setActionCommand( NEW_GAME );
 		ngBtn.addActionListener( welcomeListener );
 		
-		JButton lgBtn = new JButton(loadG_icon);
+		lgBtn = new JButton(loadG_icon);
 		lgBtn.setPreferredSize(btnDim);
 		lgBtn.setActionCommand( LOAD );
 		lgBtn.addActionListener( welcomeListener );
@@ -113,17 +122,17 @@ public class WelcomeView extends JFrame {
 		ImageIcon sn = new ImageIcon(rl.getImage("sneak"));
 		Dimension iconDim = new Dimension(sm.getIconWidth(), sm.getIconHeight());
 		
-		JButton smBtn = new JButton(sm);
+		smBtn = new JButton(sm);
 		smBtn.setPreferredSize(iconDim);
 		smBtn.setActionCommand( SMASHER );
 		smBtn.addActionListener( charSelectionListener );
 		
-		JButton suBtn = new JButton(su);
+		suBtn = new JButton(su);
 		suBtn.setPreferredSize(iconDim);
 		suBtn.setActionCommand( SUMMONER );
 		suBtn.addActionListener( charSelectionListener );
 		
-		JButton snBtn = new JButton(sn);
+		snBtn = new JButton(sn);
 		snBtn.setPreferredSize(iconDim);
 		snBtn.setActionCommand( SNEAK );
 		snBtn.addActionListener( charSelectionListener );
@@ -146,16 +155,5 @@ public class WelcomeView extends JFrame {
 	
 	public void setCharacter(String res) {
 		System.out.println(res);
-	}
-	
-	public void setWelcomeActionListener( WelcomeActionListener listener )
-	{
-		this.welcomeListener = listener;
-	}
-	
-	public void setWelcomeActionListener( CharacterSelectionListener listener )
-	{
-		this.charSelectionListener = listener;
-	}
-	
+	}	
 }

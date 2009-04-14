@@ -78,7 +78,6 @@ public class ResourceLoader {
 	
 	public FileInputStream getFileInputStream(String id) throws FileNotFoundException {
 		try {
-			System.out.println(fileMap.get(id).getAbsolutePath());
 			return new FileInputStream( fileMap.get(id).getAbsolutePath() );
 		}
 		catch(FileNotFoundException e) {

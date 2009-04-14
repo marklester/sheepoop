@@ -3,6 +3,8 @@ package sheep.controller.loading;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import sheep.view.loading.WelcomeView;
+
 /**
  * Creates the Model
  * Creates the View
@@ -11,12 +13,22 @@ import java.awt.event.ActionListener;
  */
 public class WelcomeActionListener implements ActionListener {
 
-	public WelcomeActionListener() {
-		throw new UnsupportedOperationException();
+	private WelcomeView view;
+	
+	public WelcomeActionListener( WelcomeView view ) {
+		this.view = view;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent ae) {
+		
+		String command = ae.getActionCommand();
+		
+		if( command.equals( WelcomeView.NEW_GAME ) ) {
+			view.displayCharacterSelect();
+		}
+		else if( command.equals( WelcomeView.LOAD ) ) {
+			
+		}
 	}
-
 }
