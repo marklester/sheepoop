@@ -42,8 +42,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 		this.occupation = occupation;
 		this.performableSkills = occupation.clonePerformableSkills();
 		for (PerformableSkill ps : (PerformableSkill[])performableSkills.toArray())
-			ps.setCharacter(this);
-		
+			ps.setCharacter(this);		
 	}
 
 	public void accept(LocatableVisitor v) {
