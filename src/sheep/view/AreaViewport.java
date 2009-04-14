@@ -74,7 +74,7 @@ public class AreaViewport extends JPanel {
 		Location center = avatar.getLocation();
 
 		// TODO: calculate viewable locations based on avatar's stats
-		int radius = 8;
+		int radius = 9;
 
 		// Get the tiles that the Avatar can currently see completely
 		HashMap<Location, Vector<Locatable>> newTiles;
@@ -111,30 +111,6 @@ public class AreaViewport extends JPanel {
 			g2.drawImage(img, pt.x, pt.y, null);
 
 		}
-	}
-
-	/**
-	 * Return the pixel coordinates of where the top left of a tile should go.
-	 * Assume the AreaViewport starts at 0,0 and that we know the TILE_SIZE
-	 * which is the size in pixels of each square tile.  
-	 * 
-	 * ***This version is for testing and does not center the map or avatar.***
-	 * 
-	 * @param loc the Location of the image, based on our hex coordinate system
-	 * @return
-	 */
-	private Point getTilePosition(Location loc) {
-		int widthPerTile = (int) ((TILE_SIZE / 2) * (1 + Math.tan(Math.PI / 6)));
-		int heightPerTile = TILE_SIZE;
-		int startX = loc.getX() * widthPerTile;
-		int startY = loc.getY() * heightPerTile;
-		int offsetY = 0;
-		if (loc.getX() % 2 != 0) {
-			// Odd x-positions are offset down
-			offsetY = TILE_SIZE / 2;
-		}
-
-		return new Point(startX, startY + offsetY);
 	}
 	
 	/**

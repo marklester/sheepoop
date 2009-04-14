@@ -12,19 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import sheep.controller.loading.CharacterSelectionListener;
+import sheep.controller.loading.NewGameAction;
 import sheep.controller.loading.WelcomeActionListener;
-import sheep.model.occupations.Occupation;
-import sheep.model.skills.PassiveSkill;
 import sheep.view.util.ResourceLoader;
 
-
-/*
- * 
- * Sorry, this is in the works... I need to transfer to my laptop...
- * 
+/**
+ * Welcome window that lets a user start a new game or load existing
+ * @author Jason McAninley
  */
-
 public class WelcomeView extends JFrame {
 
 	private static final long serialVersionUID = 3905429913364344748L;
@@ -38,7 +33,7 @@ public class WelcomeView extends JFrame {
 	private SettingsView settingsView;
 	private JPanel bgPanel;
 	private JPanel btnPanel;
-	private CharacterSelectionListener charSelectionListener;
+	private NewGameAction newGameAction;
 	private ActionListener welcomeListener;
 	private JButton ngBtn;
 	private JButton lgBtn;
@@ -47,16 +42,14 @@ public class WelcomeView extends JFrame {
 	private JButton snBtn;
 	private Dimension scrDimension = new Dimension(800,600);
 	private Dimension btnDim = new Dimension(150,100);
-	private Occupation selectedOccupation;
-
 
 	public WelcomeView() {
 		welcomeListener = new WelcomeActionListener(this);
-		charSelectionListener = new CharacterSelectionListener(this);
+		newGameAction = new NewGameAction(this);
 		
 		setUpPanels();
 		addButtons();
-		this.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(scrDimension); //We'll change this later... make it full screen.
 		this.setLocationRelativeTo(null); // center
 	}
@@ -124,17 +117,17 @@ public class WelcomeView extends JFrame {
 		smBtn = new JButton(sm);
 		smBtn.setPreferredSize(iconDim);
 		smBtn.setActionCommand( SMASHER );
-		smBtn.addActionListener( charSelectionListener );
+		smBtn.addActionListener( newGameAction );
 		
 		suBtn = new JButton(su);
 		suBtn.setPreferredSize(iconDim);
 		suBtn.setActionCommand( SUMMONER );
-		suBtn.addActionListener( charSelectionListener );
+		suBtn.addActionListener( newGameAction );
 		
 		snBtn = new JButton(sn);
 		snBtn.setPreferredSize(iconDim);
 		snBtn.setActionCommand( SNEAK );
-		snBtn.addActionListener( charSelectionListener );
+		snBtn.addActionListener( newGameAction );
 		
 		//Create the panel & add buttons
 		JPanel chrPanel = new JPanel(new FlowLayout());
@@ -151,14 +144,5 @@ public class WelcomeView extends JFrame {
 		this.getContentPane().add(chrPanel, BorderLayout.SOUTH);
 		chrPanel.setVisible(true);
 	}
-	
-	public void setSelectedOccupation(Occupation occ) {
-		this.selectedOccupation = occ;
-		System.out.println("Occupation: " + occ.getID());
-		System.out.println("One of my performable skills " + occ.clonePerformableSkills().get(0));
-	}
-	
-	public Occupation getSelectedOccupation() {
-		return this.selectedOccupation;
-	}
+
 }

@@ -37,6 +37,7 @@ public class View extends JFrame {
 		GraphicsDevice device = ge.getDefaultScreenDevice();
 
 		this.setTitle("Sheepoop");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Create area viewport
 		areaViewport = new AreaViewport(this.model.getAvatar(), this.model.getGameMap());
@@ -76,6 +77,10 @@ public class View extends JFrame {
 
 	public TradeViewport getTradeViewport() {
 		return tradeViewport;
+	}
+	
+	public AreaViewport getAreaViewport() {
+		return areaViewport;
 	}
 
 }

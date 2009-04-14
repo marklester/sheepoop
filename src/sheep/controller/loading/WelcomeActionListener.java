@@ -6,9 +6,6 @@ import java.awt.event.ActionListener;
 import sheep.view.loading.WelcomeView;
 
 /**
- * Creates the Model
- * Creates the View
- * Creates the Controller with the model & view
  * Load default key bindings (may be overridden by SettingsActionListener)
  */
 public class WelcomeActionListener implements ActionListener {

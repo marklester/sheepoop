@@ -29,7 +29,7 @@ public class MapCreatorTest {
 		map.add(startingLoc, avatar);
 		model.setAvatar(avatar);
 		
-		View view = new View(model);
+		new View(model);
 		
 	}
 }
