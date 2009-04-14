@@ -40,6 +40,8 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	public abstract boolean blocks(Entity entity);
 
 	public abstract void affectStat(StatType stat, int changeAmt);
+	
+	public abstract int getStat(StatType stat);
 
 	public abstract int getSpeed();
 
