@@ -74,7 +74,11 @@ public class GameMap implements Serializable {
 			for(int col = 0; col < cols; col++)
 			{
 //				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
-				mySubset.put(tLoc, map.get(tLoc));
+				List<Locatable> curSpot = map.get(tLoc);
+				if(curSpot!=null)
+				{
+					mySubset.put(tLoc, curSpot);
+				}
 				tLoc = new Location(tLoc.getX()+2,tLoc.getY());
 			}
 //			System.out.println();
@@ -92,7 +96,11 @@ public class GameMap implements Serializable {
 			for(int col = 0; col < radius; col++)
 			{
 //				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
-				mySubset.put(tLoc, map.get(tLoc));
+				List<Locatable> curSpot = map.get(tLoc);
+				if(curSpot!=null)
+				{
+					mySubset.put(tLoc, curSpot);
+				}
 				tLoc = new Location(tLoc.getX()+2, tLoc.getY());
 			}
 //			System.out.print("\nOuter row " + (row+1)+":");
@@ -102,7 +110,11 @@ public class GameMap implements Serializable {
 			for(int col = 0; col <= radius; col++)
 			{
 //				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
-				mySubset.put(tLoc, map.get(tLoc));
+				List<Locatable> curSpot = map.get(tLoc);
+				if(curSpot!=null)
+				{
+					mySubset.put(tLoc, curSpot);
+				}
 				tLoc = new Location(tLoc.getX()+2, tLoc.getY());
 			}
 //			System.out.println();
@@ -116,7 +128,11 @@ public class GameMap implements Serializable {
 			for(int col = 0; col < (radius - row); col++)
 			{
 //				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
-				mySubset.put(tLoc, map.get(tLoc));
+				List<Locatable> curSpot = map.get(tLoc);
+				if(curSpot!=null)
+				{
+					mySubset.put(tLoc, curSpot);
+				}
 				tLoc = new Location(tLoc.getX()+2, tLoc.getY());
 			}
 //			System.out.println();
