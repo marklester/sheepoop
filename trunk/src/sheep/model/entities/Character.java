@@ -42,7 +42,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 		this.occupation = occupation;
 		this.performableSkills = occupation.clonePerformableSkills();
 		this.inventory = new Inventory();
-		for (PerformableSkill ps : (PerformableSkill[])performableSkills.toArray())
+		for (PerformableSkill ps : performableSkills)
 			ps.setCharacter(this);		
 	}
 

@@ -55,8 +55,8 @@ public abstract class Occupation implements Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<PerformableSkill> clonePerformableSkills() {
-		return (List<PerformableSkill>) this.performableSkills.clone();
+	public Vector<PerformableSkill> clonePerformableSkills() {
+		return (Vector<PerformableSkill>) this.performableSkills.clone();
 	}
 
 	public String getID() {
