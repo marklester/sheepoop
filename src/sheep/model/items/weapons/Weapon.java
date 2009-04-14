@@ -8,12 +8,13 @@ import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 import sheep.model.items.Takeable;
 import sheep.model.skills.PassiveSkill;
+import sheep.model.entities.Character;
 
 public abstract class Weapon extends Takeable implements ActionListener {
 	
 	private static final long serialVersionUID = -6972197855931649857L;
 	private PassiveSkill skill;
-	private Entity entity;
+	private Character character;
 	
 	public Weapon(String id, GameMap map, Location loc) {
 		super(id, map, loc);
@@ -22,11 +23,14 @@ public abstract class Weapon extends Takeable implements ActionListener {
 	/**
 	 * this should equip the weapon
 	 * entity.equip(this)
+	 * 
+	 * PROBLEM: only characters can equip... Reflection?
 	 */
-	public void use(Entity entity) {
-		this.entity = entity;
-		
-		throw new UnsupportedOperationException();
+	public void use(Entity ent) {
+		if (ent instanceof Entity) {
+			this.character = (Character) ent;
+			character.equip(this);
+		}
 	}
 
 	/**
