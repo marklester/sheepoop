@@ -8,20 +8,19 @@ import javax.swing.Icon;
 import sheep.model.Model;
 import sheep.view.loading.WelcomeView;
 
-public class LoadGameAction extends AbstractAction {
+public class CharacterSelectAction extends AbstractAction {
 	
 	private static final long serialVersionUID = 1965146620020410561L;	
 	private WelcomeView wv;
 	
-	public LoadGameAction(WelcomeView wv) {
+	public CharacterSelectAction(WelcomeView wv) {
 		this.wv = wv;
 	}
 	
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("Load Game");
-
+	public void actionPerformed(ActionEvent arg) {		
+		wv.setCharacter(arg.getActionCommand());
 	}
 
 }

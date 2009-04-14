@@ -39,6 +39,9 @@ public class ResourceLoader {
 		fileMap.put("loadGame", ICON_DIR + "loadGame.png");
 		fileMap.put("quitGame", ICON_DIR + "quitGame.png");
 		fileMap.put("settings", ICON_DIR + "settings.png");
+		fileMap.put("smasher", ICON_DIR + "smasher.png");
+		fileMap.put("summoner", ICON_DIR + "summoner.png");
+		fileMap.put("sneak", ICON_DIR + "sneak.png");
 		
 		
 		//Welcome Screen images
