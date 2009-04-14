@@ -71,6 +71,10 @@ public class Model implements Serializable {
 	public Avatar getAvatar() {
 		return avatar;
 	}
+	
+	public void setAvatar(Avatar avatar) {
+		this.avatar = avatar;
+	}
 
 	public Entity getMover() {
 		return mover;

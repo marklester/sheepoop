@@ -116,9 +116,9 @@ public class WelcomeView extends JFrame {
 		
 		//Create the buttons
 		ResourceLoader rl = ResourceLoader.getInstance();
-		ImageIcon sm = new ImageIcon(rl.getImage("smasher")); 
-		ImageIcon su = new ImageIcon(rl.getImage("summoner"));
-		ImageIcon sn = new ImageIcon(rl.getImage("sneak"));
+		ImageIcon sm = new ImageIcon(rl.getImage("smasherBtn")); 
+		ImageIcon su = new ImageIcon(rl.getImage("summonerBtn"));
+		ImageIcon sn = new ImageIcon(rl.getImage("sneakBtn"));
 		Dimension iconDim = new Dimension(sm.getIconWidth(), sm.getIconHeight());
 		
 		smBtn = new JButton(sm);

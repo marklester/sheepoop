@@ -1,5 +1,6 @@
 package sheep.view;
 
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
@@ -10,22 +11,32 @@ import sheep.model.gamemap.Decal;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.items.Item;
 import sheep.model.terrains.Terrain;
+import sheep.model.entities.Character;
 import sheep.view.util.ResourceLoader;
 
 public class LocationDrawingVisitor implements LocatableVisitor {
 
-	private BufferedImage terrain;
+	private final int tileSize;
+	private BufferedImage img;
+	private Graphics2D g2;
+	private BufferedImage terrain, character, vehicle, item, decal;
+	
+	public LocationDrawingVisitor(int tileSize) {
+		this.tileSize = tileSize;
+		this.img = new BufferedImage(tileSize, tileSize, BufferedImage.TYPE_INT_ARGB_PRE);
+		this.g2 = img.createGraphics();
+	}
 	
 	public void visit(Item obj) {
-		throw new UnsupportedOperationException();
+		item = (BufferedImage) ResourceLoader.getInstance().getImage(obj.getID());
 	}
 
 	public void visit(Vehicle obj) {
-		throw new UnsupportedOperationException();
+		vehicle = (BufferedImage) ResourceLoader.getInstance().getImage(obj.getID());
 	}
 
 	public void visit(Character obj) {
-		throw new UnsupportedOperationException();
+		character = (BufferedImage) ResourceLoader.getInstance().getImage(obj.getID());
 	}
 
 	public void visit(Entity obj) {
@@ -37,14 +48,19 @@ public class LocationDrawingVisitor implements LocatableVisitor {
 	}
 
 	public void visit(Decal obj) {
-		throw new UnsupportedOperationException();
+		decal = (BufferedImage) ResourceLoader.getInstance().getImage(obj.getID());
 	}
 
 	public void visit(AreaEffect obj) {
-		throw new UnsupportedOperationException();
+		// not a visible thing
 	}
 
 	public Image getImage() {
-		return terrain;
+		g2.drawImage(terrain, 0, 0, null);
+		g2.drawImage(decal, 0, 0, null);
+		g2.drawImage(item, 0, 0, null);
+		g2.drawImage(vehicle, 0, 0, null);
+		g2.drawImage(character, 0, 0, null);
+		return img;
 	}
 }

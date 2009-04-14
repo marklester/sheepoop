@@ -23,6 +23,7 @@ public class ResourceLoader {
 	private static final String IMG_DIR = "res/imgs/";
 	private static final String ICON_DIR = IMG_DIR +  "icons/";
 	private static final String TERRAIN_DIR = IMG_DIR + "terrains/";
+	private static final String SPRITES_DIR = IMG_DIR + "sprites/";
 	
 	
 	/**
@@ -41,12 +42,15 @@ public class ResourceLoader {
 		fileMap.put("loadGame", ICON_DIR + "loadGame.png");
 		fileMap.put("quitGame", ICON_DIR + "quitGame.png");
 		fileMap.put("settings", ICON_DIR + "settings.png");
-		fileMap.put("smasher", ICON_DIR + "smasher.png");
-		fileMap.put("summoner", ICON_DIR + "summoner.png");
-		fileMap.put("sneak", ICON_DIR + "sneak.png");
+		fileMap.put("smasherBtn", ICON_DIR + "smasher.png");
+		fileMap.put("summonerBtn", ICON_DIR + "summoner.png");
+		fileMap.put("sneakBtn", ICON_DIR + "sneak.png");
 		fileMap.put("Water", TERRAIN_DIR + "water.png");
 		fileMap.put("Grass", TERRAIN_DIR + "grass.png");
 		fileMap.put("Mountain", TERRAIN_DIR + "mountains.png");
+		fileMap.put("Summoner", SPRITES_DIR + "sheep1.gif");
+		fileMap.put("Smasher", SPRITES_DIR + "sheep1.gif");
+		fileMap.put("Sneak", SPRITES_DIR + "sheep1.gif");
 		
 		//Welcome Screen images
 		imageMap.put("WelcomeScreenBG", getImage("WelcomeScreenBG"));
@@ -85,11 +89,13 @@ public class ResourceLoader {
 	}
 	
 	public FileInputStream getFileInputStream(String id) throws FileNotFoundException {
+		String file = "";
 		try {
-			String s = fileMap.get(id);
-			return new FileInputStream(fileMap.get(id));
+			file = fileMap.get(id);
+			return new FileInputStream(file);
 		}
 		catch(FileNotFoundException e) {
+			System.out.println("Couldn't find image for " + file);
 			throw new FileNotFoundException();
 		}
 	}
