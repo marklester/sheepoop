@@ -1,8 +1,8 @@
 package sheep.view;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.List;
@@ -32,11 +32,11 @@ public class AreaViewport extends JPanel {
 		this.avatar = avatar;
 		
 		if (avatar == null) {
-//			throw new RuntimeException("AreaViewport was passed a null Avatar.");
+			throw new RuntimeException("AreaViewport was passed a null Avatar.");
 		}
 		
 		if (map == null) {
-//			throw new RuntimeException("AreaViewport was passed a null GameMap.");
+			throw new RuntimeException("AreaViewport was passed a null GameMap.");
 		}
 	}
 
@@ -64,7 +64,7 @@ public class AreaViewport extends JPanel {
 
 	private void drawTiles(Graphics2D g2) {
 		
-		Location center = new Location(5, 5);//avatar.getLocation();
+		Location center = avatar.getLocation();
 		
 		int radius = 4; // TODO: calculate viewable locations
 		
@@ -88,26 +88,25 @@ public class AreaViewport extends JPanel {
 			Location loc = entry.getKey();
 			BufferedImage img = getTileImage(loc);
 			
-			int startX = (int) ((TILE_SIZE / 2) + (TILE_SIZE / 2) * Math.tan(Math.PI / 6));
-			int startY = loc.getY() * TILE_SIZE;
-			if (loc.getX() % 2 != 0) {
-				// Odd x-positions are offset down
-				startY += (int) (TILE_SIZE / 2 + Math.cos(Math.PI / 3));
-			}
+			Point pt = getTilePosition(loc);
+			g2.drawImage(img, pt.x, pt.y, null);
 			
-			//System.out.println(loc);
-			//System.out.println(startX + "," + startY);
-			g2.drawImage(img, startX * loc.getX(), startY, null);
-			if (loc.equals(center)) {
-				// draw fake entity on tile
-				g2.setColor(Color.RED);
-				g2.fillOval(startX * loc.getX() + 30, startY + 30, 20, 20);
-			}
 		}
 	}
 
+	private Point getTilePosition(Location loc) {
+		int startX = (int) ((TILE_SIZE / 2) + (TILE_SIZE / 2) * Math.tan(Math.PI / 6));
+		int startY = loc.getY() * TILE_SIZE;
+		if (loc.getX() % 2 != 0) {
+			// Odd x-positions are offset down
+			startY += (int) (TILE_SIZE / 2 + Math.cos(Math.PI / 3));
+		}
+		
+		return new Point(startX * loc.getX(), startY);
+	}
+	
 	private BufferedImage createTileImage(Location loc, List<Locatable> locatables) {
-		LocationDrawingVisitor v = new LocationDrawingVisitor();
+		LocationDrawingVisitor v = new LocationDrawingVisitor(TILE_SIZE);
 		
 		for (Locatable locatable : locatables) {
 			locatable.accept(v);

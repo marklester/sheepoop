@@ -3,8 +3,10 @@ package sheep.model.gamemap;
 import sheep.model.areaeffects.AreaEffect;
 import sheep.model.entities.Entity;
 import sheep.model.entities.Vehicle;
+import sheep.model.entities.Character;
 import sheep.model.items.Item;
 import sheep.model.terrains.Terrain;
+
 
 /**
  * 
