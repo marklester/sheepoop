@@ -12,6 +12,10 @@ import javax.swing.JPanel;
 
 import sheep.model.Model;
 
+/**
+ * The main window during game play
+ * @author Phil Freo
+ */
 public class View extends JFrame {
 
 	private static final long serialVersionUID = 2015429639828183235L;
@@ -44,9 +48,10 @@ public class View extends JFrame {
 		JPanel sidebar = new JPanel();
 		sidebar.setOpaque(true);
 		sidebar.setBackground(Color.WHITE);
-		sidebar.setSize(new Dimension(300, this.getHeight()));
+		sidebar.setPreferredSize(new Dimension(300, this.getHeight()));
 		this.getContentPane().add(sidebar, BorderLayout.EAST);
 		
+		// Set full screen
 		if (device.isFullScreenSupported() && FULL_SCREEN_MODE) {
 			setUndecorated(true);
 			setResizable(false);
@@ -57,6 +62,7 @@ public class View extends JFrame {
 			this.setVisible(true);
 		}
 
+		// Tell viewports they can DO THEIR THANG
 		areaViewport.initialize();
 	}
 
@@ -69,7 +75,7 @@ public class View extends JFrame {
 	}
 
 	public TradeViewport getTradeViewport() {
-		throw new UnsupportedOperationException();
+		return tradeViewport;
 	}
 
 }
