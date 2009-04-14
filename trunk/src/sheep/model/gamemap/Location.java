@@ -35,4 +35,8 @@ public class Location implements Serializable {
 			return false;
 		}
 	}
+	public int hashCode()
+	{
+		return(x*1000+y);
+	}
 }
