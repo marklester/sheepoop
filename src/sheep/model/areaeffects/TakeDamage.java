@@ -23,7 +23,7 @@ public class TakeDamage extends AreaEffect {
 	}
 
 	public void applyEffect(Entity e) {
-		e.affectStat(StatType.LIFE, -mySeverity);
+		e.affectStat(StatType.DAMAGE, mySeverity);
 	}
 
 	@Override
