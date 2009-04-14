@@ -54,9 +54,5 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	public void tick() {
 		
 	}
-	
-	public Inventory getInventory() {
-		return this.inv;
-	}
 
 }

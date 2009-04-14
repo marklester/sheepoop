@@ -41,10 +41,9 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 		super(id, map, loc);
 		this.occupation = occupation;
 		this.performableSkills = occupation.clonePerformableSkills();
-		
-		for (PerformableSkill ps : performableSkills) {
+		this.inventory = new Inventory();
+		for (PerformableSkill ps : (PerformableSkill[])performableSkills.toArray())
 			ps.setCharacter(this);		
-		}
 	}
 
 	public void accept(LocatableVisitor v) {
@@ -180,6 +179,10 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	public int getStat(StatType stat)
 	{
 		return characterStats.get(stat);
+	}
+	
+	public Inventory getInventory() {
+		return this.inventory;
 	}
 	
 }
