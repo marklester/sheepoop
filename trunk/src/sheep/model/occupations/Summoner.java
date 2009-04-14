@@ -11,7 +11,7 @@ public class Summoner extends Occupation {
 	private static final long serialVersionUID = -7063196676299952873L;
 
 	public Summoner() {
-		super("Smasher");
+		super("Summoner");
 		setInitialCharacterStat(StatType.AGILITY, 10);
 		setInitialCharacterStat(StatType.HARDINESS, 10);
 		setInitialCharacterStat(StatType.INTELLECT, 30);

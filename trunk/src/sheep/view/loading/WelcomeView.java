@@ -154,6 +154,8 @@ public class WelcomeView extends JFrame {
 	
 	public void setSelectedOccupation(Occupation occ) {
 		this.selectedOccupation = occ;
+		System.out.println("Occupation: " + occ.getID());
+		System.out.println("One of my performable skills " + occ.clonePerformableSkills().get(0));
 	}
 	
 	public Occupation getSelectedOccupation() {
