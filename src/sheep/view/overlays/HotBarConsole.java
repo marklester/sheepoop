@@ -1,5 +1,7 @@
 package sheep.view.overlays;
 
+import java.awt.Graphics2D;
+
 import sheep.model.entities.Avatar;
 
 /**
@@ -15,4 +17,10 @@ public class HotBarConsole extends Overlay {
 		super(posX, posY);
 		this.avatar = avatar;
 	}
+
+	@Override
+	public void paint(Graphics2D g) {
+	}
+
+	
 }

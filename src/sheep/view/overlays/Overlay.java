@@ -1,23 +1,29 @@
 package sheep.view.overlays;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
+/**
+ * 
+ * @author Phil Freo
+ */
 public abstract class Overlay {
+	
 	private int posX;
 	private int posY;
-	private int widthX;
-	private int height;
 
 	public Overlay(int posX, int posY) {
 		this.posX = posX;
-		this.posY = posX;
+		this.posY = posY;
 	}
 
-	public boolean isVisible() {
-		throw new UnsupportedOperationException();
+	public abstract void paint(Graphics2D g);
+	
+	public int getPosX() {
+		return posX;
 	}
-
-	public void draw(Graphics g) {
-		throw new UnsupportedOperationException();
+	
+	public int getPosY() {
+		return posY;
 	}
+	
 }
