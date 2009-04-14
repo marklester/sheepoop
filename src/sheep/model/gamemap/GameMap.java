@@ -120,7 +120,7 @@ public class GameMap implements Serializable {
 				Vector<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
-					System.out.print("Locatable found here!");
+//					System.out.print("Locatable found here!");
 					mySubset.put(tLoc, curSpot);
 				}
 				tLoc = new Location(tLoc.getX()+2, tLoc.getY());
