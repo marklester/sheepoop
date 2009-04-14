@@ -32,7 +32,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	private Vector<TalkMessageObserver> talkObservers = new Vector<TalkMessageObserver>();
 	private Vector<InventoryChangeObserver> inventoryObservers = new Vector<InventoryChangeObserver>();
 	private Vector<StatChangeObserver> statChangeObservers = new Vector<StatChangeObserver>();
-
+	
 	public Character() {
 		//testing purposes
 	}
@@ -57,19 +57,24 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	public void equip(Weapon w) {
-		throw new UnsupportedOperationException();
+		unequipWeapon();
+		weapon = w;
 	}
 
 	public void equip(Armor a) {
-		throw new UnsupportedOperationException();
+		unequipArmor(a.getBodyPart());
+		armor.put(a.getBodyPart(), a);
 	}
 
 	public void unequipWeapon() {
-		throw new UnsupportedOperationException();
+		if (weapon != null) 
+			inventory.add(weapon);
+		weapon = null;
 	}
 
 	public void unequipArmor(BodyPart fromWhere) {
-		throw new UnsupportedOperationException();
+		if (armor.get(fromWhere) != null)
+			armor.put(fromWhere, null);
 	}
 
 	public void addToInventory(Takeable item) {

@@ -16,6 +16,8 @@ public abstract class Takeable extends Item {
 	public void touch(Entity entity) {
 		
 		// TODO - better way to handle this?
+		// Jason: Why don't we just move inventory to Entity class, and a vehicle's addToInventory() will
+		// just forward to the Avatar's inventory
 		if (entity instanceof Character) {
 			Character character = (Character) entity;
 			character.addToInventory(this);
