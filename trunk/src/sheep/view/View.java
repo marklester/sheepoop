@@ -23,7 +23,7 @@ public class View extends JFrame {
 
 	private static final long serialVersionUID = 2015429639828183235L;
 	public static final int SIDE_BAR_W = 300;
-	private static final boolean FULL_SCREEN_MODE = false;
+	private static final boolean FULL_SCREEN_MODE = true;
 	private final Model model;
 	private TradeViewport tradeViewport;
 	private AreaViewport areaViewport;
@@ -58,14 +58,14 @@ public class View extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Create area viewport
-//		areaViewport = new AreaViewport(this.model.getAvatar(), this.model.getGameMap());
-//		areaViewport.setOpaque(true);
-//		areaViewport.setBackground(Color.BLACK);
-//		this.getContentPane().add(areaViewport, BorderLayout.CENTER);
-		JPanel test = new JPanel();
-		test.setPreferredSize(new Dimension(areaViewportWidth, this.getHeight()));
-		test.setBackground(Color.orange);
-		this.getContentPane().add(test, BorderLayout.WEST);
+		areaViewport = new AreaViewport(this.model.getAvatar(), this.model.getGameMap());
+		areaViewport.setOpaque(true);
+		areaViewport.setBackground(Color.BLACK);
+		this.getContentPane().add(areaViewport, BorderLayout.CENTER);
+//		JPanel test = new JPanel();
+//		test.setPreferredSize(new Dimension(areaViewportWidth, this.getHeight()));
+//		test.setBackground(Color.orange);
+//		this.getContentPane().add(test, BorderLayout.WEST);
 		
 		// Create sidebar
 		sidebar = new JPanel();
@@ -86,7 +86,7 @@ public class View extends JFrame {
 		}
 
 		// Tell viewports they can DO THEIR THANG
-		//areaViewport.initialize();
+		areaViewport.initialize();
 	}
 
 	public void render() {

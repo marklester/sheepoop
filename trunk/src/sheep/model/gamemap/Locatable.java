@@ -15,10 +15,6 @@ public abstract class Locatable implements Serializable {
 	private GameMap map;
 	private Location location;
 	private String id;
-	
-	public Locatable() {
-		//Testing purposes
-	}
 
 	public Locatable(String id, GameMap map, Location loc) {
 		this.id = id;
