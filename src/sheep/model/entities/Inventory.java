@@ -10,10 +10,14 @@ import sheep.model.items.Takeable;
  * @author Phil Freo
  */
 public class Inventory implements Serializable {
-	private static final long serialVersionUID = -2623162576357507941L;
 	
+	private static final long serialVersionUID = -2623162576357507941L;
 	private Vector<Takeable> items;
-
+	
+	public Inventory() {
+		items = new Vector<Takeable>();
+	}
+	
 	public void add(Takeable item) {
 		items.add(item);
 	}
