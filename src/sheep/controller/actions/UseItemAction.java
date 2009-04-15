@@ -9,12 +9,13 @@ import sheep.model.items.Takeable;
 public class UseItemAction extends AbstractAction {
 
 	private static final long serialVersionUID = 4417615613309055699L;
+	private Takeable item;
 
 	public UseItemAction(Takeable item) {
-		throw new UnsupportedOperationException();
+		this.item = item;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent ae) {
 	}
 }

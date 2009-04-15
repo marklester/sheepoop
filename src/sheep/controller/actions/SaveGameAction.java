@@ -1,6 +1,7 @@
 package sheep.controller.actions;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
@@ -30,7 +31,12 @@ public class SaveGameAction extends AbstractAction {
 		int status = jc.showSaveDialog( null );
 		
 		if( status == JFileChooser.APPROVE_OPTION ) {
-			ModelSaver saver = new ModelSaver( jc.getSelectedFile() );
+			File file = jc.getSelectedFile();
+			
+			if( !file.getName().contains( ".poop" ) )
+				file = new File( file.getAbsolutePath() + ".poop" );
+			
+			ModelSaver saver = new ModelSaver( file );
 			saver.save( model );
 		}
 		
