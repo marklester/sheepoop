@@ -2,8 +2,10 @@ package sheep.model.gamemap;
 
 import java.io.Serializable;
 
+import sheep.util.math.Vector2D;
+
 /**
- * 
+ * Represents a discrete location in 2D
  * @author Phil Freo
  * @author Bryan Rosander
  */
@@ -25,6 +27,13 @@ public class Location implements Serializable {
 	public int getY() {
 		return y;
 	}
+	
+	public Location addVector(Vector2D vector) {
+		Location ret = new Location(x, y);
+		ret.x += vector.getX();
+		ret.y += vector.getY();
+		return ret;
+	}
 
 	public boolean equals(Object l2) {
 		if (!(l2 instanceof Location)) {
@@ -39,8 +48,6 @@ public class Location implements Serializable {
 		}
 	}
 
-	
-	
 	public int hashCode() {
 		return (x * 1000 + y);
 	}

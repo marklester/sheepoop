@@ -6,10 +6,7 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -62,10 +59,6 @@ public class View extends JFrame {
 		areaViewport.setOpaque(true);
 		areaViewport.setBackground(Color.BLACK);
 		this.getContentPane().add(areaViewport, BorderLayout.CENTER);
-//		JPanel test = new JPanel();
-//		test.setPreferredSize(new Dimension(areaViewportWidth, this.getHeight()));
-//		test.setBackground(Color.orange);
-//		this.getContentPane().add(test, BorderLayout.WEST);
 		
 		// Create sidebar
 		sidebar = new JPanel();

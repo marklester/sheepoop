@@ -20,7 +20,8 @@ import sheep.model.gamemap.Location;
 import sheep.view.overlays.StatConsole;
 
 /**
- * 
+ * Area of the screen in which the tiles are drawn and the game is played.  Has
+ * a stat overlay.
  * @author Phil Freo
  */
 public class AreaViewport extends Viewport {
@@ -63,6 +64,8 @@ public class AreaViewport extends Viewport {
 
 		// Paint tiles
 		drawTiles(g2);
+		
+		System.out.println("paint was called");
 
 		// Paint children
 		stats.paint(g2);

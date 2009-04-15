@@ -5,6 +5,7 @@ import sheep.util.math.Vector2D;
 /**
  * 
  * @author Phil Freo
+ * @author Bryan Rosander
  */
 
 public enum Direction {
@@ -15,9 +16,6 @@ public enum Direction {
 	SW(new Vector2D(-1, 1), new Vector2D(-1,0)),
 	NW(new Vector2D(-1, 0), new Vector2D(-1,-1));
 	
-	
-
-	
 	private Vector2D oddVector;
 	private Vector2D evenVector;
 
@@ -26,14 +24,11 @@ public enum Direction {
 		this.evenVector = evenVec;
 	}
 
-	public Vector2D getVector(Location l) {
-		int x = l.getX();
-		if(Math.abs(x)%2==1)
-		{
+	public Vector2D getVector(Location startingLoc) {
+		int x = startingLoc.getX();
+		if (Math.abs(x) % 2 == 1) {
 			return oddVector;
-		}
-		else
-		{
+		} else {
 			return evenVector;
 		}
 	}

@@ -53,4 +53,9 @@ public abstract class Locatable implements Serializable {
 	public Location getLocation() {
 		return this.location;
 	}
+	
+	public void setLocation(Location newLoc) {
+		map.notifyOfMovement(this.location, newLoc, this);
+		this.location = newLoc;
+	}
 }
