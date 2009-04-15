@@ -1,6 +1,6 @@
 package sheep.model.entities;
 
-import java.util.List;
+import java.util.Vector;
 
 import sheep.model.Time;
 import sheep.model.gamemap.Direction;
@@ -64,7 +64,7 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 		Location newLoc = this.getLocation().addVector(vector);
 
 		// See if anything blocks
-		List<Locatable> thingsOnTile = this.getGameMap().get(newLoc);
+		Vector<Locatable> thingsOnTile = this.getGameMap().get(newLoc);
 		for (Locatable neighbor : thingsOnTile) {
 			if (neighbor.blocks(this)) {
 				System.out.println("Entity was blocked by " + neighbor);
