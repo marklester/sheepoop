@@ -28,6 +28,8 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 	public void paint(Graphics2D g) {
 		g.setColor(Color.RED);
 		g.fillRect(getPosX(), getPosY(), width, height);
+		g.setColor(Color.BLACK);
+		g.drawString("Someone make this statview look sweet", getPosX(), getPosY() + 40);
 	}
 	
 	public static int getWidth() {
