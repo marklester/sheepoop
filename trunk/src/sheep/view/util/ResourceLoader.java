@@ -59,7 +59,7 @@ public class ResourceLoader {
 		fileMap.put("Sneak", SPRITES_DIR + "sheep1.gif");
 		fileMap.put("statsFont", FONTS_DIR + "statsFont.ttf");
 		fileMap.put("Boat", SPRITES_DIR + "boat1.gif");
-		
+		fileMap.put("Wolf", SPRITES_DIR+"wolf.png");
 		//Welcome Screen images
 		imageMap.put("WelcomeScreenBG", getImage("WelcomeScreenBG"));
 		imageMap.put("newGame", getImage("newGame"));
