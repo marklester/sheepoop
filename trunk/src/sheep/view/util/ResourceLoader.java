@@ -27,7 +27,7 @@ public class ResourceLoader {
 	private static final String TERRAIN_DIR = IMG_DIR + "terrains/";
 	private static final String SPRITES_DIR = IMG_DIR + "sprites/";
 	private static final String FONTS_DIR = "res/fonts/";
-	
+	private static final String ITEMS_DIR = IMG_DIR + "items/";
 	
 	/**
 	 * This will be the central place to input any IO related filenames. The entire application should use this 
@@ -60,6 +60,7 @@ public class ResourceLoader {
 		fileMap.put("statsFont", FONTS_DIR + "statsFont.ttf");
 		fileMap.put("Boat", SPRITES_DIR + "boat1.gif");
 		fileMap.put("Wolf", SPRITES_DIR+"wolf.png");
+		fileMap.put("Boulder",ITEMS_DIR+ "boulder.png");
 		//Welcome Screen images
 		imageMap.put("WelcomeScreenBG", getImage("WelcomeScreenBG"));
 		imageMap.put("newGame", getImage("newGame"));
