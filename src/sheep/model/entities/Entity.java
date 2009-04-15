@@ -20,12 +20,12 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 		super(id, map, loc);
 	}
 
-	public void startMoving(Direction direction) {
-		throw new UnsupportedOperationException();
+	public void startMoving(Direction direction) {	
+		System.out.println("Entity is moving " + direction);
 	}
 
 	public void stopMoving() {
-		throw new UnsupportedOperationException();
+		System.out.println("Entity stopped moving");
 	}
 
 	public Vector2D getVelocity() {

@@ -76,7 +76,7 @@ public class NewGameAction implements ActionListener {
 		new Controller(model, view);
 		
 		// Close welcome view
-	//	this.welcomeView.dispose();
+		this.welcomeView.dispose();
 	}
 
 }
