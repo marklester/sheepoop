@@ -1,7 +1,8 @@
 package sheep.model.entities;
 
-import java.util.Vector;
+import java.util.List;
 
+import sheep.model.Time;
 import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
@@ -9,22 +10,30 @@ import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
 import sheep.util.math.Vector2D;
 
+/**
+ * An Entity is an object capable of moving itself on the map
+ * @author Phil Freo
+ */
 public abstract class Entity extends Locatable implements Moveable, StatChangeObservable {
 
 	private static final long serialVersionUID = -8117857590532885266L;
 	
 	private Direction facingDirection = Direction.N;
-	private Inventory inv;
+	private boolean isMoving = false;
+	private long tickCounter = 0;
 
 	public Entity(String id, GameMap map, Location loc) {
 		super(id, map, loc);
+		Time.getInstance().registerObserver(this);
 	}
 
 	public void startMoving(Direction direction) {	
-		System.out.println("Entity is moving " + direction);
+		this.facingDirection = direction;
+		this.isMoving = true;
 	}
 
 	public void stopMoving() {
+		this.isMoving = false;
 		System.out.println("Entity stopped moving");
 	}
 
@@ -45,9 +54,42 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	public abstract int getStat(StatType stat);
 
 	public abstract int getSpeed();
+	
+	private void move() {
+		
+		// Get ideal destination location
+		Vector2D vector = facingDirection.getVector(this.getLocation());
+		Location newLoc = this.getLocation().addVector(vector);
+		
+		// See if anything blocks
+		List<Locatable> thingsOnTile = this.getGameMap().get(newLoc); 
+		for (Locatable neighbor : thingsOnTile) {
+			if (neighbor.blocks(this)) {
+				System.out.println("Entity was blocked by " + neighbor);
+				stopMoving();
+				return;
+			}
+		}
+		
+		// Move is successful, do it
+		this.setLocation(newLoc);
+		System.out.println("Entity moved to " + this.getLocation());
+		
+		// Touch everything on the location
+		for (Locatable neighbor : thingsOnTile) {
+			neighbor.touch(this);
+		}
+	}
 
 	@Override
 	public void tick() {
+		
+		if (this.isMoving) {
+			tickCounter++;
+			if (tickCounter % getSpeed() == 0) {
+				move();
+			}
+		}
 		
 	}
 

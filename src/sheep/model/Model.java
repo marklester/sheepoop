@@ -15,7 +15,7 @@ public class Model implements Serializable {
 	private static final long serialVersionUID = -3924966363628308694L;
 
 	private boolean isPaused;
-	private Time time;
+	private Time time = Time.getInstance();
 	private GameStateType gameState;
 	private Avatar avatar;
 	private Entity mover;

@@ -50,7 +50,12 @@ public class CharacterStats implements Cloneable {
 	}
 
 	public int get(StatType stat) {
-		return stats.get(stat);
+		Integer ret = stats.get(stat);
+		if (ret == null) {
+			System.out.println("Character Stat not found");
+			return 0;
+		}
+		return ret;
 	}
 
 	public void set(StatType stat, int amt) {

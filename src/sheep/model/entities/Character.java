@@ -25,19 +25,16 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	private Map<BodyPart, Armor> armor;
 	private Map<PassiveSkill, Integer> passiveSkills;
 	private List<PerformableSkill> performableSkills;
-	private Vehicle vehicle;
-	private CharacterStats characterStats;
-	private PerformableSkill performableSkill;
 	private Character interactingCharacter;
 	private Vector<TalkMessageObserver> talkObservers = new Vector<TalkMessageObserver>();
 	private Vector<InventoryChangeObserver> inventoryObservers = new Vector<InventoryChangeObserver>();
 	private Vector<StatChangeObserver> statChangeObservers = new Vector<StatChangeObserver>();
 	
-
 	public Character(String id, GameMap map, Location loc, Occupation occupation) {
 		super(id, map, loc);
 		this.occupation = occupation;
 		this.performableSkills = occupation.clonePerformableSkills();
+		this.stats = occupation.cloneStats();
 		this.inventory = new Inventory();
 		for (PerformableSkill ps : performableSkills)
 			ps.setCharacter(this);		
@@ -100,7 +97,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	public int getSpeed() {
-		throw new UnsupportedOperationException();
+		return stats.get(StatType.SPEED);
 	}
 
 	public void hearMessage(Character speaker, String msg) {
@@ -175,7 +172,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	@Override
 	public int getStat(StatType stat)
 	{
-		return characterStats.get(stat);
+		return stats.get(stat);
 	}
 	
 	public Inventory getInventory() {
