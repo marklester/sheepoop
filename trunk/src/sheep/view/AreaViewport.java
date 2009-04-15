@@ -1,5 +1,6 @@
 package sheep.view;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -22,6 +23,7 @@ import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
 import sheep.view.overlays.MessageConsole;
 import sheep.view.overlays.StatConsole;
+import sheep.view.util.ResourceLoader;
 
 /**
  * Area of the screen in which the tiles are drawn and the game is played.  Has
@@ -39,7 +41,8 @@ public class AreaViewport extends JPanel {
 	private final Model model;
 	private StatConsole stats;
 	private MessageConsole messageConsole;
-	private HashMap<Location, BufferedImage> tileCache = new HashMap<Location, BufferedImage>();
+	private HashMap<Location, BufferedImage> tilesCache = new HashMap<Location, BufferedImage>();
+	private HashMap<Location, Float> tilesStaleness = new HashMap<Location, Float>();
 
 	public AreaViewport(Model model, GameMap map) {
 		this.gameMap = map;
@@ -87,8 +90,7 @@ public class AreaViewport extends JPanel {
 
 		Location center = model.getMover().getLocation();
 
-		// TODO: calculate viewable locations based on avatar's stats
-		int radius = 5;
+		int radius = model.getAvatar().getRadiusOfVisibility();
 
 		// Get the tiles that the Avatar can currently see completely
 		HashMap<Location, Vector<Locatable>> newTiles;
@@ -101,7 +103,7 @@ public class AreaViewport extends JPanel {
 			List<Locatable> locatables = entry.getValue();
 
 			BufferedImage tileImage = createTileImage(loc, locatables);
-			addToTileCache(loc, tileImage);
+			addTotilesCache(loc, tileImage);
 		}
 
 		// Get all tile locations visible on the screen to draw, regardless of  
@@ -177,41 +179,52 @@ public class AreaViewport extends JPanel {
 	}
 
 	/**
-	 * Add a tile's image to the cache
-	 * TODO reset fog-of-war thingie here
+	 * Add a tile's image to the cache.  Reset fog-of-war staleness here
 	 * @param loc
 	 * @param img
 	 */
-	private void addToTileCache(Location loc, BufferedImage img) {
+	private void addTotilesCache(Location loc, BufferedImage img) {
 		if (img != null && loc != null) {
-			tileCache.put(loc, img);
+			tilesCache.put(loc, img);
+			tilesStaleness.put(loc, 1f);
 		}
 	}
 
 	/**
 	 * Return the image in cache for the specified location.  If the location
-	 * does not have a tile, return a black image.
-	 * TODO later we will decrement a fog-of-war deal here
+	 * does not have a tile, return a black image. Decrement a fog-of-war 
+	 * "staleness" float here
 	 * @param loc
 	 * @return
 	 */
 	private BufferedImage getTileImage(Location loc) {
-		BufferedImage ret = tileCache.get(loc);
-		Graphics2D g2 = ret.createGraphics();
+		BufferedImage ret = tilesCache.get(loc);
 		
 		if (ret == null) {
 			// Create and return a black image
 			ret = new BufferedImage(TILE_SIZE, TILE_SIZE, BufferedImage.TYPE_INT_ARGB_PRE);
 			
 			// Put a dot on totally blank tiles for testing
-			g2 = ret.createGraphics();
+			Graphics2D g2 = ret.createGraphics();
 			g2.setColor(Color.BLUE);
 			g2.drawOval(TILE_SIZE / 2, TILE_SIZE / 2, 2, 2);
 			return ret;
 		}
 		
-		// Make tile faded (semi-transparent black overlay)
+		// Make tile faded (semi-transparent black overlay) based on how stale 
+		// it is 
+		Graphics2D g2 = ret.createGraphics();
+		float percentFaded = tilesStaleness.get(loc);
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1 - percentFaded));
+		BufferedImage blackImg = (BufferedImage) ResourceLoader.getInstance().getImage("BlackTile");
+		g2.drawImage(blackImg, 0, 0, null);
 		
+		// Calculate and store a new staleness
+		float newStaleness = percentFaded - 0.001f;
+		if (newStaleness < 0) {
+			newStaleness = 0;
+		}
+		tilesStaleness.put(loc, newStaleness);
 
 		return ret;
 	}

@@ -11,8 +11,4 @@ public class Avatar extends Character {
 		super(id, map, loc, occupation);
 	}
 
-	
-
-
-
 }
