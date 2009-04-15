@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,8 +13,8 @@ import java.util.List;
 import java.util.Vector;
 import java.util.Map.Entry;
 
-import sheep.model.Time;
-import sheep.model.TimeObserver;
+import javax.swing.Timer;
+
 import sheep.model.entities.Avatar;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
@@ -24,10 +26,11 @@ import sheep.view.overlays.StatConsole;
  * a stat overlay.
  * @author Phil Freo
  */
-public class AreaViewport extends Viewport implements TimeObserver {
+public class AreaViewport extends Viewport {
 	private static final long serialVersionUID = 8296336314571261983L;
 
-	public static int TILE_SIZE = 80;
+	private static final int PAINTS_PER_SECOND = 30;
+	public  static int TILE_SIZE = 80;
 	private static int widthPerTile = (int) ((TILE_SIZE / 2) * (1 + Math.tan(Math.PI / 6)));
 	private static int heightPerTile = TILE_SIZE;
 	private final GameMap gameMap;
@@ -55,8 +58,10 @@ public class AreaViewport extends Viewport implements TimeObserver {
 		// Create StatConsole
 		this.stats = new StatConsole(20, this.getHeight() - StatConsole.getHeight() - 20, getAvatar());
 		
-		// Register as time observer so we can repaint
-		Time.getInstance().registerObserver(this);
+		// Setup swing timer for repaints
+		int millisBetweenTicks = 1 / PAINTS_PER_SECOND * 1000;
+		Timer timer = new Timer(millisBetweenTicks, new TimerAction());
+		timer.start(); 
 
 	}
 
@@ -114,6 +119,10 @@ public class AreaViewport extends Viewport implements TimeObserver {
 			g2.drawImage(img, pt.x, pt.y, null);
 
 		}
+		
+		// Mark Center of screen (testing only)
+		//g2.setColor(Color.RED);
+		//g2.drawOval(viewportWidth / 2, viewportHeight / 2, 2, 2);
 	}
 	
 	/**
@@ -126,12 +135,16 @@ public class AreaViewport extends Viewport implements TimeObserver {
 	 * @return
 	 */
 	private Point getTilePosition(Location loc, Location center) {
-		int startX = this.getWidth() / 2 + (loc.getX() - center.getX()) * widthPerTile;
-		int startY = this.getHeight() / 2 + (loc.getY() - center.getY()) * heightPerTile;
+		int startX = this.getWidth() / 2 + (loc.getX() - center.getX()) * widthPerTile - (TILE_SIZE / 2);
+		int startY = this.getHeight() / 2 + (loc.getY() - center.getY()) * heightPerTile - (TILE_SIZE / 2);
 		int offsetY = 0;
 		if (loc.getX() % 2 != 0) {
 			// Odd x-positions are offset down
 			offsetY = TILE_SIZE / 2;
+		}
+		if (center.getX() % 2 != 0) {
+			// If the avatar is on an odd x-position, move everything up a lil
+			offsetY -= TILE_SIZE / 2;
 		}
 
 
@@ -192,8 +205,12 @@ public class AreaViewport extends Viewport implements TimeObserver {
 		return ret;
 	}
 
-	@Override
-	public void tick() {
-		this.repaint();
+	private class TimerAction implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			repaint();
+		}
+
 	}
 }
