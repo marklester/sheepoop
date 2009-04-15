@@ -10,6 +10,7 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import sheep.controller.actions.QuitAction;
+import sheep.controller.actions.SaveGameAction;
 import sheep.controller.actions.StartMovingAction;
 import sheep.controller.actions.StopMovingAction;
 import sheep.model.GameStateChange;
@@ -85,6 +86,9 @@ public class Controller implements GameStateObserver {
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, true), "stopMoving");
 		actionMap.put("moveNW", new StartMovingAction(model, Direction.NW));
 		
+		//saving
+		actionMap.put( "saveGame", new SaveGameAction( model ) );
+		inputMap.put(KeyStroke.getKeyStroke( KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK), "saveGame" );
 	}
 
 	/**
