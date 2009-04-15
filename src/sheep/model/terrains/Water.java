@@ -13,6 +13,6 @@ public class Water extends Terrain {
 	}
 
 	public boolean blocks(Entity entity) {
-		return false;
+		return true;
 	}
 }
