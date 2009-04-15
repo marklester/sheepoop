@@ -1,8 +1,10 @@
-package sheep.model.items;
+package sheep.model.items.armor;
 
 import sheep.model.entities.BodyPart;
+import sheep.model.entities.Entity;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
+import sheep.model.items.Takeable;
 
 public abstract class Armor extends Takeable {
 	
@@ -12,6 +14,11 @@ public abstract class Armor extends Takeable {
 	public Armor(String id, GameMap map, Location loc, BodyPart bodyLocation) {
 		super("Armor", map, loc);
 		where = bodyLocation;
+	}
+	
+	public void use(Entity entity)
+	{
+		entity.equip(this);
 	}
 	
 	public BodyPart getBodyPart() {
