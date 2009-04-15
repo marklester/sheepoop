@@ -20,6 +20,7 @@ import sheep.model.Model;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
+import sheep.view.overlays.MessageConsole;
 import sheep.view.overlays.StatConsole;
 
 /**
@@ -37,6 +38,7 @@ public class AreaViewport extends JPanel {
 	private final GameMap gameMap;
 	private final Model model;
 	private StatConsole stats;
+	private MessageConsole messageConsole;
 	private HashMap<Location, BufferedImage> tileCache = new HashMap<Location, BufferedImage>();
 
 	public AreaViewport(Model model, GameMap map) {
@@ -59,6 +61,7 @@ public class AreaViewport extends JPanel {
 
 		// Create StatConsole
 		this.stats = new StatConsole(20, this.getHeight() - StatConsole.getHeight() - 20, model.getAvatar());
+		this.messageConsole = new MessageConsole(20, 20, model.getAvatar());
 		
 		// Setup swing timer for repaints
 		int millisBetweenTicks = 1 / PAINTS_PER_SECOND * 1000;
@@ -77,6 +80,7 @@ public class AreaViewport extends JPanel {
 
 		// Paint children
 		stats.paint(g2);
+		messageConsole.paint(g2);
 	}
 
 	private void drawTiles(Graphics2D g2) {
@@ -84,7 +88,7 @@ public class AreaViewport extends JPanel {
 		Location center = model.getMover().getLocation();
 
 		// TODO: calculate viewable locations based on avatar's stats
-		int radius = 9;
+		int radius = 5;
 
 		// Get the tiles that the Avatar can currently see completely
 		HashMap<Location, Vector<Locatable>> newTiles;
@@ -193,16 +197,21 @@ public class AreaViewport extends JPanel {
 	 */
 	private BufferedImage getTileImage(Location loc) {
 		BufferedImage ret = tileCache.get(loc);
-
+		Graphics2D g2 = ret.createGraphics();
+		
 		if (ret == null) {
 			// Create and return a black image
 			ret = new BufferedImage(TILE_SIZE, TILE_SIZE, BufferedImage.TYPE_INT_ARGB_PRE);
 			
 			// Put a dot on totally blank tiles for testing
-			Graphics2D g2 = ret.createGraphics();
+			g2 = ret.createGraphics();
 			g2.setColor(Color.BLUE);
 			g2.drawOval(TILE_SIZE / 2, TILE_SIZE / 2, 2, 2);
+			return ret;
 		}
+		
+		// Make tile faded (semi-transparent black overlay)
+		
 
 		return ret;
 	}
