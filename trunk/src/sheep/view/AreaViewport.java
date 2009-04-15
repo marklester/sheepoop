@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Vector;
 import java.util.Map.Entry;
 
-import javax.swing.JPanel;
-
+import sheep.model.Time;
+import sheep.model.TimeObserver;
 import sheep.model.entities.Avatar;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
@@ -24,7 +24,7 @@ import sheep.view.overlays.StatConsole;
  * a stat overlay.
  * @author Phil Freo
  */
-public class AreaViewport extends Viewport {
+public class AreaViewport extends Viewport implements TimeObserver {
 	private static final long serialVersionUID = 8296336314571261983L;
 
 	public static int TILE_SIZE = 80;
@@ -54,6 +54,9 @@ public class AreaViewport extends Viewport {
 
 		// Create StatConsole
 		this.stats = new StatConsole(20, this.getHeight() - StatConsole.getHeight() - 20, getAvatar());
+		
+		// Register as time observer so we can repaint
+		Time.getInstance().registerObserver(this);
 
 	}
 
@@ -64,8 +67,6 @@ public class AreaViewport extends Viewport {
 
 		// Paint tiles
 		drawTiles(g2);
-		
-		System.out.println("paint was called");
 
 		// Paint children
 		stats.paint(g2);
@@ -189,5 +190,10 @@ public class AreaViewport extends Viewport {
 		}
 
 		return ret;
+	}
+
+	@Override
+	public void tick() {
+		this.repaint();
 	}
 }
