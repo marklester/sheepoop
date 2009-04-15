@@ -53,6 +53,7 @@ public class WelcomeView extends JFrame {
 		addButtons();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(scrDimension); //We'll change this later... make it full screen.
+		this.setResizable(false);
 		this.setLocationRelativeTo(null); // center
 	}
 	
