@@ -31,24 +31,22 @@ import sheep.view.util.ResourceLoader;
 
 
 
-public class InventoryViewport extends JPanel {
+public class InventoryViewport extends Viewport {
 
 	private static final long serialVersionUID = 6239705575773260473L;
 	public static final int ICON_W = 20;
 	public static final int ICON_H = 20;
 	public static final Color BG_COLOR = Color.black;
 	
-	private Avatar avatar;
 	private Inventory inv;
 	private JPanel topPnl;
 	private JPanel botPnl;
 	private ResourceLoader resLoader;
 	
 	public InventoryViewport(Avatar av, int w, int h) {
-		super(new GridLayout(2,1));
-		this.setPreferredSize(new Dimension(w,h));
-		this.avatar = av;
-		this.inv = avatar.getInventory();
+		super(av, w, h);
+		setLayout(new GridLayout(2,1));
+		this.inv = getAvatar().getInventory();
 		resLoader = ResourceLoader.getInstance();
 		setupTop();
 		setupBottom();

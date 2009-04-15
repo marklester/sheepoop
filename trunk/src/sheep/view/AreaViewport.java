@@ -23,20 +23,19 @@ import sheep.view.overlays.StatConsole;
  * 
  * @author Phil Freo
  */
-public class AreaViewport extends JPanel {
+public class AreaViewport extends Viewport {
 	private static final long serialVersionUID = 8296336314571261983L;
 
 	public static int TILE_SIZE = 80;
 	private static int widthPerTile = (int) ((TILE_SIZE / 2) * (1 + Math.tan(Math.PI / 6)));
 	private static int heightPerTile = TILE_SIZE;
 	private final GameMap gameMap;
-	private Avatar avatar;
 	private StatConsole stats;
 	private HashMap<Location, BufferedImage> tileCache = new HashMap<Location, BufferedImage>();
 
 	public AreaViewport(Avatar avatar, GameMap map) {
+		super(avatar);
 		this.gameMap = map;
-		this.avatar = avatar;
 
 		if (avatar == null) {
 			throw new RuntimeException("AreaViewport was passed a null Avatar.");
@@ -53,7 +52,7 @@ public class AreaViewport extends JPanel {
 	public void initialize() {
 
 		// Create StatConsole
-		this.stats = new StatConsole(20, this.getHeight() - StatConsole.getHeight() - 20, this.avatar);
+		this.stats = new StatConsole(20, this.getHeight() - StatConsole.getHeight() - 20, getAvatar());
 
 	}
 
@@ -71,7 +70,7 @@ public class AreaViewport extends JPanel {
 
 	private void drawTiles(Graphics2D g2) {
 
-		Location center = avatar.getLocation();
+		Location center = getAvatar().getLocation();
 
 		// TODO: calculate viewable locations based on avatar's stats
 		int radius = 9;
