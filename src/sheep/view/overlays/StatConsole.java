@@ -4,7 +4,6 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
 
 import sheep.model.entities.Avatar;
 import sheep.model.entities.CharacterStats;
@@ -77,6 +76,7 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 		 * 
 		 */
 		
+		// TODO - Jason, can you add some left padding to this so the text isn't on the very edge?
 	}
 	
 	public static int getWidth() {

@@ -93,7 +93,6 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	public boolean blocks(Entity entity) {
-		System.out.println("Character is blocking " + entity);
 		return true;
 	}
 
