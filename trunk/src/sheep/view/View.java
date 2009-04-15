@@ -3,9 +3,9 @@ package sheep.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -71,7 +71,9 @@ public class View extends JFrame {
 			device.setFullScreenWindow(this);
 			validate();
 		} else {
-			this.setExtendedState(Frame.MAXIMIZED_BOTH); 
+			//this.setVisible(true);
+			//this.setExtendedState(Frame.MAXIMIZED_BOTH);
+			setSize(Toolkit.getDefaultToolkit().getScreenSize());
 			this.setVisible(true);
 		}
 		this.setResizable(false);

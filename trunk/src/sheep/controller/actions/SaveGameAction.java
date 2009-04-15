@@ -26,8 +26,8 @@ public class SaveGameAction extends AbstractAction {
 		model.pauseTime();
 		
 		JFileChooser jc = new JFileChooser();
-		jc.setFileFilter( new FileNameExtensionFilter( "Sheepoop Save Files", "poop" ) );
-		int status = jc.showOpenDialog( null );
+		jc.setFileFilter( new FileNameExtensionFilter( "Sheepoop Save Files (*.poop)", "poop" ) );
+		int status = jc.showSaveDialog( null );
 		
 		if( status == JFileChooser.APPROVE_OPTION ) {
 			ModelSaver saver = new ModelSaver( jc.getSelectedFile() );
