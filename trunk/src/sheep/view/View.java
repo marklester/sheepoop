@@ -19,8 +19,8 @@ import sheep.model.Model;
 public class View extends JFrame {
 
 	private static final long serialVersionUID = 2015429639828183235L;
-	public static final int SIDE_BAR_W = 300;
 	private static final boolean FULL_SCREEN_MODE = true;
+	private static final int SIDE_BAR_W = 300;
 	private final Model model;
 	private TradeViewport tradeViewport;
 	private AreaViewport areaViewport;
@@ -74,13 +74,10 @@ public class View extends JFrame {
 			this.setExtendedState(Frame.MAXIMIZED_BOTH); 
 			this.setVisible(true);
 		}
+		this.setResizable(false);
 
 		// Tell viewports they can DO THEIR THANG
 		areaViewport.initialize();
-	}
-
-	public void render() {
-		throw new UnsupportedOperationException();
 	}
 
 	public void showTradeViewport() {

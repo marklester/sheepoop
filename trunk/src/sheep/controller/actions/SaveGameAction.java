@@ -1,7 +1,6 @@
 package sheep.controller.actions;
 
 import java.awt.event.ActionEvent;
-import java.sql.Time;
 
 import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;

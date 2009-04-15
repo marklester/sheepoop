@@ -10,7 +10,8 @@ import sheep.model.entities.Vehicle;
 import sheep.model.entities.npc.Wolf;
 
 /**
- * Takes a map file 
+ * Returns a new GameMap for level1, by loading the mapfile it knows, and adding
+ * items/entities/etc to it. 
  * @author Phil Freo
  */
 public class Level1MapCreator extends MapCreator {

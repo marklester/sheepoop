@@ -67,7 +67,6 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 		Vector<Locatable> thingsOnTile = this.getGameMap().get(newLoc);
 		for (Locatable neighbor : thingsOnTile) {
 			if (neighbor.blocks(this)) {
-				System.out.println("Entity was blocked by " + neighbor);
 				stopMoving();
 				return;
 			}
