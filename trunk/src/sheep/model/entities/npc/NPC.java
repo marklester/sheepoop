@@ -18,13 +18,15 @@ public class NPC extends Character {
 		super(id, map, loc, occupation);
 		this.model = model;
 	}
-
+	
 	public boolean blocks(Entity entity) {
-		throw new UnsupportedOperationException();
+		return true;
 	}
 
 	public void talk(Character character) {
 		throw new UnsupportedOperationException();
 	}
-
+	public void setAi(AI ai) {
+		this.ai = ai;
+	}
 }
