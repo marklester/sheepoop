@@ -18,7 +18,7 @@ public class Time implements Serializable {
 	private static final int TICKS_PER_SECOND = 30;
 	private static Time instance = new Time();
 	private List<TimeObserver> observers;
-	private Timer timer = new Timer();
+	transient private Timer timer = new Timer();
 	private boolean isPaused;
 
 	private Time() {
@@ -37,11 +37,19 @@ public class Time implements Serializable {
 	}
 
 	public void pause() {
-		timer.cancel();
+		
+		if( timer != null)
+			timer.cancel();
+		
 		this.isPaused = true;
 	}
 
 	public void start() {
+		
+		//because timers can't be serialized, it might be null, despite how impossible it seems
+		if( timer == null)
+			timer = new Timer();
+		
 		// Make sure Timer isn't already going
 		if (!isPaused) {
 			return;

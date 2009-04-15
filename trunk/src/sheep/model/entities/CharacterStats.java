@@ -1,8 +1,11 @@
 package sheep.model.entities;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class CharacterStats implements Cloneable {
+public class CharacterStats implements Cloneable, Serializable {
+
+	private static final long serialVersionUID = -2031931040554030741L;
 
 	private HashMap<StatType, Integer> stats = new HashMap<StatType, Integer>();
 

@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import sheep.controller.actions.LoadGameAction;
 import sheep.controller.loading.NewGameAction;
 import sheep.controller.loading.WelcomeActionListener;
 import sheep.view.util.ResourceLoader;
@@ -35,6 +36,7 @@ public class WelcomeView extends JFrame {
 	private JPanel btnPanel;
 	private NewGameAction newGameAction;
 	private ActionListener welcomeListener;
+	
 	private JButton ngBtn;
 	private JButton lgBtn;
 	private JButton smBtn;
