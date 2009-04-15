@@ -7,6 +7,8 @@ import sheep.model.Model;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
+import sheep.model.items.armor.Armor;
+import sheep.model.items.weapons.Weapon;
 
 public class Vehicle extends Entity {
 
@@ -107,6 +109,24 @@ public class Vehicle extends Entity {
 		else
 		{
 			return driver.getStat(stat);
+		}
+	}
+
+	@Override
+	public void equip(Weapon w)
+	{
+		if(driver!=null)
+		{
+			driver.equip(w);
+		}
+	}
+
+	@Override
+	public void equip(Armor a)
+	{
+		if(driver!=null)
+		{
+			driver.equip(a);
 		}
 	}
 
