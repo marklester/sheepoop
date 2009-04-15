@@ -14,9 +14,9 @@ import sheep.model.terrains.Water;
  * 
  * @author Bryan Rosander
  */
-public class MapCreator
+public abstract class MapCreator
 {
-	public static GameMap createMap(File pathAndName) throws IOException
+	public static GameMap parseMapFile(File pathAndName) throws IOException
 	{
 		GameMap myMap = new GameMap();
 		

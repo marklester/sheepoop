@@ -70,8 +70,8 @@ public class LocationDrawingVisitor implements LocatableVisitor {
 		}
 		
 		if (characterObj != null && characterObj.getID() == "Wolf") {
-			AffineTransform affineT = g2.getTransform();
-			double rotate = (characterObj.getFacingDirection().getAngleInDegrees() <= 90) ? Math.PI / 2 : 0;
+			//AffineTransform affineT = g2.getTransform();
+			//double rotate = (characterObj.getFacingDirection().getAngleInDegrees() <= 90) ? Math.PI / 2 : 0;
 			//g2.rotate(rotate, img.getWidth() / 2, img.getHeight() / 2);
 			g2.drawImage(character, 0, 0, null);
 			//g2.setTransform(affineT);
