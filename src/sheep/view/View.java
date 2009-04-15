@@ -126,5 +126,9 @@ public class View extends JFrame {
 	public AreaViewport getAreaViewport() {
 		return areaViewport;
 	}
+	
+	public InventoryViewport getInventoryViewport() {
+		return this.invViewport;
+	}
 
 }
