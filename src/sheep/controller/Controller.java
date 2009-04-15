@@ -1,15 +1,14 @@
 package sheep.controller;
 
 import java.awt.event.KeyEvent;
-import java.util.Vector;
 
-import javax.swing.Action;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import sheep.controller.actions.QuitAction;
+import sheep.controller.actions.ReleaseVehicleAction;
 import sheep.controller.actions.SaveGameAction;
 import sheep.controller.actions.StartMovingAction;
 import sheep.controller.actions.StopMovingAction;
@@ -26,7 +25,6 @@ import sheep.view.View;
 public class Controller implements GameStateObserver {
 	private View view;
 	private Model model;
-	private Vector<Action> action = new Vector<Action>();
 	private InteractionViewportListener interactionViewportListener;
 	private InputMap inputMap;
 	private ActionMap actionMap;
@@ -38,7 +36,7 @@ public class Controller implements GameStateObserver {
 		// Get input and action maps
 		inputMap = view.getAreaViewport().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		actionMap = view.getAreaViewport().getActionMap();
-		
+
 		setKeyBindings();
 		model.startTime();
 	}
@@ -48,11 +46,11 @@ public class Controller implements GameStateObserver {
 	 */
 	private void setKeyBindings() {
 		// TODO we need to somehow deal with saving/loading/initial keybindings
-		
+
 		// Quit
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "quit");
 		actionMap.put("quit", new QuitAction());
-		
+
 		// Movement
 		actionMap.put("stopMoving", new StopMovingAction(model));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD8, 0, false), "moveN");
@@ -85,10 +83,14 @@ public class Controller implements GameStateObserver {
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, false), "moveNW");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, true), "stopMoving");
 		actionMap.put("moveNW", new StartMovingAction(model, Direction.NW));
-		
-		//saving
-		actionMap.put( "saveGame", new SaveGameAction( model ) );
-		inputMap.put(KeyStroke.getKeyStroke( KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK), "saveGame" );
+
+		// Saving
+		actionMap.put("saveGame", new SaveGameAction(model));
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK), "saveGame");
+
+		// Release vehicle
+		actionMap.put("releaseVehicle", new ReleaseVehicleAction(model));
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_R, 0), "releaseVehicle");
 	}
 
 	/**

@@ -64,6 +64,10 @@ public class Vehicle extends Entity {
 		return driver;
 	}
 	
+	public void clearDriver() {
+		this.driver = null;
+	}
+	
 	/**
 	 * Override setLocation from Locatable so we can move the driver's location
 	 * as well (if we do in fact move)
