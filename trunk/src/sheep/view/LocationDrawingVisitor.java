@@ -24,7 +24,7 @@ public class LocationDrawingVisitor implements LocatableVisitor {
 	
 	public LocationDrawingVisitor(int tileSize) {
 		this.tileSize = tileSize;
-		this.img = new BufferedImage(tileSize, tileSize, BufferedImage.TYPE_INT_ARGB_PRE);
+		this.img = new BufferedImage(this.tileSize, this.tileSize, BufferedImage.TYPE_INT_ARGB_PRE);
 		this.g2 = img.createGraphics();
 	}
 	

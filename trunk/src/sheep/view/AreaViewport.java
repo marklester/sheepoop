@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Vector;
 import java.util.Map.Entry;
 
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import sheep.model.Model;
@@ -26,7 +27,7 @@ import sheep.view.overlays.StatConsole;
  * a stat overlay.
  * @author Phil Freo
  */
-public class AreaViewport extends Viewport {
+public class AreaViewport extends JPanel {
 	private static final long serialVersionUID = 8296336314571261983L;
 
 	private static final int PAINTS_PER_SECOND = 30;
@@ -39,7 +40,6 @@ public class AreaViewport extends Viewport {
 	private HashMap<Location, BufferedImage> tileCache = new HashMap<Location, BufferedImage>();
 
 	public AreaViewport(Model model, GameMap map) {
-		super(model.getAvatar());
 		this.gameMap = map;
 		this.model = model;
 		
@@ -58,7 +58,7 @@ public class AreaViewport extends Viewport {
 	public void initialize() {
 
 		// Create StatConsole
-		this.stats = new StatConsole(20, this.getHeight() - StatConsole.getHeight() - 20, getAvatar());
+		this.stats = new StatConsole(20, this.getHeight() - StatConsole.getHeight() - 20, model.getAvatar());
 		
 		// Setup swing timer for repaints
 		int millisBetweenTicks = 1 / PAINTS_PER_SECOND * 1000;
@@ -107,8 +107,8 @@ public class AreaViewport extends Viewport {
 		int viewportHeight = this.getHeight();
 		int numTilesWide = (int) (viewportWidth / widthPerTile);
 		int numTilesTall = viewportHeight / heightPerTile;
-		for (int x = -1 * numTilesWide / 2 - 1; x <= numTilesWide / 2; ++x) {
-			for (int y = -1 * numTilesTall / 2 - 1; y <= numTilesTall / 2; ++y) {
+		for (int x = -1 * numTilesWide / 2 - 1; x <= numTilesWide / 2 + 1; ++x) {
+			for (int y = -1 * numTilesTall / 2 - 1; y <= numTilesTall / 2 + 1; ++y) {
 				locationsToDraw.add(new Location(center.getX() + x, center.getY() + y));
 			}
 		}

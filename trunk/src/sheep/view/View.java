@@ -26,8 +26,6 @@ public class View extends JFrame {
 	private AreaViewport areaViewport;
 	private InventoryViewport invViewport;
 	private JPanel sidebar;
-	private int areaViewportWidth; 
-	
 
 	public View(Model model) {
 		this.model = model;
@@ -49,7 +47,6 @@ public class View extends JFrame {
 		
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice device = ge.getDefaultScreenDevice();
-		areaViewportWidth = (int) ge.getMaximumWindowBounds().getWidth() - SIDE_BAR_W;
 
 		this.setTitle("Sheepoop");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
