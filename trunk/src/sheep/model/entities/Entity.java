@@ -8,6 +8,8 @@ import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
+import sheep.model.items.armor.Armor;
+import sheep.model.items.weapons.Weapon;
 import sheep.util.math.Vector2D;
 
 /**
@@ -120,5 +122,8 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	public abstract int getStat(StatType stat);
 
 	public abstract int getSpeed();
-
+	
+	public abstract void equip(Weapon w);
+	
+	public abstract void equip(Armor a);
 }
