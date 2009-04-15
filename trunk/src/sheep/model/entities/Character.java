@@ -176,6 +176,10 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 		return stats.get(stat);
 	}
 	
+	public CharacterStats getStats() {
+		return this.stats;
+	}
+	
 	public Inventory getInventory() {
 		return this.inventory;
 	}
