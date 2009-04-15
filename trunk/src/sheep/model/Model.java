@@ -72,8 +72,14 @@ public class Model implements Serializable {
 		return avatar;
 	}
 	
+	/**
+	 * Sets a new Avatar.  Assumes that when setting an Avatar it's not in 
+	 * a Vehicle
+	 * @param avatar
+	 */
 	public void setAvatar(Avatar avatar) {
 		this.avatar = avatar;
+		this.mover = avatar;
 	}
 
 	public Entity getMover() {
