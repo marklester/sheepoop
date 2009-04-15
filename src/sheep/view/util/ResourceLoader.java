@@ -45,12 +45,15 @@ public class ResourceLoader {
 		fileMap.put("smasherBtn", ICON_DIR + "smasher.png");
 		fileMap.put("summonerBtn", ICON_DIR + "summoner.png");
 		fileMap.put("sneakBtn", ICON_DIR + "sneak.png");
+		
 		fileMap.put("Water", TERRAIN_DIR + "water.png");
 		fileMap.put("Grass", TERRAIN_DIR + "grass.png");
 		fileMap.put("Mountain", TERRAIN_DIR + "mountains.png");
+		
 		fileMap.put("Summoner", SPRITES_DIR + "sheep1.gif");
 		fileMap.put("Smasher", SPRITES_DIR + "sheep1.gif");
 		fileMap.put("Sneak", SPRITES_DIR + "sheep1.gif");
+		fileMap.put("Boat", SPRITES_DIR + "boat1.gif");
 		
 		//Welcome Screen images
 		imageMap.put("WelcomeScreenBG", getImage("WelcomeScreenBG"));

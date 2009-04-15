@@ -55,7 +55,7 @@ public class View extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Create area viewport
-		areaViewport = new AreaViewport(this.model.getAvatar(), this.model.getGameMap());
+		areaViewport = new AreaViewport(this.model, this.model.getGameMap());
 		areaViewport.setOpaque(true);
 		areaViewport.setBackground(Color.BLACK);
 		this.getContentPane().add(areaViewport, BorderLayout.CENTER);

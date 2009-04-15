@@ -53,37 +53,37 @@ public class Controller implements GameStateObserver {
 		actionMap.put("quit", new QuitAction());
 		
 		// Movement
-		actionMap.put("stopMoving", new StopMovingAction(model.getMover()));
+		actionMap.put("stopMoving", new StopMovingAction(model));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD8, 0, false), "moveN");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD8, 0, true), "stopMoving");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, false), "moveN");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, true), "stopMoving");
-		actionMap.put("moveN", new StartMovingAction(model.getMover(), Direction.N));
+		actionMap.put("moveN", new StartMovingAction(model, Direction.N));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD9, 0, false), "moveNE");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD9, 0, true), "stopMoving");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, false), "moveNE");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, true), "stopMoving");
-		actionMap.put("moveNE", new StartMovingAction(model.getMover(), Direction.NE));
+		actionMap.put("moveNE", new StartMovingAction(model, Direction.NE));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD3, 0, false), "moveSE");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD3, 0, true), "stopMoving");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, false), "moveSE");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, true), "stopMoving");
-		actionMap.put("moveSE", new StartMovingAction(model.getMover(), Direction.SE));
+		actionMap.put("moveSE", new StartMovingAction(model, Direction.SE));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD2, 0, false), "moveS");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD2, 0, true), "stopMoving");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, false), "moveS");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, true), "stopMoving");
-		actionMap.put("moveS", new StartMovingAction(model.getMover(), Direction.S));
+		actionMap.put("moveS", new StartMovingAction(model, Direction.S));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD1, 0, false), "moveSW");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD1, 0, true), "stopMoving");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, false), "moveSW");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, true), "stopMoving");
-		actionMap.put("moveSW", new StartMovingAction(model.getMover(), Direction.SW));
+		actionMap.put("moveSW", new StartMovingAction(model, Direction.SW));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD7, 0, false), "moveNW");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD7, 0, true), "stopMoving");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, false), "moveNW");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, true), "stopMoving");
-		actionMap.put("moveNW", new StartMovingAction(model.getMover(), Direction.NW));
+		actionMap.put("moveNW", new StartMovingAction(model, Direction.NW));
 		
 	}
 

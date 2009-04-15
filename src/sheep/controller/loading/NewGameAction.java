@@ -8,6 +8,7 @@ import java.io.IOException;
 import sheep.controller.Controller;
 import sheep.model.Model;
 import sheep.model.entities.Avatar;
+import sheep.model.entities.Vehicle;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 import sheep.model.gamemap.MapCreator;
@@ -68,6 +69,12 @@ public class NewGameAction implements ActionListener {
 		Avatar avatar = new Avatar("Summoner", map, startingLoc, occupation);
 		map.add(startingLoc, avatar);
 		model.setAvatar(avatar);
+		
+		// Add other objects to map
+		Location loc;
+		loc = new Location(5, 5);
+		Vehicle vehicle = new Vehicle("Boat", map, loc, model);
+		map.add(loc, vehicle);
 		
 		// Create view
 		View view = new View(model);

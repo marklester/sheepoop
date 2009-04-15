@@ -30,7 +30,15 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	public void startMoving(Direction direction) {
 		this.facingDirection = direction;
 		this.isMoving = true;
+		
+		// Check for valid speed
+		if (getSpeed() <= 0) {
+			stopMoving();
+			System.out.println("Entity's getSpeed returned 0");
+			return;
+		}
 
+		// If we don't have to wait right now, move the entity
 		if (tickCounter == 0) {
 			move();
 		}

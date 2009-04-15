@@ -9,19 +9,33 @@ import sheep.util.math.Vector2D;
  */
 
 public enum Direction {
-	N(new Vector2D(0, -1), new Vector2D(0,-1)), 
-	NE(new Vector2D(1, 0), new Vector2D(1, -1)), 
-	SE(new Vector2D(1,1), new Vector2D(1,0)), 
-	S(new Vector2D(0, 1), new Vector2D(0,1)), 
-	SW(new Vector2D(-1, 1), new Vector2D(-1,0)),
-	NW(new Vector2D(-1, 0), new Vector2D(-1,-1));
+	N(90, new Vector2D(0, -1), new Vector2D(0,-1)), 
+	NE(30, new Vector2D(1, 0), new Vector2D(1, -1)), 
+	SE(330, new Vector2D(1,1), new Vector2D(1,0)), 
+	S(270, new Vector2D(0, 1), new Vector2D(0,1)), 
+	SW(210, new Vector2D(-1, 1), new Vector2D(-1,0)),
+	NW(150, new Vector2D(-1, 0), new Vector2D(-1,-1));
 	
+	private int angle;
 	private Vector2D oddVector;
 	private Vector2D evenVector;
 
-	Direction(Vector2D oddVec,Vector2D evenVec) {
+	Direction(int angle, Vector2D oddVec,Vector2D evenVec) {
+		this.angle = angle;
 		this.oddVector = oddVec;
 		this.evenVector = evenVec;
+	}
+	
+	/**
+	 * Returns the angle of the direction, in degree, where N=90
+	 * @return
+	 */
+	public int getAngleInDegrees() {
+		return angle;
+	}
+	
+	public double getAngleInRadians() {
+		return getAngleInDegrees() * Math.PI / 180;
 	}
 
 	public Vector2D getVector(Location startingLoc) {

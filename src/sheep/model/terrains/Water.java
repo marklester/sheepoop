@@ -13,6 +13,13 @@ public class Water extends Terrain {
 	}
 
 	public boolean blocks(Entity entity) {
+		
+		// Boats can pass
+		if (entity.getID().equals("Boat")) {
+			return false;
+		}
+		
+		// Other avatars can't
 		return true;
 	}
 }

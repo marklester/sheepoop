@@ -93,7 +93,8 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	public boolean blocks(Entity entity) {
-		throw new UnsupportedOperationException();
+		System.out.println("Character is blocking " + entity);
+		return true;
 	}
 
 	public int getSpeed() {

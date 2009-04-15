@@ -1,7 +1,10 @@
 package sheep.model.entities;
 
+import java.util.HashMap;
 import java.util.Vector;
 
+import sheep.model.Model;
+import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
@@ -9,12 +12,16 @@ import sheep.model.gamemap.Location;
 public class Vehicle extends Entity {
 
 	private static final long serialVersionUID = -7212987040280996071L;
-	private VehicleStatType stats;
+	private final Model model;
+	private HashMap<VehicleStatType, Integer> stats = new HashMap<VehicleStatType, Integer>();
 	private Character driver;
 	private Vector<StatChangeObserver> statChangeObservers = new Vector<StatChangeObserver>();
 
-	public Vehicle(String id, GameMap map, Location loc) {
+	public Vehicle(String id, GameMap map, Location loc, Model model) {
 		super(id, map, loc);
+		this.model = model;
+		
+		stats.put(VehicleStatType.SPEED, 10);	// TODO this may need to come from somewhere else
 	}
 
 	public void accept(LocatableVisitor v) {
@@ -22,7 +29,8 @@ public class Vehicle extends Entity {
 	}
 
 	public boolean blocks(Entity entity) {
-		throw new UnsupportedOperationException();
+		// TODO we may need to say true for entities other than the avatar
+		return false;
 	}
 
 	public void affectStat(StatType stat, int changeAmt) {
@@ -30,15 +38,39 @@ public class Vehicle extends Entity {
 	}
 
 	public int getSpeed() {
-		throw new UnsupportedOperationException();
+		Integer ret = stats.get(VehicleStatType.SPEED);
+		if (ret == null) {
+			return 0;
+		}
+		return ret;
 	}
 
 	public void touch(Entity entity) {
-		throw new UnsupportedOperationException();
+		// Character gets in the vehicle
+		if (!(entity instanceof Character)) {
+			return;
+		}
+		
+		entity.stopMoving();
+		Character character = (Character) entity;
+		
+		this.model.setMover(this);
+		
+		this.driver = character;
 	}
 	
 	public Character getDriver() {
 		return driver;
+	}
+	
+	/**
+	 * Override setLocation from Locatable so we can move the driver's location
+	 * as well (if we do in fact move)
+	 */
+	@Override
+	public void setLocation(Location newLoc) {
+		super.setLocation(newLoc);
+		this.driver.setLocation(newLoc);
 	}
 	
 	@Override
