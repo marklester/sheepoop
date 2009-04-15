@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import sheep.model.entities.npc.Wolf;
 import sheep.model.items.Obstacle;
 import sheep.model.terrains.Grass;
 import sheep.model.terrains.Mountain;
@@ -43,10 +42,6 @@ public class MapCreator
 				case 'M':
 					myMap.add(myLoc, new Mountain(myMap,myLoc));
 					break;
-				case '0':
-					myMap.add(myLoc, new Grass(myMap,myLoc));
-					myMap.add(myLoc, new Wolf(myMap,myLoc));
-				break;
 				case 'B':
 					myMap.add(myLoc, new Grass(myMap,myLoc));
 					myMap.add(myLoc, new Obstacle("Boulder",myMap,myLoc));

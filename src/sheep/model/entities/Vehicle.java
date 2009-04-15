@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import sheep.model.Model;
-import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
@@ -29,8 +28,10 @@ public class Vehicle extends Entity {
 	}
 
 	public boolean blocks(Entity entity) {
-		// TODO we may need to say true for entities other than the avatar
-		return false;
+		if (entity instanceof Avatar) {
+			return false;
+		}
+		return true;
 	}
 
 	public void affectStat(StatType stat, int changeAmt) {

@@ -21,6 +21,7 @@ public class LocationDrawingVisitor implements LocatableVisitor {
 	private Graphics2D g2;
 	private BufferedImage terrain, character, vehicle, item, decal;
 	private Vehicle vehicleObj;
+	private Character characterObj;
 	
 	public LocationDrawingVisitor(int tileSize) {
 		this.tileSize = tileSize;
@@ -34,12 +35,12 @@ public class LocationDrawingVisitor implements LocatableVisitor {
 
 	public void visit(Vehicle obj) {
 		vehicle = (BufferedImage) ResourceLoader.getInstance().getImage(obj.getID());
-		
 		this.vehicleObj = obj;
 	}
 
 	public void visit(Character obj) {
 		character = (BufferedImage) ResourceLoader.getInstance().getImage(obj.getID());
+		this.characterObj = obj;
 	}
 
 	public void visit(Terrain obj) {
@@ -61,14 +62,22 @@ public class LocationDrawingVisitor implements LocatableVisitor {
 		
 		// Rotate and draw vehicle
 		if (vehicleObj != null) {
-			double vehicleRotate = -1 * vehicleObj.getFacingDirection().getAngleInRadians();
 			AffineTransform affineT = g2.getTransform(); 
+			double vehicleRotate = -1 * vehicleObj.getFacingDirection().getAngleInRadians();
 			g2.rotate(vehicleRotate, img.getWidth() / 2, img.getHeight() / 2);
 			g2.drawImage(vehicle, 0, 0, null);
 			g2.setTransform(affineT);
 		}
 		
-		g2.drawImage(character, 0, 0, null);
+		if (characterObj != null && characterObj.getID() == "Wolf") {
+			AffineTransform affineT = g2.getTransform();
+			double rotate = (characterObj.getFacingDirection().getAngleInDegrees() <= 90) ? Math.PI / 2 : 0;
+			//g2.rotate(rotate, img.getWidth() / 2, img.getHeight() / 2);
+			g2.drawImage(character, 0, 0, null);
+			//g2.setTransform(affineT);
+		} else {
+			g2.drawImage(character, 0, 0, null);
+		}
 		return img;
 	}
 }
