@@ -52,7 +52,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 	
 	public int getRadiusOfVisibility() {
-		return 5; // TODO this must be based on items, stats, potions, etc.
+		return 3; // TODO this must be based on items, stats, potions, etc.
 	}
 
 	public void equip(Weapon w) {

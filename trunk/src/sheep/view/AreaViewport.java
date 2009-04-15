@@ -109,10 +109,8 @@ public class AreaViewport extends JPanel {
 		// Get all tile locations visible on the screen to draw, regardless of  
 		// whether the Avatar can see them.  
 		List<Location> locationsToDraw = new ArrayList<Location>();
-		int viewportWidth = this.getWidth(); 
-		int viewportHeight = this.getHeight();
-		int numTilesWide = (int) (viewportWidth / widthPerTile);
-		int numTilesTall = viewportHeight / heightPerTile;
+		int numTilesWide = (int) (this.getWidth() / widthPerTile);
+		int numTilesTall = this.getHeight() / heightPerTile;
 		for (int x = -1 * numTilesWide / 2 - 1; x <= numTilesWide / 2 + 1; ++x) {
 			for (int y = -1 * numTilesTall / 2 - 1; y <= numTilesTall / 2 + 1; ++y) {
 				locationsToDraw.add(new Location(center.getX() + x, center.getY() + y));
@@ -125,12 +123,8 @@ public class AreaViewport extends JPanel {
 
 			Point pt = getTilePosition(loc, center);
 			g2.drawImage(img, pt.x, pt.y, null);
-
 		}
 		
-		// Mark Center of screen (testing only)
-		//g2.setColor(Color.RED);
-		//g2.drawOval(viewportWidth / 2, viewportHeight / 2, 2, 2);
 	}
 	
 	/**
@@ -154,7 +148,6 @@ public class AreaViewport extends JPanel {
 			// If the avatar is on an odd x-position, move everything up a lil
 			offsetY -= TILE_SIZE / 2;
 		}
-
 
 		return new Point(startX, startY + offsetY);
 	}
@@ -211,8 +204,7 @@ public class AreaViewport extends JPanel {
 			return ret;
 		}
 		
-		// Make tile faded (semi-transparent black overlay) based on how stale 
-		// it is 
+		// Make tile faded (semi-transparent black overlay) based on staleness
 		Graphics2D g2 = ret.createGraphics();
 		float percentFaded = tilesStaleness.get(loc);
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1 - percentFaded));
