@@ -60,6 +60,12 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 				return;
 			}
 		}
+		
+		// If no terrain or anything (edge of map), don't move
+		if (thingsOnTile.size() == 0) {
+			stopMoving();
+			return;
+		}
 
 		// Move is successful, do it
 		this.setLocation(newLoc);
