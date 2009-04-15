@@ -5,9 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 public class SettingsSaver {
 
 	private File file;
@@ -16,12 +13,8 @@ public class SettingsSaver {
 		this.file = file;
 	}
 
-	public void save(JFrame frame) {
+	public void save(KeySettings settings) {
 		
-		JPanel pane = (JPanel) frame.getContentPane();
-		
-		KeySettings settings = new KeySettings( pane.getInputMap(), pane.getActionMap() );
-	
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;
 		try

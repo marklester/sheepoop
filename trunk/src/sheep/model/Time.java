@@ -39,7 +39,11 @@ public class Time implements Serializable {
 	public void pause() {
 		
 		if( timer != null)
+		{
 			timer.cancel();
+			//once you call cancel on a timer, you can no longer schedule tasks on it.
+			timer = null;
+		}
 		
 		this.isPaused = true;
 	}
