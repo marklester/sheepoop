@@ -20,6 +20,10 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 
 	private Direction facingDirection = Direction.N;
 	private boolean isMoving = false;
+	public boolean isMoving() {
+		return isMoving;
+	}
+
 	private long tickCounter = 0;
 
 	public Entity(String id, GameMap map, Location loc) {
@@ -88,7 +92,7 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 		this.tickCounter = getSpeed();
 	}
 
-	@Override
+	//@Override
 	public void tick() {
 
 		if (this.isMoving && tickCounter == 0) {
