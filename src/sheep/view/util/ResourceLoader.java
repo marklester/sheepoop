@@ -1,5 +1,6 @@
 package sheep.view.util;
 
+import java.awt.Font;
 import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,11 +20,13 @@ public class ResourceLoader {
 	private static ResourceLoader instance = new ResourceLoader();
 	private HashMap<String, String> fileMap;
 	private HashMap<String, Image> imageMap;
+	private HashMap<String, Font> fontMap;
 
 	private static final String IMG_DIR = "res/imgs/";
 	private static final String ICON_DIR = IMG_DIR +  "icons/";
 	private static final String TERRAIN_DIR = IMG_DIR + "terrains/";
 	private static final String SPRITES_DIR = IMG_DIR + "sprites/";
+	private static final String FONTS_DIR = "res/fonts/";
 	
 	
 	/**
@@ -37,6 +40,7 @@ public class ResourceLoader {
 	private ResourceLoader() {
 		fileMap = new HashMap<String, String>();
 		imageMap = new HashMap<String, Image>();
+		fontMap = new HashMap<String, Font>();
 		fileMap.put("WelcomeScreenBG", IMG_DIR + "mapbg.gif");
 		fileMap.put("newGame", ICON_DIR + "newgame.png");
 		fileMap.put("loadGame", ICON_DIR + "loadgame.png");
@@ -53,6 +57,7 @@ public class ResourceLoader {
 		fileMap.put("Summoner", SPRITES_DIR + "sheep1.gif");
 		fileMap.put("Smasher", SPRITES_DIR + "sheep1.gif");
 		fileMap.put("Sneak", SPRITES_DIR + "sheep1.gif");
+		fileMap.put("statsFont", FONTS_DIR + "statsFont.ttf");
 		fileMap.put("Boat", SPRITES_DIR + "boat1.gif");
 		
 		//Welcome Screen images
@@ -105,5 +110,21 @@ public class ResourceLoader {
 	
 	public Image getBGImage() {
 		return imageMap.get("WelcomeScreenBG");
+	}
+	
+	//We could add the ability to get other fonts later. For now, just get the single font
+	public Font getFont(String key) {
+		Font f = fontMap.get(key);
+		try {
+			if (f == null) {
+				f = Font.createFont(Font.TRUETYPE_FONT, getFileInputStream(key));
+				fontMap.put(key, f);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return Font.getFont(Font.SANS_SERIF);
+		}
+		return f;
 	}
 }
