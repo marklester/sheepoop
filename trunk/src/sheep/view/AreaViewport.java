@@ -15,7 +15,7 @@ import java.util.Map.Entry;
 
 import javax.swing.Timer;
 
-import sheep.model.entities.Avatar;
+import sheep.model.Model;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
@@ -34,15 +34,17 @@ public class AreaViewport extends Viewport {
 	private static int widthPerTile = (int) ((TILE_SIZE / 2) * (1 + Math.tan(Math.PI / 6)));
 	private static int heightPerTile = TILE_SIZE;
 	private final GameMap gameMap;
+	private final Model model;
 	private StatConsole stats;
 	private HashMap<Location, BufferedImage> tileCache = new HashMap<Location, BufferedImage>();
 
-	public AreaViewport(Avatar avatar, GameMap map) {
-		super(avatar);
+	public AreaViewport(Model model, GameMap map) {
+		super(model.getAvatar());
 		this.gameMap = map;
-
-		if (avatar == null) {
-			throw new RuntimeException("AreaViewport was passed a null Avatar.");
+		this.model = model;
+		
+		if (model == null) {
+			throw new RuntimeException("AreaViewport was passed a null Model.");
 		}
 
 		if (map == null) {
@@ -79,7 +81,7 @@ public class AreaViewport extends Viewport {
 
 	private void drawTiles(Graphics2D g2) {
 
-		Location center = getAvatar().getLocation();
+		Location center = model.getMover().getLocation();
 
 		// TODO: calculate viewable locations based on avatar's stats
 		int radius = 9;

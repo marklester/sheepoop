@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import sheep.model.entities.Entity;
+import sheep.model.Model;
 
 /**
  * Tell the entity to stop moving (called on keyup)
@@ -13,14 +13,14 @@ import sheep.model.entities.Entity;
 public class StopMovingAction extends AbstractAction {
 
 	private static final long serialVersionUID = 1133576572113102227L;
-	private final Entity entity;
+	private final Model model;
 	
-	public StopMovingAction(Entity entity) {
-		this.entity = entity;
+	public StopMovingAction(Model model) {
+		this.model = model;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		entity.stopMoving();
+		model.getMover().stopMoving();
 	}
 }

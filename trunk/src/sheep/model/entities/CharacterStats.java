@@ -2,10 +2,6 @@ package sheep.model.entities;
 
 import java.util.HashMap;
 
-/**
- * 
- * @author Phil Freo
- */
 public class CharacterStats implements Cloneable {
 
 	private HashMap<StatType, Integer> stats = new HashMap<StatType, Integer>();

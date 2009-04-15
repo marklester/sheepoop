@@ -79,7 +79,15 @@ public class Model implements Serializable {
 	 */
 	public void setAvatar(Avatar avatar) {
 		this.avatar = avatar;
-		this.mover = avatar;
+		setMover(avatar);
+	}
+	
+	/**
+	 * Sets the entity responsible for moving.  Used by vehicles when occupied.
+	 * @param mover
+	 */
+	public void setMover(Entity mover) {
+		this.mover = mover;
 	}
 
 	public Entity getMover() {
