@@ -21,10 +21,30 @@ public class DumbAI extends AI {
 				this.getNPC().stopMoving();
 			}
 		}else{
-			if(state<4)
-				this.getNPC().startMoving(Direction.S);
-			else
-				this.getNPC().startMoving(Direction.N);
+			switch(state){
+				case 0:
+				case 1:
+					this.getNPC().startMoving(Direction.S);
+				break;
+				case 2:
+				case 3:
+					this.getNPC().startMoving(Direction.N);
+				break;
+				case 4:
+					this.getNPC().startMoving(Direction.NW);
+				break;
+				case 5:
+					this.getNPC().startMoving(Direction.NE);
+				break;
+				case 6:
+					this.getNPC().startMoving(Direction.SE);
+				break;
+				case 7:
+					this.getNPC().startMoving(Direction.SW);
+				break;
+				default:
+				break;
+			}
 		}
 	}
 }
