@@ -3,6 +3,7 @@ package sheep.model.entities.npc;
 import sheep.model.Model;
 import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
+import sheep.model.entities.StatType;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 import sheep.model.occupations.Occupation;
@@ -28,5 +29,9 @@ public class NPC extends Character {
 	}
 	public void setAi(AI ai) {
 		this.ai = ai;
+	}
+	public void affectStat(StatType stat, int changeAmt) {
+		//Will make making npcs easier
+		//throw new UnsupportedOperationException();
 	}
 }
