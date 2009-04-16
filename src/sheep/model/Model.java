@@ -57,7 +57,7 @@ public class Model implements Serializable {
 	}
 
 	public boolean isPaused() {
-		return isPaused;
+		return time.isPaused();
 	}
 
 	public Time getTime() {

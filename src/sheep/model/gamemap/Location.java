@@ -41,11 +41,7 @@ public class Location implements Serializable {
 		}
 		Location loc = (Location) l2;
 		
-		if ((this.x == loc.x) && (this.y == loc.y)) {
-			return true;
-		} else {
-			return false;
-		}
+		return ( (this.x == loc.x) && (this.y == loc.y) );
 	}
 
 	public int hashCode() {

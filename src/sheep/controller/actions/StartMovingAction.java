@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import sheep.model.Model;
-import sheep.model.entities.Entity;
 import sheep.model.gamemap.Direction;
 
 /**
