@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import sheep.model.entities.Entity;
 
+import sheep.model.items.weapons.Weapon;
 
 /**
  * 
@@ -50,7 +51,7 @@ public abstract class Locatable implements Serializable {
 	}
 	*/
 	
-	public void hit(int damage)
+	public void hitWith(Weapon w)
 	{
 		//Default is to do nothing
 	}

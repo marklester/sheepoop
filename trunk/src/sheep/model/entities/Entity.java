@@ -113,9 +113,9 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 		return facingDirection;
 	}
 	@Override
-	public void hit(int damage)
+	public void hitWith(Weapon w)
 	{
-		weaponDamage(damage);
+		w.applyEffect(this);
 	}
 
 	public abstract void accept(LocatableVisitor v);
