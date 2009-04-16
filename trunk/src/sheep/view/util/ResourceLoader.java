@@ -49,7 +49,7 @@ public class ResourceLoader {
 		fileMap.put("smasherBtn", ICON_DIR + "smasher.png");
 		fileMap.put("summonerBtn", ICON_DIR + "summoner.png");
 		fileMap.put("sneakBtn", ICON_DIR + "sneak.png");
-		fileMap.put("invPlacerHolder", ICON_DIR + "placeHolder.png");
+		fileMap.put("invPlaceHolder", ICON_DIR + "placeHolder.png");
 		
 		fileMap.put("Water", TERRAIN_DIR + "water.png");
 		fileMap.put("Grass", TERRAIN_DIR + "grass.png");
@@ -102,7 +102,10 @@ public class ResourceLoader {
 	}
 	
 	public ImageIcon getImageIcon(String id) {
-		return new ImageIcon( getImage(id) );
+		Image img = getImage(id);
+		if (img == null)
+			return null;
+		return new ImageIcon( img );
 	}
 	
 	public FileInputStream getFileInputStream(String id) throws FileNotFoundException {

@@ -217,5 +217,13 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	public Inventory getInventory() {
 		return this.inventory;
 	}
+	
+	public Armor getEquipped(BodyPart bp) {
+		return armor.get(bp);
+	}
+	
+	public Weapon getEquippedWeapon() {
+		return weapon;
+	}
 
 }

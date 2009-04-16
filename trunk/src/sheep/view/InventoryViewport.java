@@ -2,14 +2,18 @@ package sheep.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import sheep.controller.InventoryActionListener;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.Inventory;
+import sheep.model.items.weapons.Weapon;
 import sheep.view.util.ResourceLoader;
 
 
@@ -23,10 +27,8 @@ import sheep.view.util.ResourceLoader;
 public class InventoryViewport extends Viewport {
 
 	private static final long serialVersionUID = 6239705575773260473L;
-	public static final int ICON_W = 20;
-	public static final int ICON_H = 20;
 	public static final Color BG_COLOR = Color.black;
-	
+	public static final Dimension butDimension = new Dimension(AreaViewport.TILE_SIZE, AreaViewport.TILE_SIZE );
 	private Inventory inv;
 	private JPanel topPnl;
 	private JPanel botPnl;
@@ -43,15 +45,40 @@ public class InventoryViewport extends Viewport {
 	
 	
 	public void setupTop() {
-		topPnl = new JPanel(new GridLayout(6,0));
+		ImageIcon placeHolder = resLoader.getImageIcon("invPlaceHolder");
+		ImageIcon w_img;
+		
+		//Weapon
+		Weapon w = getAvatar().getEquippedWeapon();
+		if (w != null)
+			w_img = resLoader.getImageIcon( w.getID() );
+		else
+			w_img = placeHolder;
+		JButton w_but = new JButton(w_img);
+		w_but.setPreferredSize(butDimension);
+		
+		
+		topPnl = new JPanel(new GridLayout(6,2));
 		topPnl.setBackground(Color.green);
 		
 		topPnl.add(new JLabel("Eqipped "));
+		topPnl.add(new JButton(w_img));
+		
 		topPnl.add(new JLabel("   Hand "));
+		topPnl.add(new JButton(w_img));
+		
 		topPnl.add(new JLabel("   Aux  "));
+		topPnl.add(new JButton(w_img));
+		
 		topPnl.add(new JLabel("   Head "));
+		topPnl.add(new JButton(w_img));
+		
 		topPnl.add(new JLabel("   Body "));
+		topPnl.add(new JButton(w_img));
+		
 		topPnl.add(new JLabel("   Feet "));
+		topPnl.add(new JButton(w_img));
+		
 		this.add(topPnl, BorderLayout.NORTH);
 		
 //		Graphics2D g = (Graphics2D) topPnl.getGraphics();
