@@ -27,8 +27,8 @@ public class Projectile extends Locatable implements Moveable
 		startMoving(facing);
 		this.speed = speed;
 		myWeapon = w;
-		Time.getInstance().registerObserver(this);
 		tickCounter = speed;
+		Time.getInstance().registerObserver(this);
 	}
 	public Direction getFacingDirection() {
 		return facingDirection;
