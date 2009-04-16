@@ -21,6 +21,7 @@ public abstract class Takeable extends Item {
 		if (entity instanceof Character) {
 			Character character = (Character) entity;
 			character.addToInventory(this);
+			getGameMap().remove(getLocation(), this);
 		}
 	}
 
