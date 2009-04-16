@@ -1,21 +1,15 @@
 package sheep.view;
 
-import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import sheep.controller.InventoryActionListener;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.Inventory;
-import sheep.model.items.Item;
 import sheep.view.util.ResourceLoader;
 
 
@@ -25,11 +19,6 @@ import sheep.view.util.ResourceLoader;
  *     -Add action listener for the icons. 
  *     -Add eqipped weapons to the topPnl
 */
-
-
-
-
-
 
 public class InventoryViewport extends Viewport {
 

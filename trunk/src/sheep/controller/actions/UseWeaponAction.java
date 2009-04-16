@@ -10,12 +10,16 @@ import sheep.model.items.weapons.Weapon;
 public class UseWeaponAction extends AbstractAction {
 
 	private static final long serialVersionUID = 6119775843258180224L;
-
-	public UseWeaponAction(Entity e, Weapon w) {
-		throw new UnsupportedOperationException();
+	private Entity attacker;
+	private Weapon weapon;
+	
+	public UseWeaponAction( Entity attacker, Weapon weapon ) {
+		this.attacker = attacker;
+		this.weapon = weapon;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent ae) {
+		weapon.actionPerformed( ae );
 	}
 }
