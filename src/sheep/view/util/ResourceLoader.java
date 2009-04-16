@@ -53,9 +53,9 @@ public class ResourceLoader {
 		fileMap.put("sneakBtn", ICON_DIR + "sneak.png");
 		fileMap.put("invPlaceHolder", ICON_DIR + "placeHolder.png");
 		
-		fileMap.put("Water", TERRAIN_DIR + "water.png");
+		fileMap.put("Water", TERRAIN_DIR + "water2.gif");
 		fileMap.put("Grass", TERRAIN_DIR + "grass.png");
-		fileMap.put("Mountain", TERRAIN_DIR + "mountains.png");
+		fileMap.put("Mountain", TERRAIN_DIR + "mountains2.png");
 		fileMap.put("BlackTile", TERRAIN_DIR + "black.png");
 		
 		fileMap.put("Summoner", SPRITES_DIR + "sheep1.gif");
@@ -64,22 +64,21 @@ public class ResourceLoader {
 		fileMap.put("statsFont", FONTS_DIR + "statsFont.ttf");
 		fileMap.put("Boat", SPRITES_DIR + "boat1.gif");
 		fileMap.put("Wolf", SPRITES_DIR+"wolf.png");
+		
 		//Items
 		fileMap.put("Boulder",ITEMS_DIR+ "boulder.png");
 		fileMap.put("Steel Wool",ITEMS_DIR+ "armor/steelwool.png");
+		
 		//Decals
 		fileMap.put("LevelUp", DECALS_DIR+"levelup.png");
 		fileMap.put("HealDamage", DECALS_DIR+"healdamage.png");
 		fileMap.put("TakeDamage", DECALS_DIR+"takedamage.png");
+		fileMap.put("Trap", DECALS_DIR + "trap.png");
+		
 		//Weapons
 		fileMap.put("Crossbow", WEAP_DIR + "xbow.png");
 		fileMap.put("xbowbolt", WEAP_DIR+"xbowbolt.png");
-		//Welcome Screen images
-		imageMap.put("WelcomeScreenBG", getImage("WelcomeScreenBG"));
-		imageMap.put("newGame", getImage("newGame"));
-		//imageMap.put("loadGame", getImage("loadGame"));
-		//imageMap.put("quitGame", getImage("quitGame"));
-		//imageMap.put("settings", getImage("settings"));
+
 		
 	}
 	
@@ -116,10 +115,6 @@ public class ResourceLoader {
 	public FileInputStream getFileInputStream(String id) throws FileNotFoundException {
 		String file = fileMap.get(id);
 		return new FileInputStream(file);
-	}
-	
-	public Image getBGImage() {
-		return imageMap.get("WelcomeScreenBG");
 	}
 	
 	//We could add the ability to get other fonts later. For now, just get the single font

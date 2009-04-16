@@ -59,7 +59,7 @@ public class WelcomeView extends JFrame {
 	
 	private void setUpPanels() {
 		this.setTitle("Sheepoop - Welcome Screen");
-		final ImageIcon bg = new ImageIcon(ResourceLoader.getInstance().getBGImage());
+		final ImageIcon bg = new ImageIcon(ResourceLoader.getInstance().getImage("WelcomeScreenBG"));
 		JLabel bgLabel = new JLabel(bg);
 		bgLabel.setBounds(0, 0, (int)scrDimension.getWidth(), (int)scrDimension.getHeight());
 		
