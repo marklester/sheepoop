@@ -8,7 +8,7 @@ public abstract class Boon extends Spell {
 
 	private static final long serialVersionUID = 1743243793400230063L;
 
-	public Boon(String id, GameMap map, Location loc, int baseDamage) {
-		super(id, map, loc, baseDamage, PassiveSkill.BOON);
+	public Boon(String id, GameMap map, Location loc, int baseDamage, int speed) {
+		super(id, map, loc, baseDamage, PassiveSkill.BOON, speed);
 	}	
 }

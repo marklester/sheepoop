@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import sheep.model.entities.Entity;
 
+import sheep.model.items.weapons.Projectile;
 import sheep.model.items.weapons.Weapon;
 
 /**
@@ -71,5 +72,10 @@ public abstract class Locatable implements Serializable {
 	public void setLocation(Location newLoc) {
 		map.notifyOfMovement(this.location, newLoc, this);
 		this.location = newLoc;
+	}
+
+	public boolean blocks(Projectile myProj)
+	{
+		return false;
 	}
 }
