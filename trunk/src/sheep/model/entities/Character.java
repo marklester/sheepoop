@@ -94,7 +94,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	public void affectStat(StatType stat, int changeAmt) {
-		throw new UnsupportedOperationException();
+		this.stats.change(stat, changeAmt);
 	}
 
 	public boolean blocks(Entity entity) {
