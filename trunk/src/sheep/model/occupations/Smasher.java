@@ -13,6 +13,8 @@ public class Smasher extends Occupation {
 	
 	public Smasher() {
 		super("Smasher");
+		setInitialCharacterStat(StatType.DAMAGE, 0);
+		setInitialCharacterStat(StatType.EXPERIENCE, 0);
 		setInitialCharacterStat(StatType.AGILITY, 15);
 		setInitialCharacterStat(StatType.HARDINESS, 25);
 		setInitialCharacterStat(StatType.INTELLECT, 8);
