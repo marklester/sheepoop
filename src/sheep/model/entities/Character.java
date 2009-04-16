@@ -49,6 +49,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	 * call weapon.perform(this)
 	 */
 	public void attack() {
+		// TODO
 		throw new UnsupportedOperationException();
 	}
 
@@ -56,6 +57,10 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 		return 3; // TODO this must be based on items, stats, potions, etc.
 	}
 
+	public void die() {
+		// TODO
+	}
+	
 	public void equip(Weapon w) {
 		unequipWeapon();
 		weapon = w;
@@ -87,20 +92,17 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	public void addToInventory(Takeable item) {
-		// TODO
+		this.inventory.add(item);
 		this.notifyInventoryChangeObservers(new InventoryChange(item, InventoryChangeType.ITEM_ADDED));
 	}
 
-	public void die() {
-		throw new UnsupportedOperationException();
-	}
-
 	public void drop(Takeable item) {
-		throw new UnsupportedOperationException();
+		this.removeItem(item);
+		item.setLocation(this.getLocation());
 	}
 
 	public boolean removeItem(Takeable item) {
-		throw new UnsupportedOperationException();
+		return this.inventory.remove(item);
 	}
 
 	public void affectStat(StatType stat, int changeAmt) {
