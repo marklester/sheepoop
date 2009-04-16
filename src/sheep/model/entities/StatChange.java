@@ -30,7 +30,7 @@ public class StatChange implements Serializable {
 		if (changeAmt > 0) {
 			return statType.toString() + " increased by " + changeAmt;
 		} else {			
-			return statType.toString() + " decreased by " + changeAmt;
+			return statType.toString() + " decreased by " + -1 * changeAmt;
 		}
 	}
 }
