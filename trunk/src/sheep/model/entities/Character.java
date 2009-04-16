@@ -17,7 +17,7 @@ import sheep.model.skills.PerformableSkill;
 public class Character extends Entity implements TalkMessageObservable, InventoryChangeObservable {
 
 	private static final long serialVersionUID = 1069820547179793745L;
-	
+
 	private Occupation occupation;
 	private Inventory inventory;
 	private CharacterStats stats;
@@ -29,7 +29,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	private Vector<TalkMessageObserver> talkObservers = new Vector<TalkMessageObserver>();
 	private Vector<InventoryChangeObserver> inventoryObservers = new Vector<InventoryChangeObserver>();
 	private Vector<StatChangeObserver> statChangeObservers = new Vector<StatChangeObserver>();
-	
+
 	public Character(String id, GameMap map, Location loc, Occupation occupation) {
 		super(id, map, loc);
 		this.occupation = occupation;
@@ -38,7 +38,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 		stats.calculateDerivedStatistics();
 		this.inventory = new Inventory();
 		for (PerformableSkill ps : performableSkills)
-			ps.setCharacter(this);		
+			ps.setCharacter(this);
 	}
 
 	public void accept(LocatableVisitor v) {
@@ -51,7 +51,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	public void attack() {
 		throw new UnsupportedOperationException();
 	}
-	
+
 	public int getRadiusOfVisibility() {
 		return 3; // TODO this must be based on items, stats, potions, etc.
 	}
@@ -59,39 +59,36 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	public void equip(Weapon w) {
 		unequipWeapon();
 		weapon = w;
+		this.notifyInventoryChangeObservers(new InventoryChange(w, InventoryChangeType.ITEM_EQUIPPED));
 	}
 
 	public void equip(Armor a) {
 		unequipArmor(a.getBodyPart());
 		armor.put(a.getBodyPart(), a);
 		a.equipTo(this);
+		this.notifyInventoryChangeObservers(new InventoryChange(a, InventoryChangeType.ITEM_EQUIPPED));
 	}
 
 	public void unequipWeapon() {
-		if (weapon != null) 
+		if (weapon != null) {
 			inventory.add(weapon);
+			this.notifyInventoryChangeObservers(new InventoryChange(weapon, InventoryChangeType.ITEM_UNEQUIPPED));
+		}
 		weapon = null;
 	}
 
 	public void unequipArmor(BodyPart fromWhere) {
 		Armor piece = armor.get(fromWhere);
-		if (piece != null)
-		{
+		if (piece != null) {
 			armor.put(fromWhere, null);
 			piece.unequipFrom(this);
+			this.notifyInventoryChangeObservers(new InventoryChange(piece, InventoryChangeType.ITEM_UNEQUIPPED));
 		}
-	}
-	
-	@Override
-	public void setLocation(Location loc) {
-		// TESTING ONLY just using this to get something to send to the talk message console
-		super.setLocation(loc);
-		
-		this.notifyTalkMessageObservers(new TalkMessage(this, this, "Entity moved to " + loc));
 	}
 
 	public void addToInventory(Takeable item) {
-		throw new UnsupportedOperationException();
+		// TODO
+		this.notifyInventoryChangeObservers(new InventoryChange(item, InventoryChangeType.ITEM_ADDED));
 	}
 
 	public void die() {
@@ -108,11 +105,12 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 
 	public void affectStat(StatType stat, int changeAmt) {
 		this.stats.change(stat, changeAmt);
+		this.notifyStatChangeObservers(new StatChange(stat, changeAmt));
 	}
 
 	public boolean blocks(Entity entity) {
 		if (entity == this) {
-			return false;	// if a character tries to get off a boat, for example
+			return false; // if a character tries to get off a boat, for example
 		}
 		return true;
 	}
@@ -122,7 +120,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	public void hearMessage(Character speaker, String msg) {
-		throw new UnsupportedOperationException();
+		this.notifyTalkMessageObservers(new TalkMessage(speaker, this, msg));
 	}
 
 	public Character getInteractingCharacter() {
@@ -191,37 +189,36 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	@Override
-	public int getStat(StatType stat)
-	{
+	public int getStat(StatType stat) {
 		return stats.get(stat);
 	}
+
 	@Override
-	public void weaponDamage(int damage)
-	{
+	public void weaponDamage(int damage) {
 		affectStat(StatType.DAMAGE, damage);
 	}
+
 	@Override
-	public void hitWith(Weapon w)
-	{
+	public void hitWith(Weapon w) {
 		w.applyEffect(this);
 	}
-	public int getSkill( PassiveSkill skill)
-	{
-		return passiveSkills.get( skill );
+
+	public int getSkill(PassiveSkill skill) {
+		return passiveSkills.get(skill);
 	}
-	
+
 	public CharacterStats getStats() {
 		return this.stats;
 	}
-	
+
 	public Inventory getInventory() {
 		return this.inventory;
 	}
-	
+
 	public Armor getEquipped(BodyPart bp) {
 		return armor.get(bp);
 	}
-	
+
 	public Weapon getEquippedWeapon() {
 		return weapon;
 	}

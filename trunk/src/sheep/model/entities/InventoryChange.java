@@ -26,4 +26,8 @@ public class InventoryChange implements Serializable {
 	public Takeable getItem() {
 		return item;
 	}
+	
+	public String toString() {
+		return item.getID() + " was " + changeType.toString();
+	}
 }
