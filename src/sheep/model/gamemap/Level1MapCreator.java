@@ -13,6 +13,7 @@ import sheep.model.areaeffects.Teleport;
 import sheep.model.entities.Vehicle;
 import sheep.model.entities.npc.Wolf;
 import sheep.model.items.armor.SteelWool;
+import sheep.model.items.weapons.Lightening;
 
 /**
  * Returns a new GameMap for level1, by loading the mapfile it knows, and adding
@@ -66,8 +67,12 @@ public class Level1MapCreator extends MapCreator {
 		//Steel Wool Armor
 		loc3 = new Location(5,8);
 		map.add(loc3, new SteelWool(map,loc3));
-		return map;
 		
+		//Lighting spell
+		loc3 = new Location(5,7);
+		map.add(loc3, new Lightening(map,loc3));
+		
+		return map;
 	}
 	
 }
