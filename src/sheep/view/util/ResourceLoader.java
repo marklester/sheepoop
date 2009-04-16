@@ -41,6 +41,7 @@ public class ResourceLoader {
 		fileMap = new HashMap<String, String>();
 		imageMap = new HashMap<String, Image>();
 		fontMap = new HashMap<String, Font>();
+		fileMap.put("placeHolder", ICON_DIR + "placeHolder.png");
 		fileMap.put("WelcomeScreenBG", IMG_DIR + "mapbg.gif");
 		fileMap.put("newGame", ICON_DIR + "newgame.png");
 		fileMap.put("loadGame", ICON_DIR + "loadgame.png");
@@ -94,9 +95,7 @@ public class ResourceLoader {
 			try {
 				img = ImageIO.read(getFileInputStream(id));
 			} catch (Exception e) {
-				
-				System.out.println(id+ "-"+fileMap.get(id));
-				e.printStackTrace();
+				img = imageMap.get("placeHolder");
 			}
 			imageMap.put(id, img);
 		}			
@@ -115,8 +114,7 @@ public class ResourceLoader {
 		try {
 			file = fileMap.get(id);
 			return new FileInputStream(file);
-		}
-		catch(FileNotFoundException e) {
+		} catch(FileNotFoundException e) {
 			System.out.println("Couldn't find image for " + file);
 			throw new FileNotFoundException();
 		}
