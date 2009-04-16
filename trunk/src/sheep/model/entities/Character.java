@@ -65,6 +65,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	public void equip(Armor a) {
 		unequipArmor(a.getBodyPart());
 		armor.put(a.getBodyPart(), a);
+		a.equipTo(this);
 	}
 
 	public void unequipWeapon() {
@@ -74,8 +75,12 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	public void unequipArmor(BodyPart fromWhere) {
-		if (armor.get(fromWhere) != null)
+		Armor piece = armor.get(fromWhere);
+		if (piece != null)
+		{
 			armor.put(fromWhere, null);
+			piece.unequipFrom(this);
+		}
 	}
 	
 	@Override
