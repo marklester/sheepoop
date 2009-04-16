@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
@@ -76,6 +77,14 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 		if (armor.get(fromWhere) != null)
 			armor.put(fromWhere, null);
 	}
+	
+	@Override
+	public void setLocation(Location loc) {
+		// TESTING ONLY just using this to get something to send to the talk message console
+		super.setLocation(loc);
+		
+		this.notifyTalkMessageObservers(new TalkMessage(this, this, "Entity moved to " + loc));
+	}
 
 	public void addToInventory(Takeable item) {
 		throw new UnsupportedOperationException();
@@ -125,14 +134,14 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	@Override
-	public void registerObserver(TalkMessageObserver observer) {
+	public void registerTalkMessageObserver(TalkMessageObserver observer) {
 		if (!talkObservers.contains(observer)) {
 			talkObservers.add(observer);
 		}
 	}
 
 	@Override
-	public void removeObserver(TalkMessageObserver observer) {
+	public void removeTalkMessageObserver(TalkMessageObserver observer) {
 		talkObservers.remove(observer);
 	}
 
@@ -144,14 +153,14 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	@Override
-	public void registerObserver(InventoryChangeObserver observer) {
+	public void registerInventoryChangeObserver(InventoryChangeObserver observer) {
 		if (!inventoryObservers.contains(observer)) {
 			inventoryObservers.add(observer);
 		}
 	}
 
 	@Override
-	public void removeObserver(InventoryChangeObserver observer) {
+	public void removeInventoryChangeObserver(InventoryChangeObserver observer) {
 		inventoryObservers.remove(observer);
 	}
 
@@ -163,14 +172,14 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	@Override
-	public void registerObserver(StatChangeObserver observer) {
+	public void registerStatChangeObserver(StatChangeObserver observer) {
 		if (!statChangeObservers.contains(observer)) {
 			statChangeObservers.add(observer);
 		}
 	}
 
 	@Override
-	public void removeObserver(StatChangeObserver observer) {
+	public void removeStatChangeObserver(StatChangeObserver observer) {
 		statChangeObservers.remove(observer);
 	}
 
