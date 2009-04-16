@@ -4,7 +4,6 @@ import sheep.model.entities.StatType;
 import sheep.model.skills.BindWounds;
 import sheep.model.skills.Observation;
 import sheep.model.skills.PassiveSkill;
-import sheep.model.entities.Character;
 
 public class Summoner extends Occupation {
 	

@@ -2,7 +2,6 @@ package sheep.model.occupations;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
@@ -28,15 +27,7 @@ public abstract class Occupation implements Serializable {
 		this.performableSkills = new Vector<PerformableSkill>();
 		this.initialStats = new CharacterStats(new HashMap<StatType,Integer>());
 		this.passiveSkills = new HashMap<PassiveSkill, Integer>();
-		//setupDefaults();
 	}
-	
-//	private void setupDefaults() {
-//		setInitialCharacterStat(StatType.MAX_LIFE, 100);
-//		setInitialCharacterStat(StatType.MAX_MANA, 100);
-//		setInitialCharacterStat(StatType.LIFE, 50);
-//		setInitialCharacterStat(StatType.MANA, 100);
-//	}
 
 	public CharacterStats cloneStats() {
 		return this.initialStats.clone();
