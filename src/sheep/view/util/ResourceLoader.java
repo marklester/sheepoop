@@ -95,7 +95,7 @@ public class ResourceLoader {
 			try {
 				img = ImageIO.read(getFileInputStream(id));
 			} catch (Exception e) {
-				img = imageMap.get("placeHolder");
+				img = getImage("placeHolder");
 			}
 			imageMap.put(id, img);
 		}			
