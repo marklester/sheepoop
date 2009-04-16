@@ -49,6 +49,7 @@ public class ResourceLoader {
 		fileMap.put("smasherBtn", ICON_DIR + "smasher.png");
 		fileMap.put("summonerBtn", ICON_DIR + "summoner.png");
 		fileMap.put("sneakBtn", ICON_DIR + "sneak.png");
+		fileMap.put("invPlacerHolder", ICON_DIR + "placeHolder.png");
 		
 		fileMap.put("Water", TERRAIN_DIR + "water.png");
 		fileMap.put("Grass", TERRAIN_DIR + "grass.png");
