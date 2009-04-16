@@ -196,6 +196,11 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	{
 		return stats.get(stat);
 	}
+	@Override
+	public void weaponDamage(int damage)
+	{
+		affectStat(StatType.DAMAGE, damage);
+	}
 	
 	public CharacterStats getStats() {
 		return this.stats;
