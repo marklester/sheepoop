@@ -4,13 +4,18 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-
 import sheep.model.entities.Avatar;
 import sheep.model.entities.CharacterStats;
 import sheep.model.entities.StatChange;
 import sheep.model.entities.StatChangeObserver;
 import sheep.model.entities.StatType;
 import sheep.view.util.ResourceLoader;
+
+/**
+ * 
+ * @author Jason Mac
+ *
+ */
 
 public class StatConsole extends Overlay implements StatChangeObserver {
 
@@ -20,14 +25,16 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 	private static final int v_spacer = 25;	//vertical spacer
 	private static final int h_spacer = 220;	//horizontal spacer	
 	private static final int bar_width = 15;
-	private final int max_life;
 	private final Font font;
+	private final float max_life;
+	private final float max_mana;
 	
 	public StatConsole(int posX, int posY, Avatar avatar) {
 		super(posX, posY);
 		this.stats = avatar.getStats();
-		this.max_life = stats.get(StatType.MAX_LIFE);
 		font = ResourceLoader.getInstance().getFont("statsFont");
+		max_life = stats.get(StatType.MAX_LIFE);
+		max_mana = stats.get(StatType.MAX_MANA);
 	}
 
 	@Override
@@ -66,9 +73,19 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 		g.drawString("Defensive Rating", getPosX(), getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.DEFENSIVE_RATING)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
-		int lifeHeight = (stats.get(StatType.LIFE) - max_life) / max_life * getHeight(); 
-		g.drawRect(getWidth()-bar_width, getPosY()+2, bar_width, getHeight()-4);
-		g.fillRect(getWidth()-bar_width+1, getPosY()+3, bar_width-2, lifeHeight);
+		//Life Bar
+		float lifeHeight = ((max_life - stats.get(StatType.LIFE)) / max_life) * (getHeight());
+		g.setColor(Color.red);
+		g.fillRect(getWidth(), getPosY(), bar_width, getHeight());
+		g.setColor(Color.black);
+		g.fillRect(getWidth(), getPosY(), bar_width, (int)lifeHeight);
+		
+		//Mana Bar
+		float manaHeight = ((max_mana - stats.get(StatType.MANA)) / max_mana) * (getHeight());
+		g.setColor(Color.blue);
+		g.fillRect(getWidth()-bar_width-10, getPosY(), bar_width, getHeight());
+		g.setColor(Color.black);
+		g.fillRect(getWidth()-bar_width-10, getPosY(), bar_width, (int)manaHeight);
 		
 		/*
 		 * 
