@@ -11,6 +11,7 @@ import sheep.model.entities.Vehicle;
 import sheep.model.gamemap.Decal;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.items.Item;
+import sheep.model.items.weapons.Projectile;
 import sheep.model.terrains.Terrain;
 import sheep.view.util.ResourceLoader;
 
@@ -19,14 +20,21 @@ public class LocationDrawingVisitor implements LocatableVisitor {
 	private final int tileSize;
 	private BufferedImage img;
 	private Graphics2D g2;
-	private BufferedImage terrain, character, vehicle, item, decal;
+	private BufferedImage terrain, character, vehicle, item, decal,projectile;
 	private Vehicle vehicleObj;
 	private Character characterObj;
+	private Projectile projectileObj;
 	
 	public LocationDrawingVisitor(int tileSize) {
 		this.tileSize = tileSize;
 		this.img = new BufferedImage(this.tileSize, this.tileSize, BufferedImage.TYPE_INT_ARGB_PRE);
 		this.g2 = img.createGraphics();
+	}
+	
+	public void visit(Projectile obj)
+	{
+		projectile = (BufferedImage) ResourceLoader.getInstance().getImage(obj.getID());
+		this.projectileObj = obj;
 	}
 	
 	public void visit(Item obj) {
@@ -77,6 +85,13 @@ public class LocationDrawingVisitor implements LocatableVisitor {
 			//g2.setTransform(affineT);
 		} else {
 			g2.drawImage(character, 0, 0, null);
+		}
+		if (projectileObj != null) {
+			AffineTransform affineT = g2.getTransform(); 
+			double vehicleRotate = -1 * projectileObj.getFacingDirection().getAngleInRadians();
+			g2.rotate(vehicleRotate, img.getWidth() / 2, img.getHeight() / 2);
+			g2.drawImage(projectile, 0, 0, null);
+			g2.setTransform(affineT);
 		}
 		return img;
 	}

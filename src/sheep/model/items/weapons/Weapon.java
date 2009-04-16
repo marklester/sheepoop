@@ -35,6 +35,11 @@ public abstract class Weapon extends Takeable implements ActionListener {
 		user.equip(this);
 	}
 
+	public Character getUser()
+	{
+		return user;
+	}
+	
 	public PassiveSkill getSkill() {
 		return this.skill;
 	}
