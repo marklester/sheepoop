@@ -62,9 +62,9 @@ public class ResourceLoader {
 		fileMap.put("statsFont", FONTS_DIR + "statsFont.ttf");
 		fileMap.put("Boat", SPRITES_DIR + "boat1.gif");
 		fileMap.put("Wolf", SPRITES_DIR+"wolf.png");
-		
+		//Items
 		fileMap.put("Boulder",ITEMS_DIR+ "boulder.png");
-		
+		fileMap.put("Steel Wool",ITEMS_DIR+ "armor/steelwool.png");
 		//Decals
 		fileMap.put("LevelUp", DECALS_DIR+"levelup.png");
 		fileMap.put("HealDamage", DECALS_DIR+"healdamage.png");
@@ -94,6 +94,8 @@ public class ResourceLoader {
 			try {
 				img = ImageIO.read(getFileInputStream(id));
 			} catch (Exception e) {
+				
+				System.out.println(id+ "-"+fileMap.get(id));
 				e.printStackTrace();
 			}
 			imageMap.put(id, img);
