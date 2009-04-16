@@ -112,6 +112,11 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	public Direction getFacingDirection() {
 		return facingDirection;
 	}
+	@Override
+	public void hit(int damage)
+	{
+		weaponDamage(damage);
+	}
 
 	public abstract void accept(LocatableVisitor v);
 
@@ -126,4 +131,6 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	public abstract void equip(Weapon w);
 	
 	public abstract void equip(Armor a);
+	
+	public abstract void weaponDamage(int amount);
 }

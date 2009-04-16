@@ -133,4 +133,10 @@ public class Vehicle extends Entity {
 		}
 	}
 
+	@Override
+	public void weaponDamage(int amount)
+	{
+		//Do nothing, character will still get his
+	}
+
 }
