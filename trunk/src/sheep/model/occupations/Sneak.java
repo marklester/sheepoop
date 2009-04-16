@@ -1,6 +1,5 @@
 package sheep.model.occupations;
 
-import sheep.model.entities.Character;
 import sheep.model.entities.StatType;
 import sheep.model.skills.BindWounds;
 import sheep.model.skills.Creep;
