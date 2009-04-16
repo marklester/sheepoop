@@ -1,6 +1,7 @@
 package sheep.model.entities.npc;
 
 import sheep.model.Model;
+import sheep.model.entities.StatType;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 import sheep.model.occupations.Summoner;
@@ -11,5 +12,6 @@ public class AngryWolf extends NPC {
 	public AngryWolf(GameMap map, Location loc, Model model) {
 		super("Wolf", map, loc, new Summoner(), model);
 		setAi(new AngryAI(this, model));
+		this.affectStat(StatType.SPEED, - 19);
 	}
 }

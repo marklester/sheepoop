@@ -22,7 +22,7 @@ public class Vehicle extends Entity {
 		super(id, map, loc);
 		this.model = model;
 
-		stats.put(VehicleStatType.SPEED, 90); // TODO this may need to come from
+		stats.put(VehicleStatType.SPEED, 25); // TODO this may need to come from
 												// somewhere else, like a
 												// subclass
 	}
