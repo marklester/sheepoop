@@ -1,6 +1,10 @@
 package sheep.view.overlays;
 
+import java.awt.Font;
 import java.awt.Graphics2D;
+
+import sheep.view.Toggleable;
+import sheep.view.util.ResourceLoader;
 
 /**
  * 
@@ -10,10 +14,14 @@ public abstract class Overlay {
 	
 	private int posX;
 	private int posY;
+	private boolean isVisible = false;
+	private Font font;
 
 	public Overlay(int posX, int posY) {
 		this.posX = posX;
 		this.posY = posY;
+		isVisible = true;
+		this.font = ResourceLoader.getInstance().getFont("statsFont");
 	}
 
 	public abstract void paint(Graphics2D g);
@@ -24,6 +32,18 @@ public abstract class Overlay {
 	
 	public int getPosY() {
 		return posY;
+	}
+	
+	public boolean isVisible() {
+		return this.isVisible;
+	}
+	
+	public void toggleVisibility() {
+		isVisible = !isVisible;
+	}
+	
+	public Font getFont() {
+		return this.font;
 	}
 	
 }

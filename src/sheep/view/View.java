@@ -95,10 +95,6 @@ public class View extends JFrame {
 		return tradeViewport;
 	}
 	
-	public void toggleTradeViewport() {
-		tradeViewport.setVisible(!tradeViewport.isVisible());
-	}
-	
 	public void showInventoryViewport() {
 		this.invalidate();
 		this.remove(sidebar);
@@ -106,10 +102,6 @@ public class View extends JFrame {
 		this.getContentPane().add(sidebar, BorderLayout.EAST);
 		this.validate();
 		sidebar.setVisible(true);
-	}
-	
-	public void toggleInventoryViewport() {
-		invViewport.setVisible(!invViewport.isVisible());
 	}
 	
 	public AreaViewport getAreaViewport() {

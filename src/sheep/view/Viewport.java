@@ -1,6 +1,7 @@
 package sheep.view;
 
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
@@ -10,6 +11,7 @@ public class Viewport extends JPanel {
 
 	private static final long serialVersionUID = -7115001668270029395L;
 	private Avatar avatar;
+	private boolean isVisible = true;
 
 	public Viewport(Avatar av){
 		this.avatar = av;
@@ -23,5 +25,19 @@ public class Viewport extends JPanel {
 	public Avatar getAvatar() {
 		return this.avatar;
 	}
+	
+	public void toggleVisibility() {
+		isVisible = !isVisible;
+	}
+	
+	public boolean isVisible() {
+		return isVisible;
+	}
+	
+//	public void paint(Graphics2D g) {
+//		super.paint(g);
+//	}
+	
+	
 	
 }

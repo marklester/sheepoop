@@ -12,6 +12,7 @@ import sheep.controller.actions.ReleaseVehicleAction;
 import sheep.controller.actions.SaveGameAction;
 import sheep.controller.actions.StartMovingAction;
 import sheep.controller.actions.StopMovingAction;
+import sheep.controller.actions.ToggleAction;
 import sheep.controller.actions.TogglePauseGameplayAction;
 import sheep.model.GameStateChange;
 import sheep.model.GameStateObserver;
@@ -96,6 +97,14 @@ public class Controller implements GameStateObserver {
 		// Release vehicle
 		actionMap.put("releaseVehicle", new ReleaseVehicleAction(model));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_R, 0), "releaseVehicle");
+		
+		// Toggling
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F10, 0), "toggleStatView");
+		actionMap.put("toggleStatView", new ToggleAction(view.getAreaViewport().getStatConsole()));
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0), "toggleMessage");
+		actionMap.put("toggleMessage", new ToggleAction(view.getAreaViewport().getMessageConsole()));
+
+		
 	}
 
 	/**

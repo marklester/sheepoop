@@ -2,6 +2,7 @@ package sheep.view.overlays;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 
 import sheep.model.entities.Avatar;
@@ -44,9 +45,9 @@ public class MessageConsole extends Overlay implements StatChangeObserver, TalkM
 
 	@Override
 	public void paint(Graphics2D g) {
-		
 		this.g = g;
-
+		Font myFont = getFont().deriveFont(16f);
+		g.setFont(myFont);
 		g.setColor(Color.BLACK);
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .6f));
 		g.fillRect(getPosX(), getPosY(), width, height);
