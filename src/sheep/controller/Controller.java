@@ -14,6 +14,7 @@ import sheep.controller.actions.StartMovingAction;
 import sheep.controller.actions.StopMovingAction;
 import sheep.controller.actions.ToggleAction;
 import sheep.controller.actions.TogglePauseGameplayAction;
+import sheep.controller.actions.UseWeaponAction;
 import sheep.model.GameStateChange;
 import sheep.model.GameStateObserver;
 import sheep.model.Model;
@@ -55,36 +56,36 @@ public class Controller implements GameStateObserver {
 
 		// Movement
 		actionMap.put("stopMoving", new StopMovingAction(model));
+		actionMap.put("moveN", new StartMovingAction(model, Direction.N));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD8, 0, false), "moveN");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD8, 0, true), "stopMoving");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, false), "moveN");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, true), "stopMoving");
-		actionMap.put("moveN", new StartMovingAction(model, Direction.N));
+		actionMap.put("moveNE", new StartMovingAction(model, Direction.NE));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD9, 0, false), "moveNE");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD9, 0, true), "stopMoving");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, false), "moveNE");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, true), "stopMoving");
-		actionMap.put("moveNE", new StartMovingAction(model, Direction.NE));
+		actionMap.put("moveSE", new StartMovingAction(model, Direction.SE));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD3, 0, false), "moveSE");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD3, 0, true), "stopMoving");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, false), "moveSE");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, true), "stopMoving");
-		actionMap.put("moveSE", new StartMovingAction(model, Direction.SE));
+		actionMap.put("moveS", new StartMovingAction(model, Direction.S));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD2, 0, false), "moveS");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD2, 0, true), "stopMoving");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, false), "moveS");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, true), "stopMoving");
-		actionMap.put("moveS", new StartMovingAction(model, Direction.S));
+		actionMap.put("moveSW", new StartMovingAction(model, Direction.SW));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD1, 0, false), "moveSW");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD1, 0, true), "stopMoving");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, false), "moveSW");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, true), "stopMoving");
-		actionMap.put("moveSW", new StartMovingAction(model, Direction.SW));
+		actionMap.put("moveNW", new StartMovingAction(model, Direction.NW));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD7, 0, false), "moveNW");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD7, 0, true), "stopMoving");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, false), "moveNW");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, true), "stopMoving");
-		actionMap.put("moveNW", new StartMovingAction(model, Direction.NW));
 
 		// Saving
 		actionMap.put("saveGame", new SaveGameAction(model));
@@ -99,11 +100,14 @@ public class Controller implements GameStateObserver {
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_R, 0), "releaseVehicle");
 		
 		// Toggling
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F10, 0), "toggleStatView");
 		actionMap.put("toggleStatView", new ToggleAction(view.getAreaViewport().getStatConsole()));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0), "toggleMessage");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F10, 0), "toggleStatView");
 		actionMap.put("toggleMessage", new ToggleAction(view.getAreaViewport().getMessageConsole()));
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0), "toggleMessage");
 
+		// Use Weapon
+		actionMap.put("useWeapon", new UseWeaponAction(model.getAvatar()));
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), "useWeapon");
 		
 	}
 

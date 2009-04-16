@@ -4,22 +4,19 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import sheep.model.entities.Entity;
-import sheep.model.items.weapons.Weapon;
+import sheep.model.entities.Avatar;
 
 public class UseWeaponAction extends AbstractAction {
 
 	private static final long serialVersionUID = 6119775843258180224L;
-	private Entity attacker;
-	private Weapon weapon;
-	
-	public UseWeaponAction( Entity attacker, Weapon weapon ) {
+	private Avatar attacker;
+
+	public UseWeaponAction(Avatar attacker) {
 		this.attacker = attacker;
-		this.weapon = weapon;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		weapon.actionPerformed( ae );
+		attacker.getEquippedWeapon().actionPerformed(ae);
 	}
 }
