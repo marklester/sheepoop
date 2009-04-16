@@ -55,10 +55,10 @@ public class Level1MapCreator extends MapCreator {
 		//Heal Damage
 		loc3 = new Location(6,8);
 		map.add(loc3, new Decal("HealDamage",map,loc3));
-		map.add(loc3, new HealDamage(map,loc3,1,1));
+		map.add(loc3, new HealDamage(map,loc3,25,5));
 		loc3 = new Location(6,9);
 		//Take Damage
-		map.add(loc3, new TakeDamage(map,loc3,1,1));
+		map.add(loc3, new TakeDamage(map,loc3,25,5));
 		map.add(loc3, new Decal("TakeDamage",map,loc3));
 		//Teleporter
 		loc3 = new Location(6,10);
