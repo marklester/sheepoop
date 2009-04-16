@@ -60,6 +60,10 @@ public class Level1MapCreator extends MapCreator {
 		// Take Damage
 		map.add(loc3, new TakeDamage(map, loc3, 25, 5));
 		map.add(loc3, new Decal("TakeDamage", map, loc3));
+		
+		// Trap decal (we need to make this a real trap)
+		loc3 = new Location(14, 8);
+		map.add(loc3, new Decal("Trap", map, loc3));
 
 		// Teleporter
 		loc3 = new Location(18, 1);
