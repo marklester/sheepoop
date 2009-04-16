@@ -110,14 +110,8 @@ public class ResourceLoader {
 	}
 	
 	public FileInputStream getFileInputStream(String id) throws FileNotFoundException {
-		String file = "";
-		try {
-			file = fileMap.get(id);
-			return new FileInputStream(file);
-		} catch(FileNotFoundException e) {
-			System.out.println("Couldn't find image for " + file);
-			throw new FileNotFoundException();
-		}
+		String file = fileMap.get(id);
+		return new FileInputStream(file);
 	}
 	
 	public Image getBGImage() {
