@@ -54,7 +54,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	public int getRadiusOfVisibility() {
-		return 3; // TODO this must be based on items, stats, potions, etc.
+		return Math.max(1, 6 - getStat(StatType.MAX_LIFE) / getStat(StatType.LIFE));
 	}
 
 	public void die() {
