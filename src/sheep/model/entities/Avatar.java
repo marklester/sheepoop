@@ -2,6 +2,7 @@ package sheep.model.entities;
 
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
+import sheep.model.items.weapons.CrossBow;
 import sheep.model.occupations.Occupation;
 
 public class Avatar extends Character {
@@ -9,6 +10,7 @@ public class Avatar extends Character {
 	
 	public Avatar(String id, GameMap map, Location loc, Occupation occupation) {
 		super(id, map, loc, occupation);
+		new CrossBow(map,loc).use(this);
 	}
 
 }

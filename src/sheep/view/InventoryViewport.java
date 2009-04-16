@@ -60,24 +60,37 @@ public class InventoryViewport extends Viewport {
 		
 		topPnl = new JPanel(new GridLayout(6,2));
 		topPnl.setBackground(Color.green);
+		JButton myBut;
 		
 		topPnl.add(new JLabel("Eqipped "));
-		topPnl.add(new JButton(w_img));
+		myBut = new JButton(w_img);
+		myBut.setFocusable(false);
+		topPnl.add(myBut);
 		
 		topPnl.add(new JLabel("   Hand "));
-		topPnl.add(new JButton(w_img));
+		myBut = new JButton(w_img);
+		myBut.setFocusable(false);
+		topPnl.add(myBut);
 		
 		topPnl.add(new JLabel("   Aux  "));
-		topPnl.add(new JButton(w_img));
+		myBut = new JButton(w_img);
+		myBut.setFocusable(false);
+		topPnl.add(myBut);
 		
 		topPnl.add(new JLabel("   Head "));
-		topPnl.add(new JButton(w_img));
+		myBut = new JButton(w_img);
+		myBut.setFocusable(false);
+		topPnl.add(myBut);
 		
 		topPnl.add(new JLabel("   Body "));
-		topPnl.add(new JButton(w_img));
+		myBut = new JButton(w_img);
+		myBut.setFocusable(false);
+		topPnl.add(myBut);
 		
 		topPnl.add(new JLabel("   Feet "));
-		topPnl.add(new JButton(w_img));
+		myBut = new JButton(w_img);
+		myBut.setFocusable(false);
+		topPnl.add(myBut);
 		
 		this.add(topPnl, BorderLayout.NORTH);
 		
