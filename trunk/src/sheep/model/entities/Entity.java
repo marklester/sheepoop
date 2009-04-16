@@ -9,6 +9,7 @@ import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
 import sheep.model.items.armor.Armor;
+import sheep.model.items.weapons.Projectile;
 import sheep.model.items.weapons.Weapon;
 import sheep.util.math.Vector2D;
 
@@ -121,6 +122,12 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	public abstract void accept(LocatableVisitor v);
 
 	public abstract boolean blocks(Entity entity);
+	
+	@Override
+	public boolean blocks(Projectile p)
+	{
+		return true;
+	}
 
 	public abstract void affectStat(StatType stat, int changeAmt);
 

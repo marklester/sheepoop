@@ -3,6 +3,7 @@ package sheep.model.terrains;
 import sheep.model.entities.Entity;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
+import sheep.model.items.weapons.Projectile;
 
 public class Mountain extends Terrain {
 
@@ -12,7 +13,13 @@ public class Mountain extends Terrain {
 		super("Mountain", map, loc);
 	}
 
+	@Override
 	public boolean blocks(Entity entity) {
+		return true;
+	}
+	@Override
+	public boolean blocks(Projectile p)
+	{
 		return true;
 	}
 }
