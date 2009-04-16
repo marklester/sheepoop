@@ -14,24 +14,40 @@ public class NPC extends Character {
 
 	private final Model model;
 	private AI ai;
-	
+
 	public NPC(String id, GameMap map, Location loc, Occupation occupation, Model model) {
 		super(id, map, loc, occupation);
 		this.model = model;
 	}
-	
+
 	public boolean blocks(Entity entity) {
+		if (entity == model.getAvatar()) {
+			model.getAvatar().setInteractingCharacter(this);
+		}
 		return true;
 	}
 
 	public void talk(Character character) {
-		throw new UnsupportedOperationException();
+		// If we want, we can have this forward talk() onto AI instead
+		character.hearMessage(this, "Hi my name is " + this.getID() + ", what's up?");
 	}
+
 	public void setAi(AI ai) {
 		this.ai = ai;
 	}
+
+	@Override
 	public void affectStat(StatType stat, int changeAmt) {
-		//Will make making npcs easier
-		//throw new UnsupportedOperationException();
+		
+	}
+	
+	@Override
+	public void setInteractingCharacter(Character character) {
+		super.setInteractingCharacter(character);
+		
+		// Check if we are trying to move into the avatar, and possibly attack 
+		if (character == model.getAvatar()) {
+			ai.bumpedIntoAvatar(model.getAvatar());
+		}
 	}
 }
