@@ -42,7 +42,7 @@ public class AreaViewport extends JPanel {
 	private StatConsole stats;
 	private MessageConsole messageConsole;
 	private HashMap<Location, BufferedImage> tilesCache = new HashMap<Location, BufferedImage>();
-	private HashMap<Location, Float> tilesStaleness = new HashMap<Location, Float>();
+	private HashMap<Location, Float> tilesFreshness = new HashMap<Location, Float>();
 
 	public AreaViewport(Model model, GameMap map) {
 		this.gameMap = map;
@@ -76,8 +76,9 @@ public class AreaViewport extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
+		
 		Graphics2D g2 = (Graphics2D) g;
-
+		
 		// Paint tiles
 		drawTiles(g2);
 
@@ -120,8 +121,11 @@ public class AreaViewport extends JPanel {
 		// For each location on the screen, get an image from cache and draw it
 		for (Location loc : locationsToDraw) {
 			BufferedImage img = getTileImage(loc);
-
+			
+			if (img == null) continue;
+			
 			Point pt = getTilePosition(loc, center);
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1));
 			g2.drawImage(img, pt.x, pt.y, null);
 		}
 		
@@ -179,7 +183,7 @@ public class AreaViewport extends JPanel {
 	private void addTotilesCache(Location loc, BufferedImage img) {
 		if (img != null && loc != null) {
 			tilesCache.put(loc, img);
-			tilesStaleness.put(loc, 1f);
+			tilesFreshness.put(loc, 1f);
 		}
 	}
 
@@ -194,6 +198,11 @@ public class AreaViewport extends JPanel {
 		BufferedImage ret = tilesCache.get(loc);
 		
 		if (ret == null) {
+			
+			if (true) {
+			return null;
+			}
+			
 			// Create and return a black image
 			ret = new BufferedImage(TILE_SIZE, TILE_SIZE, BufferedImage.TYPE_INT_ARGB_PRE);
 			
@@ -204,19 +213,21 @@ public class AreaViewport extends JPanel {
 			return ret;
 		}
 		
-		// Make tile faded (semi-transparent black overlay) based on staleness
-		Graphics2D g2 = ret.createGraphics();
-		float percentFaded = tilesStaleness.get(loc);
-		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1 - percentFaded));
-		BufferedImage blackImg = (BufferedImage) ResourceLoader.getInstance().getImage("BlackTile");
-		g2.drawImage(blackImg, 0, 0, null);
+		// Make tile faded (semi-transparent black overlay) based on freshness
+		// Note: the darkness applies each time is additive - so we only want to
+		// apply a small amount of darkness since it just gets added to the 
+		// previous image
+		float percentFreshness = tilesFreshness.get(loc);
+		if (percentFreshness < 1 && percentFreshness > 0.5) {
+			Graphics2D g2 = ret.createGraphics();
+			BufferedImage blackImg = (BufferedImage) ResourceLoader.getInstance().getImage("BlackTile");
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.03f));
+			g2.drawImage(blackImg, 0, 0, null);
+		}
 		
 		// Calculate and store a new staleness
-		float newStaleness = percentFaded - 0.001f;
-		if (newStaleness < 0) {
-			newStaleness = 0;
-		}
-		tilesStaleness.put(loc, newStaleness);
+		float newFreshness = percentFreshness - 0.01f;
+		tilesFreshness.put(loc, newFreshness);
 
 		return ret;
 	}
