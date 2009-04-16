@@ -69,10 +69,7 @@ public class MessageConsole extends Overlay implements StatChangeObserver, TalkM
 	}
 
 	private void drawMessage(Graphics2D g, String msg, int orderOfNewness, long age) {
-		float percentOpaque = 1f - (age / SECS_PER_MSG / 1000f);
-		if (percentOpaque < 0) {
-			percentOpaque = 0;
-		}
+		float percentOpaque = Math.max(0, 1f - (age / SECS_PER_MSG / 1000f));
 		Composite originalComposite = g.getComposite();
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, percentOpaque));
 		g.drawString(msg, getPosX() + 10, getPosY() + 20 + 20 * orderOfNewness);
