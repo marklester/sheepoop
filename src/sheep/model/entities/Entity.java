@@ -61,6 +61,9 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	 * recently according to its getSpeed() and the tick()s.
 	 */
 	private void move() {
+		
+		// Reset counter
+		this.tickCounter = 30 - getSpeed();
 
 		// Get ideal destination location
 		Vector2D vector = facingDirection.getVector(this.getLocation());
@@ -92,8 +95,6 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 			neighbor.touch(this);
 		}
 
-		// Reset counter
-		this.tickCounter = 100 - getSpeed();
 	}
 
 	//@Override

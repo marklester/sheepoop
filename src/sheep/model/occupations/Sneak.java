@@ -21,7 +21,7 @@ public class Sneak extends Occupation {
 		setInitialCharacterStat(StatType.AGILITY, 25);
 		setInitialCharacterStat(StatType.HARDINESS, 12);
 		setInitialCharacterStat(StatType.INTELLECT, 18);
-		setInitialCharacterStat(StatType.SPEED, 90);
+		setInitialCharacterStat(StatType.SPEED, 22);
 		setInitialCharacterStat(StatType.STRENGTH, 12);
 		setInitialCharacterStat(StatType.LIVES_LEFT, 5);
 		addPerformableSkill(new Observation());

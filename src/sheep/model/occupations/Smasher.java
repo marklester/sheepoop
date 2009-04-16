@@ -19,7 +19,7 @@ public class Smasher extends Occupation {
 		setInitialCharacterStat(StatType.AGILITY, 15);
 		setInitialCharacterStat(StatType.HARDINESS, 25);
 		setInitialCharacterStat(StatType.INTELLECT, 8);
-		setInitialCharacterStat(StatType.SPEED, 85);
+		setInitialCharacterStat(StatType.SPEED, 15);
 		setInitialCharacterStat(StatType.STRENGTH, 15);
 		setInitialCharacterStat(StatType.LIVES_LEFT, 5);
 		addPerformableSkill(new Observation());
