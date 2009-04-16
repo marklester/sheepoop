@@ -14,6 +14,8 @@ public enum StatType {
 	EXPERIENCE,
 	DAMAGE,
 	MANA_USED,
+	OFFENSIVE_BONUS,
+	DEFENSIVE_BONUS,
 	//Derived stats below
 	LEVEL, 
 	LIFE,
