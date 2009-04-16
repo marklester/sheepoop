@@ -1,5 +1,6 @@
 package sheep.model.areaeffects;
 
+import sheep.model.Time;
 import sheep.model.entities.Entity;
 import sheep.model.entities.StatType;
 import sheep.model.gamemap.GameMap;
@@ -19,6 +20,7 @@ public class HealDamage extends AreaEffect {
 		myFrequency = frequency;
 		mySeverity = severity;
 		ticksToEffect = myFrequency;
+		Time.getInstance().registerObserver(this);
 	}
 
 	public void applyEffect(Entity e) {

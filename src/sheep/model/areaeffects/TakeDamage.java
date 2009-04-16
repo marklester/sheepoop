@@ -1,5 +1,6 @@
 package sheep.model.areaeffects;
 
+import sheep.model.Time;
 import sheep.model.entities.Entity;
 import sheep.model.entities.StatType;
 import sheep.model.gamemap.GameMap;
@@ -9,17 +10,17 @@ public class TakeDamage extends AreaEffect {
 
 	private static final long serialVersionUID = -1922478825658683800L;
 
-
 	private int myFrequency;
 	private int mySeverity;
 	private int ticksToEffect;
 	
 	
 	public TakeDamage(GameMap map, Location loc, int frequency, int severity) {
-		super("HealDamage", map, loc);
+		super("TakeDamage", map, loc);
 		myFrequency = frequency;
 		mySeverity = severity;
 		ticksToEffect = myFrequency;
+		Time.getInstance().registerObserver(this);
 	}
 
 	public void applyEffect(Entity e) {
