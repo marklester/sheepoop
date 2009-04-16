@@ -27,4 +27,8 @@ public class TalkMessage {
 	public String getMessage() {
 		return msg;
 	}
+	
+	public String toString() {
+		return talker.getID() + " said \"" + msg + "\"";
+	}
 }

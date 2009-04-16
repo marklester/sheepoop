@@ -25,4 +25,12 @@ public class StatChange implements Serializable {
 	public int getChangeAmount() {
 		return this.changeAmt;
 	}
+	
+	public String toString() {
+		if (changeAmt > 0) {
+			return statType.toString() + " increased by " + changeAmt;
+		} else {			
+			return statType.toString() + " decreased by " + changeAmt;
+		}
+	}
 }
