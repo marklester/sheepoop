@@ -3,7 +3,7 @@ package sheep.model.items.weapons;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import sheep.model.entities.Entity;
+import sheep.model.entities.Character;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 import sheep.model.items.Takeable;
@@ -13,18 +13,23 @@ public abstract class Weapon extends Takeable implements ActionListener {
 	
 	private static final long serialVersionUID = -6972197855931649857L;
 	private PassiveSkill skill;
-	private Entity ent;
+	private Character user;
 	
-	public Weapon(String id, GameMap map, Location loc) {
+	public Weapon(String id, GameMap map, Location loc, PassiveSkill skill) {
 		super(id, map, loc);
+		this.skill = skill;
 	}
 
 	/**
 	 * this should equip the weapon
 	 */
-	public void use(Entity ent) {
-		this.ent = ent;
-		ent.equip(this);
+	public void use(Character user) {
+		this.user = user;
+		user.equip(this);
+	}
+
+	public PassiveSkill getSkill() {
+		return this.skill;
 	}
 
 	/**
@@ -32,11 +37,12 @@ public abstract class Weapon extends Takeable implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		Character enemy = user.getInteractingCharacter();
 		
-	}
-
-	public PassiveSkill getSkill() {
-		return this.skill;
+		if( enemy != null )
+		{
+			
+		}
 	}
 	
 }
