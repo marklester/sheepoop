@@ -15,7 +15,7 @@ public abstract class Armor extends Takeable {
 	private BodyPart where;
 	
 	public Armor(String id, GameMap map, Location loc, BodyPart bodyLocation, int armorBonus) {
-		super("Armor", map, loc);
+		super(id, map, loc);
 		where = bodyLocation;
 		this.armorBonus = armorBonus;
 	}
