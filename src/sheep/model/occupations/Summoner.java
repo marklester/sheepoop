@@ -12,6 +12,8 @@ public class Summoner extends Occupation {
 
 	public Summoner() {
 		super("Summoner");
+		setInitialCharacterStat(StatType.DAMAGE, 0);
+		setInitialCharacterStat(StatType.EXPERIENCE, 0);
 		setInitialCharacterStat(StatType.AGILITY, 10);
 		setInitialCharacterStat(StatType.HARDINESS, 10);
 		setInitialCharacterStat(StatType.INTELLECT, 30);
