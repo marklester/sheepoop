@@ -1,5 +1,7 @@
 package sheep.model.entities.npc;
 
+import sheep.model.entities.Avatar;
+import sheep.model.entities.StatType;
 import sheep.model.gamemap.GameMap;
 
 public class AngryAI extends AI {
@@ -15,5 +17,9 @@ public class AngryAI extends AI {
 		
 	}
 
+	@Override
+	public void bumpedIntoAvatar(Avatar avatar) {
+		avatar.affectStat(StatType.DAMAGE, 5);
+	}
 
 }

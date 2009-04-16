@@ -3,6 +3,7 @@ package sheep.model.entities.npc;
 import java.io.Serializable;
 
 import sheep.model.TimeObserver;
+import sheep.model.entities.Avatar;
 import sheep.model.gamemap.GameMap;
 
 /**
@@ -29,4 +30,6 @@ public abstract class AI implements TimeObserver, Serializable {
 	public GameMap getGameMap() {
 		return this.map;
 	}
+
+	public abstract void bumpedIntoAvatar(Avatar avatar);
 }

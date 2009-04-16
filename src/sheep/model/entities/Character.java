@@ -114,9 +114,18 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	public boolean blocks(Entity entity) {
+		
+		// If a character tries to get off a boat, for example
 		if (entity == this) {
-			return false; // if a character tries to get off a boat, for example
+			return false; 
 		}
+		
+		// Necessary for NPCs to know when they are trying to move into a character
+		if (entity instanceof Character) {
+			((Character) entity).setInteractingCharacter(this);
+		}
+		
+		// Block other entities from sharing a location
 		return true;
 	}
 
@@ -209,7 +218,11 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	public int getSkill(PassiveSkill skill) {
-		return passiveSkills.get(skill);
+		Integer ret = passiveSkills.get(skill);
+		if (ret == null) {
+			return 0;
+		}
+		return ret;
 	}
 
 	public CharacterStats getStats() {

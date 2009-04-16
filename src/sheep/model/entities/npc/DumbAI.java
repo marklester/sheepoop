@@ -1,6 +1,8 @@
 package sheep.model.entities.npc;
 
 import sheep.model.Time;
+import sheep.model.entities.Avatar;
+import sheep.model.entities.StatType;
 import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.GameMap;
 
@@ -16,37 +18,16 @@ public class DumbAI extends AI {
 	}
 
 	public void tick() {
-		state = (int) (Math.random() * 8);
-		if (this.getNPC().isMoving()) {
-			if (state < 4) {
-			} else {
-				this.getNPC().stopMoving();
-			}
+		state = (int) (Math.random() * 6);
+		if (state == 6) {
+			this.getNPC().stopMoving();
 		} else {
-			switch (state) {
-			case 0:
-			case 1:
-				this.getNPC().startMoving(Direction.S);
-				break;
-			case 2:
-			case 3:
-				this.getNPC().startMoving(Direction.N);
-				break;
-			case 4:
-				this.getNPC().startMoving(Direction.NW);
-				break;
-			case 5:
-				this.getNPC().startMoving(Direction.NE);
-				break;
-			case 6:
-				this.getNPC().startMoving(Direction.SE);
-				break;
-			case 7:
-				this.getNPC().startMoving(Direction.SW);
-				break;
-			default:
-				break;
-			}
+			this.getNPC().startMoving(Direction.values()[state]);
 		}
+	}
+
+	@Override
+	public void bumpedIntoAvatar(Avatar avatar) {
+		avatar.affectStat(StatType.DAMAGE, 5);
 	}
 }

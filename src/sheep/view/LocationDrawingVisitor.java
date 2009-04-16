@@ -9,6 +9,7 @@ import sheep.model.areaeffects.AreaEffect;
 import sheep.model.entities.Character;
 import sheep.model.entities.Vehicle;
 import sheep.model.gamemap.Decal;
+import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.items.Item;
 import sheep.model.items.weapons.Projectile;
@@ -62,37 +63,30 @@ public class LocationDrawingVisitor implements LocatableVisitor {
 	public void visit(AreaEffect obj) {
 		// not a visible thing
 	}
+	
+	private void drawRotated(BufferedImage imgFacingRight, Direction facingDirection) { 
+		AffineTransform affineT = g2.getTransform(); 
+		double rotate = -1 * facingDirection.getAngleInRadians();
+		g2.rotate(rotate, img.getWidth() / 2, img.getHeight() / 2);
+		g2.drawImage(imgFacingRight, 0, 0, null);
+		g2.setTransform(affineT);
+	}
 
 	public Image getImage() {
 		g2.drawImage(terrain, 0, 0, null);
 		g2.drawImage(decal, 0, 0, null);
 		g2.drawImage(item, 0, 0, null);
 		
-		// Rotate and draw vehicle
 		if (vehicleObj != null) {
-			AffineTransform affineT = g2.getTransform(); 
-			double vehicleRotate = -1 * vehicleObj.getFacingDirection().getAngleInRadians();
-			g2.rotate(vehicleRotate, img.getWidth() / 2, img.getHeight() / 2);
-			g2.drawImage(vehicle, 0, 0, null);
-			g2.setTransform(affineT);
+			drawRotated(vehicle, vehicleObj.getFacingDirection());
 		}
 		
-		if (characterObj != null && characterObj.getID() == "Wolf") {
-			//AffineTransform affineT = g2.getTransform();
-			//double rotate = (characterObj.getFacingDirection().getAngleInDegrees() <= 90) ? Math.PI / 2 : 0;
-			//g2.rotate(rotate, img.getWidth() / 2, img.getHeight() / 2);
-			g2.drawImage(character, 0, 0, null);
-			//g2.setTransform(affineT);
-		} else {
-			g2.drawImage(character, 0, 0, null);
-		}
+		g2.drawImage(character, 0, 0, null);
+
 		if (projectileObj != null) {
-			AffineTransform affineT = g2.getTransform(); 
-			double vehicleRotate = -1 * projectileObj.getFacingDirection().getAngleInRadians();
-			g2.rotate(vehicleRotate, img.getWidth() / 2, img.getHeight() / 2);
-			g2.drawImage(projectile, 0, 0, null);
-			g2.setTransform(affineT);
+			drawRotated(projectile, projectileObj.getFacingDirection());
 		}
+		
 		return img;
 	}
 }
