@@ -5,10 +5,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
@@ -46,7 +48,8 @@ public class AreaViewport extends JPanel {
 	private MessageConsole messageConsole;
 	private HotBarConsole hotBar;
 	private HashMap<Location, BufferedImage> tilesCache = new HashMap<Location, BufferedImage>();
-	private HashMap<Location, Float> tilesFreshness = new HashMap<Location, Float>();
+	private HashMap<Location, Long> tilesBirthday = new HashMap<Location, Long>();
+	private HashMap<Location, Integer> tilesTimesUsed = new HashMap<Location, Integer>();
 	private ArrayList<Overlay> overlays;
 
 	public AreaViewport(Model model, GameMap map) {
@@ -201,14 +204,16 @@ public class AreaViewport extends JPanel {
 	}
 
 	/**
-	 * Add a tile's image to the cache.  Reset fog-of-war staleness here
+	 * Add a tile's image to the cache.  Sets tiles creation time here for 
+	 * fog-of-war 
 	 * @param loc
 	 * @param img
 	 */
 	private void addTotilesCache(Location loc, BufferedImage img) {
 		if (img != null && loc != null) {
 			tilesCache.put(loc, img);
-			tilesFreshness.put(loc, 1f);
+			tilesBirthday.put(loc, Calendar.getInstance().getTimeInMillis());
+			tilesTimesUsed.put(loc, 0);
 		}
 	}
 
@@ -220,45 +225,40 @@ public class AreaViewport extends JPanel {
 	 * @return
 	 */
 	private BufferedImage getTileImage(Location loc) {
-		BufferedImage ret = tilesCache.get(loc);
+		BufferedImage tile = tilesCache.get(loc);
 		
-		if (ret == null) {
-			
-			if (true) {
-			return null;
-			}
-			
-			// Create and return a black image
-			ret = new BufferedImage(TILE_SIZE, TILE_SIZE, BufferedImage.TYPE_INT_ARGB_PRE);
-			
-			// Put a dot on totally blank tiles for testing
-			Graphics2D g2 = ret.createGraphics();
+		// Create a black image
+		BufferedImage ret = new BufferedImage(TILE_SIZE, TILE_SIZE, BufferedImage.TYPE_INT_ARGB_PRE);
+		Graphics2D g2 = ret.createGraphics();
+
+		// If nothing was in the cache, return the blank image
+		if (tile == null) {		
+			// put a dot on totally blank tiles for testing
 			g2.setColor(Color.BLUE);
 			g2.drawOval(TILE_SIZE / 2, TILE_SIZE / 2, 2, 2);
 			return ret;
 		}
 		
-		// Make tile faded (semi-transparent black overlay) based on freshness
-		// Note: the darkness applies each time is additive - so we only want to
-		// apply a small amount of darkness since it just gets added to the 
-		// previous image
-		float percentFreshness = tilesFreshness.get(loc);
-		if (percentFreshness < 1 && percentFreshness > 0.5) {
-			Graphics2D g2 = ret.createGraphics();
+		// Draw the tile on our blank image
+		g2.drawImage(tile, 0, 0, null);
+		
+		int timesUsed = tilesTimesUsed.get(loc);
+		if (timesUsed > 0) {
+			// Make tile faded (semi-transparent black overlay) based on age
+		
+			long age = Calendar.getInstance().getTimeInMillis() - tilesBirthday.get(loc);
+			float percentFaded = Math.min(1, age / 4000f);	// define millis to fade to black
+			percentFaded = Math.max(percentFaded, 0.4f);	// define first level of faded
+			percentFaded = Math.min(percentFaded, 0.85f);	// define final level of faded
+		
 			BufferedImage blackImg = (BufferedImage) ResourceLoader.getInstance().getImage("BlackTile");
-			if (percentFreshness == 0.99f) {
-				// Fade faster the first time
-				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
-			} else {			
-				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.03f));
-			}
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, percentFaded));
 			g2.drawImage(blackImg, 0, 0, null);
+
 		}
 		
-		// Calculate and store a new staleness
-		float newFreshness = percentFreshness - 0.01f;
-		tilesFreshness.put(loc, newFreshness);
-
+		tilesTimesUsed.put(loc, timesUsed + 1);
+		
 		return ret;
 	}
 
