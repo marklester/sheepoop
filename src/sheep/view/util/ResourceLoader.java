@@ -66,6 +66,8 @@ public class ResourceLoader {
 		
 		//Decals
 		fileMap.put("LevelUp", DECALS_DIR+"levelup.png");
+		fileMap.put("HealDamage", DECALS_DIR+"healdamage.png");
+		fileMap.put("TakeDamage", DECALS_DIR+"takedamage.png");
 		//Welcome Screen images
 		imageMap.put("WelcomeScreenBG", getImage("WelcomeScreenBG"));
 		imageMap.put("newGame", getImage("newGame"));
