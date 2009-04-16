@@ -23,6 +23,10 @@ public class CharacterStats implements Cloneable, Serializable {
 	public void calculateDerivedStatistics()
 	{
 		stats.put(StatType.LEVEL, stats.get(StatType.EXPERIENCE)/1000);
+		if(stats.get(StatType.DAMAGE)<0)
+		{
+			stats.put(StatType.DAMAGE, 0);
+		}
 		
 		int agility = stats.get(StatType.AGILITY);
 		int hardiness = stats.get(StatType.HARDINESS);
