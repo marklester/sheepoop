@@ -35,6 +35,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 		this.occupation = occupation;
 		this.performableSkills = occupation.clonePerformableSkills();
 		this.stats = occupation.cloneStats();
+		stats.calculateDerivedStatistics();
 		this.inventory = new Inventory();
 		for (PerformableSkill ps : performableSkills)
 			ps.setCharacter(this);		

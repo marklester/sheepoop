@@ -20,7 +20,7 @@ public class CharacterStats implements Cloneable, Serializable {
 		calculateDerivedStatistics();
 	}
 	
-	private void calculateDerivedStatistics()
+	public void calculateDerivedStatistics()
 	{
 		stats.put(StatType.LEVEL, stats.get(StatType.EXPERIENCE)/1000);
 		
