@@ -9,6 +9,7 @@ import sheep.model.Model;
 import sheep.model.areaeffects.HealDamage;
 import sheep.model.areaeffects.LevelUp;
 import sheep.model.areaeffects.TakeDamage;
+import sheep.model.areaeffects.Teleport;
 import sheep.model.entities.Vehicle;
 import sheep.model.entities.npc.Wolf;
 
@@ -35,16 +36,14 @@ public class Level1MapCreator extends MapCreator {
 				
 		// Add vehicles
 		Location loc1;
-		loc1 = new Location(9, 7);
+		loc1 = new Location(11, 14);
 		Vehicle vehicle = new Vehicle("Boat", map, loc1, model);
 		map.add(loc1, vehicle);
 		
 		// Add wolfs
 		List<Location> locations = new ArrayList<Location>();
 		locations.add(new Location(6, 6));
-		locations.add(new Location(8, 8));
-		locations.add(new Location(10, 3));
-		locations.add(new Location(12, 12));
+		locations.add(new Location(3, 3));
 		for (Location loc2 : locations) {
 			map.add(loc2, new Wolf(map, loc2));
 		}
@@ -59,7 +58,11 @@ public class Level1MapCreator extends MapCreator {
 		loc3 = new Location(6,9);
 		map.add(loc3, new TakeDamage(map,loc3,1,1));
 		map.add(loc3, new Decal("TakeDamage",map,loc3));
+		loc3 = new Location(6,10);
+		map.add(loc3, new Teleport(map,loc3,new Location(11,16)));
+		
 		return map;
+		
 	}
 	
 }
