@@ -36,10 +36,11 @@ public class ReleaseVehicleAction extends AbstractAction {
 		}
 		Vehicle vehicle = (Vehicle) mover;
 		
-		// Do nothing if the vehicle is currently in water
+		// Do nothing if the vehicle is currently on a terrain the avatar can't
+		// go on by itself
 		List<Locatable> thingsOnMyTile = model.getGameMap().get(vehicle.getLocation());
 		for (Locatable locatable : thingsOnMyTile) {
-			if (locatable instanceof Water) {
+			if (locatable.blocks(model.getAvatar())) {
 				return;
 			}
 		}
