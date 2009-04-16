@@ -45,12 +45,12 @@ public abstract class Locatable implements Serializable {
 		return false;
 	}
 	
-	/*
+	
 	public boolean blocks(Projectile p)
 	{
 		return false;
 	}
-	*/
+	
 	
 	public void hitWith(Weapon w)
 	{
@@ -72,10 +72,5 @@ public abstract class Locatable implements Serializable {
 	public void setLocation(Location newLoc) {
 		map.notifyOfMovement(this.location, newLoc, this);
 		this.location = newLoc;
-	}
-
-	public boolean blocks(Projectile myProj)
-	{
-		return false;
 	}
 }
