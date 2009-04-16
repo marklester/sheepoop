@@ -16,10 +16,16 @@ public class MessageConsole extends Overlay implements StatChangeObserver, TalkM
 
 	private static final int width = 400;
 	private static final int height = 100;
+	private Graphics2D g;
+	
 
 	public MessageConsole(int posX, int posY, Avatar avatar) {
 		super(posX, posY);
 
+		avatar.registerInventoryChangeObserver(this);
+		avatar.registerStatChangeObserver(this);
+		avatar.registerTalkMessageObserver(this);
+		
 	}
 
 	@Override
@@ -28,6 +34,8 @@ public class MessageConsole extends Overlay implements StatChangeObserver, TalkM
 
 	@Override
 	public void update(TalkMessage msg) {
+		String str = msg.getMessage();
+		//g.drawString(str, 0, 40);
 	}
 
 	@Override
@@ -36,6 +44,8 @@ public class MessageConsole extends Overlay implements StatChangeObserver, TalkM
 
 	@Override
 	public void paint(Graphics2D g) {
+		
+		this.g = g;
 
 		g.setColor(Color.BLACK);
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .6f));

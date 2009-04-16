@@ -91,14 +91,14 @@ public class Vehicle extends Entity {
 	}
 
 	@Override
-	public void registerObserver(StatChangeObserver observer) {
+	public void registerStatChangeObserver(StatChangeObserver observer) {
 		if (!statChangeObservers.contains(observer)) {
 			statChangeObservers.add(observer);
 		}
 	}
 
 	@Override
-	public void removeObserver(StatChangeObserver observer) {
+	public void removeStatChangeObserver(StatChangeObserver observer) {
 		statChangeObservers.remove(observer);
 	}
 

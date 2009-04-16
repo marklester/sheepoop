@@ -5,9 +5,9 @@ public interface StatChangeObservable {
 
 	public void notifyStatChangeObservers(StatChange msg);
 
-	public void registerObserver(StatChangeObserver observer);
+	public void registerStatChangeObserver(StatChangeObserver observer);
 
-	public void removeObserver(StatChangeObserver observer);
+	public void removeStatChangeObserver(StatChangeObserver observer);
 
 
 }
