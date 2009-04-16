@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sheep.model.Model;
+import sheep.model.areaeffects.LevelUp;
 import sheep.model.entities.Vehicle;
 import sheep.model.entities.npc.Wolf;
 
@@ -45,7 +46,10 @@ public class Level1MapCreator extends MapCreator {
 		for (Location loc2 : locations) {
 			map.add(loc2, new Wolf(map, loc2));
 		}
-		
+		//add decals
+		Location loc3 = new Location(6,7);
+		map.add(loc3, new Decal("LevelUp",map,loc3));
+		map.add(loc3, new LevelUp(map,loc3));
 		return map;
 	}
 	
