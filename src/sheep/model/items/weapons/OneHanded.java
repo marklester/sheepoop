@@ -8,8 +8,8 @@ public abstract class OneHanded extends Weapon {
 
 	private static final long serialVersionUID = 5874280724912458146L;
 	
-	public OneHanded(String id, GameMap map, Location loc) {
-		super(id, map, loc, PassiveSkill.ONE_HANDED_WEAPON);
+	public OneHanded(String id, GameMap map, Location loc, int baseDamage) {
+		super(id, map, loc, baseDamage, PassiveSkill.ONE_HANDED_WEAPON);
 	}
 
 }

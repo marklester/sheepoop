@@ -8,7 +8,7 @@ public class Fire extends Bane {
 	private static final long serialVersionUID = 2866354681809705242L;
 	
 	public Fire(GameMap map, Location loc) {
-		super("Fire", map, loc);
+		super("Fire", map, loc, 20);
 	}
 
 }

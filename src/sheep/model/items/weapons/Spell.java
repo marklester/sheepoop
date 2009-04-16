@@ -8,7 +8,7 @@ public abstract class Spell extends Weapon {
 
 	private static final long serialVersionUID = -1606083256607931219L;
 	
-	public Spell(String id, GameMap map, Location loc, PassiveSkill skill) {
-		super(id, map, loc, skill);
+	public Spell(String id, GameMap map, Location loc, int baseDamage, PassiveSkill skill) {
+		super(id, map, loc, baseDamage, skill);
 	}
 }

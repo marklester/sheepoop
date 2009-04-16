@@ -8,7 +8,7 @@ public class Ice extends Bane {
 	private static final long serialVersionUID = 7153412531505445049L;
 	
 	public Ice(GameMap map, Location loc) {
-		super("Ice", map, loc);
+		super("Ice", map, loc, 10);
 	}
 
 }
