@@ -12,6 +12,7 @@ import sheep.model.areaeffects.TakeDamage;
 import sheep.model.areaeffects.Teleport;
 import sheep.model.entities.Vehicle;
 import sheep.model.entities.npc.Wolf;
+import sheep.model.items.armor.SteelWool;
 
 /**
  * Returns a new GameMap for level1, by loading the mapfile it knows, and adding
@@ -47,20 +48,24 @@ public class Level1MapCreator extends MapCreator {
 		for (Location loc2 : locations) {
 			map.add(loc2, new Wolf(map, loc2));
 		}
-		//add decals
+		//add a level up w/ decal
 		Location loc3 = new Location(6,7);
 		map.add(loc3, new Decal("LevelUp",map,loc3));
 		map.add(loc3, new LevelUp(map,loc3));
-		
+		//Heal Damage
 		loc3 = new Location(6,8);
 		map.add(loc3, new Decal("HealDamage",map,loc3));
 		map.add(loc3, new HealDamage(map,loc3,1,1));
 		loc3 = new Location(6,9);
+		//Take Damage
 		map.add(loc3, new TakeDamage(map,loc3,1,1));
 		map.add(loc3, new Decal("TakeDamage",map,loc3));
+		//Teleporter
 		loc3 = new Location(6,10);
 		map.add(loc3, new Teleport(map,loc3,new Location(11,16)));
-		
+		//Steel Wool Armor
+		loc3 = new Location(5,8);
+		map.add(loc3, new SteelWool(map,loc3));
 		return map;
 		
 	}
