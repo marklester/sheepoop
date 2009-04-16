@@ -24,7 +24,7 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 	private static final int width = 300;
 	private static final int height = 200; 
 	private static final int v_spacer = 21;	//vertical spacer
-	private static final int h_spacer = 220;	//horizontal spacer	
+	private static final int h_spacer = 200;	//horizontal spacer	
 	private static final int bar_width = 15;
 	private final float max_life;
 	private final float max_mana;
@@ -52,31 +52,31 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 		g.fillRect(getPosX(), getPosY(), width, height);
 		g.setColor(Color.white);
 		
-		g.drawString("Lives", getPosX(), getPosY() + v_spacer*i);
+		g.drawString("Lives", getPosX()+2, getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.LIVES_LEFT)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
-		g.drawString("Experience", getPosX(), getPosY() + v_spacer*i);
+		g.drawString("Experience", getPosX()+2, getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.EXPERIENCE)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
-		g.drawString("Level", getPosX(), getPosY() + v_spacer*i);
+		g.drawString("Level", getPosX()+2, getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.LEVEL)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
-		g.drawString("Strength", getPosX(), getPosY() + v_spacer*i);
+		g.drawString("Strength", getPosX()+2, getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.STRENGTH)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
-		g.drawString("Agility", getPosX(), getPosY() + v_spacer*i);
+		g.drawString("Agility", getPosX()+2, getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.AGILITY)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
-		g.drawString("Intellect", getPosX(), getPosY() + v_spacer*i);
+		g.drawString("Intellect", getPosX()+2, getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.STRENGTH)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
-		g.drawString("Speed", getPosX(), getPosY() + v_spacer*i);
+		g.drawString("Speed", getPosX()+2, getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.SPEED)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
-		g.drawString("Offensive Rating", getPosX(), getPosY() + v_spacer*i);
+		g.drawString("Offensive Rating", getPosX()+2, getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.OFFENSIVE_RATING)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
-		g.drawString("Defensive Rating", getPosX(), getPosY() + v_spacer*i);
+		g.drawString("Defensive Rating", getPosX()+2, getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.DEFENSIVE_RATING)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
 		//Life Bar
