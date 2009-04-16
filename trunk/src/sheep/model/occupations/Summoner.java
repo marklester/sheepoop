@@ -18,7 +18,7 @@ public class Summoner extends Occupation {
 		setInitialCharacterStat(StatType.AGILITY, 10);
 		setInitialCharacterStat(StatType.HARDINESS, 10);
 		setInitialCharacterStat(StatType.INTELLECT, 30);
-		setInitialCharacterStat(StatType.SPEED, 10);
+		setInitialCharacterStat(StatType.SPEED, 70);
 		setInitialCharacterStat(StatType.STRENGTH, 10);
 		setInitialCharacterStat(StatType.LIVES_LEFT, 5);
 		addPerformableSkill(new Observation());

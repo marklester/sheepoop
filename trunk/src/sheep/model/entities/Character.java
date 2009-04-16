@@ -54,7 +54,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 		if (getStat(StatType.LIFE) == 0) {
 			return 0;
 		}
-		return Math.max(1, 6 - getStat(StatType.MAX_LIFE) / getStat(StatType.LIFE));
+		return Math.max(1, 7 - getStat(StatType.MAX_LIFE) / getStat(StatType.LIFE));
 	}
 
 	/**

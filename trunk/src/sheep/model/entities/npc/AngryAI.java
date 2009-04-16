@@ -1,24 +1,62 @@
 package sheep.model.entities.npc;
 
+import sheep.model.Model;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.StatType;
-import sheep.model.gamemap.GameMap;
+import sheep.model.gamemap.Direction;
+import sheep.model.gamemap.Location;
 
 public class AngryAI extends AI {
 
 	private static final long serialVersionUID = -576367827163651816L;
-
-	public AngryAI(NPC npc, GameMap map) {
-		super(npc, map);
+	
+	public AngryAI(NPC npc, Model model) {
+		super(npc, model);
 	}
 
-	@Override
 	public void tick() {
+
+		Direction dirToAvatar = null;
+		Location avatarLoc = this.getModel().getAvatar().getLocation();	// I'm too good to care about LoD!
+		Location npcLoc = this.getNPC().getLocation();
 		
+		if (Math.abs(avatarLoc.getX() - npcLoc.getX()) > Math.abs(avatarLoc.getY() - npcLoc.getY())) {
+			// move left or right
+			if (avatarLoc.getX() < npcLoc.getX()) { 
+				// avatar is left
+				if (avatarLoc.getY() < npcLoc.getY()) {
+					// avatar is up
+					dirToAvatar = Direction.NW;
+				} else {
+					// avatar is down
+					dirToAvatar = Direction.SW;
+				}
+			} else {
+				// avatar is right
+				if (avatarLoc.getY() < npcLoc.getY()) {
+					// avatar is up
+					dirToAvatar = Direction.NE;
+				} else {
+					// avatar is down
+					dirToAvatar = Direction.SE;
+				}
+			}
+		} else {
+			if (avatarLoc.getY() < npcLoc.getY()) {
+				// avatar is up
+				dirToAvatar = Direction.N;
+			} else {
+				// avatar is down
+				dirToAvatar = Direction.S;
+			}
+		}
+		
+		this.getNPC().startMoving(dirToAvatar);
 	}
 
 	@Override
 	public void bumpedIntoAvatar(Avatar avatar) {
+		avatar.hearMessage(getNPC(), "Hi, I am " + getNPC().getID() + " and I'm about to attack you");
 		avatar.affectStat(StatType.DAMAGE, 5);
 	}
 

@@ -2,6 +2,8 @@ package sheep.model.entities.npc;
 
 import java.io.Serializable;
 
+import sheep.model.Model;
+import sheep.model.Time;
 import sheep.model.TimeObserver;
 import sheep.model.entities.Avatar;
 import sheep.model.gamemap.GameMap;
@@ -14,11 +16,12 @@ public abstract class AI implements TimeObserver, Serializable {
 	private static final long serialVersionUID = 7551024229134848584L;
 	
 	private final NPC npc;
-	private final GameMap map;
+	private final Model model;
 
-	public AI(NPC npc, GameMap map) {
+	public AI(NPC npc, Model model) {
 		this.npc = npc;
-		this.map = map;
+		this.model = model;
+		Time.getInstance().registerObserver(this);
 	}
 
 	public abstract void tick();
@@ -28,7 +31,11 @@ public abstract class AI implements TimeObserver, Serializable {
 	}
 	
 	public GameMap getGameMap() {
-		return this.map;
+		return this.model.getGameMap();
+	}
+	
+	public Model getModel() {
+		return this.model;
 	}
 
 	public abstract void bumpedIntoAvatar(Avatar avatar);

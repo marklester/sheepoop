@@ -21,24 +21,25 @@ public class Vehicle extends Entity {
 	public Vehicle(String id, GameMap map, Location loc, Model model) {
 		super(id, map, loc);
 		this.model = model;
-		
-		stats.put(VehicleStatType.SPEED, 10);	// TODO this may need to come from somewhere else
+
+		stats.put(VehicleStatType.SPEED, 90); // TODO this may need to come from
+												// somewhere else, like a
+												// subclass
 	}
 
 	public void accept(LocatableVisitor v) {
 		v.visit(this);
 	}
 
-	public boolean blocks(Entity entity) {
-		if (entity instanceof Avatar) {
+	public boolean blocks(Entity entity) {		
+		if (entity == model.getAvatar()) {
 			return false;
 		}
 		return true;
 	}
 
 	public void affectStat(StatType stat, int changeAmt) {
-		if(driver!=null)
-		{
+		if (driver != null) {
 			driver.affectStat(stat, changeAmt);
 		}
 	}
@@ -53,26 +54,27 @@ public class Vehicle extends Entity {
 
 	public void touch(Entity entity) {
 		// Character gets in the vehicle
-		if (!(entity instanceof Character)) {
+		
+		if (entity != model.getAvatar()) {
 			return;
 		}
-		
+
 		entity.stopMoving();
 		Character character = (Character) entity;
-		
+
 		this.model.setMover(this);
-		
+
 		this.driver = character;
 	}
-	
+
 	public Character getDriver() {
 		return driver;
 	}
-	
+
 	public void clearDriver() {
 		this.driver = null;
 	}
-	
+
 	/**
 	 * Override setLocation from Locatable so we can move the driver's location
 	 * as well (if we do in fact move)
@@ -82,7 +84,7 @@ public class Vehicle extends Entity {
 		super.setLocation(newLoc);
 		this.driver.setLocation(newLoc);
 	}
-	
+
 	@Override
 	public void notifyStatChangeObservers(StatChange msg) {
 		for (StatChangeObserver observer : this.statChangeObservers) {
@@ -103,40 +105,31 @@ public class Vehicle extends Entity {
 	}
 
 	@Override
-	public int getStat(StatType stat)
-	{
-		if(driver == null)
-		{
+	public int getStat(StatType stat) {
+		if (driver == null) {
 			return 0;
-		}
-		else
-		{
+		} else {
 			return driver.getStat(stat);
 		}
 	}
 
 	@Override
-	public void equip(Weapon w)
-	{
-		if(driver!=null)
-		{
+	public void equip(Weapon w) {
+		if (driver != null) {
 			driver.equip(w);
 		}
 	}
 
 	@Override
-	public void equip(Armor a)
-	{
-		if(driver!=null)
-		{
+	public void equip(Armor a) {
+		if (driver != null) {
 			driver.equip(a);
 		}
 	}
 
 	@Override
-	public void weaponDamage(int amount)
-	{
-		//Do nothing, character will still get his
+	public void weaponDamage(int amount) {
+		// Do nothing, character will still get his
 	}
 
 }

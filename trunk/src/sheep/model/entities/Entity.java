@@ -66,14 +66,8 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 		Vector2D vector = facingDirection.getVector(this.getLocation());
 		Location newLoc = this.getLocation().addVector(vector);
 
-		// See if anything blocks
+		// Get neighboring locatables
 		Vector<Locatable> thingsOnTile = this.getGameMap().get(newLoc);
-		for (Locatable neighbor : thingsOnTile) {
-			if (neighbor.blocks(this)) {
-				stopMoving();
-				return;
-			}
-		}
 		
 		// If no terrain or anything (edge of map), don't move
 		if (thingsOnTile.size() == 0) {
@@ -81,6 +75,14 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 			return;
 		}
 
+		// See if anything blocks
+		for (Locatable neighbor : thingsOnTile) {
+			if (neighbor.blocks(this)) {
+				stopMoving();
+				return;
+			}
+		}
+		
 		// Move is successful, do it
 		this.setLocation(newLoc);
 		//System.out.println("Entity moved to " + this.getLocation());
@@ -91,7 +93,7 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 		}
 
 		// Reset counter
-		this.tickCounter = getSpeed();
+		this.tickCounter = 100 - getSpeed();
 	}
 
 	//@Override

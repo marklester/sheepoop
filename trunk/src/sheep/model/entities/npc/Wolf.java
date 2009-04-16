@@ -1,6 +1,7 @@
 package sheep.model.entities.npc;
 
 import sheep.model.Model;
+import sheep.model.entities.StatType;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 import sheep.model.occupations.Sneak;
@@ -10,6 +11,6 @@ public class Wolf extends NPC {
 
 	public Wolf(GameMap map, Location loc, Model model) {
 		super("Wolf", map, loc, new Sneak(), model);
-		setAi(new DumbAI(this, map));
+		setAi(new DumbAI(this, model));
 	}
 }
