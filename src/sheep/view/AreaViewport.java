@@ -35,6 +35,7 @@ import sheep.view.util.ResourceLoader;
 public class AreaViewport extends JPanel {
 	private static final long serialVersionUID = 8296336314571261983L;
 
+	private static final boolean MAP_CREATE_MODE = false;
 	private static final int PAINTS_PER_SECOND = 30;
 	public  static int TILE_SIZE = 80;
 	private static int widthPerTile = (int) ((TILE_SIZE / 2) * (1 + Math.tan(Math.PI / 6)));
@@ -104,16 +105,27 @@ public class AreaViewport extends JPanel {
 
 		// Get the tiles that the Avatar can currently see completely
 		HashMap<Location, Vector<Locatable>> newTiles;
-		newTiles = gameMap.getMapSubset(center, radius);
-		// avatarsVisibleTiles = gameMap.getMap();
+		if (MAP_CREATE_MODE) {
+			newTiles = gameMap.getMap();
+		} else {
+			newTiles = gameMap.getMapSubset(center, radius);
+		}
 
 		// Loop through each tile, create and cache an image for it
-		for (Entry<Location, Vector<Locatable>> entry : newTiles.entrySet()) {
-			Location loc = entry.getKey();
-			List<Locatable> locatables = entry.getValue();
-
-			BufferedImage tileImage = createTileImage(loc, locatables);
-			addTotilesCache(loc, tileImage);
+		try {
+			for (Entry<Location, Vector<Locatable>> entry : newTiles.entrySet()) {
+				Location loc = entry.getKey();
+				Vector<Locatable> locatables = entry.getValue();
+				
+				if (locatables.size() == 0) {
+					continue;
+				}
+				
+				BufferedImage tileImage = createTileImage(loc, locatables);
+				addTotilesCache(loc, tileImage);
+			}
+		} catch(Exception e) {
+			// This is one way to stop concurrency exceptions
 		}
 
 		// Get all tile locations visible on the screen to draw, regardless of  
@@ -134,8 +146,12 @@ public class AreaViewport extends JPanel {
 			if (img == null) continue;
 			
 			Point pt = getTilePosition(loc, center);
-			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1));
 			g2.drawImage(img, pt.x, pt.y, null);
+			
+			if (MAP_CREATE_MODE) {
+				g2.setColor(Color.WHITE);
+				g2.drawString(loc.getX() + "," + loc.getY(), pt.x + 25, pt.y + 40);
+			}
 		}
 		
 	}
@@ -230,7 +246,12 @@ public class AreaViewport extends JPanel {
 		if (percentFreshness < 1 && percentFreshness > 0.5) {
 			Graphics2D g2 = ret.createGraphics();
 			BufferedImage blackImg = (BufferedImage) ResourceLoader.getInstance().getImage("BlackTile");
-			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.03f));
+			if (percentFreshness == 0.99f) {
+				// Fade faster the first time
+				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+			} else {			
+				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.03f));
+			}
 			g2.drawImage(blackImg, 0, 0, null);
 		}
 		
