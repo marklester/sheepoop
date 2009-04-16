@@ -107,6 +107,9 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	}
 
 	public boolean blocks(Entity entity) {
+		if (entity == this) {
+			return false;	// if a character tries to get off a boat, for example
+		}
 		return true;
 	}
 
