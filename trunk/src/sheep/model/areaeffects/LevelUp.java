@@ -25,7 +25,6 @@ public class LevelUp extends AreaEffect {
 				used = true;
 			}
 		}
-		System.out.println("NOT USED");
 	}
 
 	//@Override
