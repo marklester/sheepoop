@@ -21,7 +21,9 @@ import sheep.model.Model;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
+import sheep.view.overlays.HotBarConsole;
 import sheep.view.overlays.MessageConsole;
+import sheep.view.overlays.Overlay;
 import sheep.view.overlays.StatConsole;
 import sheep.view.util.ResourceLoader;
 
@@ -41,20 +43,21 @@ public class AreaViewport extends JPanel {
 	private final Model model;
 	private StatConsole stats;
 	private MessageConsole messageConsole;
+	private HotBarConsole hotBar;
 	private HashMap<Location, BufferedImage> tilesCache = new HashMap<Location, BufferedImage>();
 	private HashMap<Location, Float> tilesFreshness = new HashMap<Location, Float>();
+	private ArrayList<Overlay> overlays;
 
 	public AreaViewport(Model model, GameMap map) {
 		this.gameMap = map;
 		this.model = model;
 		
-		if (model == null) {
+		if (model == null)
 			throw new RuntimeException("AreaViewport was passed a null Model.");
-		}
-
-		if (map == null) {
+		if (map == null)
 			throw new RuntimeException("AreaViewport was passed a null GameMap.");
-		}
+
+		overlays = new ArrayList<Overlay>();	
 	}
 
 	/**
@@ -65,6 +68,10 @@ public class AreaViewport extends JPanel {
 		// Create StatConsole
 		this.stats = new StatConsole(20, this.getHeight() - StatConsole.getHeight() - 20, model.getAvatar());
 		this.messageConsole = new MessageConsole(20, 20, model.getAvatar());
+		
+		//overlays.add(hotBar);
+		overlays.add(messageConsole);
+		overlays.add(stats);	
 		
 		// Setup swing timer for repaints
 		int millisBetweenTicks = 1 / PAINTS_PER_SECOND * 1000;
@@ -83,8 +90,10 @@ public class AreaViewport extends JPanel {
 		drawTiles(g2);
 
 		// Paint children
-		stats.paint(g2);
-		messageConsole.paint(g2);
+		if (stats.isVisible())
+			stats.paint(g2);
+		if (messageConsole.isVisible())
+			messageConsole.paint(g2);
 	}
 
 	private void drawTiles(Graphics2D g2) {
@@ -240,4 +249,22 @@ public class AreaViewport extends JPanel {
 		}
 
 	}
+	
+	public void toggleVisibility() {
+		//We don't want to toggle Areaviewport...
+	}
+	
+	public StatConsole getStatConsole() {
+		return this.stats;
+	}
+	
+	public MessageConsole getMessageConsole() {
+		return this.messageConsole;
+	}
+
+//	@Override
+//	public void paint(Graphics2D g) {
+//		super.paint(g);
+//	}
+	
 }

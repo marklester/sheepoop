@@ -2,6 +2,7 @@ package sheep.view.overlays;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import sheep.model.entities.Avatar;
@@ -25,14 +26,12 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 	private static final int v_spacer = 21;	//vertical spacer
 	private static final int h_spacer = 220;	//horizontal spacer	
 	private static final int bar_width = 15;
-	private final Font font;
 	private final float max_life;
 	private final float max_mana;
 	
 	public StatConsole(int posX, int posY, Avatar avatar) {
 		super(posX, posY);
 		this.stats = avatar.getStats();
-		font = ResourceLoader.getInstance().getFont("statsFont");
 		max_life = stats.get(StatType.MAX_LIFE);
 		max_mana = stats.get(StatType.MAX_MANA);
 	}
@@ -44,8 +43,9 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 
 	@Override
 	public void paint(Graphics2D g) {
+		Composite original = g.getComposite();
 		int i = 1;
-		Font myFont = font.deriveFont(16f);
+		Font myFont = getFont().deriveFont(16f);
 		g.setFont(myFont);
 		g.setBackground(Color.BLACK);
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .6f));
@@ -93,13 +93,7 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 		g.setColor(Color.black);
 		g.fillRect(getWidth()-bar_width-10, getPosY(), bar_width, (int)manaHeight);
 		
-		/*
-		 * 
-		 * Still in progress. lifeHeight isn't calculating right. Done for the night.
-		 * 
-		 */
-		
-		// TODO - Jason, can you add some left padding to this so the text isn't on the very edge?
+		g.setComposite(original);
 	}
 	
 	public static int getWidth() {
