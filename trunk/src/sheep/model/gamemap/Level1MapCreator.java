@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sheep.model.Model;
+import sheep.model.areaeffects.HealDamage;
 import sheep.model.areaeffects.LevelUp;
+import sheep.model.areaeffects.TakeDamage;
 import sheep.model.entities.Vehicle;
 import sheep.model.entities.npc.Wolf;
 
@@ -50,6 +52,13 @@ public class Level1MapCreator extends MapCreator {
 		Location loc3 = new Location(6,7);
 		map.add(loc3, new Decal("LevelUp",map,loc3));
 		map.add(loc3, new LevelUp(map,loc3));
+		
+		loc3 = new Location(6,8);
+		map.add(loc3, new Decal("HealDamage",map,loc3));
+		map.add(loc3, new HealDamage(map,loc3,1,1));
+		loc3 = new Location(6,9);
+		map.add(loc3, new TakeDamage(map,loc3,1,1));
+		map.add(loc3, new Decal("TakeDamage",map,loc3));
 		return map;
 	}
 	
