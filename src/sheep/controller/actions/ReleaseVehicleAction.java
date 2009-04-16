@@ -6,10 +6,10 @@ import java.util.List;
 import javax.swing.AbstractAction;
 
 import sheep.model.Model;
+import sheep.model.entities.Avatar;
 import sheep.model.entities.Entity;
 import sheep.model.entities.Vehicle;
 import sheep.model.gamemap.Locatable;
-import sheep.model.terrains.Water;
 
 /**
  * Make the avatar get out of a vehicle
@@ -29,9 +29,10 @@ public class ReleaseVehicleAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Entity mover = model.getMover();
+		Avatar avatar = model.getAvatar();
 		
 		// Do nothing if the avatar isn't in a vehicle
-		if (!(mover instanceof Vehicle)) {
+		if (mover == avatar) {
 			return;
 		}
 		Vehicle vehicle = (Vehicle) mover;
@@ -40,7 +41,7 @@ public class ReleaseVehicleAction extends AbstractAction {
 		// go on by itself
 		List<Locatable> thingsOnMyTile = model.getGameMap().get(vehicle.getLocation());
 		for (Locatable locatable : thingsOnMyTile) {
-			if (locatable.blocks(model.getAvatar())) {
+			if (locatable.blocks(avatar)) {
 				return;
 			}
 		}
