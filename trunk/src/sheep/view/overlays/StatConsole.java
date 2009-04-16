@@ -22,7 +22,7 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 	private CharacterStats stats;
 	private static final int width = 300;
 	private static final int height = 200; 
-	private static final int v_spacer = 25;	//vertical spacer
+	private static final int v_spacer = 21;	//vertical spacer
 	private static final int h_spacer = 220;	//horizontal spacer	
 	private static final int bar_width = 15;
 	private final Font font;
@@ -58,6 +58,9 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 		g.drawString("Experience", getPosX(), getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.EXPERIENCE)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
+		g.drawString("Level", getPosX(), getPosY() + v_spacer*i);
+		g.drawString(Integer.toString(stats.get(StatType.LEVEL)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
+		
 		g.drawString("Strength", getPosX(), getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.STRENGTH)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
@@ -66,6 +69,9 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 		
 		g.drawString("Intellect", getPosX(), getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.STRENGTH)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
+		
+		g.drawString("Speed", getPosX(), getPosY() + v_spacer*i);
+		g.drawString(Integer.toString(stats.get(StatType.SPEED)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
 		g.drawString("Offensive Rating", getPosX(), getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.OFFENSIVE_RATING)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
