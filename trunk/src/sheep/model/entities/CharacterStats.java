@@ -34,10 +34,18 @@ public class CharacterStats implements Cloneable, Serializable {
 		int strength = stats.get(StatType.STRENGTH);
 		int level = stats.get(StatType.LEVEL);
 		
-		stats.put(StatType.BASE_DEFENSIVE_RATING, agility+level*3);
+		int baseDefense = agility + level*3;
+		stats.put(StatType.BASE_DEFENSIVE_RATING, baseDefense);
+		int defenseBonus = stats.get(StatType.DEFENSIVE_BONUS);
+		stats.put(StatType.DEFENSIVE_RATING, baseDefense+defenseBonus);
 		stats.put(StatType.MAX_LIFE, hardiness*2+level*hardiness/5);
 		stats.put(StatType.MAX_MANA, intellect*2+level*intellect/5);
-		stats.put(StatType.BASE_OFFENSIVE_RATING, strength*2+level*strength/5);
+		int baseOffense = strength*2+level*strength/5;
+		int offenseBonus = stats.get(StatType.OFFENSIVE_BONUS);
+		stats.put(StatType.BASE_OFFENSIVE_RATING, baseOffense);
+		stats.put(StatType.OFFENSIVE_RATING, baseOffense+offenseBonus);
+		
+		
 		
 		//See if character is dead and take appropriate actions
 		if((stats.get(StatType.DAMAGE)>0)&&(stats.get(StatType.DAMAGE)>(stats.get(StatType.MAX_LIFE))))
