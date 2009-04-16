@@ -29,6 +29,7 @@ public class ResourceLoader {
 	private static final String FONTS_DIR = "res/fonts/";
 	private static final String ITEMS_DIR = IMG_DIR + "items/";
 	private static final String DECALS_DIR = IMG_DIR+"decals/";
+	private static final String WEAP_DIR = ITEMS_DIR + "weapons/";
 	/**
 	 * This will be the central place to input any IO related filenames. The entire application should use this 
 	 * class to access images. Any welcome screen images should be manually put into the imageMap in this 
@@ -70,6 +71,9 @@ public class ResourceLoader {
 		fileMap.put("LevelUp", DECALS_DIR+"levelup.png");
 		fileMap.put("HealDamage", DECALS_DIR+"healdamage.png");
 		fileMap.put("TakeDamage", DECALS_DIR+"takedamage.png");
+		//Weapons
+		fileMap.put("Crossbow", WEAP_DIR + "xbow.png");
+		fileMap.put("xbowbolt", WEAP_DIR+"xbowbolt.png");
 		//Welcome Screen images
 		imageMap.put("WelcomeScreenBG", getImage("WelcomeScreenBG"));
 		imageMap.put("newGame", getImage("newGame"));
