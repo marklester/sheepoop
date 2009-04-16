@@ -30,8 +30,9 @@ public class CrossBow extends LongRange {
 		}
 		else
 		{
-			Vector2D myVector = getUser().getFacingDirection().getVector(getLocation());
-			Location attackingTile = new Location(getLocation().getX()+(int)myVector.getX(),getLocation().getY()+(int)myVector.getY());
+			Location userLoc = getUser().getLocation();
+			Vector2D myVector = getUser().getFacingDirection().getVector(userLoc);
+			Location attackingTile = new Location(userLoc.getX()+(int)myVector.getX(),userLoc.getY()+(int)myVector.getY());
 			List<Locatable> targets = getGameMap().get(attackingTile);
 			boolean blocked = false;
 			Projectile myProj = new Projectile("xbowbolt",getGameMap(),attackingTile,this,getUser().getFacingDirection(),5);

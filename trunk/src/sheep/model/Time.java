@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * 
@@ -17,15 +18,15 @@ public class Time implements Serializable {
 
 	private static final int TICKS_PER_SECOND = 30;
 	private static Time instance = new Time();
-	private List<TimeObserver> observers;
+	private ConcurrentLinkedQueue<TimeObserver> observers;
 	transient private Timer timer = new Timer();
 	private boolean isPaused;
 
 	private Time() {
 		this.isPaused = true;
 
-		List<TimeObserver> observers = new ArrayList<TimeObserver>();
-		this.observers = Collections.synchronizedList(observers);
+		ConcurrentLinkedQueue<TimeObserver> observers = new ConcurrentLinkedQueue<TimeObserver>();
+		this.observers = observers;
 	}
 
 	public static Time getInstance() {
@@ -67,11 +68,11 @@ public class Time implements Serializable {
 	}
 
 	public void registerObserver(TimeObserver observer) {
-		synchronized (observers) {
+//		synchronized (observers) {
 			if (!observers.contains(observer)) {
 				observers.add(observer);
 			}
-		}
+//		}
 	}
 
 	public void removeObserver(TimeObserver observer) {
@@ -79,11 +80,11 @@ public class Time implements Serializable {
 	}
 
 	public void notifyObservers() {
-		synchronized (observers) {
+//		synchronized (observers) {
 			for (TimeObserver observer : this.observers) {
 				observer.tick();
 			}
-		}
+//		}
 	}
 
 	private class TickTimeTask extends TimerTask {
