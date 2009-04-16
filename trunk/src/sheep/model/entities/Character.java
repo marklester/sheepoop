@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
-import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
@@ -19,8 +18,8 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 
 	private static final long serialVersionUID = 1069820547179793745L;
 	
-	private Inventory inventory;
 	private Occupation occupation;
+	private Inventory inventory;
 	private CharacterStats stats;
 	private Weapon weapon;
 	private Map<BodyPart, Armor> armor;
@@ -200,6 +199,11 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	public void weaponDamage(int damage)
 	{
 		affectStat(StatType.DAMAGE, damage);
+	}
+	
+	public int getSkill( PassiveSkill skill)
+	{
+		return passiveSkills.get( skill );
 	}
 	
 	public CharacterStats getStats() {

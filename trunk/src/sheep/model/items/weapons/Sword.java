@@ -9,7 +9,7 @@ public class Sword extends OneHanded {
 	private static final long serialVersionUID = -5514383778390944563L;
 	
 	public Sword(GameMap map, Location loc) {
-		super("Sword", map, loc);
+		super("Sword", map, loc, 15);
 	}
 	
 }
