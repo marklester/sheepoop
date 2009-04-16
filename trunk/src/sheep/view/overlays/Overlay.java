@@ -3,7 +3,6 @@ package sheep.view.overlays;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-import sheep.view.Toggleable;
 import sheep.view.util.ResourceLoader;
 
 /**
