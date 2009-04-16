@@ -3,7 +3,7 @@ package sheep.model.items.weapons;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 
-public class Knife extends Melee {
+public class Knife extends OneHanded {
 
 	public Knife(GameMap map, Location loc) {
 		super("Knife", map, loc);

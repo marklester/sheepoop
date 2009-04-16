@@ -4,7 +4,7 @@ import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 
 
-public class Trident extends Melee {
+public class Trident extends TwoHanded {
 
 	private static final long serialVersionUID = -2314195467271773528L;
 	

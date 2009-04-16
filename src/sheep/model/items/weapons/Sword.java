@@ -4,7 +4,7 @@ import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 
 
-public class Sword extends Melee {
+public class Sword extends OneHanded {
 
 	private static final long serialVersionUID = -5514383778390944563L;
 	

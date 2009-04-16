@@ -1,12 +1,11 @@
 package sheep.model.items.armor;
 
 import sheep.model.entities.BodyPart;
-import sheep.model.entities.Entity;
+import sheep.model.entities.Character;
 import sheep.model.entities.StatType;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 import sheep.model.items.Takeable;
-import sheep.model.entities.Character;
 
 public abstract class Armor extends Takeable {
 	
@@ -21,7 +20,7 @@ public abstract class Armor extends Takeable {
 		this.armorBonus = armorBonus;
 	}
 	
-	public void use(Entity entity)
+	public void use(Character entity)
 	{
 		entity.equip(this);
 	}

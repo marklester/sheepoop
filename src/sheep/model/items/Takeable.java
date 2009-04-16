@@ -24,7 +24,7 @@ public abstract class Takeable extends Item {
 		}
 	}
 
-	public abstract void use(Entity entity);
+	public abstract void use(Character entity);
 
 	public boolean blocks(Entity entity) {
 		return false;
