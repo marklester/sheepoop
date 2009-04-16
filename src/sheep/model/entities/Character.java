@@ -200,7 +200,11 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	{
 		affectStat(StatType.DAMAGE, damage);
 	}
-	
+	@Override
+	public void hitWith(Weapon w)
+	{
+		w.applyEffect(this);
+	}
 	public int getSkill( PassiveSkill skill)
 	{
 		return passiveSkills.get( skill );

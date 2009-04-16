@@ -2,14 +2,17 @@ package sheep.model.items.weapons;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
 import sheep.model.entities.StatType;
 import sheep.model.gamemap.GameMap;
+import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
 import sheep.model.items.Takeable;
 import sheep.model.skills.PassiveSkill;
+import sheep.util.math.Vector2D;
 
 public abstract class Weapon extends Takeable implements ActionListener {
 	
@@ -53,9 +56,23 @@ public abstract class Weapon extends Takeable implements ActionListener {
 			
 			enemy.affectStat( StatType.LIFE, totalDamage );
 		}
+		else
+		{
+			Vector2D myVector = user.getFacingDirection().getVector(getLocation());
+			Location attackingTile = new Location(getLocation().getX()+(int)myVector.getX(),getLocation().getY()+(int)myVector.getY());
+			List<Locatable> targets = getGameMap().get(attackingTile);
+			for(Locatable l: targets)
+			{
+				l.hitWith(this);
+			}
+		}
 	}
 	public void applyEffect(Entity e)
 	{
 		e.weaponDamage(baseDamage* user.getSkill(skill));
+	}
+	public void applyEffect(Character c)
+	{
+		c.weaponDamage(baseDamage* user.getSkill(skill));
 	}
 }
