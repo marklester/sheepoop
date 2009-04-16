@@ -1,7 +1,6 @@
 package sheep.model.areaeffects;
 
 import sheep.model.entities.Entity;
-import sheep.model.entities.StatType;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 /**

@@ -18,7 +18,8 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 
 	private static final long serialVersionUID = 1069820547179793745L;
 
-	private Occupation occupation;
+	private final Occupation occupation;
+	private final Location startingLocation;
 	private Inventory inventory;
 	private CharacterStats stats;
 	private Weapon weapon;
@@ -32,34 +33,35 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 
 	public Character(String id, GameMap map, Location loc, Occupation occupation) {
 		super(id, map, loc);
+		this.startingLocation = loc;
 		this.occupation = occupation;
 		this.performableSkills = occupation.clonePerformableSkills();
 		this.stats = occupation.cloneStats();
 		this.passiveSkills = occupation.clonePassiveSkills();
-		stats.calculateDerivedStatistics();
 		this.inventory = new Inventory();
-		for (PerformableSkill ps : performableSkills)
+		for (PerformableSkill ps : performableSkills) {
 			ps.setCharacter(this);
+		}
+		stats.setCharacter(this);
+		stats.calculateDerivedStatistics();
 	}
 
 	public void accept(LocatableVisitor v) {
 		v.visit(this);
 	}
 
-	/**
-	 * call weapon.perform(this)
-	 */
-	public void attack() {
-		// TODO
-		throw new UnsupportedOperationException();
-	}
-
 	public int getRadiusOfVisibility() {
+		if (getStat(StatType.LIFE) == 0) {
+			return 0;
+		}
 		return Math.max(1, 6 - getStat(StatType.MAX_LIFE) / getStat(StatType.LIFE));
 	}
 
+	/**
+	 * Teleport back to starting point.  This should only be called by CharacterStats.
+	 */
 	public void die() {
-		// TODO
+		this.setLocation(this.startingLocation);
 	}
 	
 	public void equip(Weapon w) {
