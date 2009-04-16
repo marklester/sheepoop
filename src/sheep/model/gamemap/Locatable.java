@@ -3,6 +3,7 @@ package sheep.model.gamemap;
 import java.io.Serializable;
 
 import sheep.model.entities.Entity;
+import sheep.model.items.weapons.Projectile;
 
 /**
  * 
@@ -40,6 +41,15 @@ public abstract class Locatable implements Serializable {
 	 */
 	public boolean blocks(Entity entity) {
 		return false;
+	}
+	public boolean blocks(Projectile p)
+	{
+		return false;
+	}
+	
+	public void hit(int damage)
+	{
+		//Default is to do nothing
 	}
 
 	public String getID() {
