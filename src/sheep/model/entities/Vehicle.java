@@ -37,7 +37,10 @@ public class Vehicle extends Entity {
 	}
 
 	public void affectStat(StatType stat, int changeAmt) {
-		throw new UnsupportedOperationException();
+		if(driver!=null)
+		{
+			driver.affectStat(stat, changeAmt);
+		}
 	}
 
 	public int getSpeed() {
