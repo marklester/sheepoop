@@ -56,6 +56,6 @@ public abstract class Weapon extends Takeable implements ActionListener {
 	}
 	public void applyEffect(Entity e)
 	{
-		
+		e.weaponDamage(baseDamage* user.getSkill(skill));
 	}
 }
