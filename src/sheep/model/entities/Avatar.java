@@ -17,6 +17,14 @@ public class Avatar extends Character {
 		this.model = model;
 		
 		new CrossBow(map,loc).use(this);	// TODO for testing
+		CrossBow a = new CrossBow(map,loc);
+		CrossBow b = new CrossBow(map,loc);
+		CrossBow c = new CrossBow(map,loc);
+		CrossBow d = new CrossBow(map,loc);
+		this.addToInventory(a);
+		this.addToInventory(b);
+		this.addToInventory(c);
+		this.addToInventory(d);
 	}
 
 	public int getRadiusOfVisibility() {
