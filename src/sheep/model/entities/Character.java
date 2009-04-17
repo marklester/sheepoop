@@ -1,5 +1,6 @@
 package sheep.model.entities;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -39,6 +40,7 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 		this.stats = occupation.cloneStats();
 		this.passiveSkills = occupation.clonePassiveSkills();
 		this.inventory = new Inventory();
+		this.armor = new HashMap<BodyPart,Armor>();
 		for (PerformableSkill ps : performableSkills) {
 			ps.setCharacter(this);
 		}
