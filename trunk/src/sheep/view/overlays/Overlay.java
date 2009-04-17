@@ -14,13 +14,12 @@ public abstract class Overlay {
 	private int posX;
 	private int posY;
 	private boolean isVisible = false;
-	private Font font;
+	private static Font font = ResourceLoader.getInstance().getFont("statsFont");
 
 	public Overlay(int posX, int posY) {
 		this.posX = posX;
 		this.posY = posY;
 		isVisible = true;
-		this.font = ResourceLoader.getInstance().getFont("statsFont");
 	}
 
 	public abstract void paint(Graphics2D g);
@@ -41,8 +40,8 @@ public abstract class Overlay {
 		isVisible = !isVisible;
 	}
 	
-	public Font getFont() {
-		return this.font;
+	public static Font getFont() {
+		return font;
 	}
 	
 }
