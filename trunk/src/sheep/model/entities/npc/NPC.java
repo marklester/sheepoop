@@ -50,4 +50,9 @@ public class NPC extends Character {
 			ai.bumpedIntoAvatar(model.getAvatar());
 		}
 	}
+
+	@Override
+	public void die() {
+		
+	}
 }

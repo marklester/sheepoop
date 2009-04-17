@@ -27,4 +27,5 @@ public enum StatType {
 	ARMOR_RATING, 
 	MAX_MANA, 
 	MAX_LIFE;
+	
 }

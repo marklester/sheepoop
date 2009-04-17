@@ -15,7 +15,7 @@ import sheep.model.occupations.Occupation;
 import sheep.model.skills.PassiveSkill;
 import sheep.model.skills.PerformableSkill;
 
-public class Character extends Entity implements TalkMessageObservable, InventoryChangeObservable {
+public abstract class Character extends Entity implements TalkMessageObservable, InventoryChangeObservable {
 
 	private static final long serialVersionUID = 1069820547179793745L;
 
@@ -51,21 +51,9 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 	public void accept(LocatableVisitor v) {
 		v.visit(this);
 	}
-
-	public int getRadiusOfVisibility() {
-		if (getStat(StatType.LIFE) == 0) {
-			return 0;
-		}
-		return Math.max(1, 7 - getStat(StatType.MAX_LIFE) / getStat(StatType.LIFE));
-	}
-
-	/**
-	 * Teleport back to starting point.  This should only be called by CharacterStats.
-	 */
-	public void die() {
-		this.setLocation(this.startingLocation);
-	}
 	
+	public abstract void die();
+
 	public void equip(Weapon w) {
 		unequipWeapon();
 		weapon = w;
@@ -241,6 +229,10 @@ public class Character extends Entity implements TalkMessageObservable, Inventor
 
 	public Weapon getEquippedWeapon() {
 		return weapon;
+	}
+	
+	public Location getStartingLocation() {
+		return startingLocation;
 	}
 
 }

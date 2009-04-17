@@ -30,9 +30,12 @@ public class Model implements Serializable {
 		time.start();
 	}
 
-	public void setState(GameStateType state) {
-		GameStateChange msg = new GameStateChange(this.gameState, state);
-		this.gameState = state;
+	public void setState(GameStateType newState) {
+		if (newState == GameStateType.GAME_OVER) {
+			time.pause();
+		}
+		GameStateChange msg = new GameStateChange(this.gameState, newState);
+		this.gameState = newState;
 		notifyGameStateChangeObservers(msg);
 	}
 

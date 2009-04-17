@@ -17,6 +17,7 @@ import sheep.controller.actions.TogglePauseGameplayAction;
 import sheep.controller.actions.UseWeaponAction;
 import sheep.model.GameStateChange;
 import sheep.model.GameStateObserver;
+import sheep.model.GameStateType;
 import sheep.model.Model;
 import sheep.model.gamemap.Direction;
 import sheep.view.View;
@@ -41,6 +42,8 @@ public class Controller implements GameStateObserver {
 		actionMap = view.getAreaViewport().getActionMap();
 
 		setKeyBindings();
+		
+		model.registerObserver(this);
 		model.startTime();
 	}
 
@@ -116,6 +119,13 @@ public class Controller implements GameStateObserver {
 	 * from the user before the game can continue, or the game may be over.
 	 */
 	public void update(GameStateChange msg) {
-		
+		switch(msg.getNewState()) {
+		case GAME_OVER:
+			// TODO we may need to disable all the keyboard inputs EXCEPT esc=exit
+			view.gameOver();
+			break;
+		default:
+				
+		}
 	}
 }

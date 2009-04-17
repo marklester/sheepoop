@@ -91,9 +91,10 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 		//System.out.println("Entity moved to " + this.getLocation());
 
 		// Touch everything on the location
+		try {
 		for (Locatable neighbor : thingsOnTile) {
 			neighbor.touch(this);
-		}
+		} }catch(Exception e){ }
 
 	}
 
