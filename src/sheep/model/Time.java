@@ -1,9 +1,6 @@
 package sheep.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -38,23 +35,24 @@ public class Time implements Serializable {
 	}
 
 	public void pause() {
-		
-		if( timer != null)
-		{
+
+		if (timer != null) {
 			timer.cancel();
-			//once you call cancel on a timer, you can no longer schedule tasks on it.
+			// once you call cancel on a timer, you can no longer schedule tasks
+			// on it.
 			timer = null;
 		}
-		
+
 		this.isPaused = true;
 	}
 
 	public void start() {
-		
-		//because timers can't be serialized, it might be null, despite how impossible it seems
-		if( timer == null)
+
+		// because timers can't be serialized, it might be null, despite how
+		// impossible it seems
+		if (timer == null)
 			timer = new Timer();
-		
+
 		// Make sure Timer isn't already going
 		if (!isPaused) {
 			return;
@@ -68,11 +66,10 @@ public class Time implements Serializable {
 	}
 
 	public void registerObserver(TimeObserver observer) {
-//		synchronized (observers) {
-			if (!observers.contains(observer)) {
-				observers.add(observer);
-			}
-//		}
+		if (!observers.contains(observer)) {
+			observers.add(observer);
+		}
+
 	}
 
 	public void removeObserver(TimeObserver observer) {
@@ -80,11 +77,11 @@ public class Time implements Serializable {
 	}
 
 	public void notifyObservers() {
-//		synchronized (observers) {
-			for (TimeObserver observer : this.observers) {
-				observer.tick();
-			}
-//		}
+
+		for (TimeObserver observer : this.observers) {
+			observer.tick();
+		}
+
 	}
 
 	private class TickTimeTask extends TimerTask {

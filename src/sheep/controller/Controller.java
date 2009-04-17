@@ -113,9 +113,9 @@ public class Controller implements GameStateObserver {
 
 	/**
 	 * Notification of change in game state, for example we need to get a input
-	 * from the user before the game can continue
+	 * from the user before the game can continue, or the game may be over.
 	 */
 	public void update(GameStateChange msg) {
-
+		
 	}
 }

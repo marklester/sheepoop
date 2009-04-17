@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -13,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 import java.util.Map.Entry;
 
@@ -107,7 +107,7 @@ public class AreaViewport extends JPanel {
 		int radius = model.getAvatar().getRadiusOfVisibility();
 
 		// Get the tiles that the Avatar can currently see completely
-		HashMap<Location, Vector<Locatable>> newTiles;
+		Map<Location, Vector<Locatable>> newTiles;
 		if (MAP_CREATE_MODE) {
 			newTiles = gameMap.getMap();
 		} else {
@@ -129,6 +129,7 @@ public class AreaViewport extends JPanel {
 			}
 		} catch(Exception e) {
 			// This is one way to stop concurrency exceptions
+			System.out.println("A concurrency exception was caught.");
 		}
 
 		// Get all tile locations visible on the screen to draw, regardless of  
@@ -261,19 +262,6 @@ public class AreaViewport extends JPanel {
 		
 		return ret;
 	}
-
-	private class TimerAction implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			repaint();
-		}
-
-	}
-	
-	public void toggleVisibility() {
-		//We don't want to toggle Areaviewport...
-	}
 	
 	public StatConsole getStatConsole() {
 		return this.stats;
@@ -283,9 +271,13 @@ public class AreaViewport extends JPanel {
 		return this.messageConsole;
 	}
 
-//	@Override
-//	public void paint(Graphics2D g) {
-//		super.paint(g);
-//	}
+	private class TimerAction implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			repaint();
+		}
+
+	}
 	
 }
