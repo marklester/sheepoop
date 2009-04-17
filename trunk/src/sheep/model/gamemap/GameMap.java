@@ -2,7 +2,9 @@ package sheep.model.gamemap;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
+import java.util.concurrent.ConcurrentHashMap;
 
 import sheep.util.math.Vector2D;
 
@@ -14,10 +16,10 @@ public class GameMap implements Serializable {
 
 	private static final long serialVersionUID = -6604540494991148223L;
 
-	private HashMap<Location, Vector<Locatable>> map;
-
+	private Map<Location, Vector<Locatable>> map = new ConcurrentHashMap<Location, Vector<Locatable>>();
+ 
 	public GameMap() {
-		this.map = new HashMap<Location, Vector<Locatable>>();
+
 	}
 
 	public Vector<Locatable> get(Location loc) {
@@ -54,7 +56,7 @@ public class GameMap implements Serializable {
 		}
 	}
 
-	public HashMap<Location, Vector<Locatable>> getMap() {
+	public Map<Location, Vector<Locatable>> getMap() {
 		return this.map;
 	}
 	
