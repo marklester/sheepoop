@@ -44,6 +44,7 @@ public class ResourceLoader {
 		fontMap = new HashMap<String, Font>();
 		fileMap.put("placeHolder", ICON_DIR + "placeHolder.png");
 		fileMap.put("WelcomeScreenBG", IMG_DIR + "mapbg.gif");
+		fileMap.put("sideBarBG", IMG_DIR + "sideBarBG.png");
 		fileMap.put("newGame", ICON_DIR + "newgame.png");
 		fileMap.put("loadGame", ICON_DIR + "loadgame.png");
 		fileMap.put("quitGame", ICON_DIR + "quitgame.png");

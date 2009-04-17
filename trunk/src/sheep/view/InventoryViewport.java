@@ -3,6 +3,7 @@ package sheep.view;
 import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -10,6 +11,7 @@ import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,13 +38,14 @@ import sheep.view.util.ResourceLoader;
 public class InventoryViewport extends Viewport {
 
 	private static final long serialVersionUID = 6239705575773260473L;
-	public static final Color BG_COLOR = Color.black;
+	public static final Color BG_COLOR = Color.RED;
 	public static final Dimension BUT_SIZE = new Dimension(AreaViewport.TILE_SIZE, AreaViewport.TILE_SIZE);
 	private Inventory inv;
 	private JPanel topPnl;
 	private JPanel botPnl;
 	private ResourceLoader resLoader;
-	private Font myFont= Overlay.getFont();;
+	private Font myFont= Overlay.getFont().deriveFont(20f);
+	private Image bgImage;
 	
 	public InventoryViewport(Avatar av, int w, int h) {
 		super(av, w, h);
@@ -51,14 +54,23 @@ public class InventoryViewport extends Viewport {
 		resLoader = ResourceLoader.getInstance();
 		setupTop();
 		setupBottom();
+		bgImage = resLoader.getImage("sideBarBG");
 	}
 	
-	public void paint(Graphics g) {
-		super.paint(g);
+	
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if (bgImage != null)
+			g.drawImage(bgImage, 0,0,this.getWidth(),this.getHeight(),this);
+		/*
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setBackground(BG_COLOR);
+		Composite original = g2.getComposite();
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .3f));
+		g2.setComposite(original);
+		*/
 	}
+	
 	
 	
 	public void setupTop() {
@@ -66,7 +78,6 @@ public class InventoryViewport extends Viewport {
 		topPnl.setOpaque(false);
 		
 		ImageIcon placeHolder = resLoader.getImageIcon("invPlaceHolder");
-		this.setFont(myFont.deriveFont(20f));
 		
 		//Weapon
 		ImageIcon w_img;
@@ -112,42 +123,84 @@ public class InventoryViewport extends Viewport {
 
 		//Weapon - Create Labels, JButtons, and constraints on the layout
 		GridBagConstraints c = new GridBagConstraints();
-		c.gridy = 0; c.gridx = 0;
-		topPnl.add(new JLabel("Eqipped "), c);
+		c.gridy = 0; c.gridx = 0; c.anchor = c.LINE_START;
+		JLabel eq_la = new JLabel("Weapon");
+		eq_la.setFont(myFont);
+		eq_la.setForeground(Color.white);
+		topPnl.add(eq_la, c);
 		
 		GridBagConstraints c2 = new GridBagConstraints();
-		c2.gridy = 0; c2.gridx = 1;
+		c2.gridy = 0; c2.gridx = 1; c2.anchor = c2.CENTER;
 		JButton w_but = new JButton(w_img);
 		w_but.setOpaque(false);
 		w_but.setPreferredSize(BUT_SIZE);
+		w_but.setContentAreaFilled(false);
 		topPnl.add(w_but, c2);
 
 		//Aux - Create Labels, JButtons, and constraints on the layout
 		GridBagConstraints c3 = new GridBagConstraints();
-		c3.gridy = 1; c3.gridx = 0;
-		topPnl.add(new JLabel("Auxiliary "), c3);
+		c3.gridy = 1; c3.gridx = 0; c3.anchor = c3.LINE_START;
+		JLabel au_la = new JLabel("Auxiliary");
+		au_la.setFont(myFont);
+		au_la.setForeground(Color.white);
+		topPnl.add(au_la, c3);
 		
 		GridBagConstraints c4 = new GridBagConstraints();
-		c4.gridy = 1; c4.gridx = 1;
-		topPnl.add(new JButton(au_img), c4);
-		
-		//Chest - Create Labels, JButtons, and constraints on the layout
+		c4.gridy = 1; c4.gridx = 1; c4.anchor = c4.CENTER;
+		JButton au_but = new JButton(au_img);
+		au_but.setOpaque(false);
+		au_but.setPreferredSize(BUT_SIZE);
+		au_but.setContentAreaFilled(false);
+		topPnl.add(au_but, c4);
+
+		//Head- Create Labels, JButtons, and constraints on the layout
 		GridBagConstraints c5 = new GridBagConstraints();
-		c5.gridy = 2; c5.gridx = 0;
-		topPnl.add(new JLabel("Chest "), c5);
+		c5.gridy = 2; c5.gridx = 0; c5.anchor = c5.LINE_START;
+		JLabel he_la = new JLabel("Head");
+		he_la.setFont(myFont);
+		he_la.setForeground(Color.white);
+		topPnl.add(he_la, c5);
 		
 		GridBagConstraints c6 = new GridBagConstraints();
-		c6.gridy = 2; c6.gridx = 1;
-		topPnl.add(new JButton(ch_img), c6);
+		c6.gridy = 2; c6.gridx = 1; c6.anchor = c6.CENTER;
+		JButton he_but = new JButton(he_img);
+		he_but.setOpaque(false);
+		he_but.setContentAreaFilled(false);
+		he_but.setPreferredSize(BUT_SIZE);
+		topPnl.add(he_but, c6);
+		
+		
+		//Chest - Create Labels, JButtons, and constraints on the layout
+		GridBagConstraints c6a = new GridBagConstraints();
+		c6a.gridy = 3; c6a.gridx = 0; c6a.anchor = c6a.LINE_START;
+		JLabel ch_la = new JLabel("Chest");
+		ch_la.setFont(myFont);
+		ch_la.setForeground(Color.white);
+		topPnl.add(ch_la, c6a);
+		
+		GridBagConstraints c7 = new GridBagConstraints();
+		c7.gridy = 3; c7.gridx = 1; c7.anchor = c7.CENTER;
+		JButton ch_but = new JButton(ch_img);
+		ch_but.setOpaque(false);
+		ch_but.setContentAreaFilled(false);
+		ch_but.setPreferredSize(BUT_SIZE);
+		topPnl.add(ch_but, c7);
 		
 		//Feet - Create Labels, JButtons, and constraints on the layout
-		GridBagConstraints c7 = new GridBagConstraints();
-		c7.gridy = 3; c7.gridx = 0;
-		topPnl.add(new JLabel("Feet "), c7);
-		
 		GridBagConstraints c8 = new GridBagConstraints();
-		c8.gridy = 3; c8.gridx = 1;
-		topPnl.add(new JButton(fe_img), c8);
+		c8.gridy = 4; c8.gridx = 0; c8.anchor = c8.LINE_START;
+		JLabel fe_la = new JLabel("Feet");
+		fe_la.setFont(myFont);
+		fe_la.setForeground(Color.white);
+		topPnl.add(fe_la, c8);
+		
+		GridBagConstraints c9 = new GridBagConstraints();
+		c9.gridy = 4; c9.gridx = 1; c9.anchor = c9.CENTER;
+		JButton fe_but = new JButton(fe_img);
+		fe_but.setContentAreaFilled(false);
+		fe_but.setOpaque(false);
+		fe_but.setPreferredSize(BUT_SIZE);
+		topPnl.add(fe_but, c9);
 		
 
 		this.add(topPnl, BorderLayout.NORTH);		
@@ -160,7 +213,8 @@ public class InventoryViewport extends Viewport {
 		int cols = 3;
 		int rows = 5; //(int)inv.getSize() % cols;
 		botPnl = new JPanel(new GridLayout(rows,cols));
-		botPnl.setBackground(Color.red);
+		botPnl.setOpaque(false);
+		//botPnl.setBackground(Color.red);
 		botPnl.add(new JLabel("Items will go here"));
 		/*
 		for (Item item : inv.get()) {
