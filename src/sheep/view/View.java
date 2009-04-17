@@ -84,6 +84,7 @@ public class View extends JFrame {
 
 		// Tell viewports they can DO THEIR THANG
 		areaViewport.initialize();
+		areaViewport.setFocusable(true);
 	}
 
 	public void showTradeViewport() {
@@ -135,5 +136,6 @@ public class View extends JFrame {
 		this.gameOver = true;
 		areaViewport.stopPainting();
 		sidebar.setVisible(false);
+		this.validate();
 	}
 }
