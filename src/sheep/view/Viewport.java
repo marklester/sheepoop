@@ -11,7 +11,7 @@ public class Viewport extends JPanel {
 
 	private static final long serialVersionUID = -7115001668270029395L;
 	private Avatar avatar;
-	private boolean isVisible = true;
+	private boolean isVisible = false;
 
 	public Viewport(Avatar av){
 		this.avatar = av;

@@ -60,7 +60,6 @@ public class View extends JFrame {
 		// Create sidebar
 		sidebar = new JPanel();
 		sidebar.setOpaque(true);
-		sidebar.setBackground(Color.WHITE);
 		sidebar.setSize(new Dimension(SIDE_BAR_W, this.getHeight()));
 		this.getContentPane().add(sidebar, BorderLayout.EAST);
 		
@@ -101,7 +100,9 @@ public class View extends JFrame {
 		this.sidebar = invViewport;
 		this.getContentPane().add(sidebar, BorderLayout.EAST);
 		this.validate();
+		sidebar.setOpaque(false);
 		sidebar.setVisible(true);
+		invViewport.toggleVisibility();
 	}
 	
 	public AreaViewport getAreaViewport() {
