@@ -22,6 +22,7 @@ import sheep.controller.InventoryActionListener;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.BodyPart;
 import sheep.model.entities.Inventory;
+import sheep.model.items.Item;
 import sheep.model.items.armor.Armor;
 import sheep.model.items.weapons.Weapon;
 import sheep.view.overlays.Overlay;
@@ -29,10 +30,9 @@ import sheep.view.util.ResourceLoader;
 
 
 /*   JM
- *   NOT DONE. WAITING FOR INVENTORY TO BE COMPLETED
+ *
  *   TODO
  *     -Add action listener for the icons. 
- *     -Add eqipped weapons to the topPnl
 */
 
 public class InventoryViewport extends Viewport {
@@ -210,25 +210,25 @@ public class InventoryViewport extends Viewport {
 	}
 	
 	public void setupBottom() {
-		int cols = 3;
-		int rows = 5; //(int)inv.getSize() % cols;
-		botPnl = new JPanel(new GridLayout(rows,cols));
+		botPnl = new JPanel(new GridBagLayout());
+		Dimension d = this.getPreferredSize();
+		botPnl.setPreferredSize(new Dimension((int)d.getWidth(), (int)d.getHeight() / 2));
 		botPnl.setOpaque(false);
-		//botPnl.setBackground(Color.red);
-		botPnl.add(new JLabel("Items will go here"));
-		/*
+		
+		short cols = 2;
+		short x=0;
+		short y=0;
 		for (Item item : inv.get()) {
+			if (x == cols) 
+				{ x=0; y++; }
+			GridBagConstraints c = new GridBagConstraints();
+			c.gridx = x++; c.gridy = y;
 			JButton but = new JButton(resLoader.getImageIcon(item.getID()));
-			but.setSize(ICON_W,ICON_H);
-			botPnl.add(but);
+			but.setPreferredSize(BUT_SIZE);
+			but.setOpaque(false);
+			botPnl.add(but, c);
 		}
-		*/	
-			/*
-			 * NOT DONE... WAITING FOR A POPULATED INVENTORY BEFORE CODING MORE
-			 * Todo: 
-			 *   -Add action listener for theese icons. 
-			 *
-			 */
+		
 		this.add(botPnl, BorderLayout.SOUTH);
 		botPnl.setVisible(true);
 		
