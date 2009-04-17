@@ -1,8 +1,12 @@
 package sheep.view;
 
+import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
@@ -26,6 +30,7 @@ public class View extends JFrame {
 	private AreaViewport areaViewport;
 	private InventoryViewport invViewport;
 	private JPanel sidebar;
+	private boolean gameOver = false; 
 
 	public View(Model model) {
 		this.model = model;
@@ -112,5 +117,23 @@ public class View extends JFrame {
 	public InventoryViewport getInventoryViewport() {
 		return this.invViewport;
 	}
+	
+	@Override
+	public void paint(Graphics g1) {
+		super.paint(g1);
+		Graphics2D g = (Graphics2D) g1;
+		
+		if (gameOver) {
+			Font myFont = getFont().deriveFont(48f);
+			g.setFont(myFont);
+			g.setColor(Color.WHITE);
+			g.drawString("GAME OVER", this.getWidth() / 2 - 200, this.getHeight() / 2);
+		}
+	}
 
+	public void gameOver() {
+		this.gameOver = true;
+		areaViewport.stopPainting();
+		sidebar.setVisible(false);
+	}
 }

@@ -44,6 +44,7 @@ public class AreaViewport extends JPanel {
 	private static int heightPerTile = TILE_SIZE;
 	private final GameMap gameMap;
 	private final Model model;
+	private Timer repaintTimer;
 	private StatConsole stats;
 	private MessageConsole messageConsole;
 	private HotBarConsole hotBar;
@@ -51,6 +52,7 @@ public class AreaViewport extends JPanel {
 	private HashMap<Location, Long> tilesBirthday = new HashMap<Location, Long>();
 	private HashMap<Location, Integer> tilesTimesUsed = new HashMap<Location, Integer>();
 	private ArrayList<Overlay> overlays;
+	private boolean isPaused = false; 
 
 	public AreaViewport(Model model, GameMap map) {
 		this.gameMap = map;
@@ -79,9 +81,8 @@ public class AreaViewport extends JPanel {
 		
 		// Setup swing timer for repaints
 		int millisBetweenTicks = 1 / PAINTS_PER_SECOND * 1000;
-		Timer timer = new Timer(millisBetweenTicks, new TimerAction());
-		timer.start(); 
-
+		repaintTimer = new Timer(millisBetweenTicks, new TimerAction());
+		repaintTimer.start(); 
 	}
 
 	@Override
@@ -91,8 +92,10 @@ public class AreaViewport extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		
 		// Paint tiles
-		drawTiles(g2);
-
+		if (!isPaused) {
+			drawTiles(g2);
+		}
+		
 		// Paint children
 		if (stats.isVisible())
 			stats.paint(g2);
@@ -269,6 +272,11 @@ public class AreaViewport extends JPanel {
 	
 	public MessageConsole getMessageConsole() {
 		return this.messageConsole;
+	}
+	
+	public void stopPainting() {
+		isPaused = true;
+		repaintTimer.stop();
 	}
 
 	private class TimerAction implements ActionListener {
