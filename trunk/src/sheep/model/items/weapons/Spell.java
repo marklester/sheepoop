@@ -3,9 +3,9 @@ package sheep.model.items.weapons;
 import java.awt.event.ActionEvent;
 import java.util.List;
 
+import sheep.model.Model;
 import sheep.model.entities.Character;
 import sheep.model.entities.StatType;
-import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
 import sheep.model.skills.PassiveSkill;
@@ -17,8 +17,8 @@ public abstract class Spell extends Weapon {
 
 	private static final long serialVersionUID = -1606083256607931219L;
 	
-	public Spell(String id, GameMap map, Location loc, int baseDamage, PassiveSkill skill, int speed) {
-		super(id, map, loc, baseDamage, skill);
+	public Spell(String id, Model model, Location loc, int baseDamage, PassiveSkill skill, int speed) {
+		super(id, model, loc, baseDamage, skill);
 		mySpeed = speed;
 	}
 	@Override

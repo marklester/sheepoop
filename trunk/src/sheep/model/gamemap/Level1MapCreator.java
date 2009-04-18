@@ -76,11 +76,11 @@ public class Level1MapCreator extends MapCreator {
 
 		// Steel Wool Armor
 		loc3 = new Location(5, 8);
-		map.add(loc3, new SteelWool(map, loc3));
+		map.add(loc3, new SteelWool(model, loc3));
 
 		// Lighting spell
 		loc3 = new Location(5, 7);
-		map.add(loc3, new HeavyAxe(map, loc3));
+		map.add(loc3, new HeavyAxe(model, loc3));
 
 		return map;
 	}

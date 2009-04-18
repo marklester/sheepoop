@@ -3,9 +3,9 @@ package sheep.model.items.weapons;
 import java.awt.event.ActionEvent;
 import java.util.List;
 
+import sheep.model.Model;
 import sheep.model.entities.Character;
 import sheep.model.entities.StatType;
-import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
 import sheep.model.skills.PassiveSkill;
@@ -16,8 +16,8 @@ public abstract class LongRange extends Weapon {
 	String projectileId;
 	private static final long serialVersionUID = 6552089684638959608L;
 	
-	public LongRange(String projId, String id, GameMap map, Location loc, int baseDamage) {
-		super(id, map, loc, baseDamage, PassiveSkill.RANGED_WEAPON);
+	public LongRange(String projId, String id, Model model, Location loc, int baseDamage) {
+		super(id, model, loc, baseDamage, PassiveSkill.RANGED_WEAPON);
 		projectileId = projId;
 	}
 

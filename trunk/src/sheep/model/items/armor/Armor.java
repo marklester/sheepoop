@@ -1,9 +1,9 @@
 package sheep.model.items.armor;
 
+import sheep.model.Model;
 import sheep.model.entities.BodyPart;
 import sheep.model.entities.Character;
 import sheep.model.entities.StatType;
-import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 import sheep.model.items.Takeable;
 
@@ -14,8 +14,8 @@ public abstract class Armor extends Takeable {
 	private static final long serialVersionUID = 6475799713135184079L;
 	private BodyPart where;
 	
-	public Armor(String id, GameMap map, Location loc, BodyPart bodyLocation, int armorBonus) {
-		super(id, map, loc);
+	public Armor(String id, Model model, Location loc, BodyPart bodyLocation, int armorBonus) {
+		super(id, model, loc);
 		where = bodyLocation;
 		this.armorBonus = armorBonus;
 	}

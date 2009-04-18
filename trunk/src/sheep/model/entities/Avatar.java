@@ -17,16 +17,6 @@ public class Avatar extends Character {
 	public Avatar(String id, GameMap map, Location loc, Occupation occupation, Model model) {
 		super(id, map, loc, occupation);
 		this.model = model;
-		
-		new SpearGun(map,loc).use(this);	// TODO for testing
-		CrossBow a = new CrossBow(map,loc);
-		CrossBow b = new CrossBow(map,loc);
-		CrossBow c = new CrossBow(map,loc);
-		CrossBow d = new CrossBow(map,loc);
-		this.addToInventory(a);
-		this.addToInventory(b);
-		this.addToInventory(c);
-		this.addToInventory(d);
 	}
 
 	public int getRadiusOfVisibility() {
