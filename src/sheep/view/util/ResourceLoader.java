@@ -100,6 +100,10 @@ public class ResourceLoader {
 		fileMap.put("Syringe", ONE_SHOT_DIR + "speed.png");
 		fileMap.put("Beer", ONE_SHOT_DIR + "beer.png");
 		fileMap.put("Key", ONE_SHOT_DIR + "key.png");
+		//trap
+		fileMap.put("Hidden Trap", ITEMS_DIR+"hidden.png");
+		fileMap.put("Activated Trap", ITEMS_DIR+"activatedtrap.png");
+		fileMap.put("Detected Trap", ITEMS_DIR+"detectedtrap.png");
 	}
 	
 	public static ResourceLoader getInstance() {
