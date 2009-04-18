@@ -29,6 +29,7 @@ public abstract class Occupation implements Serializable {
 		this.passiveSkills = new HashMap<PassiveSkill, Integer>();
 		setInitialCharacterStat(StatType.MANA_USED,0);
 		setInitialCharacterStat(StatType.STEALTH,0);
+		setInitialCharacterStat(StatType.MONEY,0);
 	}
 
 	public CharacterStats cloneStats() {
