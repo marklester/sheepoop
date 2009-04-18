@@ -47,5 +47,9 @@ public class WelcomeActionListener implements ActionListener {
 				welcomeView.dispose();
 			}
 		}
+		else if( command.equals( WelcomeView.SETTINGS ) )
+		{
+			welcomeView.displaySettingsView();
+		}
 	}
 }

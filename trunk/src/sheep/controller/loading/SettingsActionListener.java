@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 public class SettingsActionListener implements ActionListener {
 
 	public SettingsActionListener() {
-		throw new UnsupportedOperationException();
 	}
 
 	@Override

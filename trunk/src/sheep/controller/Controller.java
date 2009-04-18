@@ -1,8 +1,10 @@
 package sheep.controller;
 
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 import javax.swing.ActionMap;
+import javax.swing.ComponentInputMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
@@ -20,6 +22,8 @@ import sheep.model.GameStateChange;
 import sheep.model.GameStateObserver;
 import sheep.model.Model;
 import sheep.model.gamemap.Direction;
+import sheep.model.loading.KeySettings;
+import sheep.model.loading.SettingsSaver;
 import sheep.view.View;
 
 /**
@@ -33,13 +37,15 @@ public class Controller implements GameStateObserver {
 	private InputMap inputMap;
 	private ActionMap actionMap;
 
-	public Controller(Model model, View view) {
+	public Controller(Model model, View view) { 
 		this.model = model;
 		this.view = view;
 
 		// Get input and action maps
-		inputMap = view.getAreaViewport().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-		actionMap = view.getAreaViewport().getActionMap();
+		inputMap = new InputMap();
+		actionMap = new ActionMap();
+//		inputMap = view.getAreaViewport().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+//		actionMap = view.getAreaViewport().getActionMap();
 
 		setKeyBindings();
 
@@ -52,79 +58,105 @@ public class Controller implements GameStateObserver {
 	 */
 	private void setKeyBindings() {
 		// TODO we need to somehow deal with saving/loading/initial keybindings
-
+		
+		KeySettings ks = new KeySettings();
+		
 		// Quit
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "quit");
+		ks.put("quit", KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0) );
 		actionMap.put("quit", new QuitAction());
 
 		// Movement
 		actionMap.put("stopMoving", new StopMovingAction(model));
 		actionMap.put("moveN", new StartMovingAction(model, Direction.N));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD8, 0, false), "moveN");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD8, 0, true), "stopMoving");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, false), "moveN");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, true), "stopMoving");
-		actionMap.put("moveNE", new StartMovingAction(model, Direction.NE));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD9, 0, false), "moveNE");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD9, 0, true), "stopMoving");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, false), "moveNE");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, true), "stopMoving");
-		actionMap.put("moveSE", new StartMovingAction(model, Direction.SE));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD3, 0, false), "moveSE");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD3, 0, true), "stopMoving");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, false), "moveSE");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, true), "stopMoving");
-		actionMap.put("moveS", new StartMovingAction(model, Direction.S));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD2, 0, false), "moveS");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD2, 0, true), "stopMoving");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, false), "moveS");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, true), "stopMoving");
-		actionMap.put("moveSW", new StartMovingAction(model, Direction.SW));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD1, 0, false), "moveSW");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD1, 0, true), "stopMoving");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, false), "moveSW");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, true), "stopMoving");
-		actionMap.put("moveNW", new StartMovingAction(model, Direction.NW));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD7, 0, false), "moveNW");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD7, 0, true), "stopMoving");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, false), "moveNW");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, true), "stopMoving");
+		
+		ks.put( "moveN", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD8, 0, false) );
+		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD8, 0, true) );
+		ks.put( "moveN",KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, false) );
+		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, true) );		
 
+		actionMap.put("moveNE", new StartMovingAction(model, Direction.NE));
+		
+		ks.put( "moveNE", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD9, 0, false) );
+		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD9, 0, true) );
+		ks.put( "moveNE", KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, false) );
+		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, true) );
+		
+		actionMap.put("moveSE", new StartMovingAction(model, Direction.SE));
+		
+		ks.put( "moveSE", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD3, 0, false) );
+		ks.put( "stopMoving",KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD3, 0, true) );
+		ks.put( "moveSE", KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, false) );
+		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, true) );
+		
+		actionMap.put("moveS", new StartMovingAction(model, Direction.S));
+
+		ks.put( "moveS", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD2, 0, false) );
+		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD2, 0, true) );
+		ks.put( "moveS", KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, false) );
+		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, true) );
+		
+		actionMap.put("moveSW", new StartMovingAction(model, Direction.SW));
+		
+		ks.put( "moveSW", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD1, 0, false) );
+		ks.put("stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD1, 0, true) );
+		ks.put( "moveSW", KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, false) );
+		ks.put("stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, true) );
+		
+		actionMap.put("moveNW", new StartMovingAction(model, Direction.NW));
+
+		ks.put( "moveNW", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD7, 0, false) );
+		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD7, 0, true) );
+		ks.put( "moveNW", KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, false) );
+		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, true) );
+		
 		// Saving
 		actionMap.put("saveGame", new SaveGameAction(model));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK), "saveGame");
+		ks.put( "saveGame", KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK) );
 
 		// pause/unpause
 		actionMap.put("togglePause", new TogglePauseGameplayAction(model));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_P, 0), "togglePause");
+		ks.put( "togglePause", KeyStroke.getKeyStroke(KeyEvent.VK_P, 0) );
 
 		// Release vehicle
 		actionMap.put("releaseVehicle", new ReleaseVehicleAction(model));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_R, 0), "releaseVehicle");
+		ks.put( "releaseVehicle", KeyStroke.getKeyStroke(KeyEvent.VK_R, 0) );
 
 		// Toggling
 		actionMap.put("toggleStatView", new ToggleAction(view.getAreaViewport().getStatConsole()));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F10, 0), "toggleStatView");
-		actionMap.put("toggleMessage", new ToggleAction(view.getAreaViewport().getMessageConsole()));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0), "toggleMessage");
-		actionMap.put("togglePerformableSkills", new ToggleAction(view.getAreaViewport().getHotBarConsole()));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F12, 0), "togglePerformableSkills");
+		ks.put( "toggleStatView",KeyStroke.getKeyStroke(KeyEvent.VK_F10, 0));
 
+		actionMap.put("toggleMessage", new ToggleAction(view.getAreaViewport().getMessageConsole()));
+		ks.put( "toggleMessage", KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0) );
+		
+		actionMap.put("togglePerformableSkills", new ToggleAction(view.getAreaViewport().getHotBarConsole()));
+		ks.put( "togglePerformableSkills", KeyStroke.getKeyStroke(KeyEvent.VK_F12, 0) );
+		
 		// Use Weapon
 		actionMap.put("useWeapon", new UseWeaponAction(model.getAvatar()));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), "useWeapon");
+		ks.put( "useWeapon", KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0) );
 		
 		// Use Skill
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_1, 0), "useSkill1");
+		ks.put( "useSkill1", KeyStroke.getKeyStroke(KeyEvent.VK_1, 0) );
 		actionMap.put("useSkill1", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL1));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0), "useSkill2");
+		
+		ks.put( "useSkill2", KeyStroke.getKeyStroke(KeyEvent.VK_2, 0) );
 		actionMap.put("useSkill2", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL2));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0), "useSkill3");
+		
+		ks.put( "useSkill3", KeyStroke.getKeyStroke(KeyEvent.VK_3, 0) );
 		actionMap.put("useSkill3", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL3));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0), "useSkill4");
+		
+		ks.put( "useSkill4", KeyStroke.getKeyStroke(KeyEvent.VK_4, 0) );
 		actionMap.put("useSkill4", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL4));
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_5, 0), "useSkill5");
+
+		ks.put( "useSkill5", KeyStroke.getKeyStroke(KeyEvent.VK_5, 0) );
 		actionMap.put("useSkill5", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL5));
+		
+		//used to generate default keybindings
+//		SettingsSaver ss = new SettingsSaver( new File( "res/defaultSettings.psettings" ) );
+//		ss.save( ks );
+		
+		view.getAreaViewport().setInputMap( JComponent.WHEN_IN_FOCUSED_WINDOW, ks.getComponentInputMap( view.getAreaViewport() ) );
+		view.getAreaViewport().setActionMap( actionMap );
 	}
 
 	/**
