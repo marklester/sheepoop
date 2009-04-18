@@ -5,12 +5,12 @@ import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Font;
 import java.awt.Graphics2D;
+
 import sheep.model.entities.Avatar;
 import sheep.model.entities.CharacterStats;
 import sheep.model.entities.StatChange;
 import sheep.model.entities.StatChangeObserver;
 import sheep.model.entities.StatType;
-import sheep.view.util.ResourceLoader;
 
 /**
  * 
@@ -47,10 +47,10 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 		int i = 1;
 		Font myFont = getFont().deriveFont(16f);
 		g.setFont(myFont);
-		g.setBackground(Color.BLACK);
+		g.setColor(Color.BLACK);
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .6f));
 		g.fillRect(getPosX(), getPosY(), width, height);
-		g.setColor(Color.white);
+		g.setColor(Color.WHITE);
 		
 		g.drawString("Lives", getPosX()+2, getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.LIVES_LEFT)), getPosX() + h_spacer, getPosY() + v_spacer*i++);

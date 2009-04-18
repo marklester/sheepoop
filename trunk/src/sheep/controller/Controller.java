@@ -43,7 +43,7 @@ public class Controller implements GameStateObserver {
 		actionMap = view.getAreaViewport().getActionMap();
 
 		setKeyBindings();
-		
+
 		model.registerObserver(this);
 		model.startTime();
 	}
@@ -94,15 +94,15 @@ public class Controller implements GameStateObserver {
 		// Saving
 		actionMap.put("saveGame", new SaveGameAction(model));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK), "saveGame");
-		
+
 		// pause/unpause
-		actionMap.put( "togglePause", new TogglePauseGameplayAction( model ) );
-		inputMap.put( KeyStroke.getKeyStroke(KeyEvent.VK_P, 0), "togglePause" ); 
+		actionMap.put("togglePause", new TogglePauseGameplayAction(model));
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_P, 0), "togglePause");
 
 		// Release vehicle
 		actionMap.put("releaseVehicle", new ReleaseVehicleAction(model));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_R, 0), "releaseVehicle");
-		
+
 		// Toggling
 		actionMap.put("toggleStatView", new ToggleAction(view.getAreaViewport().getStatConsole()));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F10, 0), "toggleStatView");
@@ -112,17 +112,18 @@ public class Controller implements GameStateObserver {
 		// Use Weapon
 		actionMap.put("useWeapon", new UseWeaponAction(model.getAvatar()));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), "useWeapon");
+		
 		// Use Skill
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_1, 0), "useSkill1");
-		actionMap.put("useSkill1", new UseSkillAction(model.getAvatar(),UseSkillAction.SKILL1));
+		actionMap.put("useSkill1", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL1));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0), "useSkill2");
-		actionMap.put("useSkill2", new UseSkillAction(model.getAvatar(),UseSkillAction.SKILL2));
+		actionMap.put("useSkill2", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL2));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0), "useSkill3");
-		actionMap.put("useSkill3", new UseSkillAction(model.getAvatar(),UseSkillAction.SKILL3));
+		actionMap.put("useSkill3", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL3));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0), "useSkill4");
-		actionMap.put("useSkill4", new UseSkillAction(model.getAvatar(),UseSkillAction.SKILL4));
+		actionMap.put("useSkill4", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL4));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_5, 0), "useSkill5");
-		actionMap.put("useSkill5", new UseSkillAction(model.getAvatar(),UseSkillAction.SKILL5));
+		actionMap.put("useSkill5", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL5));
 	}
 
 	/**
@@ -130,13 +131,14 @@ public class Controller implements GameStateObserver {
 	 * from the user before the game can continue, or the game may be over.
 	 */
 	public void update(GameStateChange msg) {
-		switch(msg.getNewState()) {
+		switch (msg.getNewState()) {
 		case GAME_OVER:
-			// TODO we may need to disable all the keyboard inputs EXCEPT esc=exit
+			// TODO we may need to disable all the keyboard inputs EXCEPT
+			// esc=exit
 			view.gameOver();
 			break;
 		default:
-				
+
 		}
 	}
 }

@@ -74,8 +74,9 @@ public class AreaViewport extends JPanel {
 		// Create StatConsole
 		this.stats = new StatConsole(20, this.getHeight() - StatConsole.getHeight() - 20, model.getAvatar());
 		this.messageConsole = new MessageConsole(20, 20, model.getAvatar());
+		this.hotBar = new HotBarConsole(this.getWidth() - HotBarConsole.getWidth() - 20, 20, model.getAvatar());
 		
-		//overlays.add(hotBar);
+		overlays.add(hotBar);
 		overlays.add(messageConsole);
 		overlays.add(stats);	
 		
@@ -97,10 +98,15 @@ public class AreaViewport extends JPanel {
 		}
 		
 		// Paint children
-		if (stats.isVisible())
-			stats.paint(g2);
-		if (messageConsole.isVisible())
+		if (messageConsole.isVisible()) {
 			messageConsole.paint(g2);
+		}
+		if (stats.isVisible()) {
+			stats.paint(g2);
+		}
+		if (hotBar.isVisible()) {
+			hotBar.paint(g2);
+		}
 	}
 
 	private void drawTiles(Graphics2D g2) {

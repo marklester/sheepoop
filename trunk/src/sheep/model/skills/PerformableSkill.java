@@ -51,7 +51,8 @@ public abstract class PerformableSkill extends AbstractAction implements Seriali
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getId() {
+	
+	public String getID() {
 		return id;
 	}
 }
