@@ -31,8 +31,10 @@ public abstract class Weapon extends Takeable implements ActionListener {
 	 * this should equip the weapon
 	 */
 	public void use(Character user) {
+		if(user.getSkill(skill)>=0){
 		this.user = user;
 		user.equip(this);
+		}
 	}
 
 	public Character getUser()
