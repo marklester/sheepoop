@@ -39,7 +39,7 @@ public abstract class Spell extends Weapon {
 			Location attackingTile = new Location(getLocation().getX()+(int)myVector.getX(),getLocation().getY()+(int)myVector.getY());
 			List<Locatable> targets = getGameMap().get(attackingTile);
 			boolean blocked = false;
-			Projectile myProj = new Projectile(getID(),getGameMap(),attackingTile,this,getUser().getFacingDirection(),mySpeed);
+			Projectile myProj = new Projectile(getID(),getModel(),attackingTile,this,getUser().getFacingDirection(),mySpeed);
 			for(Locatable l: targets)
 			{
 				l.hitWith(this);

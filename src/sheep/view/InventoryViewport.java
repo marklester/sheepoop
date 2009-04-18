@@ -1,13 +1,10 @@
 package sheep.view;
 
-import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Composite;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -22,6 +19,8 @@ import sheep.controller.InventoryActionListener;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.BodyPart;
 import sheep.model.entities.Inventory;
+import sheep.model.entities.InventoryChange;
+import sheep.model.entities.InventoryChangeObserver;
 import sheep.model.items.Item;
 import sheep.model.items.armor.Armor;
 import sheep.model.items.weapons.Weapon;
@@ -35,7 +34,7 @@ import sheep.view.util.ResourceLoader;
  *     -Add action listener for the icons. 
 */
 
-public class InventoryViewport extends Viewport {
+public class InventoryViewport extends Viewport implements InventoryChangeObserver {
 
 	private static final long serialVersionUID = 6239705575773260473L;
 	public static final Color BG_COLOR = Color.RED;
@@ -46,6 +45,7 @@ public class InventoryViewport extends Viewport {
 	private ResourceLoader resLoader;
 	private Font myFont= Overlay.getFont().deriveFont(20f);
 	private Image bgImage;
+	private InventoryActionListener actionListener;
 	
 	public InventoryViewport(Avatar av, int w, int h) {
 		super(av, w, h);
@@ -55,6 +55,8 @@ public class InventoryViewport extends Viewport {
 		setupTop();
 		setupBottom();
 		bgImage = resLoader.getImage("sideBarBG");
+		
+		av.registerInventoryChangeObserver(this);
 	}
 	
 	
@@ -226,16 +228,23 @@ public class InventoryViewport extends Viewport {
 			JButton but = new JButton(resLoader.getImageIcon(item.getID()));
 			but.setPreferredSize(BUT_SIZE);
 			but.setOpaque(false);
+			but.setActionCommand(item.getID());
+			but.addActionListener(this.actionListener);
 			botPnl.add(but, c);
 		}
 		
 		this.add(botPnl, BorderLayout.SOUTH);
 		botPnl.setVisible(true);
-		
+		System.out.println("inventory view refreshed");
 	}
 	
 	
 	public void setActionListener(InventoryActionListener al) {
-		throw new UnsupportedOperationException();
+		this.actionListener = al;
+	}
+
+	@Override
+	public void update(InventoryChange msg) {
+		
 	}
 }

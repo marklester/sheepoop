@@ -38,7 +38,7 @@ public abstract class LongRange extends Weapon {
 			Location attackingTile = new Location(userLoc.getX()+(int)myVector.getX(),userLoc.getY()+(int)myVector.getY());
 			List<Locatable> targets = getGameMap().get(attackingTile);
 			boolean blocked = false;
-			Projectile myProj = new Projectile(projectileId,getGameMap(),attackingTile,this,getUser().getFacingDirection(),5);
+			Projectile myProj = new Projectile(projectileId,this.getModel(),attackingTile,this,getUser().getFacingDirection(),5);
 			for(Locatable l: targets)
 			{
 				l.hitWith(this);

@@ -22,7 +22,7 @@ import sheep.model.Model;
 public class View extends JFrame {
 
 	private static final long serialVersionUID = 2015429639828183235L;
-	private static final boolean FULL_SCREEN_MODE = true;
+	private static final boolean FULL_SCREEN_MODE = false;
 	private static final int SIDE_BAR_W = 300;
 	private final Model model;
 	private TradeViewport tradeViewport;

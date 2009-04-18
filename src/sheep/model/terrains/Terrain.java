@@ -1,7 +1,7 @@
 package sheep.model.terrains;
 
+import sheep.model.Model;
 import sheep.model.entities.Entity;
-import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
@@ -12,8 +12,8 @@ import sheep.model.gamemap.Location;
  */
 public abstract class Terrain extends Locatable {
 
-	public Terrain(String id, GameMap map, Location loc) {
-		super(id, map, loc);
+	public Terrain(String id, Model model, Location loc) {
+		super(id, model, loc);
 	}
 
 	private static final long serialVersionUID = 7489043479583637533L;

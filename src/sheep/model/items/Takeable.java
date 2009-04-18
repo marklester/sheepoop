@@ -3,6 +3,7 @@ package sheep.model.items;
 import sheep.model.Model;
 import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
+import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 
 public abstract class Takeable extends Item {
@@ -12,7 +13,7 @@ public abstract class Takeable extends Item {
 	private final Model model;
 	
 	public Takeable(String id, Model model, Location loc) {
-		super(id, model.getGameMap(), loc);
+		super(id, model, loc);
 		this.model = model;
 	}
 
@@ -22,7 +23,10 @@ public abstract class Takeable extends Item {
 		if (entity == model.getAvatar()) {
 			Character character = (Character) entity;
 			character.addToInventory(this);
-			getGameMap().remove(getLocation(), this);
+			GameMap theMap = getGameMap();
+			System.out.println(".");
+			System.out.println(theMap);
+			theMap.remove(getLocation(), this);
 		}
 	}
 

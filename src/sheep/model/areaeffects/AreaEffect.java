@@ -1,8 +1,8 @@
 package sheep.model.areaeffects;
 
+import sheep.model.Model;
 import sheep.model.TimeObserver;
 import sheep.model.entities.Entity;
-import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
@@ -18,8 +18,8 @@ public abstract class AreaEffect extends Locatable implements TimeObserver {
 	public int rate;
 	private Entity entity;
 
-	public AreaEffect(String id, GameMap map, Location loc) {
-		super(id, map, loc);
+	public AreaEffect(String id, Model model, Location loc) {
+		super(id, model, loc);
 	}
 
 	public void accept(LocatableVisitor v) {

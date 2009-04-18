@@ -1,9 +1,9 @@
 package sheep.model.areaeffects;
 
+import sheep.model.Model;
 import sheep.model.Time;
 import sheep.model.entities.Entity;
 import sheep.model.entities.StatType;
-import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 
 public class TakeDamage extends AreaEffect {
@@ -15,8 +15,8 @@ public class TakeDamage extends AreaEffect {
 	private int ticksToEffect;
 	
 	
-	public TakeDamage(GameMap map, Location loc, int frequency, int severity) {
-		super("TakeDamage", map, loc);
+	public TakeDamage(Model model, Location loc, int frequency, int severity) {
+		super("TakeDamage", model, loc);
 		myFrequency = frequency;
 		mySeverity = severity;
 		ticksToEffect = myFrequency;
