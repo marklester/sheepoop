@@ -13,6 +13,6 @@ public class Grass extends Terrain {
 	}
 
 	public boolean blocks(Entity entity) {
-		return false;
+		return !entity.canWalk();
 	}
 }

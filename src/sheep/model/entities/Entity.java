@@ -27,6 +27,12 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 		return isMoving;
 	}
 
+	public abstract boolean canSwim();
+	
+	public abstract boolean canClimb();
+	
+	public abstract boolean canWalk();
+	
 	private long tickCounter = 0;
 
 	public Entity(String id, Model model, Location loc) {

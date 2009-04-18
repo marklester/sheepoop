@@ -66,6 +66,7 @@ public class ResourceLoader {
 		fileMap.put("Sneak", SPRITES_DIR + "sheep1.gif");
 		fileMap.put("statsFont", FONTS_DIR + "statsFont.ttf");
 		fileMap.put("Boat", SPRITES_DIR + "boat1.gif");
+		fileMap.put("Plane", SPRITES_DIR + "plane.png");
 		fileMap.put("Wolf", SPRITES_DIR+"wolf.png");
 		
 		//Items
@@ -90,6 +91,7 @@ public class ResourceLoader {
 		fileMap.put("spear", WEAP_DIR + "spear.png");
 		fileMap.put("Heavy Axe", WEAP_DIR + "heavyaxe.png");
 		fileMap.put("Long Sword", WEAP_DIR + "longsword.png");
+		fileMap.put("Trident", WEAP_DIR + "trident.png");
 		fileMap.put("Short Sword", WEAP_DIR + "shortsword.png");
 		fileMap.put("Nunchucks", WEAP_DIR + "nunchucks.png");
 		fileMap.put("Hammer", WEAP_DIR + "hammer.png");

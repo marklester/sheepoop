@@ -9,14 +9,14 @@ import sheep.model.gamemap.Location;
 import sheep.model.items.armor.Armor;
 import sheep.model.items.weapons.Weapon;
 
-public class Vehicle extends Entity {
+public abstract class Vehicle extends Entity {
 
 	private static final long serialVersionUID = -7212987040280996071L;
 	private final Model model;
 	private HashMap<VehicleStatType, Integer> stats = new HashMap<VehicleStatType, Integer>();
 	private Character driver;
 	private Vector<StatChangeObserver> statChangeObservers = new Vector<StatChangeObserver>();
-
+	
 	public Vehicle(String id, Model model, Location loc) {
 		super(id, model, loc);
 		this.model = model;
