@@ -116,7 +116,7 @@ public class AreaViewport extends JPanel {
 		int radius = model.getAvatar().getRadiusOfVisibility();
 
 		// Get the tiles that the Avatar can currently see completely
-		Map<Location, Vector<Locatable>> newTiles;
+		Map<Location, List<Locatable>> newTiles;
 		if (MAP_CREATE_MODE) {
 			newTiles = gameMap.getMap();
 		} else {
@@ -125,9 +125,9 @@ public class AreaViewport extends JPanel {
 
 		// Loop through each tile, create and cache an image for it
 		try {
-			for (Entry<Location, Vector<Locatable>> entry : newTiles.entrySet()) {
+			for (Entry<Location, List<Locatable>> entry : newTiles.entrySet()) {
 				Location loc = entry.getKey();
-				Vector<Locatable> locatables = entry.getValue();
+				List<Locatable> locatables = entry.getValue();
 				
 				if (locatables.size() == 0) {
 					continue;

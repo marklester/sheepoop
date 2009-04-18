@@ -1,5 +1,6 @@
 package sheep.model.items.weapons;
 
+import java.util.List;
 import java.util.Vector;
 
 import sheep.model.Model;
@@ -52,7 +53,7 @@ public class Projectile extends Locatable implements Moveable
 		Location newLoc = this.getLocation().addVector(vector);
 
 		// See if anything blocks
-		Vector<Locatable> thingsOnTile = this.getGameMap().get(newLoc);
+		List<Locatable> thingsOnTile = this.getGameMap().get(newLoc);
 		if(!thingsOnTile.isEmpty())
 		{
 			for (Locatable neighbor : thingsOnTile) {

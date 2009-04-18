@@ -1,6 +1,7 @@
 package sheep.model.skills;
 
 import java.awt.event.ActionEvent;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import java.util.Map.Entry;
@@ -21,10 +22,10 @@ public class DetectTrap extends PerformableSkill {
 		int radius = getCharacter().getSkill(PassiveSkill.DETECT_TRAP);
 		// Get neighboring locatables
 		getCharacter().hearMessage(getCharacter(), " is detecting Traps");
-		Map<Location, Vector<Locatable>> tiles = getCharacter().getGameMap().getMapSubset(center, radius);
-		for (Entry<Location, Vector<Locatable>> entry : tiles.entrySet()) {
+		Map<Location, List<Locatable>> tiles = getCharacter().getGameMap().getMapSubset(center, radius);
+		for (Entry<Location, List<Locatable>> entry : tiles.entrySet()) {
 			Location loc = entry.getKey();
-			Vector<Locatable> locatables = entry.getValue();
+			List<Locatable> locatables = entry.getValue();
 			for(Locatable l : locatables){
 				if(l instanceof Trap){
 					((Trap) l).showTrap();
