@@ -7,6 +7,12 @@ import sheep.model.entities.Avatar;
 import sheep.model.entities.BodyPart;
 import sheep.model.items.Takeable;
 
+/**
+ * 
+ * @author Jason Mac
+ *
+ */
+
 public class EquipmentActionListener implements ActionListener {
 
 	private final Avatar avatar;
