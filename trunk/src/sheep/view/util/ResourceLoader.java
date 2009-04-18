@@ -88,6 +88,7 @@ public class ResourceLoader {
 		fileMap.put("spear", WEAP_DIR + "spear.png");
 		fileMap.put("Heavy Axe", WEAP_DIR + "heavyaxe.png");
 		fileMap.put("Long Sword", WEAP_DIR + "longsword.png");
+		fileMap.put("Short Sword", WEAP_DIR + "shortsword.png");
 	}
 	
 	public static ResourceLoader getInstance() {
