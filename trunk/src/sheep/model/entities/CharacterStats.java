@@ -13,9 +13,9 @@ public class CharacterStats implements Cloneable, Serializable {
 	public CharacterStats(HashMap<StatType, Integer> initialStats) {
 		this.stats = initialStats;
 	}
-
+	
 	public void change(StatType stat, int changeAmt) {
-		int oldAmt = this.stats.get(stat);
+		int oldAmt = get(stat);
 		int newAmt = oldAmt + changeAmt;
 		this.stats.put(stat, newAmt);
 		calculateDerivedStatistics();
@@ -26,26 +26,26 @@ public class CharacterStats implements Cloneable, Serializable {
 	}
 
 	public void calculateDerivedStatistics() {
-		stats.put(StatType.LEVEL, stats.get(StatType.EXPERIENCE) / 1000 + 1);
-		if (stats.get(StatType.DAMAGE) < 0) {
+		stats.put(StatType.LEVEL, get(StatType.EXPERIENCE) / 1000 + 1);
+		if (get(StatType.DAMAGE) < 0) {
 			stats.put(StatType.DAMAGE, 0);
 		}
 
-		int agility = stats.get(StatType.AGILITY);
-		int hardiness = stats.get(StatType.HARDINESS);
-		int intellect = stats.get(StatType.INTELLECT);
-		int strength = stats.get(StatType.STRENGTH);
-		int level = stats.get(StatType.LEVEL);
+		int agility = get(StatType.AGILITY);
+		int hardiness = get(StatType.HARDINESS);
+		int intellect = get(StatType.INTELLECT);
+		int strength = get(StatType.STRENGTH);
+		int level = get(StatType.LEVEL);
 
 		int baseDefense = agility + level * 3;
 		stats.put(StatType.BASE_DEFENSIVE_RATING, baseDefense);
-		int defenseBonus = stats.get(StatType.DEFENSIVE_BONUS);
+		int defenseBonus = get(StatType.DEFENSIVE_BONUS);
 		stats.put(StatType.DEFENSIVE_RATING, baseDefense + defenseBonus);
 		stats.put(StatType.MAX_LIFE, hardiness * 2 + level * hardiness / 5);
 		
 		int maxMana = intellect * 2 + level * intellect / 5;
 		stats.put(StatType.MAX_MANA, maxMana);
-		int manaUsed = stats.get(StatType.MANA_USED);
+		int manaUsed = get(StatType.MANA_USED);
 		if(manaUsed > maxMana)
 		{
 			manaUsed = maxMana;
@@ -56,21 +56,21 @@ public class CharacterStats implements Cloneable, Serializable {
 			manaUsed = 0;
 			stats.put(StatType.MANA_USED, 0);
 		}
-		stats.put(StatType.MANA, maxMana - stats.get(StatType.MANA_USED));
+		stats.put(StatType.MANA, maxMana - get(StatType.MANA_USED));
 		int baseOffense = strength * 2 + level * strength / 5;
-		int offenseBonus = stats.get(StatType.OFFENSIVE_BONUS);
+		int offenseBonus = get(StatType.OFFENSIVE_BONUS);
 		stats.put(StatType.BASE_OFFENSIVE_RATING, baseOffense);
 		stats.put(StatType.OFFENSIVE_RATING, baseOffense + offenseBonus);
 
 		// See if character is dead and take appropriate actions
-		if ((stats.get(StatType.DAMAGE) > 0) && (stats.get(StatType.DAMAGE) > (stats.get(StatType.MAX_LIFE)))) {
-			int oldLivesLeft = stats.get(StatType.LIVES_LEFT);
+		if ((get(StatType.DAMAGE) > 0) && (get(StatType.DAMAGE) > (get(StatType.MAX_LIFE)))) {
+			int oldLivesLeft = get(StatType.LIVES_LEFT);
 			stats.put(StatType.LIVES_LEFT, oldLivesLeft - 1);
 			stats.put(StatType.DAMAGE, 0);
 			character.die();
 		}
-		int damage = stats.get(StatType.DAMAGE);
-		int maxLife = stats.get(StatType.MAX_LIFE);
+		int damage = get(StatType.DAMAGE);
+		int maxLife = get(StatType.MAX_LIFE);
 
 		stats.put(StatType.LIFE, maxLife - damage);
 	}
