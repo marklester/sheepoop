@@ -15,12 +15,12 @@ import sheep.model.skills.PassiveSkill;
 import sheep.util.math.Vector2D;
 
 public abstract class Weapon extends Takeable implements ActionListener {
-	
+
 	private static final long serialVersionUID = -6972197855931649857L;
 	private PassiveSkill skill;
 	private Character user;
 	private int baseDamage;
-	
+
 	public Weapon(String id, Model model, Location loc, int baseDamage, PassiveSkill skill) {
 		super(id, model, loc);
 		this.skill = skill;
@@ -31,21 +31,20 @@ public abstract class Weapon extends Takeable implements ActionListener {
 	 * this should equip the weapon
 	 */
 	public void use(Character user) {
-		if(user.getSkill(skill)>=0){
-		this.user = user;
-		user.equip(this);
+		if (user.getSkill(skill) >= 0) {
+			this.user = user;
+			user.equip(this);
 		}
 	}
 
-	public Character getUser()
-	{
+	public Character getUser() {
 		return user;
 	}
-	
+
 	public PassiveSkill getSkill() {
 		return this.skill;
 	}
-	
+
 	public int getBaseDamage() {
 		return baseDamage;
 	}
@@ -56,30 +55,27 @@ public abstract class Weapon extends Takeable implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		Character enemy = user.getInteractingCharacter();
-		
-		if( enemy != null )
-		{
-			int totalDamage = (int) Math.floor( (double) getBaseDamage() * (  (double) user.getSkill( getSkill() ) ) );
-			
-			enemy.affectStat( StatType.LIFE, totalDamage );
-		}
-		else
-		{
+
+		if (enemy != null) {
+			int totalDamage = (int) Math.floor((double) getBaseDamage() * ((double) user.getSkill(getSkill())));
+
+			enemy.affectStat(StatType.LIFE, totalDamage);
+		} else {
 			Vector2D myVector = user.getFacingDirection().getVector(getLocation());
-			Location attackingTile = new Location(getLocation().getX()+(int)myVector.getX(),getLocation().getY()+(int)myVector.getY());
+			Location attackingTile = new Location(getLocation().getX() + (int) myVector.getX(), getLocation().getY()
+					+ (int) myVector.getY());
 			List<Locatable> targets = getGameMap().get(attackingTile);
-			for(Locatable l: targets)
-			{
+			for (Locatable l : targets) {
 				l.hitWith(this);
 			}
 		}
 	}
-	public void applyEffect(Entity e)
-	{
-		e.weaponDamage(baseDamage* user.getSkill(skill));
+
+	public void applyEffect(Entity e) {
+		e.weaponDamage(baseDamage * user.getSkill(skill));
 	}
-	public void applyEffect(Character c)
-	{
-		c.weaponDamage(baseDamage* user.getSkill(skill));
+
+	public void applyEffect(Character c) {
+		c.weaponDamage(baseDamage * user.getSkill(skill));
 	}
 }
