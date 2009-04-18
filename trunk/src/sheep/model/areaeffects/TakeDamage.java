@@ -14,7 +14,6 @@ public class TakeDamage extends AreaEffect {
 	private int mySeverity;
 	private int ticksToEffect;
 	
-	
 	public TakeDamage(Model model, Location loc, int frequency, int severity) {
 		super("TakeDamage", model, loc);
 		myFrequency = frequency;
@@ -29,22 +28,15 @@ public class TakeDamage extends AreaEffect {
 
 	@Override
 	public void tick() {
-		if(getLastEntity()==null)
-		{
+		if(getLastEntity()==null){
 			ticksToEffect = myFrequency;
-		}
-		else if(ticksToEffect>0)
-		{
+		}else if(ticksToEffect>0){
 			ticksToEffect--;
-		}
-		else
-		{
-			if(getLastEntity().getLocation().equals(this.getLocation()))
-			{
+		}else{
+			if(getLastEntity().getLocation().equals(this.getLocation())){
 				applyEffect(getLastEntity());
 			}
 			ticksToEffect=myFrequency;
 		}
 	}
-
 }
