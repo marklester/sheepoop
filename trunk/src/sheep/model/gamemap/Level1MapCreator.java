@@ -11,6 +11,7 @@ import sheep.model.areaeffects.Teleport;
 import sheep.model.entities.Vehicle;
 import sheep.model.entities.npc.AngryWolf;
 import sheep.model.entities.npc.Wolf;
+import sheep.model.items.Trap;
 import sheep.model.items.armor.SteelWool;
 import sheep.model.items.weapons.HeavyAxe;
 
@@ -67,7 +68,7 @@ public class Level1MapCreator extends MapCreator {
 		
 		// Trap decal (we need to make this a real trap)
 		loc3 = new Location(14, 8);
-		map.add(loc3, new Decal("Trap", model, loc3));
+		map.add(loc3, new Trap(model, loc3,20));
 
 		// Teleporter
 		loc3 = new Location(18, 1);
