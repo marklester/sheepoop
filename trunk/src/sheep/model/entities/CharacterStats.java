@@ -42,7 +42,21 @@ public class CharacterStats implements Cloneable, Serializable {
 		int defenseBonus = stats.get(StatType.DEFENSIVE_BONUS);
 		stats.put(StatType.DEFENSIVE_RATING, baseDefense + defenseBonus);
 		stats.put(StatType.MAX_LIFE, hardiness * 2 + level * hardiness / 5);
-		stats.put(StatType.MAX_MANA, intellect * 2 + level * intellect / 5);
+		
+		int maxMana = intellect * 2 + level * intellect / 5;
+		stats.put(StatType.MAX_MANA, maxMana);
+		int manaUsed = stats.get(StatType.MANA_USED);
+		if(manaUsed > maxMana)
+		{
+			manaUsed = maxMana;
+			stats.put(StatType.MANA_USED, manaUsed);
+		}
+		else if(manaUsed < 0)
+		{
+			manaUsed = 0;
+			stats.put(StatType.MANA_USED, 0);
+		}
+		stats.put(StatType.MANA, maxMana - stats.get(StatType.MANA_USED));
 		int baseOffense = strength * 2 + level * strength / 5;
 		int offenseBonus = stats.get(StatType.OFFENSIVE_BONUS);
 		stats.put(StatType.BASE_OFFENSIVE_RATING, baseOffense);
