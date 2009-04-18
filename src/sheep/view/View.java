@@ -1,6 +1,5 @@
 package sheep.view;
 
-import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -56,10 +55,22 @@ public class View extends JFrame {
 		this.setTitle("Sheepoop");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		// Set full screen
+		if (device.isFullScreenSupported() && FULL_SCREEN_MODE) {
+			setUndecorated(true);
+			device.setFullScreenWindow(this);
+		} else {
+			//this.setVisible(true);
+			//this.setExtendedState(Frame.MAXIMIZED_BOTH);
+			setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		}
+		this.setResizable(false);
+		
 		// Create area viewport
 		areaViewport = new AreaViewport(this.model, this.model.getGameMap());
 		areaViewport.setOpaque(true);
 		areaViewport.setBackground(Color.BLACK);
+		areaViewport.setSize(this.getWidth() - SIDE_BAR_W, this.getHeight());
 		this.getContentPane().add(areaViewport, BorderLayout.CENTER);
 		
 		// Create sidebar
@@ -67,24 +78,14 @@ public class View extends JFrame {
 		sidebar.setOpaque(true);
 		sidebar.setSize(new Dimension(SIDE_BAR_W, this.getHeight()));
 		this.getContentPane().add(sidebar, BorderLayout.EAST);
-		
-		// Set full screen
-		if (device.isFullScreenSupported() && FULL_SCREEN_MODE) {
-			setUndecorated(true);
-			setResizable(false);
-			device.setFullScreenWindow(this);
-			validate();
-		} else {
-			//this.setVisible(true);
-			//this.setExtendedState(Frame.MAXIMIZED_BOTH);
-			setSize(Toolkit.getDefaultToolkit().getScreenSize());
-			this.setVisible(true);
-		}
-		this.setResizable(false);
 
 		// Tell viewports they can DO THEIR THANG
 		areaViewport.initialize();
+		
+		// Show window
 		areaViewport.setFocusable(true);
+		validate();
+		this.setVisible(true);
 	}
 
 	public void showTradeViewport() {
