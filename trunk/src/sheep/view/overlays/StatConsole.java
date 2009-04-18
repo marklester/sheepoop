@@ -22,7 +22,7 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 
 	private CharacterStats stats;
 	private static final int width = 300;
-	private static final int height = 200; 
+	private static final int height = 220; 
 	private static final int v_spacer = 21;	//vertical spacer
 	private static final int h_spacer = 200;	//horizontal spacer	
 	private static final int bar_width = 15;
@@ -74,6 +74,9 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 		
 		g.drawString("Defensive Rating", getPosX()+2, getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.DEFENSIVE_RATING)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
+		
+		g.drawString("Armor Rating", getPosX()+2, getPosY() + v_spacer*i);
+		g.drawString(Integer.toString(stats.get(StatType.ARMOR_RATING)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
 		//Life Bar
 		float max_life = stats.get(StatType.MAX_LIFE);
