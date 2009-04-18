@@ -19,25 +19,6 @@ public class NPC extends Character {
 		this.model = model;
 	}
 
-	
-	@Override
-	public boolean canClimb()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean canSwim()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean canWalk()
-	{
-		return true;
-	}
-	
 	public boolean blocks(Entity entity) {
 		if (entity == model.getAvatar()) {
 			model.getAvatar().setInteractingCharacter(this);

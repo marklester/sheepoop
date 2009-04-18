@@ -53,6 +53,24 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		stats.calculateDerivedStatistics();
 	}
 
+	@Override
+	public boolean canClimb()
+	{
+		return false;
+	}
+
+	@Override
+	public boolean canSwim()
+	{
+		return false;
+	}
+
+	@Override
+	public boolean canWalk()
+	{
+		return true;
+	}
+	
 	public void accept(LocatableVisitor v) {
 		v.visit(this);
 	}

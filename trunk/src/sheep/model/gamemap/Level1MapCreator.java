@@ -110,6 +110,7 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location(5, 16);
 		map.add(loc, new Key(model, loc, new Location(7,25)));
 		
+		//Weapons
 		loc = new Location(8, 25);
 		map.add(loc, new CrossBow(model, loc));
 		
