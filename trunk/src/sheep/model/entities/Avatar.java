@@ -6,6 +6,7 @@ import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 import sheep.model.items.weapons.CrossBow;
 import sheep.model.items.weapons.FlareGun;
+import sheep.model.items.weapons.SpearGun;
 import sheep.model.occupations.Occupation;
 
 public class Avatar extends Character {
@@ -17,7 +18,7 @@ public class Avatar extends Character {
 		super(id, map, loc, occupation);
 		this.model = model;
 		
-		new FlareGun(map,loc).use(this);	// TODO for testing
+		new SpearGun(map,loc).use(this);	// TODO for testing
 		CrossBow a = new CrossBow(map,loc);
 		CrossBow b = new CrossBow(map,loc);
 		CrossBow c = new CrossBow(map,loc);
