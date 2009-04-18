@@ -18,7 +18,6 @@ import sheep.controller.actions.UseSkillAction;
 import sheep.controller.actions.UseWeaponAction;
 import sheep.model.GameStateChange;
 import sheep.model.GameStateObserver;
-import sheep.model.GameStateType;
 import sheep.model.Model;
 import sheep.model.gamemap.Direction;
 import sheep.view.View;

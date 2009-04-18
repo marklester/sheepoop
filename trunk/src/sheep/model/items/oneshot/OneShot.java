@@ -2,7 +2,6 @@ package sheep.model.items.oneshot;
 
 import sheep.model.Model;
 import sheep.model.entities.Entity;
-import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 import sheep.model.items.Item;
 
