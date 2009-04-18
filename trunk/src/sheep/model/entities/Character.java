@@ -234,5 +234,7 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	public Location getStartingLocation() {
 		return startingLocation;
 	}
-
+	public List<PerformableSkill> getPerformableSkills() {
+		return performableSkills;
+	}
 }
