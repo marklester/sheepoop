@@ -210,7 +210,7 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	public int getSkill(PassiveSkill skill) {
 		Integer ret = passiveSkills.get(skill);
 		if (ret == null) {
-			return 0;
+			return -1;
 		}
 		return ret;
 	}
