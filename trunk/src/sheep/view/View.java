@@ -25,7 +25,7 @@ public class View extends JFrame {
 	private static final boolean FULL_SCREEN_MODE = true;
 	private static final int SIDE_BAR_W = 300;
 	private final Model model;
-	private TradeViewport tradeViewport;
+	private SkillPointViewport skillPointViewport;
 	private AreaViewport areaViewport;
 	private InventoryViewport invViewport;
 	private JPanel sidebar;
@@ -37,8 +37,8 @@ public class View extends JFrame {
 		
 		//Initialize Viewports
 		invViewport = new InventoryViewport(model.getAvatar(), SIDE_BAR_W, this.getHeight());
-		tradeViewport = new TradeViewport(model.getAvatar(), null, SIDE_BAR_W, this.getHeight());
-		showInventoryViewport();
+		skillPointViewport = new SkillPointViewport(model.getAvatar(), SIDE_BAR_W, this.getHeight());
+		showViewport(invViewport);
 	}
 	
 	/**
@@ -73,8 +73,8 @@ public class View extends JFrame {
 		areaViewport.setSize(this.getWidth() - SIDE_BAR_W, this.getHeight());
 		this.getContentPane().add(areaViewport, BorderLayout.CENTER);
 		
-		// Create sidebar
-		sidebar = new JPanel();
+		// Create sidebar placeholder
+		sidebar = new Viewport(model.getAvatar());
 		sidebar.setOpaque(true);
 		sidebar.setSize(new Dimension(SIDE_BAR_W, this.getHeight()));
 		this.getContentPane().add(sidebar, BorderLayout.EAST);
@@ -88,29 +88,27 @@ public class View extends JFrame {
 		this.setVisible(true);
 	}
 
-	public void showTradeViewport() {
+	public void showViewport(Viewport theViewP) {
 		this.invalidate();
 		this.remove(sidebar);
-		this.sidebar = tradeViewport;
+		((Viewport)sidebar).toggleVisibility(); //sorta ghetto, sorry.
+		this.sidebar = theViewP;
 		this.getContentPane().add(sidebar, BorderLayout.EAST);
 		this.validate();
 		sidebar.setVisible(true);
+		theViewP.toggleVisibility();
 	}
 
-	public TradeViewport getTradeViewport() {
-		return tradeViewport;
-	}
-	
-	public void showInventoryViewport() {
-		this.invalidate();
-		this.remove(sidebar);
-		this.sidebar = invViewport;
-		this.getContentPane().add(sidebar, BorderLayout.EAST);
-		this.validate();
-		sidebar.setOpaque(false);
-		sidebar.setVisible(true);
-		invViewport.toggleVisibility();
-	}
+//	public void showInventoryViewport() {
+//		this.invalidate();
+//		this.remove(sidebar);
+//		this.sidebar = invViewport;
+//		this.getContentPane().add(sidebar, BorderLayout.EAST);
+//		this.validate();
+//		sidebar.setOpaque(false);
+//		sidebar.setVisible(true);
+//		invViewport.toggleVisibility();
+//	}
 	
 	public AreaViewport getAreaViewport() {
 		return areaViewport;
@@ -118,6 +116,10 @@ public class View extends JFrame {
 	
 	public InventoryViewport getInventoryViewport() {
 		return this.invViewport;
+	}
+	
+	public SkillPointViewport getskillPointViewport() {
+		return skillPointViewport;
 	}
 	
 	@Override
