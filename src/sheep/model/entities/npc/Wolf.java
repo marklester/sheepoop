@@ -1,6 +1,7 @@
 package sheep.model.entities.npc;
 
 import sheep.model.Model;
+import sheep.model.entities.StatType;
 import sheep.model.gamemap.Location;
 import sheep.model.occupations.Sneak;
 
@@ -10,5 +11,6 @@ public class Wolf extends NPC {
 	public Wolf(Model model, Location loc) {
 		super("Wolf", model, loc, new Sneak());
 		setAi(new DumbAI(this, model));
+		this.getStats().change(StatType.MONEY, 100);
 	}
 }

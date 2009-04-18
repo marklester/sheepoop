@@ -11,6 +11,7 @@ public class AngryWolf extends NPC {
 	public AngryWolf(Model model, Location loc) {
 		super("Wolf", model, loc, new Summoner());
 		setAi(new AngryAI(this, model));
-		this.affectStat(StatType.SPEED, - 19);
+		this.getStats().change(StatType.SPEED, - 19);
+		this.getStats().change(StatType.MONEY, 100);
 	}
 }
