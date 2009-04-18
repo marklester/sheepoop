@@ -26,7 +26,8 @@ public enum StatType {
 	BASE_DEFENSIVE_RATING("Base Defensive Rating"), 
 	DEFENSIVE_RATING("Defensive Rating"), 
 	ARMOR_RATING("Armor Rating"), 
-	MAX_MANA("Max Mana"), 
+	MAX_MANA("Max Mana"),
+	MONEY("Money"),
 	MAX_LIFE("Max Life");
 	String name;
 	StatType(String name){
