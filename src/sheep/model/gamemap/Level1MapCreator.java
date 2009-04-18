@@ -10,6 +10,7 @@ import sheep.model.areaeffects.River;
 import sheep.model.areaeffects.TakeDamage;
 import sheep.model.areaeffects.Teleport;
 import sheep.model.entities.npc.AngryWolf;
+import sheep.model.entities.npc.AreMyRat;
 import sheep.model.entities.npc.Wolf;
 import sheep.model.entities.vehicles.Boat;
 import sheep.model.entities.vehicles.Plane;
@@ -68,7 +69,8 @@ public class Level1MapCreator extends MapCreator {
 		map.add(loc, new Wolf(model, loc));
 		loc = new Location(17, 14);
 		map.add(loc, new AngryWolf(model, loc));
-
+		loc = new Location(13, 14);
+		map.add(loc, new AreMyRat(model, loc));
 		// add a level up w/ decal
 		loc = new Location(6, 7);
 		map.add(loc, new Decal("LevelUp", model, loc));
