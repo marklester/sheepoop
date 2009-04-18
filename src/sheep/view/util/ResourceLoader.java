@@ -79,8 +79,9 @@ public class ResourceLoader {
 		//Weapons
 		fileMap.put("Crossbow", WEAP_DIR + "xbow.png");
 		fileMap.put("xbowbolt", WEAP_DIR+"xbowbolt.png");
-
-		
+		fileMap.put("Lightning", WEAP_DIR + "lightning.png");
+		fileMap.put("Fire", WEAP_DIR + "fire.png");
+		fileMap.put("Ice", WEAP_DIR + "ice.png");
 	}
 	
 	public static ResourceLoader getInstance() {
