@@ -28,10 +28,10 @@ import sheep.model.items.weapons.Weapon;
 import sheep.view.overlays.Overlay;
 import sheep.view.util.ResourceLoader;
 
-/*
- * JM
+/**
  * 
- * TODO -Add action listener for the icons.
+ * @author Jason Mac
+ *
  */
 
 public class InventoryViewport extends Viewport implements InventoryChangeObserver {
