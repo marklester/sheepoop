@@ -2,6 +2,7 @@ package sheep.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -16,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import sheep.controller.EquipmentActionListener;
-import sheep.controller.InventoryActionListener;
+import sheep.controller.InventoryMouseListener;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.BodyPart;
 import sheep.model.entities.Inventory;
@@ -46,8 +47,9 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 	private ResourceLoader resLoader;
 	private Font myFont = Overlay.getFont().deriveFont(20f);
 	private Image bgImage;
-	private InventoryActionListener actionListener;
-
+	private InventoryMouseListener actionListener;	
+	
+	
 	public InventoryViewport(Avatar avatar, int w, int h) {
 		super(avatar, w, h);
 		this.avatar = avatar;
@@ -57,7 +59,6 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		this.bgImage = resLoader.getImage("sideBarBG");
 
 		setUpPanels();
-
 		avatar.registerInventoryChangeObserver(this);
 	}
 
@@ -251,7 +252,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 			but.setOpaque(false);
 			but.setContentAreaFilled(false);
 			but.setActionCommand(item.getID());
-			but.addActionListener(new InventoryActionListener(this.avatar, item));
+			but.addMouseListener(new InventoryMouseListener(this.avatar, item));
 			botPnl.add(but, c);
 		}
 
@@ -272,6 +273,10 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		add(topPnl, BorderLayout.NORTH);
 		add(botPnl, BorderLayout.SOUTH);
 		validate();
+		Component parent = this.getParent();
+		if (parent != null)
+			parent.requestFocus();
+
 	}
 
 	@Override
