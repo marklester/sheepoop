@@ -11,46 +11,13 @@ import sheep.model.gamemap.Location;
 import sheep.model.skills.PassiveSkill;
 import sheep.util.math.Vector2D;
 
-public abstract class LongRange extends Weapon {
+public abstract class LongRange extends ProjectileWeapon {
 
 	String projectileId;
 	private static final long serialVersionUID = 6552089684638959608L;
 	
-	public LongRange(String projId, String id, Model model, Location loc, int baseDamage) {
-		super(id, model, loc, baseDamage, PassiveSkill.RANGED_WEAPON);
+	public LongRange(String projId, String id, Model model, Location loc,int speed, int baseDamage) {
+		super(projId, id, model, loc, baseDamage,speed, PassiveSkill.RANGED_WEAPON);
 		projectileId = projId;
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent ae) {
-		Character enemy = getUser().getInteractingCharacter();
-		
-		if( enemy != null )
-		{
-			int totalDamage = (int) Math.floor( (double) getBaseDamage() * (  (double) getUser().getSkill( getSkill() ) ) );
-			
-			enemy.affectStat( StatType.LIFE, totalDamage );
-		}
-		else
-		{
-			Location userLoc = getUser().getLocation();
-			Vector2D myVector = getUser().getFacingDirection().getVector(userLoc);
-			Location attackingTile = new Location(userLoc.getX()+(int)myVector.getX(),userLoc.getY()+(int)myVector.getY());
-			List<Locatable> targets = getGameMap().get(attackingTile);
-			boolean blocked = false;
-			Projectile myProj = new Projectile(projectileId,this.getModel(),attackingTile,this,getUser().getFacingDirection(),5);
-			for(Locatable l: targets)
-			{
-				l.hitWith(this);
-				if(l.blocks(myProj))
-				{
-					blocked = true;
-				}
-			}
-			if(!blocked)
-			{
-				getGameMap().add(attackingTile, myProj);
-			}
-		}
 	}
 }
