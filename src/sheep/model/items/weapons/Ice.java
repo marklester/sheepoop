@@ -1,14 +1,14 @@
 package sheep.model.items.weapons;
 
-import sheep.model.gamemap.GameMap;
+import sheep.model.Model;
 import sheep.model.gamemap.Location;
 
 public class Ice extends Bane {
 
 	private static final long serialVersionUID = 7153412531505445049L;
 	
-	public Ice(GameMap map, Location loc) {
-		super("Ice", map, loc, 10,8);
+	public Ice(Model model, Location loc) {
+		super("Ice", model, loc, 10,8);
 	}
 
 }

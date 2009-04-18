@@ -4,10 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import sheep.model.Model;
 import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
 import sheep.model.entities.StatType;
-import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
 import sheep.model.items.Takeable;
@@ -21,8 +21,8 @@ public abstract class Weapon extends Takeable implements ActionListener {
 	private Character user;
 	private int baseDamage;
 	
-	public Weapon(String id, GameMap map, Location loc, int baseDamage, PassiveSkill skill) {
-		super(id, map, loc);
+	public Weapon(String id, Model model, Location loc, int baseDamage, PassiveSkill skill) {
+		super(id, model, loc);
 		this.skill = skill;
 		this.baseDamage = baseDamage;
 	}
