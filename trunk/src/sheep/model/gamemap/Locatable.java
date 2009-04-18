@@ -57,6 +57,10 @@ public abstract class Locatable implements Serializable {
 		//Default is to do nothing
 	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getID() {
 		return this.id;
 	}
