@@ -17,7 +17,7 @@ public class Projectile extends Locatable implements Moveable
 	private int speed;
 	private Weapon myWeapon;
 	int tickCounter;
-	
+
 	private static final long serialVersionUID = 1L;
 
 	public Projectile(String id, GameMap map, Location loc, Weapon w, Direction facing, int speed)
@@ -53,32 +53,38 @@ public class Projectile extends Locatable implements Moveable
 
 		// See if anything blocks
 		Vector<Locatable> thingsOnTile = this.getGameMap().get(newLoc);
-		for (Locatable neighbor : thingsOnTile) {
-			if (neighbor.blocks(this)) {
+		if(!thingsOnTile.isEmpty())
+		{
+			for (Locatable neighbor : thingsOnTile) {
+				if (neighbor.blocks(this)) {
+					stopMoving();
+					return;
+				}
+			}
+
+			// If no terrain or anything (edge of map), don't move
+			if (thingsOnTile.size() == 0) {
 				stopMoving();
 				return;
 			}
+
+			// Move is successful, do it
+			this.setLocation(newLoc);
+			//System.out.println("Entity moved to " + this.getLocation());
+
+			// Hit everything on the location
+			for (Locatable neighbor : thingsOnTile) {
+				neighbor.hitWith(myWeapon);
+			}
+
+			// Reset counter
+			this.tickCounter = speed;
 		}
-		
-		// If no terrain or anything (edge of map), don't move
-		if (thingsOnTile.size() == 0) {
+		else
+		{
 			stopMoving();
-			return;
 		}
-
-		// Move is successful, do it
-		this.setLocation(newLoc);
-		//System.out.println("Entity moved to " + this.getLocation());
-
-		// Hit everything on the location
-		for (Locatable neighbor : thingsOnTile) {
-			neighbor.hitWith(myWeapon);
-		}
-
-		// Reset counter
-		this.tickCounter = speed;
 	}
-
 	//@Override
 	public void tick() {
 
@@ -94,7 +100,7 @@ public class Projectile extends Locatable implements Moveable
 	public void startMoving(Direction direction)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void stopMoving()
