@@ -124,7 +124,10 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	}
 
 	public boolean removeItem(Takeable item) {
-		return this.inventory.remove(item);
+		Takeable itemCpy = item;
+		boolean result = this.inventory.remove(item);
+		this.notifyInventoryChangeObservers(new InventoryChange(itemCpy, InventoryChangeType.ITEM_USED));
+		return result;
 	}
 
 	public void affectStat(StatType stat, int changeAmt) {
