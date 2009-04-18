@@ -10,24 +10,6 @@ public class Avatar extends Character{
 	
 	private Model model;
 	
-	@Override
-	public boolean canClimb()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean canSwim()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean canWalk()
-	{
-		return true;
-	}
-	
 	public Avatar(String id, Model model, Location loc, Occupation occupation) {
 		super(id, model, loc, occupation);
 		this.model = model;
