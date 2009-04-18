@@ -1,10 +1,15 @@
 package sheep.model.gamemap;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import sheep.util.math.Vector2D;
 
@@ -16,54 +21,53 @@ public class GameMap implements Serializable {
 
 	private static final long serialVersionUID = -6604540494991148223L;
 
-	private Map<Location, Vector<Locatable>> map = new ConcurrentHashMap<Location, Vector<Locatable>>();
+	private Map<Location, List<Locatable>> map;
  
 	public GameMap() {
-
+		map = new ConcurrentHashMap<Location, List<Locatable>>();
 	}
 
-	public Vector<Locatable> get(Location loc) {
-		Vector<Locatable> list = map.get(loc);
+	public List<Locatable> get(Location loc) {
+		List<Locatable> list = map.get(loc);
 		if (list == null) {
-			list = new Vector<Locatable>();
+			list = new CopyOnWriteArrayList<Locatable>();
 			map.put(loc, list);
 		}
 		return list;
 	}
 
 	public void add(Location loc, Locatable obj) {
-		Vector<Locatable> locationList = get(loc);
+		List<Locatable> locationList = get(loc);
 		if (!locationList.contains(obj)) {
 			locationList.add(obj);
 		}
 	}
 
 	public boolean remove(Location loc, Locatable obj) {
-		Vector<Locatable> list = map.get(loc);
+		List<Locatable> list = map.get(loc);
 		boolean result = list.remove(obj);
 		return result;
 	}
 
 	public void notifyOfMovement(Location oldLoc, Location newLoc, Locatable obj) {
 		// Remove Locatable from old Location
-		Vector<Locatable> oldLocList = get(oldLoc);
+		List<Locatable> oldLocList = get(oldLoc);
 		oldLocList.remove(obj);
 
 		// Add it to new Location
-		Vector<Locatable> newLocList = get(newLoc);
+		List<Locatable> newLocList = get(newLoc);
 		if (!newLocList.contains(obj)) {
 			newLocList.add(obj);
 		}
 	}
 
-	public Map<Location, Vector<Locatable>> getMap() {
+	public Map<Location, List<Locatable>> getMap() {
 		return this.map;
 	}
-	
-	public Map<Location, Vector<Locatable>> getMapSubset(Location origin, int radius) {
+		public ConcurrentHashMap<Location, List<Locatable>> getMapSubset(Location origin, int radius) {
 		int oX = origin.getX();
 		int oY = origin.getY();
-		HashMap<Location, Vector<Locatable>> mySubset = new HashMap<Location, Vector<Locatable>>();
+		ConcurrentHashMap<Location, List<Locatable>> mySubset = new ConcurrentHashMap<Location, List<Locatable>>();
 		int apex = oY - radius;
 		Location curLoc = new Location(oX,apex);
 		for(int row = 0; row <= radius;row++)
@@ -78,7 +82,7 @@ public class GameMap implements Serializable {
 			for(int col = 0; col < cols; col++)
 			{
 //				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
-				Vector<Locatable> curSpot = map.get(tLoc);
+				List<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
 //					System.out.print("Locatable found here!");
@@ -102,7 +106,7 @@ public class GameMap implements Serializable {
 			for(int col = 0; col < radius; col++)
 			{
 //				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
-				Vector<Locatable> curSpot = map.get(tLoc);
+				List<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
 //					System.out.print("Locatable found here!");
@@ -117,7 +121,7 @@ public class GameMap implements Serializable {
 			for(int col = 0; col <= radius; col++)
 			{
 //				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
-				Vector<Locatable> curSpot = map.get(tLoc);
+				List<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
 //					System.out.print("Locatable found here!");
@@ -136,7 +140,7 @@ public class GameMap implements Serializable {
 			for(int col = 0; col < (radius - row); col++)
 			{
 //				System.out.print("(" + tLoc.getX() + "," + tLoc.getY()+")   ");
-				Vector<Locatable> curSpot = map.get(tLoc);
+				List<Locatable> curSpot = map.get(tLoc);
 				if(curSpot!=null)
 				{
 //					System.out.print("Locatable found here!");
