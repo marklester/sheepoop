@@ -60,7 +60,7 @@ public class GameMap implements Serializable {
 		return this.map;
 	}
 	
-	public HashMap<Location, Vector<Locatable>> getMapSubset(Location origin, int radius) {
+	public Map<Location, Vector<Locatable>> getMapSubset(Location origin, int radius) {
 		int oX = origin.getX();
 		int oY = origin.getY();
 		HashMap<Location, Vector<Locatable>> mySubset = new HashMap<Location, Vector<Locatable>>();

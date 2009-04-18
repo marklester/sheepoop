@@ -1,4 +1,4 @@
-package sheep.model.entities;
+package sheep.model.entities.vehicles;
 
 /**
  * 

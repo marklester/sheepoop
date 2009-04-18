@@ -2,7 +2,7 @@ package sheep.model.gamemap;
 
 import sheep.model.areaeffects.AreaEffect;
 import sheep.model.entities.Character;
-import sheep.model.entities.Vehicle;
+import sheep.model.entities.vehicles.Vehicle;
 import sheep.model.items.Item;
 import sheep.model.items.weapons.Projectile;
 import sheep.model.terrains.Terrain;

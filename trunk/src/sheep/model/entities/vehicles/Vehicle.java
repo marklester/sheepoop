@@ -1,9 +1,14 @@
-package sheep.model.entities;
+package sheep.model.entities.vehicles;
 
 import java.util.HashMap;
 import java.util.Vector;
 
 import sheep.model.Model;
+import sheep.model.entities.Character;
+import sheep.model.entities.Entity;
+import sheep.model.entities.StatChange;
+import sheep.model.entities.StatChangeObserver;
+import sheep.model.entities.StatType;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
 import sheep.model.items.armor.Armor;
@@ -17,13 +22,11 @@ public abstract class Vehicle extends Entity {
 	private Character driver;
 	private Vector<StatChangeObserver> statChangeObservers = new Vector<StatChangeObserver>();
 	
-	public Vehicle(String id, Model model, Location loc) {
+	public Vehicle(String id, Model model, Location loc, int speed) {
 		super(id, model, loc);
 		this.model = model;
 
-		stats.put(VehicleStatType.SPEED, 25); // TODO this may need to come from
-												// somewhere else, like a
-												// subclass
+		stats.put(VehicleStatType.SPEED, speed);
 	}
 
 	public void accept(LocatableVisitor v) {
