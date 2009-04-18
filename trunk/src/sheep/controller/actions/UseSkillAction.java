@@ -12,6 +12,7 @@ public class UseSkillAction extends AbstractAction {
 	public static final int SKILL3=2;
 	public static final int SKILL4=3;
 	public static final int SKILL5=4;
+	public static final int SKILL6=5;
 	private static final long serialVersionUID = 6119775843258180224L;
 	private Avatar attacker;
 	private int skill_index; //used grab a specific skill from the list;
