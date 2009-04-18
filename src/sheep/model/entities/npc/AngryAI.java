@@ -10,6 +10,7 @@ import sheep.model.entities.StatType;
 import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
+import sheep.model.skills.PassiveSkill;
 
 public class AngryAI extends AI {
 
@@ -22,10 +23,11 @@ public class AngryAI extends AI {
 	public void tick() {
 
 		Direction dirToAvatar = null;
-		Location avatarLoc = this.getModel().getAvatar().getLocation();	// I'm too good to care about LoD!
+		Avatar myAv = this.getModel().getAvatar();
+		Location avatarLoc = myAv.getLocation();	// I'm too good to care about LoD!
 		Location npcLoc = this.getNPC().getLocation();
 
-		if(Math.abs(avatarLoc.getX() - npcLoc.getX())<4&& Math.abs(avatarLoc.getY() - npcLoc.getY())<4)
+		if(Math.abs(avatarLoc.getX() - npcLoc.getX())<=4-myAv.getStat(StatType.STEALTH)&& Math.abs(avatarLoc.getY() - npcLoc.getY())<=4-myAv.getStat(StatType.STEALTH))
 		{
 			if (Math.abs(avatarLoc.getX() - npcLoc.getX()) > Math.abs(avatarLoc.getY() - npcLoc.getY())) {
 				// move left or right
