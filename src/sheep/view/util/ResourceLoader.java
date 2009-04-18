@@ -56,6 +56,7 @@ public class ResourceLoader {
 		fileMap.put("summonerBtn", ICON_DIR + "summoner.png");
 		fileMap.put("sneakBtn", ICON_DIR + "sneak.png");
 		fileMap.put("invPlaceHolder", ICON_DIR + "placeHolder.png");
+		fileMap.put("addSkillPoint", ICON_DIR + "plus_sign.png");
 		
 		fileMap.put("Water", TERRAIN_DIR + "water2.gif");
 		fileMap.put("Grass", TERRAIN_DIR + "grass.png");

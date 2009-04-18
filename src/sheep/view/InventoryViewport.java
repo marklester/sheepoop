@@ -27,7 +27,6 @@ import sheep.model.items.Takeable;
 import sheep.model.items.armor.Armor;
 import sheep.model.items.weapons.Weapon;
 import sheep.view.overlays.Overlay;
-import sheep.view.util.ResourceLoader;
 
 /**
  * 
@@ -38,13 +37,10 @@ import sheep.view.util.ResourceLoader;
 public class InventoryViewport extends Viewport implements InventoryChangeObserver {
 
 	private static final long serialVersionUID = 6239705575773260473L;
-	public static final Color BG_COLOR = Color.RED;
-	public static final Dimension BUT_SIZE = new Dimension(AreaViewport.TILE_SIZE, AreaViewport.TILE_SIZE);
 	private final Avatar avatar;
 	private Inventory inv;
 	private JPanel topPnl;
 	private JPanel botPnl;
-	private ResourceLoader resLoader;
 	private Font myFont = Overlay.getFont().deriveFont(20f);
 	private Image bgImage;
 	
@@ -53,8 +49,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		this.avatar = avatar;
 		this.setLayout(new GridLayout(2, 1));
 		this.inv = getAvatar().getInventory();
-		this.resLoader = ResourceLoader.getInstance();
-		this.bgImage = resLoader.getImage("sideBarBG");
+		this.bgImage = getResLoader().getImage("sideBarBG");
 
 		setUpPanels();
 		avatar.registerInventoryChangeObserver(this);
@@ -64,25 +59,19 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		super.paintComponent(g);
 		if (bgImage != null)
 			g.drawImage(bgImage, 0, 0, this.getWidth(), this.getHeight(), this);
-		/*
-		 * Graphics2D g2 = (Graphics2D) g; Composite original =
-		 * g2.getComposite();
-		 * g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
-		 * .3f)); g2.setComposite(original);
-		 */
 	}
 
 	public JPanel createTopPanel() {
 		JPanel topPnl = new JPanel(new GridBagLayout());
 		topPnl.setOpaque(false);
 
-		ImageIcon placeHolder = resLoader.getImageIcon("invPlaceHolder");
+		ImageIcon placeHolder = getResLoader().getImageIcon("invPlaceHolder");
 
 		// Weapon
 		ImageIcon w_img;
 		Weapon w = getAvatar().getEquippedWeapon();
 		if (w != null)
-			w_img = resLoader.getImageIcon(w.getID());
+			w_img = getResLoader().getImageIcon(w.getID());
 		else
 			w_img = placeHolder;
 
@@ -90,7 +79,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		ImageIcon au_img;
 		Armor au = getAvatar().getEquipped(BodyPart.AUX);
 		if (au != null)
-			au_img = resLoader.getImageIcon(au.getID());
+			au_img = getResLoader().getImageIcon(au.getID());
 		else
 			au_img = placeHolder;
 
@@ -98,7 +87,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		ImageIcon he_img;
 		Armor he = getAvatar().getEquipped(BodyPart.HEAD);
 		if (he != null)
-			he_img = resLoader.getImageIcon(he.getID());
+			he_img = getResLoader().getImageIcon(he.getID());
 		else
 			he_img = placeHolder;
 
@@ -106,7 +95,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		ImageIcon ch_img;
 		Armor ch = getAvatar().getEquipped(BodyPart.CHEST);
 		if (ch != null)
-			ch_img = resLoader.getImageIcon(ch.getID());
+			ch_img = getResLoader().getImageIcon(ch.getID());
 		else
 			ch_img = placeHolder;
 
@@ -114,7 +103,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		ImageIcon fe_img;
 		Armor fe = getAvatar().getEquipped(BodyPart.FEET);
 		if (fe != null)
-			fe_img = resLoader.getImageIcon(fe.getID());
+			fe_img = getResLoader().getImageIcon(fe.getID());
 		else
 			fe_img = placeHolder;
 
@@ -245,7 +234,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 			GridBagConstraints c = new GridBagConstraints();
 			c.gridx = x++;
 			c.gridy = y;
-			JButton but = new JButton(resLoader.getImageIcon(item.getID()));
+			JButton but = new JButton(getResLoader().getImageIcon(item.getID()));
 			but.setPreferredSize(BUT_SIZE);
 			but.setOpaque(false);
 			but.setContentAreaFilled(false);
