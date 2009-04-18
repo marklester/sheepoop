@@ -119,6 +119,10 @@ public class Controller implements GameStateObserver {
 		actionMap.put("useSkill2", new UseSkillAction(model.getAvatar(),UseSkillAction.SKILL2));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0), "useSkill3");
 		actionMap.put("useSkill3", new UseSkillAction(model.getAvatar(),UseSkillAction.SKILL3));
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0), "useSkill4");
+		actionMap.put("useSkill4", new UseSkillAction(model.getAvatar(),UseSkillAction.SKILL4));
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_5, 0), "useSkill5");
+		actionMap.put("useSkill5", new UseSkillAction(model.getAvatar(),UseSkillAction.SKILL5));
 	}
 
 	/**
