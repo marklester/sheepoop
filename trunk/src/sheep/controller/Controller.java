@@ -37,6 +37,9 @@ public class Controller implements GameStateObserver {
 	public Controller(Model model, View view) {
 		this.model = model;
 		this.view = view;
+		
+		// Set other listeners in view
+		view.getInventoryViewport().setActionListener(new InventoryActionListener());
 
 		// Get input and action maps
 		inputMap = view.getAreaViewport().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
