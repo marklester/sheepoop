@@ -1,4 +1,4 @@
-package sheep.model.entities;
+package sheep.model.entities.vehicles;
 
 import sheep.model.Model;
 import sheep.model.gamemap.Location;
@@ -6,10 +6,11 @@ import sheep.model.gamemap.Location;
 public class Boat extends Vehicle
 {
 
+	private static final long serialVersionUID = -7616629418816528217L;
+
 	public Boat(Model model, Location loc)
 	{
-		super("Boat", model, loc);
-		// TODO Auto-generated constructor stub
+		super("Boat", model, loc, 25);
 	}
 
 	@Override
@@ -27,7 +28,7 @@ public class Boat extends Vehicle
 	@Override
 	public boolean canWalk()
 	{
-		return true;
+		return false;
 	}
 
 }

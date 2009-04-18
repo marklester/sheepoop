@@ -1,4 +1,4 @@
-package sheep.model.entities;
+package sheep.model.entities.vehicles;
 
 import sheep.model.Model;
 import sheep.model.gamemap.Location;
@@ -10,7 +10,7 @@ public class Plane extends Vehicle
 
 	public Plane(Model model, Location loc)
 	{
-		super("Plane", model, loc);
+		super("Plane", model, loc, 30);
 	}
 
 	@Override

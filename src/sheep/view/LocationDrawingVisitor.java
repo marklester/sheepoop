@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 import sheep.model.areaeffects.AreaEffect;
 import sheep.model.entities.Character;
-import sheep.model.entities.Vehicle;
+import sheep.model.entities.vehicles.Vehicle;
 import sheep.model.gamemap.Decal;
 import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.LocatableVisitor;

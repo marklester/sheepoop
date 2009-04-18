@@ -1,15 +1,18 @@
 package sheep.controller.actions;
 
 import java.awt.event.ActionEvent;
-import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+import java.util.Map.Entry;
 
 import javax.swing.AbstractAction;
 
 import sheep.model.Model;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.Entity;
-import sheep.model.entities.Vehicle;
+import sheep.model.entities.vehicles.Vehicle;
 import sheep.model.gamemap.Locatable;
+import sheep.model.gamemap.Location;
 
 /**
  * Make the avatar get out of a vehicle
@@ -37,13 +40,24 @@ public class ReleaseVehicleAction extends AbstractAction {
 		}
 		Vehicle vehicle = (Vehicle) mover;
 		
-		// Do nothing if the vehicle is currently on a terrain the avatar can't
-		// go on by itself
-		List<Locatable> thingsOnMyTile = model.getGameMap().get(vehicle.getLocation());
-		for (Locatable locatable : thingsOnMyTile) {
-			if (locatable.blocks(avatar)) {
-				return;
+		// Do nothing if the vehicle isn't currently next to a terrain the 
+		// avatar can't go on by itself
+		Map<Location, Vector<Locatable>> thingsOnMyTile = model.getGameMap().getMapSubset(vehicle.getLocation(), 1);
+		
+		// Look for a terrain next to vehicle that the avatar can get off
+		boolean avatarCanGetOff = false;
+		for (Vector<Locatable> locatables : thingsOnMyTile.values()) {
+			for (Locatable locatable : locatables) {
+				if (locatable != vehicle && locatable != avatar && !locatable.blocks(avatar)) {
+					avatarCanGetOff = true;
+					System.out.println(locatable);
+				}				
 			}
+		}
+		
+		// Don't release vehicle if avatar can't get off
+		if (!avatarCanGetOff) {
+			return;
 		}
 		
 		// Release vehicle
