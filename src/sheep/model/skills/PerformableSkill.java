@@ -21,9 +21,8 @@ public abstract class PerformableSkill extends AbstractAction implements Seriali
 		this.character = character;
 		this.points = 0;
 	}
-	
 	public PerformableSkill() {
-		this.points = 0;
+		this.points = 1;
 	}
 
 	public void addPoints(int amt) {
