@@ -77,11 +77,10 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	public void unequipWeapon() {
 		Weapon theWeapon = weapon;
 		if (weapon != null) {
-			inventory.add(weapon);
+			inventory.add(theWeapon);
 			weapon = null;
 			this.notifyInventoryChangeObservers(new InventoryChange(theWeapon, InventoryChangeType.ITEM_UNEQUIPPED));
 		}
-		weapon = null;
 	}
 
 	public void unequipArmor(BodyPart fromWhere) {
