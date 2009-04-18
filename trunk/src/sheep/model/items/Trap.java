@@ -8,18 +8,18 @@ import sheep.model.gamemap.Location;
 
 public class Trap extends Interactive{
 	private static final long serialVersionUID = -2451877763558545713L;
-	private int dmg_amt;
+	private int dmgAmt;
+
 	private boolean activated=false;
 	public Trap(Model model, Location loc,int dmg_amt) {
 		super("Hidden Trap", model, loc);
-		this.dmg_amt = dmg_amt;
+		this.dmgAmt = dmg_amt;
 	}
 
 	public void touch(Entity entity){
 		if(!activated && entity.equals(getModel().getMover())){
 			sheep.model.entities.Character ce = (sheep.model.entities.Character)entity;
-			ce.affectStat(StatType.DAMAGE, dmg_amt);
-			this.setId("Activated Trap");
+			ce.affectStat(StatType.DAMAGE, dmgAmt);
 			deActivate();
 		}
 	}
@@ -28,8 +28,16 @@ public class Trap extends Interactive{
 	}
 	public void deActivate(){
 		activated = true;
+		this.setId("Activated Trap");
 	}
 	public boolean blocks(Entity entity) {
 		return false;
+	}
+	public int getDmgAmt() {
+		return dmgAmt;
+	}
+
+	public void setDmgAmt(int dmgAmt) {
+		this.dmgAmt = dmgAmt;
 	}
 }
