@@ -62,6 +62,7 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	public void equip(Weapon w) {
 		unequipWeapon();
 		weapon = w;
+		inventory.remove(w);
 		this.notifyInventoryChangeObservers(new InventoryChange(w, InventoryChangeType.ITEM_EQUIPPED));
 	}
 
@@ -69,12 +70,14 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		unequipArmor(a.getBodyPart());
 		armor.put(a.getBodyPart(), a);
 		a.equipTo(this);
+		inventory.remove(a);
 		this.notifyInventoryChangeObservers(new InventoryChange(a, InventoryChangeType.ITEM_EQUIPPED));
 	}
 
 	public void unequipWeapon() {
 		if (weapon != null) {
 			inventory.add(weapon);
+			weapon = null;
 			this.notifyInventoryChangeObservers(new InventoryChange(weapon, InventoryChangeType.ITEM_UNEQUIPPED));
 		}
 		weapon = null;
@@ -85,6 +88,7 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		if (piece != null) {
 			armor.put(fromWhere, null);
 			piece.unequipFrom(this);
+			inventory.add(piece);
 			this.notifyInventoryChangeObservers(new InventoryChange(piece, InventoryChangeType.ITEM_UNEQUIPPED));
 		}
 	}

@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import sheep.controller.EquipmentActionListener;
 import sheep.controller.InventoryActionListener;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.BodyPart;
@@ -136,6 +137,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		w_but.setOpaque(false);
 		w_but.setPreferredSize(BUT_SIZE);
 		w_but.setContentAreaFilled(false);
+		w_but.addActionListener(new EquipmentActionListener(getAvatar()));
 		topPnl.add(w_but, c2);
 
 		// Aux - Create Labels, JButtons, and constraints on the layout
@@ -156,6 +158,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		au_but.setOpaque(false);
 		au_but.setPreferredSize(BUT_SIZE);
 		au_but.setContentAreaFilled(false);
+		au_but.addActionListener(new EquipmentActionListener(getAvatar(), BodyPart.AUX));
 		topPnl.add(au_but, c4);
 
 		// Head- Create Labels, JButtons, and constraints on the layout
@@ -176,6 +179,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		he_but.setOpaque(false);
 		he_but.setContentAreaFilled(false);
 		he_but.setPreferredSize(BUT_SIZE);
+		he_but.addActionListener(new EquipmentActionListener(getAvatar(), BodyPart.HEAD));
 		topPnl.add(he_but, c6);
 
 		// Chest - Create Labels, JButtons, and constraints on the layout
@@ -196,6 +200,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		ch_but.setOpaque(false);
 		ch_but.setContentAreaFilled(false);
 		ch_but.setPreferredSize(BUT_SIZE);
+		ch_but.addActionListener(new EquipmentActionListener(getAvatar(), BodyPart.CHEST));
 		topPnl.add(ch_but, c7);
 
 		// Feet - Create Labels, JButtons, and constraints on the layout
@@ -216,6 +221,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		fe_but.setContentAreaFilled(false);
 		fe_but.setOpaque(false);
 		fe_but.setPreferredSize(BUT_SIZE);
+		fe_but.addActionListener(new EquipmentActionListener(getAvatar(), BodyPart.FEET));
 		topPnl.add(fe_but, c9);
 
 		topPnl.setVisible(true);
