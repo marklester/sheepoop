@@ -150,6 +150,8 @@ public class Controller implements GameStateObserver {
 
 		ks.put( "useSkill5", KeyStroke.getKeyStroke(KeyEvent.VK_5, 0) );
 		actionMap.put("useSkill5", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL5));
+		ks.put( "useSkill6", KeyStroke.getKeyStroke(KeyEvent.VK_6, 0) );
+		actionMap.put("useSkill6", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL6));
 		
 		//used to generate default keybindings
 //		SettingsSaver ss = new SettingsSaver( new File( "res/defaultSettings.psettings" ) );
