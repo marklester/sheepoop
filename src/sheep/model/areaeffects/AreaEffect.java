@@ -2,7 +2,6 @@ package sheep.model.areaeffects;
 
 import sheep.model.Model;
 import sheep.model.TimeObserver;
-import sheep.model.entities.Avatar;
 import sheep.model.entities.Entity;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.LocatableVisitor;

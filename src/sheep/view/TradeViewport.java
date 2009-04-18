@@ -1,9 +1,5 @@
 package sheep.view;
 
-import java.awt.Component;
-
-import javax.swing.JPanel;
-
 import sheep.controller.TradeButtonsActionListener;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.npc.NPC;

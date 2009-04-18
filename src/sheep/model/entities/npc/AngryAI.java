@@ -1,16 +1,10 @@
 package sheep.model.entities.npc;
 
-import java.util.HashMap;
-import java.util.Vector;
-import java.util.Map.Entry;
-
 import sheep.model.Model;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.StatType;
 import sheep.model.gamemap.Direction;
-import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
-import sheep.model.skills.PassiveSkill;
 
 public class AngryAI extends AI {
 
