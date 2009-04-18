@@ -13,7 +13,7 @@ import sheep.model.entities.npc.AngryWolf;
 import sheep.model.entities.npc.Wolf;
 import sheep.model.items.armor.SteelWool;
 import sheep.model.items.weapons.HeavyAxe;
-import sheep.model.items.weapons.Lightning;
+import sheep.model.items.weapons.spells.Lightning;
 
 /**
  * Returns a new GameMap for level1, by loading the mapfile it knows, and adding
