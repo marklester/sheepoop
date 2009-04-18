@@ -30,6 +30,7 @@ public class ResourceLoader {
 	private static final String ITEMS_DIR = IMG_DIR + "items/";
 	private static final String DECALS_DIR = IMG_DIR+"decals/";
 	private static final String WEAP_DIR = ITEMS_DIR + "weapons/";
+	private static final String ONE_SHOT_DIR = ITEMS_DIR + "oneshot/";
 	/**
 	 * This will be the central place to input any IO related filenames. The entire application should use this 
 	 * class to access images. Any welcome screen images should be manually put into the imageMap in this 
@@ -94,6 +95,10 @@ public class ResourceLoader {
 		fileMap.put("Gold Staff", WEAP_DIR + "goldstaff.png");
 		fileMap.put("Ash Staff", WEAP_DIR + "ashstaff.png");
 		fileMap.put("Oak Staff", WEAP_DIR + "oakstaff.png");
+		//one shots
+		fileMap.put("Syringe", ONE_SHOT_DIR + "speed.png");
+		fileMap.put("Beer", ONE_SHOT_DIR + "beer.png");
+		fileMap.put("Key", ONE_SHOT_DIR + "key.png");
 	}
 	
 	public static ResourceLoader getInstance() {
