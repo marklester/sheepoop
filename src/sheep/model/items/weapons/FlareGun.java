@@ -8,7 +8,7 @@ public class FlareGun extends LongRange {
 	private static final long serialVersionUID = 1857883205112292414L;
 	
 	public FlareGun(GameMap map, Location loc) {
-		super("flare","FlareGun", map, loc, 10);
+		super("flare","Flare Gun", map, loc, 10);
 	}
 
 }
