@@ -63,16 +63,22 @@ public class Level1MapCreator extends MapCreator {
 		//add river
 		RiverCounter rc = new RiverCounter();
 		loc = new Location(16,6);
+		map.add(loc, new Decal("nearrow", model, loc));
 		map.add(loc,new River(model,loc,Direction.NE,rc));
 		loc = new Location(17,5);
+		map.add(loc, new Decal("nearrow", model, loc));
 		map.add(loc,new River(model,loc,Direction.NE,rc));
 		loc = new Location(18,5);
+		map.add(loc, new Decal("narrow", model, loc));
 		map.add(loc,new River(model,loc,Direction.N,rc));
 		loc = new Location(18,4);
+		map.add(loc, new Decal("narrow", model, loc));
 		map.add(loc,new River(model,loc,Direction.N,rc));
 		loc = new Location(18,3);
+		map.add(loc, new Decal("narrow", model, loc));
 		map.add(loc,new River(model,loc,Direction.N,rc));
 		loc = new Location(18,2);
+		map.add(loc, new Decal("narrow", model, loc));
 		map.add(loc,new River(model,loc,Direction.N,rc));
 		// Add wolfs
 		loc = new Location(6, 6);

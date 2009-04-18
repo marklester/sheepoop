@@ -80,6 +80,12 @@ public class ResourceLoader {
 		fileMap.put("HealDamage", DECALS_DIR+"healdamage.png");
 		fileMap.put("TakeDamage", DECALS_DIR+"takedamage.png");
 		fileMap.put("Trap", DECALS_DIR + "trap.png");
+		fileMap.put("narrow", DECALS_DIR + "narrow.png");
+		fileMap.put("nearrow", DECALS_DIR + "nearrow.png");
+		fileMap.put("nwarrow", DECALS_DIR + "nwarrow.png");
+		fileMap.put("sarrow", DECALS_DIR + "sarrow.png");
+		fileMap.put("searrow", DECALS_DIR + "searrow.png");
+		fileMap.put("swarrow", DECALS_DIR + "swarrow.png");
 		
 		//Weapons
 		fileMap.put("Crossbow", WEAP_DIR + "xbow.png");
@@ -111,6 +117,7 @@ public class ResourceLoader {
 		
 		//useable
 		fileMap.put("Wheat Thins", USEABLE_DIR + "wheatthins.png");
+		
 	}
 	
 	public static ResourceLoader getInstance() {
