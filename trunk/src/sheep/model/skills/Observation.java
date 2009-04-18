@@ -3,6 +3,8 @@ package sheep.model.skills;
 import java.awt.event.ActionEvent;
 import java.util.Vector;
 
+import sheep.model.entities.StatType;
+import sheep.model.entities.npc.NPC;
 import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
@@ -22,12 +24,19 @@ public class Observation extends PerformableSkill {
 
 		// Get neighboring locatables
 		Vector<Locatable> thingsOnTile = getCharacter().getGameMap().get(newLoc);
+		int i=0;
 		for(Locatable loc:thingsOnTile){
-			Character c;
 			if(loc instanceof sheep.model.entities.Character){
-				
+				NPC npc = (NPC)loc;
+				StatType st = StatType.random();
+				int randomstat = npc.getStat(st);
+				int range = 10-points;
+				int low = randomstat-((int)(Math.random()*range));
+				int high= randomstat+((int)(Math.random()*range));
+				getCharacter().hearMessage(getCharacter(), "Observation! Character has "+st+" between "+low+" and "+high);
+				i++;
 			}
 		}
-		
+		if(i==0)getCharacter().hearMessage(getCharacter(), "Nobody There");
 	}
 }
