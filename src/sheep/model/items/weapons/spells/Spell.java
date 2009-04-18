@@ -1,4 +1,4 @@
-package sheep.model.items.weapons;
+package sheep.model.items.weapons.spells;
 
 import java.awt.event.ActionEvent;
 import java.util.List;
@@ -8,6 +8,8 @@ import sheep.model.entities.Character;
 import sheep.model.entities.StatType;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
+import sheep.model.items.weapons.Projectile;
+import sheep.model.items.weapons.Weapon;
 import sheep.model.skills.PassiveSkill;
 import sheep.util.math.Vector2D;
 

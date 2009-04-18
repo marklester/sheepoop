@@ -1,4 +1,4 @@
-package sheep.model.items.weapons;
+package sheep.model.items.weapons.spells;
 
 import sheep.model.Model;
 import sheep.model.gamemap.Location;
