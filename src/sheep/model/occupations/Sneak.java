@@ -3,6 +3,7 @@ package sheep.model.occupations;
 import sheep.model.entities.StatType;
 import sheep.model.skills.BindWounds;
 import sheep.model.skills.Creep;
+import sheep.model.skills.DetectTrap;
 import sheep.model.skills.Observation;
 import sheep.model.skills.PassiveSkill;
 import sheep.model.skills.PickPocket;
@@ -29,9 +30,11 @@ public class Sneak extends Occupation {
 		addPerformableSkill(new Creep());
 		addPerformableSkill(new PickPocket());
 		addPerformableSkill(new RemoveTrap());
+		addPerformableSkill(new DetectTrap());
 		setInitialPassiveSkill(PassiveSkill.BARGAIN, 0);
-		setInitialPassiveSkill(PassiveSkill.DETECT_TRAP, 0);
+		setInitialPassiveSkill(PassiveSkill.DETECT_TRAP, 5);
 		setInitialPassiveSkill(PassiveSkill.RANGED_WEAPON, 0);
+		
 	}
 	
 }
