@@ -9,7 +9,7 @@ import sheep.model.items.weapons.FlareGun;
 import sheep.model.items.weapons.SpearGun;
 import sheep.model.occupations.Occupation;
 
-public class Avatar extends Character {
+public class Avatar extends Character{
 	private static final long serialVersionUID = -7609642508399494950L;
 	
 	private Model model;
