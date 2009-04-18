@@ -16,14 +16,14 @@ public class Time implements Serializable {
 	private static final int TICKS_PER_SECOND = 30;
 	private static Time instance = new Time();
 	private ConcurrentLinkedQueue<TimeObserver> observers;
+	transient private ConcurrentLinkedQueue<TimeObserver> transientObservers;
 	transient private Timer timer = new Timer();
 	private boolean isPaused;
 
 	private Time() {
 		this.isPaused = true;
-
-		ConcurrentLinkedQueue<TimeObserver> observers = new ConcurrentLinkedQueue<TimeObserver>();
-		this.observers = observers;
+		this.transientObservers = new ConcurrentLinkedQueue<TimeObserver>();
+		this.observers = new ConcurrentLinkedQueue<TimeObserver>();;
 	}
 
 	public static Time getInstance() {
@@ -66,6 +66,14 @@ public class Time implements Serializable {
 	}
 
 	public void registerObserver(TimeObserver observer) {
+		
+		if (!(observer instanceof Serializable)) {
+			if (!transientObservers.contains(observer)) {
+				transientObservers.add(observer);
+			}
+			return;
+		}
+		
 		if (!observers.contains(observer)) {
 			observers.add(observer);
 		}
@@ -74,11 +82,16 @@ public class Time implements Serializable {
 
 	public void removeObserver(TimeObserver observer) {
 		observers.remove(observer);
+		transientObservers.remove(observer);
 	}
 
 	public void notifyObservers() {
 
 		for (TimeObserver observer : this.observers) {
+			observer.tick();
+		}
+		
+		for (TimeObserver observer : this.transientObservers) {
 			observer.tick();
 		}
 

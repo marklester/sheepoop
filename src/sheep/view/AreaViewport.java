@@ -280,6 +280,10 @@ public class AreaViewport extends JPanel {
 		return this.messageConsole;
 	}
 	
+	public HotBarConsole getHotBarConsole() {
+		return this.hotBar;
+	}
+	
 	public void stopPainting() {
 		isPaused = true;
 		repaintTimer.stop();

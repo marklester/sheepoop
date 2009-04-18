@@ -108,6 +108,8 @@ public class Controller implements GameStateObserver {
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F10, 0), "toggleStatView");
 		actionMap.put("toggleMessage", new ToggleAction(view.getAreaViewport().getMessageConsole()));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0), "toggleMessage");
+		actionMap.put("togglePerformableSkills", new ToggleAction(view.getAreaViewport().getHotBarConsole()));
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F12, 0), "togglePerformableSkills");
 
 		// Use Weapon
 		actionMap.put("useWeapon", new UseWeaponAction(model.getAvatar()));
