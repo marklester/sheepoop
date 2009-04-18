@@ -8,6 +8,8 @@ import sheep.model.areaeffects.HealDamage;
 import sheep.model.areaeffects.LevelUp;
 import sheep.model.areaeffects.TakeDamage;
 import sheep.model.areaeffects.Teleport;
+import sheep.model.entities.Boat;
+import sheep.model.entities.Plane;
 import sheep.model.entities.Vehicle;
 import sheep.model.entities.npc.AngryWolf;
 import sheep.model.entities.npc.Wolf;
@@ -16,7 +18,15 @@ import sheep.model.items.armor.SteelWool;
 import sheep.model.items.oneshot.Beer;
 import sheep.model.items.oneshot.Key;
 import sheep.model.items.oneshot.Syringe;
+import sheep.model.items.weapons.CrossBow;
+import sheep.model.items.weapons.FlareGun;
+import sheep.model.items.weapons.Hammer;
 import sheep.model.items.weapons.HeavyAxe;
+import sheep.model.items.weapons.LongSword;
+import sheep.model.items.weapons.Nunchucks;
+import sheep.model.items.weapons.ShortSword;
+import sheep.model.items.weapons.SpearGun;
+import sheep.model.items.weapons.Trident;
 
 /**
  * Returns a new GameMap for level1, by loading the mapfile it knows, and adding
@@ -41,7 +51,7 @@ public class Level1MapCreator extends MapCreator {
 		// Add vehicles
 		Location loc;
 		loc = new Location(0, 17);
-		Vehicle vehicle = new Vehicle("Boat", model, loc);
+		Vehicle vehicle = new Boat(model, loc);
 		map.add(loc, vehicle);
 
 		// Add wolfs
@@ -94,9 +104,40 @@ public class Level1MapCreator extends MapCreator {
 		map.add(loc, new Syringe(model, loc));
 		
 		// Key
-		loc = new Location(18, 13);
-		map.add(loc, new Key(model, loc));
-
+		loc = new Location(5, 16);
+		map.add(loc, new Key(model, loc, new Location(7,25)));
+		
+		loc = new Location(8, 25);
+		map.add(loc, new CrossBow(model, loc));
+		
+		loc = new Location(10, 25);
+		map.add(loc, new FlareGun(model, loc));
+		
+		loc = new Location(12, 25);
+		map.add(loc, new SpearGun(model, loc));
+		
+		loc = new Location(6, 27);
+		map.add(loc, new ShortSword(model, loc));
+		
+		loc = new Location(8, 27);
+		map.add(loc, new Hammer(model, loc));
+		
+		loc = new Location(10, 27);
+		map.add(loc, new Nunchucks(model, loc));
+		
+		loc = new Location(12, 27);
+		map.add(loc, new LongSword(model, loc));
+		
+		loc = new Location(14, 27);
+		map.add(loc, new HeavyAxe(model, loc));
+		
+		loc = new Location(16, 27);
+		map.add(loc, new Trident(model, loc));
+		
+		loc = new Location(16, 29);
+		map.add(loc, new Plane(model, loc));
+		
+		
 		return map;
 	}
 

@@ -15,7 +15,7 @@ public class Mountain extends Terrain {
 
 	@Override
 	public boolean blocks(Entity entity) {
-		return true;
+		return !entity.canClimb();
 	}
 	@Override
 	public boolean blocks(Projectile p)
