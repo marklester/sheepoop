@@ -53,6 +53,8 @@ public class NPC extends Character {
 
 	@Override
 	public void die() {
-		
+		this.setAi(null);
+		this.getGameMap().remove(getLocation(),this);
+		setLocation(null);
 	}
 }
