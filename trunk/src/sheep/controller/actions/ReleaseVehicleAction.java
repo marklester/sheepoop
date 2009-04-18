@@ -1,6 +1,7 @@
 package sheep.controller.actions;
 
 import java.awt.event.ActionEvent;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import java.util.Map.Entry;
@@ -42,11 +43,11 @@ public class ReleaseVehicleAction extends AbstractAction {
 		
 		// Do nothing if the vehicle isn't currently next to a terrain the 
 		// avatar can't go on by itself
-		Map<Location, Vector<Locatable>> thingsOnMyTile = model.getGameMap().getMapSubset(vehicle.getLocation(), 1);
+		Map<Location, List<Locatable>> thingsOnMyTile = model.getGameMap().getMapSubset(vehicle.getLocation(), 1);
 		
 		// Look for a terrain next to vehicle that the avatar can get off
 		boolean avatarCanGetOff = false;
-		for (Vector<Locatable> locatables : thingsOnMyTile.values()) {
+		for (List<Locatable> locatables : thingsOnMyTile.values()) {
 			for (Locatable locatable : locatables) {
 				if (locatable != vehicle && locatable != avatar && !locatable.blocks(avatar)) {
 					avatarCanGetOff = true;

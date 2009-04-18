@@ -1,6 +1,7 @@
 package sheep.model.skills;
 
 import java.awt.event.ActionEvent;
+import java.util.List;
 import java.util.Vector;
 
 import sheep.model.gamemap.Direction;
@@ -24,7 +25,7 @@ public class RemoveTrap extends PerformableSkill {
 		Location newLoc = getCharacter().getLocation().addVector(vector);
 
 		// Get neighboring locatables
-		Vector<Locatable> thingsOnTile = getCharacter().getGameMap().get(newLoc);
+		List<Locatable> thingsOnTile = getCharacter().getGameMap().get(newLoc);
 		int i=0;
 		for(Locatable loc:thingsOnTile){
 			if(loc instanceof Trap){

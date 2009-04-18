@@ -18,6 +18,7 @@ import sheep.model.items.armor.SteelWool;
 import sheep.model.items.oneshot.Beer;
 import sheep.model.items.oneshot.Key;
 import sheep.model.items.oneshot.Syringe;
+import sheep.model.items.useable.WheatThins;
 import sheep.model.items.weapons.AshStaff;
 import sheep.model.items.weapons.CrossBow;
 import sheep.model.items.weapons.FlareGun;
@@ -146,6 +147,16 @@ public class Level1MapCreator extends MapCreator {
 		
 		loc = new Location(12, 29);
 		map.add(loc, new GoldStaff(model, loc));
+		
+		loc = new Location(8, 29);
+		map.add(loc, new WheatThins(model, loc));
+		
+		loc = new Location(10, 29);
+		map.add(loc, new WheatThins(model, loc));
+		
+		loc = new Location(12, 29);
+		map.add(loc, new WheatThins(model, loc));
+		
 		
 		loc = new Location(16, 30);
 		map.add(loc, new Plane(model, loc));

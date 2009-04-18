@@ -1,5 +1,6 @@
 package sheep.model.entities;
 
+import java.util.List;
 import java.util.Vector;
 
 import sheep.model.Model;
@@ -76,7 +77,7 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 		Location newLoc = this.getLocation().addVector(vector);
 
 		// Get neighboring locatables
-		Vector<Locatable> thingsOnTile = this.getGameMap().get(newLoc);
+		List<Locatable> thingsOnTile = this.getGameMap().get(newLoc);
 		
 		// If no terrain or anything (edge of map), don't move
 		if (thingsOnTile.size() == 0) {
@@ -97,10 +98,10 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 		//System.out.println("Entity moved to " + this.getLocation());
 
 		// Touch everything on the location
-		try {
+		
 		for (Locatable neighbor : thingsOnTile) {
 			neighbor.touch(this);
-		} }catch(Exception e){ }
+		} 
 
 	}
 

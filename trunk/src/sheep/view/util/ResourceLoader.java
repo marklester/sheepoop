@@ -32,6 +32,7 @@ public class ResourceLoader {
 	private static final String DECALS_DIR = IMG_DIR+"decals/";
 	private static final String WEAP_DIR = ITEMS_DIR + "weapons/";
 	private static final String ONE_SHOT_DIR = ITEMS_DIR + "oneshot/";
+	private static final String USEABLE_DIR = ITEMS_DIR + "useable/";
 	/**
 	 * This will be the central place to input any IO related filenames. The entire application should use this 
 	 * class to access images. Any welcome screen images should be manually put into the imageMap in this 
@@ -106,6 +107,9 @@ public class ResourceLoader {
 		fileMap.put("Hidden Trap", ITEMS_DIR+"hidden.png");
 		fileMap.put("Activated Trap", ITEMS_DIR+"activatedtrap.png");
 		fileMap.put("Detected Trap", ITEMS_DIR+"detectedtrap.png");
+		
+		//useable
+		fileMap.put("Wheat Thins", USEABLE_DIR + "wheatthins.png");
 	}
 	
 	public static ResourceLoader getInstance() {
