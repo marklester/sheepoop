@@ -23,7 +23,7 @@ public class HotBarConsole extends Overlay {
 	private int height;
 
 	public HotBarConsole(int posX, int posY, Avatar avatar) {
-		super(posX, posY);
+		super(posX, posY - (20 + 2 * v_spacer + v_spacer * avatar.getPerformableSkills().size()));
 		this.skills = avatar.getPerformableSkills();
 		this.height = 2 * v_spacer + v_spacer * this.skills.size();
 	}
