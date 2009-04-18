@@ -2,10 +2,10 @@ package sheep.model.items.weapons;
 
 import java.util.Vector;
 
+import sheep.model.Model;
 import sheep.model.Time;
 import sheep.model.entities.Moveable;
 import sheep.model.gamemap.Direction;
-import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
@@ -20,9 +20,9 @@ public class Projectile extends Locatable implements Moveable
 
 	private static final long serialVersionUID = 1L;
 
-	public Projectile(String id, GameMap map, Location loc, Weapon w, Direction facing, int speed)
+	public Projectile(String id, Model model, Location loc, Weapon w, Direction facing, int speed)
 	{
-		super (id, map, loc);
+		super (id, model, loc);
 		this.facingDirection = facing;
 		startMoving(facing);
 		this.speed = speed;

@@ -57,7 +57,7 @@ public class NewGameAction implements ActionListener {
 		model.setMap(map);
 		
 		// Create avatar and set it in map
-		Avatar avatar = new Avatar("Summoner", map, startingLoc, occupation, model);
+		Avatar avatar = new Avatar("Summoner", model, startingLoc, occupation);
 		map.add(startingLoc, avatar);
 		model.setAvatar(avatar);
 		

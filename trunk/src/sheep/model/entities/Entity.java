@@ -2,9 +2,9 @@ package sheep.model.entities;
 
 import java.util.Vector;
 
+import sheep.model.Model;
 import sheep.model.Time;
 import sheep.model.gamemap.Direction;
-import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
@@ -29,8 +29,8 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 
 	private long tickCounter = 0;
 
-	public Entity(String id, GameMap map, Location loc) {
-		super(id, map, loc);
+	public Entity(String id, Model model, Location loc) {
+		super(id, model, loc);
 		Time.getInstance().registerObserver(this);
 	}
 

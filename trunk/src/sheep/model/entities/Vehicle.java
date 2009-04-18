@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import sheep.model.Model;
-import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
 import sheep.model.items.armor.Armor;
@@ -18,8 +17,8 @@ public class Vehicle extends Entity {
 	private Character driver;
 	private Vector<StatChangeObserver> statChangeObservers = new Vector<StatChangeObserver>();
 
-	public Vehicle(String id, GameMap map, Location loc, Model model) {
-		super(id, map, loc);
+	public Vehicle(String id, Model model, Location loc) {
+		super(id, model, loc);
 		this.model = model;
 
 		stats.put(VehicleStatType.SPEED, 25); // TODO this may need to come from

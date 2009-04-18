@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Vector;
 
 import sheep.model.CreepTimeObserver;
-import sheep.model.gamemap.GameMap;
+import sheep.model.Model;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
 import sheep.model.items.Takeable;
@@ -37,8 +37,8 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	private Vector<StatChangeObserver> statChangeObservers = new Vector<StatChangeObserver>();
 	transient private Vector<StatChangeObserver> transientStatChangeObservers = new Vector<StatChangeObserver>();
 	private CreepTimeObserver creeptimer = new CreepTimeObserver(this);
-	public Character(String id, GameMap map, Location loc, Occupation occupation) {
-		super(id, map, loc);
+	public Character(String id, Model model, Location loc, Occupation occupation) {
+		super(id, model, loc);
 		this.startingLocation = loc;
 		this.occupation = occupation;
 		this.performableSkills = occupation.clonePerformableSkills();

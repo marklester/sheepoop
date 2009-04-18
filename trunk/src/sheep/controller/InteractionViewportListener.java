@@ -10,11 +10,16 @@ import sheep.view.View;
 public class InteractionViewportListener implements ActionListener {
 	private TradeButtonsActionListener tradeButtonsActionListener;
 
+	private final Model model;
+	private final View view;
+	
 	public InteractionViewportListener(Model model, View view) {
-		throw new UnsupportedOperationException();
+		this.model = model;
+		this.view = view;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("Inventory button was clicked: " + e.getActionCommand());
 	}
 }

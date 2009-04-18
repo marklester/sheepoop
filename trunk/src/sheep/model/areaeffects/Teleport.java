@@ -16,7 +16,7 @@ public class Teleport extends AreaEffect {
 	private Location to;
 
 	public Teleport(Model model, Location loc, Location to) {
-		super("LevelUp", model.getGameMap(), loc);
+		super("LevelUp", model, loc);
 		this.to = to;
 		this.model = model;
 	}

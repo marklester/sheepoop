@@ -15,8 +15,8 @@ public class NPC extends Character {
 	private final Model model;
 	private AI ai;
 
-	public NPC(String id, GameMap map, Location loc, Occupation occupation, Model model) {
-		super(id, map, loc, occupation);
+	public NPC(String id, Model model, Location loc, Occupation occupation) {
+		super(id, model, loc, occupation);
 		this.model = model;
 	}
 

@@ -1,7 +1,7 @@
 package sheep.model.items;
 
+import sheep.model.Model;
 import sheep.model.entities.Entity;
-import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
 
 /**
@@ -10,11 +10,12 @@ import sheep.model.gamemap.Location;
  */
 public class Obstacle extends Item {
 
+	public Obstacle(String id, Model model, Location loc) {
+		super(id, model, loc);
+	}
+
 	private static final long serialVersionUID = -3498178569028623819L;
 	
-	public Obstacle(String id, GameMap map, Location loc) {
-		super(id, map, loc);
-	}
 
 	public boolean blocks(Entity entity) {
 		return true;

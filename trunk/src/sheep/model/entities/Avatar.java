@@ -2,11 +2,7 @@ package sheep.model.entities;
 
 import sheep.model.GameStateType;
 import sheep.model.Model;
-import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Location;
-import sheep.model.items.weapons.CrossBow;
-import sheep.model.items.weapons.FlareGun;
-import sheep.model.items.weapons.SpearGun;
 import sheep.model.occupations.Occupation;
 
 public class Avatar extends Character{
@@ -14,8 +10,8 @@ public class Avatar extends Character{
 	
 	private Model model;
 	
-	public Avatar(String id, GameMap map, Location loc, Occupation occupation, Model model) {
-		super(id, map, loc, occupation);
+	public Avatar(String id, Model model, Location loc, Occupation occupation) {
+		super(id, model, loc, occupation);
 		this.model = model;
 	}
 

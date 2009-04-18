@@ -2,8 +2,8 @@ package sheep.model.gamemap;
 
 import java.io.Serializable;
 
+import sheep.model.Model;
 import sheep.model.entities.Entity;
-
 import sheep.model.items.weapons.Projectile;
 import sheep.model.items.weapons.Weapon;
 
@@ -15,13 +15,13 @@ public abstract class Locatable implements Serializable {
 	
 	private static final long serialVersionUID = 2983990245744613911L;
 	
-	private GameMap map;
+	private Model model;
 	private Location location;
 	private String id;
-
-	public Locatable(String id, GameMap map, Location loc) {
+	
+	public Locatable(String id, Model model, Location loc) {
 		this.id = id;
-		this.map = map;
+		this.model = model;
 		this.location = loc;
 	}
 
@@ -61,8 +61,12 @@ public abstract class Locatable implements Serializable {
 		return this.id;
 	}
 	
+	public Model getModel() {
+		return this.model;
+	}
+	
 	public GameMap getGameMap() {
-		return this.map;
+		return this.model.getGameMap();
 	}
 	
 	public Location getLocation() {
@@ -70,7 +74,7 @@ public abstract class Locatable implements Serializable {
 	}
 	
 	public void setLocation(Location newLoc) {
-		map.notifyOfMovement(this.location, newLoc, this);
+		getGameMap().notifyOfMovement(this.location, newLoc, this);
 		this.location = newLoc;
 	}
 }

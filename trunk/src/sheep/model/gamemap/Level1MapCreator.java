@@ -28,7 +28,7 @@ public class Level1MapCreator extends MapCreator {
 		// Get initial map from parsed map file
 		GameMap map = null;
 		try {
-			map = super.parseMapFile(mapFile);
+			map = super.parseMapFile(model, mapFile);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("MapCreator.parseMap failed;");
@@ -38,37 +38,37 @@ public class Level1MapCreator extends MapCreator {
 		// Add vehicles
 		Location loc1;
 		loc1 = new Location(0, 17);
-		Vehicle vehicle = new Vehicle("Boat", map, loc1, model);
+		Vehicle vehicle = new Vehicle("Boat", model, loc1);
 		map.add(loc1, vehicle);
 
 		// Add wolfs
 		Location loc2 = new Location(6, 6);
-		map.add(loc2, new Wolf(map, loc2, model));
+		map.add(loc2, new Wolf(model, loc2));
 		loc2 = new Location(17, 14);
-		map.add(loc2, new AngryWolf(map, loc2, model));
+		map.add(loc2, new AngryWolf(model, loc2));
 
 		// add a level up w/ decal
 		Location loc3 = new Location(6, 7);
-		map.add(loc3, new Decal("LevelUp", map, loc3));
-		map.add(loc3, new LevelUp(map, loc3));
+		map.add(loc3, new Decal("LevelUp", model, loc3));
+		map.add(loc3, new LevelUp(model, loc3));
 
 		// Heal Damage
 		loc3 = new Location(6, 8);
-		map.add(loc3, new Decal("HealDamage", map, loc3));
-		map.add(loc3, new HealDamage(map, loc3, 25, 5));
+		map.add(loc3, new Decal("HealDamage", model, loc3));
+		map.add(loc3, new HealDamage(model, loc3, 25, 5));
 
 		// Take Damage
 		loc3 = new Location(6, 9);
-		map.add(loc3, new TakeDamage(map, loc3, 25, 5));
-		map.add(loc3, new Decal("TakeDamage", map, loc3));
+		map.add(loc3, new TakeDamage(model, loc3, 25, 5));
+		map.add(loc3, new Decal("TakeDamage", model, loc3));
 		
 		loc3 = new Location(9, 5);
-		map.add(loc3, new TakeDamage(map, loc3, 25, 30));
-		map.add(loc3, new Decal("TakeDamage", map, loc3));
+		map.add(loc3, new TakeDamage(model, loc3, 25, 30));
+		map.add(loc3, new Decal("TakeDamage", model, loc3));
 		
 		// Trap decal (we need to make this a real trap)
 		loc3 = new Location(14, 8);
-		map.add(loc3, new Decal("Trap", map, loc3));
+		map.add(loc3, new Decal("Trap", model, loc3));
 
 		// Teleporter
 		loc3 = new Location(18, 1);
