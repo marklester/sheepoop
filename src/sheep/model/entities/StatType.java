@@ -5,27 +5,35 @@ package sheep.model.entities;
  * @author Phil Freo
  */
 public enum StatType {
-	SPEED, 
-	LIVES_LEFT, 
-	STRENGTH, 
-	AGILITY, 
-	INTELLECT, 
-	HARDINESS, 
-	EXPERIENCE,
-	DAMAGE,
-	MANA_USED,
-	OFFENSIVE_BONUS,
-	DEFENSIVE_BONUS,
+	SPEED ("Speed"), 
+	LIVES_LEFT("Lives Left"), 
+	STRENGTH("Strength"), 
+	AGILITY("Agility"), 
+	INTELLECT("Intellect"), 
+	HARDINESS("Hardiness"), 
+	EXPERIENCE("Experience"),
+	DAMAGE("Damage"),
+	MANA_USED("Mana Used"),
+	OFFENSIVE_BONUS("OBonus"),
+	DEFENSIVE_BONUS("DBonus"),
 	//Derived stats below
-	LEVEL, 
-	LIFE,
-	MANA, 
-	BASE_OFFENSIVE_RATING, 
-	OFFENSIVE_RATING, 
-	BASE_DEFENSIVE_RATING, 
-	DEFENSIVE_RATING, 
-	ARMOR_RATING, 
-	MAX_MANA, 
-	MAX_LIFE;
-	
+	LEVEL("Level"), 
+	LIFE("Life"),
+	STEALTH("Stealth"),
+	MANA("Mana"), 
+	BASE_OFFENSIVE_RATING("Base Offensive Rating"), 
+	OFFENSIVE_RATING("Offesive Rating"), 
+	BASE_DEFENSIVE_RATING("Base Defensive Rating"), 
+	DEFENSIVE_RATING("Defensive Rating"), 
+	ARMOR_RATING("Armor Rating"), 
+	MAX_MANA("Max Mana"), 
+	MAX_LIFE("Max Life");
+	String name;
+	StatType(String name){
+		this.name=name;
+	}
+	public static StatType random(){
+		int random = (int)(Math.random()*(StatType.values().length-1));
+		return StatType.values()[random];
+	}
 }
