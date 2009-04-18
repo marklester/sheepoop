@@ -2,6 +2,7 @@ package sheep.model.areaeffects;
 
 import sheep.model.Model;
 import sheep.model.TimeObserver;
+import sheep.model.entities.Avatar;
 import sheep.model.entities.Entity;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.LocatableVisitor;
@@ -31,8 +32,10 @@ public abstract class AreaEffect extends Locatable implements TimeObserver {
 	 * @param the <code>Entity</code> that touches this AreaEffect
 	 */
 	public void touch(Entity entity) {
-		this.entity = entity;
-		applyEffect(entity);
+		if (entity == getModel().getAvatar()) {
+			this.entity = entity;
+			applyEffect(entity);
+		}
 	}
 
 	public Entity getLastEntity() {
