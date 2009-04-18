@@ -8,9 +8,12 @@ public class BindWounds extends PerformableSkill {
 	
 	private static final long serialVersionUID = -9062990493059890224L;
 
-	@Override
+	//@Override
 	public void actionPerformed(ActionEvent e) {
-		getCharacter().affectStat(StatType.DAMAGE, (int)-Math.random()*5*getPoints());
+		if(getCharacter().getStat(StatType.MANA)>=5){
+			getCharacter().affectStat(StatType.DAMAGE, (int)(-Math.random()*5*getPoints()));
+			getCharacter().affectStat(StatType.MANA_USED, 5);
+		}
 	}
 
 }
