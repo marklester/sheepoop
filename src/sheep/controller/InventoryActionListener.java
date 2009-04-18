@@ -10,6 +10,7 @@ public class InventoryActionListener implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("Inventory button pushed: " + e.getActionCommand());
 	}
 }

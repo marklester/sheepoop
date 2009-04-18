@@ -49,12 +49,13 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 	
 	public InventoryViewport(Avatar av, int w, int h) {
 		super(av, w, h);
-		setLayout(new GridLayout(2,1));
+		this.setLayout(new GridLayout(2,1));
 		this.inv = getAvatar().getInventory();
-		resLoader = ResourceLoader.getInstance();
+		this.resLoader = ResourceLoader.getInstance();
 		setupTop();
-		setupBottom();
-		bgImage = resLoader.getImage("sideBarBG");
+		setupBottomPanel();
+		this.add(botPnl, BorderLayout.SOUTH);
+		this.bgImage = resLoader.getImage("sideBarBG");
 		
 		av.registerInventoryChangeObserver(this);
 	}
@@ -125,14 +126,14 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 
 		//Weapon - Create Labels, JButtons, and constraints on the layout
 		GridBagConstraints c = new GridBagConstraints();
-		c.gridy = 0; c.gridx = 0; c.anchor = c.LINE_START;
+		c.gridy = 0; c.gridx = 0; c.anchor = GridBagConstraints.LINE_START;
 		JLabel eq_la = new JLabel("Weapon");
 		eq_la.setFont(myFont);
 		eq_la.setForeground(Color.white);
 		topPnl.add(eq_la, c);
 		
 		GridBagConstraints c2 = new GridBagConstraints();
-		c2.gridy = 0; c2.gridx = 1; c2.anchor = c2.CENTER;
+		c2.gridy = 0; c2.gridx = 1; c2.anchor = GridBagConstraints.CENTER;
 		JButton w_but = new JButton(w_img);
 		w_but.setOpaque(false);
 		w_but.setPreferredSize(BUT_SIZE);
@@ -141,14 +142,14 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 
 		//Aux - Create Labels, JButtons, and constraints on the layout
 		GridBagConstraints c3 = new GridBagConstraints();
-		c3.gridy = 1; c3.gridx = 0; c3.anchor = c3.LINE_START;
+		c3.gridy = 1; c3.gridx = 0; c3.anchor = GridBagConstraints.LINE_START;
 		JLabel au_la = new JLabel("Auxiliary");
 		au_la.setFont(myFont);
 		au_la.setForeground(Color.white);
 		topPnl.add(au_la, c3);
 		
 		GridBagConstraints c4 = new GridBagConstraints();
-		c4.gridy = 1; c4.gridx = 1; c4.anchor = c4.CENTER;
+		c4.gridy = 1; c4.gridx = 1; c4.anchor = GridBagConstraints.CENTER;
 		JButton au_but = new JButton(au_img);
 		au_but.setOpaque(false);
 		au_but.setPreferredSize(BUT_SIZE);
@@ -157,14 +158,14 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 
 		//Head- Create Labels, JButtons, and constraints on the layout
 		GridBagConstraints c5 = new GridBagConstraints();
-		c5.gridy = 2; c5.gridx = 0; c5.anchor = c5.LINE_START;
+		c5.gridy = 2; c5.gridx = 0; c5.anchor = GridBagConstraints.LINE_START;
 		JLabel he_la = new JLabel("Head");
 		he_la.setFont(myFont);
 		he_la.setForeground(Color.white);
 		topPnl.add(he_la, c5);
 		
 		GridBagConstraints c6 = new GridBagConstraints();
-		c6.gridy = 2; c6.gridx = 1; c6.anchor = c6.CENTER;
+		c6.gridy = 2; c6.gridx = 1; c6.anchor = GridBagConstraints.CENTER;
 		JButton he_but = new JButton(he_img);
 		he_but.setOpaque(false);
 		he_but.setContentAreaFilled(false);
@@ -174,14 +175,14 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		
 		//Chest - Create Labels, JButtons, and constraints on the layout
 		GridBagConstraints c6a = new GridBagConstraints();
-		c6a.gridy = 3; c6a.gridx = 0; c6a.anchor = c6a.LINE_START;
+		c6a.gridy = 3; c6a.gridx = 0; c6a.anchor = GridBagConstraints.LINE_START;
 		JLabel ch_la = new JLabel("Chest");
 		ch_la.setFont(myFont);
 		ch_la.setForeground(Color.white);
 		topPnl.add(ch_la, c6a);
 		
 		GridBagConstraints c7 = new GridBagConstraints();
-		c7.gridy = 3; c7.gridx = 1; c7.anchor = c7.CENTER;
+		c7.gridy = 3; c7.gridx = 1; c7.anchor = GridBagConstraints.CENTER;
 		JButton ch_but = new JButton(ch_img);
 		ch_but.setOpaque(false);
 		ch_but.setContentAreaFilled(false);
@@ -190,14 +191,14 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		
 		//Feet - Create Labels, JButtons, and constraints on the layout
 		GridBagConstraints c8 = new GridBagConstraints();
-		c8.gridy = 4; c8.gridx = 0; c8.anchor = c8.LINE_START;
+		c8.gridy = 4; c8.gridx = 0; c8.anchor = GridBagConstraints.LINE_START;
 		JLabel fe_la = new JLabel("Feet");
 		fe_la.setFont(myFont);
 		fe_la.setForeground(Color.white);
 		topPnl.add(fe_la, c8);
 		
 		GridBagConstraints c9 = new GridBagConstraints();
-		c9.gridy = 4; c9.gridx = 1; c9.anchor = c9.CENTER;
+		c9.gridy = 4; c9.gridx = 1; c9.anchor = GridBagConstraints.CENTER;
 		JButton fe_but = new JButton(fe_img);
 		fe_but.setContentAreaFilled(false);
 		fe_but.setOpaque(false);
@@ -211,7 +212,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		
 	}
 	
-	public void setupBottom() {
+	public void setupBottomPanel() {
 		botPnl = new JPanel(new GridBagLayout());
 		Dimension d = this.getPreferredSize();
 		botPnl.setPreferredSize(new Dimension((int)d.getWidth(), (int)d.getHeight() / 2));
@@ -233,9 +234,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 			botPnl.add(but, c);
 		}
 		
-		this.add(botPnl, BorderLayout.SOUTH);
 		botPnl.setVisible(true);
-		//System.out.println("inventory view refreshed");
 	}
 	
 	
@@ -245,7 +244,9 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 
 	@Override
 	public void update(InventoryChange msg) {
-		setupBottom();
+		remove(botPnl);
+		setupBottomPanel();
+		add(botPnl, BorderLayout.SOUTH);
 		validate();
 	}
 }
