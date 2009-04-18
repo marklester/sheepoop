@@ -235,7 +235,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		botPnl.setPreferredSize(new Dimension((int) d.getWidth(), (int) d.getHeight() / 2));
 		botPnl.setOpaque(false);
 
-		short cols = 2;
+		short cols = 3;
 		short x = 0;
 		short y = 0;
 		for (Takeable item : inv.get()) {
@@ -249,6 +249,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 			JButton but = new JButton(resLoader.getImageIcon(item.getID()));
 			but.setPreferredSize(BUT_SIZE);
 			but.setOpaque(false);
+			but.setContentAreaFilled(false);
 			but.setActionCommand(item.getID());
 			but.addActionListener(new InventoryActionListener(this.avatar, item));
 			botPnl.add(but, c);
