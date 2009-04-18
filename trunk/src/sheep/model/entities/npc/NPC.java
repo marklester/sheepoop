@@ -34,11 +34,6 @@ public class NPC extends Character {
 	public void setAi(AI ai) {
 		this.ai = ai;
 	}
-
-	@Override
-	public void affectStat(StatType stat, int changeAmt) {
-		
-	}
 	
 	@Override
 	public void setInteractingCharacter(Character character) {
