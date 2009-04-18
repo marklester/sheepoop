@@ -37,7 +37,7 @@ import sheep.view.util.ResourceLoader;
 public class AreaViewport extends JPanel {
 	private static final long serialVersionUID = 8296336314571261983L;
 
-	private static final boolean MAP_CREATE_MODE = false;
+	private boolean MAP_CREATE_MODE = false;
 	private static final int PAINTS_PER_SECOND = 30;
 	public  static int TILE_SIZE = 80;
 	private static int widthPerTile = (int) ((TILE_SIZE / 2) * (1 + Math.tan(Math.PI / 6)));
@@ -287,6 +287,10 @@ public class AreaViewport extends JPanel {
 	public void stopPainting() {
 		isPaused = true;
 		repaintTimer.stop();
+	}
+	
+	public void toggleGrid() {
+		MAP_CREATE_MODE = !MAP_CREATE_MODE;
 	}
 
 	private class TimerAction implements ActionListener {

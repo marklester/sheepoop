@@ -1,10 +1,8 @@
 package sheep.controller;
 
 import java.awt.event.KeyEvent;
-import java.io.File;
 
 import javax.swing.ActionMap;
-import javax.swing.ComponentInputMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
@@ -15,6 +13,7 @@ import sheep.controller.actions.SaveGameAction;
 import sheep.controller.actions.StartMovingAction;
 import sheep.controller.actions.StopMovingAction;
 import sheep.controller.actions.ToggleAction;
+import sheep.controller.actions.ToggleGridAction;
 import sheep.controller.actions.TogglePauseGameplayAction;
 import sheep.controller.actions.UseSkillAction;
 import sheep.controller.actions.UseWeaponAction;
@@ -23,7 +22,6 @@ import sheep.model.GameStateObserver;
 import sheep.model.Model;
 import sheep.model.gamemap.Direction;
 import sheep.model.loading.KeySettings;
-import sheep.model.loading.SettingsSaver;
 import sheep.view.View;
 
 /**
@@ -131,6 +129,10 @@ public class Controller implements GameStateObserver {
 		actionMap.put("togglePerformableSkills", new ToggleAction(view.getAreaViewport().getHotBarConsole()));
 		ks.put( "togglePerformableSkills", KeyStroke.getKeyStroke(KeyEvent.VK_F12, 0) );
 		
+		actionMap.put("toggleGrid", new ToggleGridAction(view.getAreaViewport()));
+		ks.put( "toggleGrid", KeyStroke.getKeyStroke(KeyEvent.VK_F9, 0) );
+		
+		
 		// Use Weapon
 		actionMap.put("useWeapon", new UseWeaponAction(model.getAvatar()));
 		ks.put( "useWeapon", KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0) );
@@ -138,16 +140,12 @@ public class Controller implements GameStateObserver {
 		// Use Skill
 		ks.put( "useSkill1", KeyStroke.getKeyStroke(KeyEvent.VK_1, 0) );
 		actionMap.put("useSkill1", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL1));
-		
 		ks.put( "useSkill2", KeyStroke.getKeyStroke(KeyEvent.VK_2, 0) );
 		actionMap.put("useSkill2", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL2));
-		
 		ks.put( "useSkill3", KeyStroke.getKeyStroke(KeyEvent.VK_3, 0) );
 		actionMap.put("useSkill3", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL3));
-		
 		ks.put( "useSkill4", KeyStroke.getKeyStroke(KeyEvent.VK_4, 0) );
 		actionMap.put("useSkill4", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL4));
-
 		ks.put( "useSkill5", KeyStroke.getKeyStroke(KeyEvent.VK_5, 0) );
 		actionMap.put("useSkill5", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL5));
 		ks.put( "useSkill6", KeyStroke.getKeyStroke(KeyEvent.VK_6, 0) );

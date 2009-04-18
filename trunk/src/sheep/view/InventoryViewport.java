@@ -47,8 +47,6 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 	private ResourceLoader resLoader;
 	private Font myFont = Overlay.getFont().deriveFont(20f);
 	private Image bgImage;
-	private InventoryMouseListener actionListener;	
-	
 	
 	public InventoryViewport(Avatar avatar, int w, int h) {
 		super(avatar, w, h);

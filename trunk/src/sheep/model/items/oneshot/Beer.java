@@ -13,7 +13,7 @@ public class Beer extends OneShot
 	public Beer(Model m, Location loc)
 	{
 		super("Beer", m, loc);
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
