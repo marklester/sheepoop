@@ -13,16 +13,18 @@ import sheep.model.entities.Character;
  */
 public abstract class PerformableSkill extends AbstractAction implements Serializable {
 	private static final long serialVersionUID = -8562441519176962234L;
-	
+	private String id;
 	public int points;
 	private Character character;
 
-	public PerformableSkill(Character character) {
+	public PerformableSkill(Character character,String id) {
 		this.character = character;
 		this.points = 0;
+		this.id = id;
 	}
-	public PerformableSkill() {
+	public PerformableSkill(String id) {
 		this.points = 1;
+		this.id = id;
 	}
 
 	public void addPoints(int amt) {
@@ -44,6 +46,12 @@ public abstract class PerformableSkill extends AbstractAction implements Seriali
 	public void setPoints(int points) {
 		this.points = points;
 	}
-
 	public abstract void actionPerformed(ActionEvent e);
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getId() {
+		return id;
+	}
 }
