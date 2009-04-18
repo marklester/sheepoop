@@ -73,8 +73,8 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 		g.drawString("Speed", getPosX()+2, getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.SPEED)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
-		g.drawString("Offensive Rating", getPosX()+2, getPosY() + v_spacer*i);
-		g.drawString(Integer.toString(stats.get(StatType.OFFENSIVE_RATING)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
+		g.drawString("Money", getPosX()+2, getPosY() + v_spacer*i);
+		g.drawString(Integer.toString(stats.get(StatType.MONEY)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
 		g.drawString("Defensive Rating", getPosX()+2, getPosY() + v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.DEFENSIVE_RATING)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
