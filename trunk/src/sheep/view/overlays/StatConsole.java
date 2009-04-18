@@ -26,14 +26,10 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 	private static final int v_spacer = 21;	//vertical spacer
 	private static final int h_spacer = 200;	//horizontal spacer	
 	private static final int bar_width = 15;
-	private final float max_life;
-	private final float max_mana;
 	
 	public StatConsole(int posX, int posY, Avatar avatar) {
 		super(posX, posY);
 		this.stats = avatar.getStats();
-		max_life = stats.get(StatType.MAX_LIFE);
-		max_mana = stats.get(StatType.MAX_MANA);
 	}
 
 	@Override
@@ -80,6 +76,7 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 		g.drawString(Integer.toString(stats.get(StatType.DEFENSIVE_RATING)), getPosX() + h_spacer, getPosY() + v_spacer*i++);
 		
 		//Life Bar
+		float max_life = stats.get(StatType.MAX_LIFE);
 		float lifeHeight = ((max_life - stats.get(StatType.LIFE)) / max_life) * (getHeight());
 		g.setColor(Color.red);
 		g.fillRect(getWidth(), getPosY(), bar_width, getHeight());
@@ -87,6 +84,7 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 		g.fillRect(getWidth(), getPosY(), bar_width, (int)lifeHeight);
 		
 		//Mana Bar
+		float max_mana = stats.get(StatType.MAX_MANA);
 		float manaHeight = ((max_mana - stats.get(StatType.MANA)) / max_mana) * (getHeight());
 		g.setColor(Color.blue);
 		g.fillRect(getWidth()-bar_width-10, getPosY(), bar_width, getHeight());
