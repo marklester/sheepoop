@@ -14,6 +14,7 @@ import sheep.controller.actions.StartMovingAction;
 import sheep.controller.actions.StopMovingAction;
 import sheep.controller.actions.ToggleAction;
 import sheep.controller.actions.TogglePauseGameplayAction;
+import sheep.controller.actions.UseSkillAction;
 import sheep.controller.actions.UseWeaponAction;
 import sheep.model.GameStateChange;
 import sheep.model.GameStateObserver;
@@ -111,7 +112,13 @@ public class Controller implements GameStateObserver {
 		// Use Weapon
 		actionMap.put("useWeapon", new UseWeaponAction(model.getAvatar()));
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), "useWeapon");
-		
+		// Use Skill
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_1, 0), "useSkill1");
+		actionMap.put("useSkill1", new UseSkillAction(model.getAvatar(),UseSkillAction.SKILL1));
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0), "useSkill2");
+		actionMap.put("useSkill2", new UseSkillAction(model.getAvatar(),UseSkillAction.SKILL2));
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0), "useSkill3");
+		actionMap.put("useSkill3", new UseSkillAction(model.getAvatar(),UseSkillAction.SKILL3));
 	}
 
 	/**
