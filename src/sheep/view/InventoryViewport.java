@@ -235,7 +235,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		
 		this.add(botPnl, BorderLayout.SOUTH);
 		botPnl.setVisible(true);
-		System.out.println("inventory view refreshed");
+		//System.out.println("inventory view refreshed");
 	}
 	
 	
