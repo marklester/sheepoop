@@ -1,5 +1,6 @@
 package sheep.model.entities;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,9 +30,12 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	private List<PerformableSkill> performableSkills;
 	private Character interactingCharacter;
 	private Vector<TalkMessageObserver> talkObservers = new Vector<TalkMessageObserver>();
+	transient private Vector<TalkMessageObserver> transientTalkObservers = new Vector<TalkMessageObserver>();
 	private Vector<InventoryChangeObserver> inventoryObservers = new Vector<InventoryChangeObserver>();
+	transient private Vector<InventoryChangeObserver> transientInventoryObservers = new Vector<InventoryChangeObserver>();
 	private Vector<StatChangeObserver> statChangeObservers = new Vector<StatChangeObserver>();
-
+	transient private Vector<StatChangeObserver> transientStatChangeObservers = new Vector<StatChangeObserver>();
+	
 	public Character(String id, GameMap map, Location loc, Occupation occupation) {
 		super(id, map, loc);
 		this.startingLocation = loc;
@@ -140,10 +144,20 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		for (TalkMessageObserver observer : this.talkObservers) {
 			observer.update(msg);
 		}
+		for (TalkMessageObserver observer : this.transientTalkObservers) {
+			observer.update(msg);
+		}
 	}
 
 	@Override
 	public void registerTalkMessageObserver(TalkMessageObserver observer) {
+		if (!(observer instanceof Serializable)) {
+			if (!transientTalkObservers.contains(observer)) {
+				transientTalkObservers.add(observer);
+			}
+			return;
+		}
+		
 		if (!talkObservers.contains(observer)) {
 			talkObservers.add(observer);
 		}
@@ -152,6 +166,7 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	@Override
 	public void removeTalkMessageObserver(TalkMessageObserver observer) {
 		talkObservers.remove(observer);
+		transientTalkObservers.remove(observer);
 	}
 
 	@Override
@@ -159,10 +174,20 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		for (InventoryChangeObserver observer : this.inventoryObservers) {
 			observer.update(msg);
 		}
+		for (InventoryChangeObserver observer : this.transientInventoryObservers) {
+			observer.update(msg);
+		}
 	}
 
 	@Override
 	public void registerInventoryChangeObserver(InventoryChangeObserver observer) {
+		if (!(observer instanceof Serializable)) {
+			if (!transientInventoryObservers.contains(observer)) {
+				transientInventoryObservers.add(observer);
+			}
+			return;
+		}
+		
 		if (!inventoryObservers.contains(observer)) {
 			inventoryObservers.add(observer);
 		}
@@ -170,6 +195,7 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 
 	@Override
 	public void removeInventoryChangeObserver(InventoryChangeObserver observer) {
+		transientInventoryObservers.remove(observer);
 		inventoryObservers.remove(observer);
 	}
 
@@ -178,10 +204,20 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		for (StatChangeObserver observer : this.statChangeObservers) {
 			observer.update(msg);
 		}
+		for (StatChangeObserver observer : this.transientStatChangeObservers) {
+			observer.update(msg);
+		}
 	}
 
 	@Override
 	public void registerStatChangeObserver(StatChangeObserver observer) {
+		if (!(observer instanceof Serializable)) {
+			if (!transientStatChangeObservers.contains(observer)) {
+				transientStatChangeObservers.add(observer);
+			}
+			return;
+		}
+		
 		if (!statChangeObservers.contains(observer)) {
 			statChangeObservers.add(observer);
 		}
@@ -189,6 +225,7 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 
 	@Override
 	public void removeStatChangeObserver(StatChangeObserver observer) {
+		transientStatChangeObservers.remove(observer);
 		statChangeObservers.remove(observer);
 	}
 
@@ -215,6 +252,10 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		return ret;
 	}
 
+	public List<PerformableSkill> getPerformableSkills() {
+		return this.performableSkills;
+	}
+	
 	public CharacterStats getStats() {
 		return this.stats;
 	}
@@ -234,7 +275,5 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	public Location getStartingLocation() {
 		return startingLocation;
 	}
-	public List<PerformableSkill> getPerformableSkills() {
-		return performableSkills;
-	}
+
 }
