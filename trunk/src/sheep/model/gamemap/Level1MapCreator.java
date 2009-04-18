@@ -18,12 +18,15 @@ import sheep.model.items.armor.SteelWool;
 import sheep.model.items.oneshot.Beer;
 import sheep.model.items.oneshot.Key;
 import sheep.model.items.oneshot.Syringe;
+import sheep.model.items.weapons.AshStaff;
 import sheep.model.items.weapons.CrossBow;
 import sheep.model.items.weapons.FlareGun;
+import sheep.model.items.weapons.GoldStaff;
 import sheep.model.items.weapons.Hammer;
 import sheep.model.items.weapons.HeavyAxe;
 import sheep.model.items.weapons.LongSword;
 import sheep.model.items.weapons.Nunchucks;
+import sheep.model.items.weapons.OakStaff;
 import sheep.model.items.weapons.ShortSword;
 import sheep.model.items.weapons.SpearGun;
 import sheep.model.items.weapons.Trident;
@@ -134,7 +137,16 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location(16, 27);
 		map.add(loc, new Trident(model, loc));
 		
-		loc = new Location(16, 29);
+		loc = new Location(8, 29);
+		map.add(loc, new OakStaff(model, loc));
+		
+		loc = new Location(10, 29);
+		map.add(loc, new AshStaff(model, loc));
+		
+		loc = new Location(12, 29);
+		map.add(loc, new GoldStaff(model, loc));
+		
+		loc = new Location(16, 30);
 		map.add(loc, new Plane(model, loc));
 		
 		
