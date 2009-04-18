@@ -4,9 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import sheep.model.entities.Avatar;
 import sheep.model.items.Takeable;
+
+
+/**
+ * 
+ * @author Jason Mac
+ *
+ */
 
 public class InventoryMouseListener implements MouseListener {
 
