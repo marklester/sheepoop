@@ -3,7 +3,6 @@ package sheep.controller.actions;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 import java.util.Map.Entry;
 
 import javax.swing.AbstractAction;
@@ -46,12 +45,14 @@ public class ReleaseVehicleAction extends AbstractAction {
 		Map<Location, List<Locatable>> thingsOnMyTile = model.getGameMap().getMapSubset(vehicle.getLocation(), 1);
 		
 		// Look for a terrain next to vehicle that the avatar can get off
-		boolean avatarCanGetOff = false;
-		for (List<Locatable> locatables : thingsOnMyTile.values()) {
-			for (Locatable locatable : locatables) {
+		boolean avatarCanGetOff = false; 
+		Location passableLoc = null;
+		for (Entry<Location, List<Locatable>> locatables : thingsOnMyTile.entrySet()) {
+			for (Locatable locatable : locatables.getValue()) {
 				if (locatable != vehicle && locatable != avatar && !locatable.blocks(avatar)) {
+					passableLoc = locatables.getKey();
 					avatarCanGetOff = true;
-					System.out.println(locatable);
+					break;
 				}				
 			}
 		}
@@ -60,6 +61,9 @@ public class ReleaseVehicleAction extends AbstractAction {
 		if (!avatarCanGetOff) {
 			return;
 		}
+		
+		// Move vehicle (and avatar) to nearest passable tile
+		mover.setLocation(passableLoc);
 		
 		// Release vehicle
 		vehicle.clearDriver();
