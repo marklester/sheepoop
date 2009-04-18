@@ -68,7 +68,7 @@ public class ResourceLoader {
 		fileMap.put("Boat", SPRITES_DIR + "boat1.gif");
 		fileMap.put("Plane", SPRITES_DIR + "plane.png");
 		fileMap.put("Wolf", SPRITES_DIR+"wolf.png");
-		
+		fileMap.put("AreMyRat", SPRITES_DIR+"armyrat.png");
 		//Items
 		fileMap.put("Boulder",ITEMS_DIR+ "boulder.png");
 		fileMap.put("Steel Wool",ITEMS_DIR+ "armor/steelwool.png");
