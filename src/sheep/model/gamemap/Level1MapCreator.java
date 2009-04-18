@@ -7,6 +7,7 @@ import sheep.model.Model;
 import sheep.model.areaeffects.HealDamage;
 import sheep.model.areaeffects.LevelUp;
 import sheep.model.areaeffects.River;
+import sheep.model.areaeffects.RiverCounter;
 import sheep.model.areaeffects.TakeDamage;
 import sheep.model.areaeffects.Teleport;
 import sheep.model.entities.npc.AngryWolf;
@@ -60,10 +61,19 @@ public class Level1MapCreator extends MapCreator {
 		Vehicle vehicle = new Boat(model, loc);
 		map.add(loc, vehicle);
 		//add river
-		loc = new Location(0,16);
-		map.add(loc,new River(model,loc,Direction.N));
-		loc = new Location(0,15);
-		map.add(loc,new River(model,loc,Direction.NW));
+		RiverCounter rc = new RiverCounter();
+		loc = new Location(16,6);
+		map.add(loc,new River(model,loc,Direction.NE,rc));
+		loc = new Location(17,5);
+		map.add(loc,new River(model,loc,Direction.NE,rc));
+		loc = new Location(18,5);
+		map.add(loc,new River(model,loc,Direction.N,rc));
+		loc = new Location(18,4);
+		map.add(loc,new River(model,loc,Direction.N,rc));
+		loc = new Location(18,3);
+		map.add(loc,new River(model,loc,Direction.N,rc));
+		loc = new Location(18,2);
+		map.add(loc,new River(model,loc,Direction.N,rc));
 		// Add wolfs
 		loc = new Location(6, 6);
 		map.add(loc, new Wolf(model, loc));

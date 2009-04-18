@@ -64,6 +64,42 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	}
 
 	/**
+	 * This is only to be called to teleport or push the entity... will move him to destination following
+	 * normal blocking, touching rules
+	 * @param dest
+	 */
+	public void move(Location dest) {
+		
+
+		// Get neighboring locatables
+		List<Locatable> thingsOnTile = this.getGameMap().get(dest);
+		
+		// If no terrain or anything (edge of map), don't move
+		if (thingsOnTile.size() == 0) {
+			stopMoving();
+			return;
+		}
+
+		// See if anything blocks
+		for (Locatable neighbor : thingsOnTile) {
+			if (neighbor.blocks(this)) {
+				stopMoving();
+				return;
+			}
+		}
+		
+		// Move is successful, do it
+		this.setLocation(dest);
+		//System.out.println("Entity moved to " + this.getLocation());
+
+		// Touch everything on the location
+		
+		for (Locatable neighbor : thingsOnTile) {
+			neighbor.touch(this);
+		} 
+
+	}
+	/**
 	 * Actually move the entity.  Call only when Entity hasn't moved too 
 	 * recently according to its getSpeed() and the tick()s.
 	 */
