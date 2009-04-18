@@ -13,7 +13,7 @@ public class Syringe extends OneShot
 	public Syringe(Model m, Location loc)
 	{
 		super("Syringe", m, loc);
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public class Key extends OneShot
 	public Key(Model m, Location loc)
 	{
 		super("Key", m, loc);
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
