@@ -10,7 +10,7 @@ public class Plane extends Vehicle
 
 	public Plane(Model model, Location loc)
 	{
-		super("Plane", model, loc, 30);
+		super("Plane", model, loc, 27);
 	}
 
 	@Override
