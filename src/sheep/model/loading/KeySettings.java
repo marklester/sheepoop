@@ -2,27 +2,38 @@ package sheep.model.loading;
 
 import java.io.Serializable;
 
-import javax.swing.ActionMap;
+import javax.swing.ComponentInputMap;
 import javax.swing.InputMap;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
 public class KeySettings implements Serializable {
 	
-	private static final long serialVersionUID = 7414087656523028561L;
+	private static final long serialVersionUID = -6867923771745738694L;
+	
+	private InputMap keyBindings;
+	
+	public KeySettings() {
+		keyBindings = new InputMap();
+	}
+	
+	public void put( String key, KeyStroke keyStroke ) {
+		keyBindings.put( keyStroke, key );
+	}
 
-	private ActionMap aMap;
-	private InputMap iMap;
-	
-	public KeySettings( InputMap inputMap, ActionMap actionMap ) {
-		this.iMap = inputMap;
-		this.aMap = actionMap;
-	}
-	
-	public ActionMap getActionMap() {
-		return aMap;
-	}
-	
 	public InputMap getInputMap() {
-		return iMap;
+		return keyBindings;
 	}
+	
+	public ComponentInputMap getComponentInputMap( JComponent comp ) {
 
+		ComponentInputMap cm = new ComponentInputMap( comp );
+		
+		for( KeyStroke k : keyBindings.allKeys() )
+		{
+			cm.put(k, keyBindings.get(k) );
+		}
+		
+		return cm;
+	}
 }

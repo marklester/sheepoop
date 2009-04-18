@@ -28,6 +28,7 @@ public class SaveGameAction extends AbstractAction {
 		
 		JFileChooser jc = new JFileChooser();
 		jc.setFileFilter( new FileNameExtensionFilter( "Sheepoop Save Files (*.poop)", "poop" ) );
+		jc.setRequestFocusEnabled(true);
 		int status = jc.showSaveDialog( null );
 		
 		if( status == JFileChooser.APPROVE_OPTION ) {
