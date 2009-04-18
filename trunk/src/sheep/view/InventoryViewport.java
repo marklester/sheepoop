@@ -245,6 +245,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 
 	@Override
 	public void update(InventoryChange msg) {
-		
+		setupBottom();
+		validate();
 	}
 }
