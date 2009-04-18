@@ -6,6 +6,7 @@ import java.io.IOException;
 import sheep.model.Model;
 import sheep.model.areaeffects.HealDamage;
 import sheep.model.areaeffects.LevelUp;
+import sheep.model.areaeffects.River;
 import sheep.model.areaeffects.TakeDamage;
 import sheep.model.areaeffects.Teleport;
 import sheep.model.entities.npc.AngryWolf;
@@ -57,7 +58,11 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location(0, 17);
 		Vehicle vehicle = new Boat(model, loc);
 		map.add(loc, vehicle);
-
+		//add river
+		loc = new Location(0,16);
+		map.add(loc,new River(model,loc,Direction.N));
+		loc = new Location(0,15);
+		map.add(loc,new River(model,loc,Direction.NW));
 		// Add wolfs
 		loc = new Location(6, 6);
 		map.add(loc, new Wolf(model, loc));
