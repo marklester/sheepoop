@@ -2,6 +2,7 @@ package sheep.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -21,13 +22,16 @@ import sheep.controller.InventoryMouseListener;
 import sheep.controller.TradeButtonsActionListener;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.SkillPointChangeObserver;
+import sheep.model.entities.StatChange;
+import sheep.model.entities.StatChangeObserver;
+import sheep.model.entities.StatType;
 import sheep.model.entities.npc.NPC;
 import sheep.model.items.Takeable;
 import sheep.model.skills.PassiveSkill;
 import sheep.model.skills.PerformableSkill;
 import sheep.view.overlays.Overlay;
 
-public class SkillPointViewport extends Viewport implements SkillPointChangeObserver {
+public class SkillPointViewport extends Viewport implements SkillPointChangeObserver, StatChangeObserver {
 
 	private static final long serialVersionUID = 3484298330273421838L;
 	public static final Dimension plusSignSize = new Dimension(40, 40);
@@ -35,6 +39,7 @@ public class SkillPointViewport extends Viewport implements SkillPointChangeObse
 	private Image bgImage;
 	private ImageIcon plusSignIcon;
 	private JPanel mainPanel;
+	private int pointsToAllocate = 0;
 
 	public SkillPointViewport(Avatar avatar, int w, int h) {
 		super(avatar, w, h);
@@ -44,6 +49,7 @@ public class SkillPointViewport extends Viewport implements SkillPointChangeObse
 		this.setVisible(true);
 		
 		getAvatar().registerSkillPointObserver(this);
+		getAvatar().registerStatChangeObserver(this);
 		
 	}
 	
@@ -52,6 +58,8 @@ public class SkillPointViewport extends Viewport implements SkillPointChangeObse
 		mainPanel.setPreferredSize(getPreferredSize());
 		mainPanel.setOpaque(false);
 
+		pointsToAllocate = getAvatar().getStat(StatType.SKILL_POINTS_TO_GIVE);
+		
 		short y = 0;
 		short pady = 40;
 		short padx = 3;
@@ -81,20 +89,23 @@ public class SkillPointViewport extends Viewport implements SkillPointChangeObse
 			pnt.setForeground(Color.WHITE);
 			mainPanel.add(pnt, c_pnt);
 			
-			//Create the Jbutton on the right
-			GridBagConstraints c_but = new GridBagConstraints();
-			c_but.anchor = GridBagConstraints.CENTER;
-			c_but.gridx = 2;
-			c_but.gridy = y++;
-			c_but.ipady = pady;
-			c_but.ipadx = padx;
-			JButton but = new JButton(plusSignIcon);
-			but.setPreferredSize(plusSignSize);
-			but.setOpaque(false);
-			but.setContentAreaFilled(false);
-			but.setBorderPainted(false);
-			but.addActionListener(new AddSkillPointActionListener(getAvatar(), pSkill));
-			mainPanel.add(but, c_but);
+			if (pointsToAllocate > 0) {			
+				//Create the Jbutton on the right
+				GridBagConstraints c_but = new GridBagConstraints();
+				c_but.anchor = GridBagConstraints.CENTER;
+				c_but.gridx = 2;
+				c_but.gridy = y;
+				c_but.ipady = pady;
+				c_but.ipadx = padx;
+				JButton but = new JButton(plusSignIcon);
+				but.setPreferredSize(plusSignSize);
+				but.setOpaque(false);
+				but.setContentAreaFilled(false);
+				but.setBorderPainted(false);
+				but.addActionListener(new AddSkillPointActionListener(getAvatar(), pSkill));
+				mainPanel.add(but, c_but);
+			}
+			y++;
 		}
 
 		for (Entry<PassiveSkill, Integer> entry : getAvatar().getPassiveSkills()) {
@@ -123,20 +134,23 @@ public class SkillPointViewport extends Viewport implements SkillPointChangeObse
 			pnt.setForeground(Color.WHITE);
 			mainPanel.add(pnt, c_pnt);
 			
-			//Create the Jbutton on the right
-			GridBagConstraints c_but = new GridBagConstraints();
-			c_but.anchor = GridBagConstraints.LINE_END;
-			c_but.gridx = 2;
-			c_but.gridy = y++;
-			c_but.ipady = pady;
-			c_but.ipadx = padx;
-			JButton but = new JButton(plusSignIcon);
-			but.setPreferredSize(plusSignSize);
-			but.setOpaque(false);
-			but.setContentAreaFilled(false);
-			but.setBorderPainted(false);
-			but.addActionListener(new AddSkillPointActionListener(getAvatar(), pSkill));
-			mainPanel.add(but, c_but);
+			if (pointsToAllocate > 0) {	
+				//Create the Jbutton on the right
+				GridBagConstraints c_but = new GridBagConstraints();
+				c_but.anchor = GridBagConstraints.LINE_END;
+				c_but.gridx = 2;
+				c_but.gridy = y;
+				c_but.ipady = pady;
+				c_but.ipadx = padx;
+				JButton but = new JButton(plusSignIcon);
+				but.setPreferredSize(plusSignSize);
+				but.setOpaque(false);
+				but.setContentAreaFilled(false);
+				but.setBorderPainted(false);
+				but.addActionListener(new AddSkillPointActionListener(getAvatar(), pSkill));
+				mainPanel.add(but, c_but);
+			}
+			y++;
 		}
 		
 		
@@ -149,6 +163,11 @@ public class SkillPointViewport extends Viewport implements SkillPointChangeObse
 		g.setFont(myFont.deriveFont(24f));
 		g.setColor(Color.RED);
 		g.drawString("Available Skills", 8, 40);
+		if (pointsToAllocate > 0) {
+			g.setFont(myFont.deriveFont(13f));
+			g.drawString("Points to allocate: " + pointsToAllocate, 8, 55);
+		}
+		
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -163,12 +182,25 @@ public class SkillPointViewport extends Viewport implements SkillPointChangeObse
 			remove(mainPanel);
 		this.mainPanel = createPanel();
 		add(mainPanel);
-		this.validate();		
+		this.validate();
+		Component parent = this.getParent();
+		if (parent != null)
+			parent.requestFocus();
 	}
 
 	@Override
 	public void update() {
 		setupPanel();
+	}
+
+	
+	@Override
+	public void update(StatChange msg) {
+		if (msg.getStatType().equals(StatType.SKILL_POINTS_TO_GIVE) ) {
+			if (!isVisible())
+				toggleVisibility();
+			setupPanel();
+		}		
 	}
 	
 	

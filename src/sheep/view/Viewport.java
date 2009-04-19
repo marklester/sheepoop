@@ -41,5 +41,11 @@ public class Viewport extends JPanel {
 	public ResourceLoader getResLoader() {
 		return this.resLoader;
 	}
-
+	
+	public void setVisibility(boolean b) {
+		this.isVisible = b;
+	}
+	
+	
+	
 }

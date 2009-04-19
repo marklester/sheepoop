@@ -7,7 +7,7 @@ import java.util.Vector;
 public class CharacterStats implements Cloneable, Serializable {
 
 	private static final long serialVersionUID = -2031931040554030741L;
-
+	private static final int pointsPerLevelUp = 5; 
 	private Character character;
 	private HashMap<StatType, Integer> stats = new HashMap<StatType, Integer>();
 
@@ -27,7 +27,13 @@ public class CharacterStats implements Cloneable, Serializable {
 	}
 
 	public void calculateDerivedStatistics() {
+		int currLevel = get(StatType.LEVEL);
 		stats.put(StatType.LEVEL, get(StatType.EXPERIENCE) / 1000 + 1);
+		//Give points for a level up
+		if (get(StatType.LEVEL) > currLevel) {
+			int currPoints = get(StatType.SKILL_POINTS_TO_GIVE);
+			set(StatType.SKILL_POINTS_TO_GIVE, pointsPerLevelUp + currPoints);
+		}
 		if (get(StatType.DAMAGE) < 0) {
 			stats.put(StatType.DAMAGE, 0);
 		}
