@@ -61,13 +61,6 @@ public abstract class Weapon extends Takeable implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		Character enemy = user.getInteractingCharacter();
-
-		/*if (enemy != null) {
-			int totalDamage = (int) Math.floor((double) getBaseDamage() * ((double) user.getSkill(getSkill())));
-
-			enemy.affectStat(StatType.LIFE, totalDamage);
-		} else {*/
 		Vector2D myVector = user.getFacingDirection().getVector(user.getLocation());
 		Location attackingTile = new Location(user.getLocation().getX() + (int) myVector.getX(), user.getLocation().getY()
 				+ (int) myVector.getY());
@@ -75,7 +68,6 @@ public abstract class Weapon extends Takeable implements ActionListener {
 		for (Locatable l : targets) {
 			l.hitWith(this);
 		}
-		//		}
 	}
 
 	public void applyEffect(Entity e) {
