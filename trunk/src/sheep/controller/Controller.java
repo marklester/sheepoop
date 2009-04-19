@@ -1,10 +1,6 @@
 package sheep.controller;
 
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.io.NotSerializableException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -163,11 +159,4 @@ public class Controller implements GameStateObserver, NotSerializable {
 		}
 	}
 
-	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
-		throw new NotSerializableException();
-	}
-
-	private void writeObject(ObjectOutputStream ois) throws IOException {
-	//	throw new NotSerializableException();
-	}
 }

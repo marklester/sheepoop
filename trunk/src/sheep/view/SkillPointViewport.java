@@ -199,12 +199,5 @@ public class SkillPointViewport extends Viewport implements SkillPointChangeObse
 		}		
 	}
 
-	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
-		throw new NotSerializableException();
-	}
 
-	private void writeObject(ObjectOutputStream ois) throws IOException {
-	//	throw new NotSerializableException();
-	}
-		
 }

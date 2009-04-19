@@ -276,11 +276,4 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		setUpPanels();
 	}
 
-	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
-		throw new NotSerializableException();
-	}
-
-	private void writeObject(ObjectOutputStream ois) throws IOException {
-	//	throw new NotSerializableException();
-	}
 }
