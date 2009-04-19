@@ -41,6 +41,10 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 		Time.getInstance().registerObserver(this);
 	}
 
+	public void setFacingDirection(Direction direction)
+	{
+		this.facingDirection = direction;
+	}
 	public void startMoving(Direction direction) {
 		this.facingDirection = direction;
 		this.isMoving = true;

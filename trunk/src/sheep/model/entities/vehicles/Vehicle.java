@@ -9,6 +9,7 @@ import sheep.model.entities.Entity;
 import sheep.model.entities.StatChange;
 import sheep.model.entities.StatChangeObserver;
 import sheep.model.entities.StatType;
+import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
 import sheep.model.items.armor.Armor;
@@ -81,6 +82,12 @@ public abstract class Vehicle extends Entity {
 	 * Override setLocation from Locatable so we can move the driver's location
 	 * as well (if we do in fact move)
 	 */
+	@Override
+	public void startMoving(Direction direction)
+	{
+		super.startMoving(direction);
+		driver.setFacingDirection(direction);
+	}
 	@Override
 	public void setLocation(Location newLoc) {
 		super.setLocation(newLoc);

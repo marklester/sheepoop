@@ -63,9 +63,9 @@ public class ResourceLoader {
 		fileMap.put("Mountain", TERRAIN_DIR + "mountains2.png");
 		fileMap.put("BlackTile", TERRAIN_DIR + "black.png");
 		
-		fileMap.put("Summoner", SPRITES_DIR + "sheep1.gif");
-		fileMap.put("Smasher", SPRITES_DIR + "sheep1.gif");
-		fileMap.put("Sneak", SPRITES_DIR + "sheep1.gif");
+		fileMap.put("Summoner", SPRITES_DIR + "sheep2.png");
+		fileMap.put("Smasher", SPRITES_DIR + "sheep2.png");
+		fileMap.put("Sneak", SPRITES_DIR + "sheep2.png");
 		fileMap.put("statsFont", FONTS_DIR + "statsFont.ttf");
 		fileMap.put("Boat", SPRITES_DIR + "boat1.gif");
 		fileMap.put("Plane", SPRITES_DIR + "plane.png");
