@@ -1,0 +1,27 @@
+<project name="sheepoop" default="dist" basedir=".">
+	
+	<property name="src" location="src"/>
+	<property name="dist" location="dist"/>
+	<property name="debug" value="off"/>
+	<property name="build" location="build" />
+	<property name="docs" location="docs" />
+
+	<target name="init">
+		<tstamp/>
+		<mkdir dir="${build}"/>
+	</target>
+	
+    <target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" debug="${debug}" />
+	</target>
+
+	<target name="dist" depends="compile">
+		<jar basedir="${build}" destfile="${dist}/RunGame.jar" manifest="RunGame.manifest"/>
+		<antcall target="clean" />
+	</target>
+	
+	<target name="clean">
+		<delete dir="${build}"/>
+	</target>
+	
+</project>
