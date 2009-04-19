@@ -20,13 +20,17 @@ public class NPC extends Character {
 	boolean dead = false;
 	private final Model model;
 	private int hostility;
-	private AI ai;
+	private AI activeAi;
+	private AI peacefulAi;
+	private AI angryAi;
 	
 	
-	public NPC(String id, Model model, Location loc, Occupation occupation, int initialHostility) {
+	public NPC(String id, Model model, Location loc, Occupation occupation, int initialHostility, AI peacefulAi, AI angryAi) {
 		super(id, model, loc, occupation);
 		this.model = model;
 		hostility = initialHostility;
+		peacefulAi.attachNPC(this);
+		angryAi.attachNPC(this);
 	}
 
 	@Override
@@ -43,10 +47,6 @@ public class NPC extends Character {
 		character.hearMessage(this, "Hi my name is " + this.getID() + ", what's up?");
 	}
 
-	public void setAi(AI ai) {
-		this.ai = ai;
-	}
-	
 	public int getHostility() {
 		return hostility;
 	}
@@ -57,13 +57,15 @@ public class NPC extends Character {
 		//this.hostility = ( hostility > 100) ? 100 : hostility;
 		if(hostility > 50)
 		{
-			ai.destroy();
-			ai = new AngryAI(this, getModel());
+			peacefulAi.detachNPC();
+			angryAi.attachNPC(this);
+			activeAi = angryAi;
 		}
 		else if (hostility <= 50)
 		{
-			ai.destroy();
-			ai = new DumbAI(this, getModel());
+			angryAi.detachNPC();
+			peacefulAi.attachNPC(this);
+			activeAi = peacefulAi;
 		}
 		System.out.println("Hostility: " + hostility);
 	}
@@ -87,16 +89,18 @@ public class NPC extends Character {
 		
 		// Check if we are trying to move into the avatar, and possibly attack 
 		if (character == model.getAvatar()) {
-			ai.bumpedIntoAvatar(model.getAvatar());
+			activeAi.bumpedIntoAvatar(model.getAvatar());
 		}
 	}
 
 	@Override
 	public void die() {
 		dead = true;
-		Time.getInstance().removeObserver(ai);
+		Time.getInstance().removeObserver(angryAi);
+		Time.getInstance().removeObserver(peacefulAi);
 		//sai.setNPC(null);
-		ai=null;
+		angryAi=null;
+		peacefulAi=null;
 		this.getGameMap().remove(getLocation(),this);
 		setLocation(null);
 	}

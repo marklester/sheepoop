@@ -6,6 +6,7 @@ import sheep.model.Model;
 import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
 import sheep.model.entities.StatType;
+import sheep.model.entities.npc.ai.AngryAI;
 import sheep.model.entities.npc.ai.VillagerAI;
 import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.Location;
@@ -19,9 +20,7 @@ public class AreMyRat extends NPC {
 	private String[] unfriendly = {"ARE MY!", "ARE ARE MYYYYY!" };
 	
 	public AreMyRat(Model model, Location loc) {
-		super("AreMyRat", model, loc, new Sneak(), 20);
-		
-		setAi(new VillagerAI(this, model));
+		super("AreMyRat", model, loc, new Sneak(), 20, new VillagerAI(model), new AngryAI(model));
 		this.getStats().change(StatType.MONEY, 0);
 	}
 	

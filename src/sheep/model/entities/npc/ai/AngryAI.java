@@ -11,8 +11,8 @@ public class AngryAI extends AI {
 
 	private static final long serialVersionUID = -576367827163651816L;
 
-	public AngryAI(NPC npc, Model model) {
-		super(npc, model);
+	public AngryAI(Model model) {
+		super(model);
 		
 //		int dx = 100 - npc.getHostility(); 
 //		

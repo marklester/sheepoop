@@ -19,8 +19,7 @@ public abstract class AI implements TimeObserver, Serializable {
 	private Model model;
 
 	
-	public AI(NPC npc, Model model) {
-		this.npc = npc;
+	public AI(Model model) {
 		this.model = model;
 		Time.getInstance().registerObserver(this);
 	}
@@ -29,6 +28,14 @@ public abstract class AI implements TimeObserver, Serializable {
 	
 	public NPC getNPC() {
 		return this.npc;
+	}
+	public void attachNPC(NPC n)
+	{
+		this.npc = n;
+	}
+	public void detachNPC()
+	{
+		this.npc = null;
 	}
 	
 	public GameMap getGameMap() {
