@@ -1,4 +1,4 @@
-package sheep.model.entities.npc;
+package sheep.model.entities.npc.ai;
 
 import java.io.Serializable;
 
@@ -6,6 +6,7 @@ import sheep.model.Model;
 import sheep.model.Time;
 import sheep.model.TimeObserver;
 import sheep.model.entities.Avatar;
+import sheep.model.entities.npc.NPC;
 import sheep.model.gamemap.GameMap;
 
 /**

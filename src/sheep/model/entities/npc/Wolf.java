@@ -2,6 +2,7 @@ package sheep.model.entities.npc;
 
 import sheep.model.Model;
 import sheep.model.entities.StatType;
+import sheep.model.entities.npc.ai.DumbAI;
 import sheep.model.gamemap.Location;
 import sheep.model.occupations.Sneak;
 

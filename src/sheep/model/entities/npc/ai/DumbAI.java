@@ -1,8 +1,9 @@
-package sheep.model.entities.npc;
+package sheep.model.entities.npc.ai;
 
 import sheep.model.Model;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.StatType;
+import sheep.model.entities.npc.NPC;
 import sheep.model.gamemap.Direction;
 
 public class DumbAI extends AI {
