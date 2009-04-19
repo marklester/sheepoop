@@ -2,6 +2,11 @@ package sheep.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentListener;
+import java.awt.event.ContainerEvent;
+import java.awt.event.ContainerListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.AbstractAction;
 
@@ -20,10 +25,12 @@ public class InteractionViewportListener implements ActionListener {
 
 	private final Model model;
 	private final View view;
+	private final AbstractAction returnToGameAction;
 	
-	public InteractionViewportListener(Model model, View view) {
+	public InteractionViewportListener(Model model, View view, AbstractAction returnToGameAction) {
 		this.model = model;
 		this.view = view;
+		this.returnToGameAction = returnToGameAction;
 	}
 
 	@Override
@@ -37,10 +44,15 @@ public class InteractionViewportListener implements ActionListener {
 			action = new UseWeaponAction(model.getAvatar());
 		} else if(cmd.equalsIgnoreCase("talk")) {
 			action = new TalkAction(model.getAvatar(), model.getAvatar().getInteractingCharacter());
-		} else if(cmd.equalsIgnoreCase("useItem")) {
+		} 
+		else if(cmd.equalsIgnoreCase("useItem")) {
 			view.showInventoryViewport();			
+			//action = new ToggleTradeAction( view );
+			
 			//action = new UseItemAction(model.getAvatar(), model.getAvatar().getInventory().get().iterator().next());
-		}  else if(cmd.equalsIgnoreCase("trade")) {
+		
+		}
+		else if(cmd.equalsIgnoreCase("trade")) {
 			Avatar av = model.getAvatar();
 			Character c = av.getInteractingCharacter();
 			TradeViewport tv = new TradeViewport( av, c,  new TradeFacilitator(av, c), view.getAreaViewport().getWidth()/2 - 250, view.getAreaViewport().getHeight()/2 - 250 );
@@ -50,7 +62,7 @@ public class InteractionViewportListener implements ActionListener {
 
 				@Override
 				public void actionPerformed(ActionEvent ae) {
-					returnGame();
+					returnToGameAction.actionPerformed(ae);
 				}
 			});
 			view.setTradeViewport( tv );
@@ -63,17 +75,9 @@ public class InteractionViewportListener implements ActionListener {
 		
 		view.toggleActionMenu();
 		
-		if( !cmd.equalsIgnoreCase( "trade" ) )
-			returnGame();
+		if( !cmd.equalsIgnoreCase( "trade" ) && !cmd.equalsIgnoreCase( "useItem" ) )
+			returnToGameAction.actionPerformed(null);
 	}
 	
-	private void returnGame()
-	{
-		// Back to game play
-		
-		model.setState(GameStateType.PLAYING);
-		model.getAvatar().setInteractingCharacter(null);
-		model.startTime();
-		view.getLayeredPane().grabFocus();
-	}
+
 }

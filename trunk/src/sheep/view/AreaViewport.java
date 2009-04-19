@@ -19,6 +19,7 @@ import java.util.Map.Entry;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import sheep.model.GameStateType;
 import sheep.model.Model;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;

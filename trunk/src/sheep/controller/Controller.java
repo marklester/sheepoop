@@ -4,12 +4,14 @@ import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import sheep.controller.actions.QuitAction;
 import sheep.controller.actions.ReleaseVehicleAction;
+import sheep.controller.actions.ReturnToGameAction;
 import sheep.controller.actions.SaveGameAction;
 import sheep.controller.actions.StartMovingAction;
 import sheep.controller.actions.StopMovingAction;
@@ -41,7 +43,11 @@ public class Controller implements GameStateObserver, NotSerializable {
 	public Controller(Model model, View view) { 
 		this.model = model;
 		this.view = view;
-		this.interactionViewportListener = new InteractionViewportListener(model, view);
+		
+		AbstractAction returnToGameAction = new ReturnToGameAction(model, view);
+		this.interactionViewportListener = new InteractionViewportListener(model, view, returnToGameAction);
+		
+		this.view.getInventoryViewport().setReturnToGameAction(returnToGameAction);
 		
 		// Get input and action maps
 		actionMap = new ActionMap();
@@ -155,5 +161,6 @@ public class Controller implements GameStateObserver, NotSerializable {
 
 		}
 	}
+
 
 }
