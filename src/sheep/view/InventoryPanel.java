@@ -1,6 +1,7 @@
 package sheep.view;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -54,6 +55,7 @@ public class InventoryPanel extends Viewport implements InventoryChangeObserver 
 		Dimension d = this.getPreferredSize();
 		botPnl.setPreferredSize(new Dimension((int) d.getWidth(), (int) d.getHeight() / 2));
 		botPnl.setOpaque(false);
+		botPnl.setFocusable(false);
 
 		short cols = 3;
 		short x = 0;
@@ -70,6 +72,7 @@ public class InventoryPanel extends Viewport implements InventoryChangeObserver 
 			but.setPreferredSize(BUT_SIZE);
 			but.setOpaque(false);
 			but.setContentAreaFilled(false);
+			but.setFocusable(false);
 			but.setActionCommand(item.getID() );
 			but.addActionListener( (buy) ? new BuyTradeListener(tf, item) : new SellTradeListener(tf, item) );
 			botPnl.add(but, c);
