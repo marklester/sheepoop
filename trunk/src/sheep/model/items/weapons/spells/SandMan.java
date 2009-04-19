@@ -2,6 +2,7 @@ package sheep.model.items.weapons.spells;
 
 import sheep.model.Model;
 import sheep.model.entities.npc.NPC;
+import sheep.model.entities.npc.ai.SleepState;
 import sheep.model.gamemap.Location;
 
 public class SandMan extends Enchantment
@@ -14,6 +15,6 @@ public class SandMan extends Enchantment
 	}
 	@Override
 	public void applyEffect(NPC npc) {
-		
+		new SleepState(1000,npc);
 	}
 }
