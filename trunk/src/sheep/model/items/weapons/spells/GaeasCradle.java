@@ -80,4 +80,9 @@ public class GaeasCradle extends Boon implements TimeObserver{
 			duration--;
 		}
 	}
+	@Override
+	public int getDamageWith()
+	{
+		return 0;
+	}
 }

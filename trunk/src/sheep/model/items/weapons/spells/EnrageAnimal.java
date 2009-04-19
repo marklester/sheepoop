@@ -17,4 +17,9 @@ public class EnrageAnimal extends Enchantment
 		npc.affectHostility(100);
 		System.out.println("Applied effect");
 	}
+	@Override
+	public int getDamageWith()
+	{
+		return 0;
+	}
 }

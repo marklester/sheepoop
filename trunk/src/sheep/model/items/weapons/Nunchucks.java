@@ -11,5 +11,9 @@ public class Nunchucks extends OneHanded {
 	public Nunchucks(Model model, Location loc) {
 		super("Nunchucks", model, loc, 8, 10);
 	}
-	
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

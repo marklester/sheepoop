@@ -52,7 +52,7 @@ public class Fire extends Bane {
 	}
 
 	public void applyEffect(Character c) {
-		int realdmg = getBaseDamage() * getUser().getSkill(getSkill());
+		int realdmg = getDamageWith();
 		Map<Location, List<Locatable>> tiles = c.getGameMap().getMapSubset(c.getLocation(), 1);
 		c.weaponDamage(realdmg);
 		for (Entry<Location, List<Locatable>> entry : tiles.entrySet()) {
@@ -62,5 +62,10 @@ public class Fire extends Bane {
 				l.hitWith(new SplashDamage("Splash Damage", this.getModel(), this.getLocation(), splash_dmg));
 			}
 		}
+	}
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
 	}
 }

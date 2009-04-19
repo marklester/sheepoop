@@ -10,4 +10,9 @@ public class GoldStaff extends Staff {
 	public GoldStaff(Model model, Location loc) {
 		super("Gold Staff", model, loc, 11, 50);
 	}
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

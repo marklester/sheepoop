@@ -17,4 +17,9 @@ public class SandMan extends Enchantment
 	public void applyEffect(NPC npc) {
 		new SleepState(1000,npc);
 	}
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

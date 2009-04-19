@@ -10,4 +10,9 @@ public class CrossBow extends LongRange {
 	public CrossBow(Model model, Location loc) {
 		super("xbowbolt","Crossbow", model, loc, 15,2, 80);
 	}
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

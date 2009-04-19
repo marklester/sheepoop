@@ -27,4 +27,9 @@ public class SplashDamage extends Weapon implements ActionListener {
 	public void applyEffect(Character c) {
 		c.weaponDamage(this.dmg);
 	}
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

@@ -10,5 +10,9 @@ public class HeavyAxe extends TwoHanded {
 	public HeavyAxe(Model model, Location loc) {
 		super("Heavy Axe", model, loc, 30, 90);
 	}
-	
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

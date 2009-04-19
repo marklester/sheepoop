@@ -38,7 +38,8 @@ public abstract class Weapon extends Takeable implements ActionListener {
 			user.equip(this);
 		}
 	}
-
+	public abstract int getDamageWith();
+	
 	protected void setUser(Character user)
 	{
 		this.user = user;
@@ -78,15 +79,15 @@ public abstract class Weapon extends Takeable implements ActionListener {
 	}
 
 	public void applyEffect(Entity e) {
-		e.weaponDamage(baseDamage * user.getSkill(skill));
+		e.weaponDamage(getDamageWith());
 	}
 
 	public void applyEffect(Character c) {
-		c.weaponDamage(baseDamage * user.getSkill(skill));
+		c.weaponDamage(getDamageWith());
 	}
 
 	public void applyEffect(NPC npc)
 	{
-		npc.weaponDamage(baseDamage * user.getSkill(skill));
+		npc.weaponDamage(getDamageWith());
 	}
 }

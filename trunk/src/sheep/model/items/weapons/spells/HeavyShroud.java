@@ -50,7 +50,7 @@ public class HeavyShroud extends Boon implements TimeObserver{
 		}
 	}
 	public void applyEffect(Character e) {
-		e.affectStat(StatType.DEFENSIVE_BONUS, getBaseDamage());
+		e.affectStat(StatType.DEFENSIVE_BONUS, getDamageWith());
 	}
 	
 	public void applyEffects(){
@@ -81,5 +81,10 @@ public class HeavyShroud extends Boon implements TimeObserver{
 		}else{
 			duration--;
 		}
+	}
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
 	}
 }

@@ -10,5 +10,9 @@ public class LongSword extends TwoHanded {
 	public LongSword(Model model, Location loc) {
 		super("Long Sword", model, loc, 35, 68);
 	}
-	
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

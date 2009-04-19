@@ -16,4 +16,9 @@ public class CalmAnimal extends Enchantment
 	public void applyEffect(NPC npc) {
 		npc.affectHostility(-100);
 	}
+	@Override
+	public int getDamageWith()
+	{
+		return 0;
+	}
 }

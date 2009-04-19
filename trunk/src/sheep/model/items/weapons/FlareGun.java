@@ -11,4 +11,9 @@ public class FlareGun extends LongRange {
 		super("flare","Flare Gun", model, loc, 10, 4, 20);
 	}
 
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }
