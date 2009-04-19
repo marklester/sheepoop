@@ -36,4 +36,8 @@ public class Inventory implements Serializable {
 		else
 			return 0;
 	}
+	public boolean has(Takeable t)
+	{
+		return(items.contains(t));
+	}
 }

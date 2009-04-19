@@ -1,8 +1,9 @@
-package sheep.model.items;
+package sheep.model.items.interactive;
 
 import sheep.model.Model;
 import sheep.model.entities.Entity;
 import sheep.model.gamemap.Location;
+import sheep.model.items.Item;
 
 public abstract class Interactive extends Item {
 
