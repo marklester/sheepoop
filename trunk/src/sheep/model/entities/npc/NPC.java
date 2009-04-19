@@ -14,6 +14,7 @@ public class NPC extends Character {
 
 	private static final long serialVersionUID = 3556634534829274948L;
 
+	boolean dead = false;
 	private final Model model;
 	private int hostility;
 	private AI ai;
@@ -77,10 +78,16 @@ public class NPC extends Character {
 
 	@Override
 	public void die() {
+		dead = true;
 		Time.getInstance().removeObserver(ai);
 		//sai.setNPC(null);
 		ai=null;
 		this.getGameMap().remove(getLocation(),this);
 		setLocation(null);
+	}
+	@Override
+	public boolean isDead()
+	{
+		return dead;
 	}
 }
