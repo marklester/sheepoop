@@ -27,7 +27,7 @@ public class InventoryMouseListener implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON1) {
-			if (avatar.getModel().getGameState().equals(GameStateType.PAUSED_ACTION_MENU))
+			if ((avatar.getModel().getGameState()!=null) && (avatar.getModel().getGameState().equals(GameStateType.PAUSED_ACTION_MENU)))
 				item.use(avatar.getInteractingCharacter());	
 			item.use(avatar);			
 		}
