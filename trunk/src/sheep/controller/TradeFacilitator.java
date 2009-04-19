@@ -17,24 +17,28 @@ public class TradeFacilitator {
 	}
 
 	public void buyItem(Takeable item) {
-		int price = getItemSellPrice(item);
+		int price = getItemBuyPrice(item);
 		transactItem( avatar, npc, item, price);
 	}
 
 	public int getItemBuyPrice(Takeable item) {
-		System.out.println("Item: " + item + " base: " + item.getPrice() + " npc/avatar: " + npc.getSkill( PassiveSkill.BARGAIN ) + "/" + avatar.getSkill( PassiveSkill.BARGAIN ));
-		return (int) ( (double) item.getPrice() * ( ((double) avatar.getSkill( PassiveSkill.BARGAIN )+1) / ((double) npc.getSkill( PassiveSkill.BARGAIN )+1) ) ); 
+		double npcBarg = npc.getSkill( PassiveSkill.BARGAIN );
+		double avBarg = avatar.getSkill( PassiveSkill.BARGAIN );
+		double price = item.getPrice();
 		
+		return (int) ( price + (price * ( ( npcBarg - avBarg ) / 100.0 ) ) );
 	}
 
 	public int getItemSellPrice(Takeable item) {
-		System.out.println("Item: " + item + " base: " + item.getPrice() + " npc/avatar: " + npc.getSkill( PassiveSkill.BARGAIN ) + "/" + avatar.getSkill( PassiveSkill.BARGAIN ));
-		return (int) ( (double) item.getPrice() * ( ((double) npc.getSkill( PassiveSkill.BARGAIN ) + 1) / ((double) avatar.getSkill( PassiveSkill.BARGAIN ) +1 ) ) );
+		double npcBarg = npc.getSkill( PassiveSkill.BARGAIN );
+		double avBarg = avatar.getSkill( PassiveSkill.BARGAIN );
+		double price = item.getPrice();
+		
+		return (int) ( price + (price * ( ( avBarg - npcBarg ) / 100.0 ) ) );
 	}
 
 	public void sellItem(Takeable item) {
-		int price = getItemBuyPrice(item);
-		System.out.println("Price: " + price + " Item: " + item);
+		int price = getItemSellPrice(item);
 		transactItem(npc, avatar, item, price);
 	}
 	
