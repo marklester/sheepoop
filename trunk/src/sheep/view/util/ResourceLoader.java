@@ -121,6 +121,7 @@ public class ResourceLoader {
 		fileMap.put("Gold Staff", WEAP_DIR + "goldstaff.png");
 		fileMap.put("Ash Staff", WEAP_DIR + "ashstaff.png");
 		fileMap.put("Oak Staff", WEAP_DIR + "oakstaff.png");
+		fileMap.put("Fist", WEAP_DIR + "brawling.png");
 		//one shots
 		fileMap.put("Syringe", ONE_SHOT_DIR + "speed.png");
 		fileMap.put("Beer", ONE_SHOT_DIR + "beer.png");

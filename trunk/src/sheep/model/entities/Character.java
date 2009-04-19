@@ -15,6 +15,7 @@ import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
 import sheep.model.items.Takeable;
 import sheep.model.items.armor.Armor;
+import sheep.model.items.weapons.Fist;
 import sheep.model.items.weapons.Weapon;
 import sheep.model.occupations.Occupation;
 import sheep.model.skills.PassiveSkill;
@@ -351,6 +352,10 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	}
 
 	public Weapon getEquippedWeapon() {
+		if((weapon==null)&&(getSkill(PassiveSkill.BRAWLING)>=0))
+		{
+			return(new Fist(getModel(), getLocation(), this));
+		}
 		return weapon;
 	}
 
