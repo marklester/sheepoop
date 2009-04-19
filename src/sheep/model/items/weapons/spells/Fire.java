@@ -34,16 +34,21 @@ public class Fire extends Bane {
 				for(Locatable l: targets){
 					if(l.blocks(myProj)){
 						blocked = true;
+						if(user!=l){
+							l.hitWith(this);
+						}
 					}
 				}
 				if(!blocked){
 					getGameMap().add(loc, myProj);
 				}
+				
 			}
 			this.getUser().affectStat(StatType.MANA_USED, 20);
 		}
 	}
 	public void applyEffect(Character c) {
+//		Character enemy = user.getInteractingCharacter();
 		int realdmg = baseDamage * user.getSkill(skill);
 		Map<Location, List<Locatable>> tiles = c.getGameMap().getMapSubset(c.getLocation(), 1);
 		c.weaponDamage(realdmg);
