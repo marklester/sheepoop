@@ -50,27 +50,30 @@ public class RiverCounter implements TimeObserver, Serializable
 		{
 			e = myIt.next();
 			eLoc = e.getLocation();
-			r = riversMakingUpStream.get(eLoc);
-			if(r!=null)
+			if(eLoc!=null)
 			{
-				int i = entitiesInStream.get(e);
-				if(i > 0)
+				r = riversMakingUpStream.get(eLoc);
+				if(r!=null)
 				{
-					i--;
-					entitiesInStream.put(e, i);
-					//System.out.println(e);
+					int i = entitiesInStream.get(e);
+					if(i > 0)
+					{
+						i--;
+						entitiesInStream.put(e, i);
+						//System.out.println(e);
+					}
+					else
+					{
+						Vector2D dir = r.getDirection().getVector(eLoc);
+						Location dest = new Location(eLoc.getX()+(int)dir.getX(),eLoc.getY()+(int)dir.getY());
+						e.move(dest);
+						entitiesInStream.put(e, r.getMyFrequency());
+					}
 				}
 				else
 				{
-					Vector2D dir = r.getDirection().getVector(eLoc);
-					Location dest = new Location(eLoc.getX()+(int)dir.getX(),eLoc.getY()+(int)dir.getY());
-					e.move(dest);
-					entitiesInStream.put(e, r.getMyFrequency());
+					entitiesInStream.remove(e);
 				}
-			}
-			else
-			{
-				entitiesInStream.remove(e);
 			}
 		}
 	}
