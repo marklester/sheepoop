@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.Vector;
 import java.util.Map.Entry;
 
-import sheep.model.CreepTimeObserver;
 import sheep.model.Model;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
@@ -44,7 +43,6 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	
 	private Vector<SkillPointChangeObserver> skillsObservers = new Vector<SkillPointChangeObserver>();
 	
-	private CreepTimeObserver creeptimer = new CreepTimeObserver(this);
 	public Character(String id, Model model, Location loc, Occupation occupation) {
 		super(id, model, loc);
 		this.startingLocation = loc;
@@ -345,10 +343,6 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	
 	public Location getStartingLocation() {
 		return startingLocation;
-	}
-
-	public CreepTimeObserver getCreeptimer() {
-		return creeptimer;
 	}
 	
 	public void addSkillPoint(PerformableSkill pSkill) {
