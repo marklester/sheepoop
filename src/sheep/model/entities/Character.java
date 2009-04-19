@@ -17,7 +17,7 @@ import sheep.model.occupations.Occupation;
 import sheep.model.skills.PassiveSkill;
 import sheep.model.skills.PerformableSkill;
 
-public abstract class Character extends Entity implements TalkMessageObservable, InventoryChangeObservable {
+public abstract class Character extends Entity implements TalkMessageObservable, InventoryChangeObservable, SkillPointChangeObservable {
 
 	private static final long serialVersionUID = 1069820547179793745L;
 
@@ -30,12 +30,18 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	private Map<PassiveSkill, Integer> passiveSkills;
 	private List<PerformableSkill> performableSkills;
 	private Character interactingCharacter;
+	
 	private Vector<TalkMessageObserver> talkObservers = new Vector<TalkMessageObserver>();
 	transient private Vector<TalkMessageObserver> transientTalkObservers = new Vector<TalkMessageObserver>();
+	
 	private Vector<InventoryChangeObserver> inventoryObservers = new Vector<InventoryChangeObserver>();
 	transient private Vector<InventoryChangeObserver> transientInventoryObservers = new Vector<InventoryChangeObserver>();
+	
 	private Vector<StatChangeObserver> statChangeObservers = new Vector<StatChangeObserver>();
 	transient private Vector<StatChangeObserver> transientStatChangeObservers = new Vector<StatChangeObserver>();
+	
+	private Vector<SkillPointChangeObserver> skillsObservers = new Vector<SkillPointChangeObserver>();
+	
 	private CreepTimeObserver creeptimer = new CreepTimeObserver(this);
 	public Character(String id, Model model, Location loc, Occupation occupation) {
 		super(id, model, loc);
@@ -256,6 +262,27 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		transientStatChangeObservers.remove(observer);
 		statChangeObservers.remove(observer);
 	}
+	
+	
+	@Override
+	public void notifySkillPointObservers() {
+		for (SkillPointChangeObserver observer : this.skillsObservers) {
+			observer.update();
+		}		
+	}
+
+	@Override
+	public void registerSkillPointObserver(SkillPointChangeObserver observer) {
+		skillsObservers.add(observer);
+		
+	}
+
+	@Override
+	public void removeSkillPointObserver(SkillPointChangeObserver observer) {
+		skillsObservers.remove(observer);
+		
+	}
+	
 
 	@Override
 	public int getStat(StatType stat) {
@@ -306,6 +333,11 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 
 	public CreepTimeObserver getCreeptimer() {
 		return creeptimer;
+	}
+	
+	public void addSkillPoint(PerformableSkill pSkill) {
+		pSkill.addPoints(1);
+		notifySkillPointObservers();
 	}
 
 }

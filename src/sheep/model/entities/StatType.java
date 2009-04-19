@@ -28,7 +28,8 @@ public enum StatType {
 	ARMOR_RATING("Armor Rating"), 
 	MAX_MANA("Max Mana"),
 	MONEY("Money"),
-	MAX_LIFE("Max Life");
+	MAX_LIFE("Max Life"),
+	SKILL_POINTS_TO_GIVE("Skill Points");
 	String name;
 	StatType(String name){
 		this.name=name;
