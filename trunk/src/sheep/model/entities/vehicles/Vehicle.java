@@ -12,6 +12,7 @@ import sheep.model.entities.StatType;
 import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
+import sheep.model.items.Takeable;
 import sheep.model.items.armor.Armor;
 import sheep.model.items.weapons.Weapon;
 
@@ -28,6 +29,15 @@ public abstract class Vehicle extends Entity {
 		this.model = model;
 
 		stats.put(VehicleStatType.SPEED, speed);
+	}
+	
+	public boolean has(Takeable item)
+	{
+		if(driver != null)
+		{
+			return driver.has(item);
+		}
+		return false;
 	}
 
 	public void accept(LocatableVisitor v) {
