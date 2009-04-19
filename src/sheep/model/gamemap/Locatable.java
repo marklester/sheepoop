@@ -52,8 +52,8 @@ public abstract class Locatable implements Serializable {
 	}
 	
 	
-	public void hitWith(Weapon w)
-	{
+	public void hitWith(Weapon w){
+		//System.out.println("Locatable");
 		//Default is to do nothing
 	}
 
@@ -78,7 +78,11 @@ public abstract class Locatable implements Serializable {
 	}
 	
 	public void setLocation(Location newLoc) {
-		getGameMap().notifyOfMovement(this.location, newLoc, this);
-		this.location = newLoc;
+		if(newLoc==null){//remove from map
+			this.location=null;
+		}else{
+			getGameMap().notifyOfMovement(this.location, newLoc, this);
+			this.location = newLoc;
+		}
 	}
 }
