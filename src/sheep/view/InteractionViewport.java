@@ -1,12 +1,10 @@
 package sheep.view;
 
-import java.awt.Color;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
 import sheep.controller.InteractionViewportListener;
-import sheep.model.entities.Avatar;
-import sheep.model.entities.Character;
 
 public class InteractionViewport extends Viewport {
 
@@ -21,7 +19,7 @@ public class InteractionViewport extends Viewport {
 	public InteractionViewport(int x, int y) {
 		super(null, width, height);
 
-		this.setBackground(new Color(255, 255, 255, 100));
+		//this.setBackground(new Color(255, 255, 255, 100));
 		attackBtn = new JButton("Attack");
 		attackBtn.setActionCommand("attack");
 		this.add(attackBtn);
@@ -39,11 +37,11 @@ public class InteractionViewport extends Viewport {
 		this.add(cancelBtn);
 		
 		this.setBounds(x - width / 2, y - height / 2, width, height);
-		this.setOpaque(true);
+		this.setOpaque(false);
 		this.validate();
 	}
 
-	public void setActionListener(InteractionViewportListener al) {
+	public void setActionListener(ActionListener al) {
 		attackBtn.addActionListener(al);
 		talkBtn.addActionListener(al);
 		useItemBtn.addActionListener(al);
