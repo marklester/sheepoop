@@ -1,19 +1,10 @@
 package sheep.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.Point;
 import java.awt.Toolkit;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -36,59 +27,55 @@ public class View extends JFrame {
 	private InventoryViewport invViewport;
 	private InteractionViewport interactionViewport;
 	private JPanel sidebar;
-	private boolean gameOver = false; 
+	private JPanel gameover;
 
 	public View(Model model) {
 		this.model = model;
 		setUpFrame();
-		
-		//Initialize Viewports
+
+		// Initialize Viewports
 		invViewport = new InventoryViewport(model.getAvatar(), SIDE_BAR_W, this.getHeight());
 		skillPointViewport = new SkillPointViewport(model.getAvatar(), SIDE_BAR_W, this.getHeight());
 		showSidebarViewport(invViewport);
 	}
-	
+
 	/**
-	 * Setup the dimensions of the JFame and the 2 JPanels, AreaViewport 
-	 * and the side bar panel. It then proceeds to create both JPanels and
-	 * set their properties (opacity, bg, etc.)
+	 * Setup the dimensions of the JFame and the 2 JPanels, AreaViewport and the
+	 * side bar panel. It then proceeds to create both JPanels and set their
+	 * properties (opacity, bg, etc.)
 	 */
 
 	private void setUpFrame() {
-		
+
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice device = ge.getDefaultScreenDevice();
 
 		this.setTitle("Sheepoop");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		// Set full screen
 		if (device.isFullScreenSupported() && FULL_SCREEN_MODE) {
 			setUndecorated(true);
 			device.setFullScreenWindow(this);
 		} else {
-			//this.setVisible(true);
-			//this.setExtendedState(Frame.MAXIMIZED_BOTH);
+			// this.setVisible(true);
+			// this.setExtendedState(Frame.MAXIMIZED_BOTH);
 			setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		}
 		this.setResizable(false);
-		
+
 		// Setup layering
 		layers = this.getLayeredPane();
-        
+
 		// Create area viewport
 		areaViewport = new AreaViewport(this.model, this.model.getGameMap());
 		areaViewport.setBackground(Color.BLACK);
 		areaViewport.setBounds(0, 0, this.getWidth() - SIDE_BAR_W, this.getHeight());
 		areaViewport.setOpaque(true);
 		layers.add(areaViewport, new Integer(0));
-		
 
-//		JButton btn = new JButton("hi");
-//		btn.setBackground(Color.RED);
-//		btn.setOpaque(true);
-//		btn.setBounds(900, 200, 300, 40);
-//		layers.add(btn, new Integer(400));
+		// Create gameover
+		gameover = new GameOverViewport(this.getWidth(), this.getHeight());
 
 		// Create sidebar placeholder
 		sidebar = new Viewport(model.getAvatar());
@@ -98,10 +85,10 @@ public class View extends JFrame {
 
 		// Tell viewports they can DO THEIR THANG
 		areaViewport.initialize();
-		
+
 		// Show window
-		areaViewport.setFocusable(true);
-		
+		layers.setFocusable(true);
+
 		validate();
 		this.setVisible(true);
 	}
@@ -109,7 +96,7 @@ public class View extends JFrame {
 	public void showSidebarViewport(Viewport theViewP) {
 		this.invalidate();
 		layers.remove(sidebar);
-		((Viewport)sidebar).toggleVisibility(); //sorta ghetto, sorry.
+		((Viewport) sidebar).toggleVisibility(); // sorta ghetto, sorry.
 		sidebar = theViewP;
 		sidebar.setOpaque(true);
 		sidebar.setBounds(this.getWidth() - SIDE_BAR_W, 0, SIDE_BAR_W, this.getHeight());
@@ -122,43 +109,22 @@ public class View extends JFrame {
 	public AreaViewport getAreaViewport() {
 		return areaViewport;
 	}
-	
+
 	public InventoryViewport getInventoryViewport() {
 		return this.invViewport;
 	}
-	
-//	@Override
-//	public void paint(Graphics g1) {
-//		super.paint(g1);
-//		Graphics2D g = (Graphics2D) g1;
-//		
-//	//	this.layers.paint(g);
-//		
-//		if (gameOver) {
-//			Font myFont = getFont().deriveFont(48f);
-//			g.setFont(myFont);
-//			g.setColor(Color.WHITE);
-//			g.drawString("GAME OVER", this.getWidth() / 2 - 200, this.getHeight() / 2);
-//		}
-//	}
 
 	public SkillPointViewport getskillPointViewport() {
 		return skillPointViewport;
 	}
 
 	public void gameOver() {
-		this.gameOver = true;
+		layers.add(gameover, new Integer(450));
+		
 		areaViewport.stopPainting();
 		sidebar.setVisible(false);
+		areaViewport.setVisible(false);
 		this.validate();
-	}
-	
-	private JLayeredPane makeLayers() {
-		JLayeredPane j = new JLayeredPane();
-		j.setPreferredSize(this.getSize());
-		j.validate();
-		j.setOpaque(true);
-		return j;
 	}
 
 	public void pausedActionMenu() {
