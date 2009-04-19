@@ -12,6 +12,7 @@ import sheep.model.areaeffects.TakeDamage;
 import sheep.model.areaeffects.Teleport;
 import sheep.model.entities.npc.AngrySpider;
 import sheep.model.entities.npc.AreMyRat;
+import sheep.model.entities.npc.NPC;
 import sheep.model.entities.npc.Spider;
 import sheep.model.entities.vehicles.Boat;
 import sheep.model.entities.vehicles.Plane;
@@ -36,6 +37,7 @@ import sheep.model.items.weapons.ShortSword;
 import sheep.model.items.weapons.SpearGun;
 import sheep.model.items.weapons.Trident;
 import sheep.model.items.weapons.spells.Fire;
+import sheep.model.occupations.Smasher;
 
 /**
  * Returns a new GameMap for level1, by loading the mapfile it knows, and adding
@@ -62,9 +64,7 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location(0, 17);
 		Vehicle vehicle = new Boat(model, loc);
 		map.add(loc, vehicle);
-		loc = new Location( 1, 16 );
-		map.add( loc , new Decal( "TPain", model, loc) );
-		
+				
 		//add river (first part)
 		RiverCounter rc = new RiverCounter();
 		loc = new Location(16,6);
@@ -85,7 +85,7 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location(18,2);
 		map.add(loc, new Decal("narrow", model, loc));
 		map.add(loc,new River(model,loc,Direction.N,10,rc));
-		
+				
 		//river two 7,12
 		loc = new Location(0,16);
 		map.add(loc, new Decal("narrow", model, loc));
@@ -419,6 +419,15 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location(16, 30);
 		map.add(loc, new Plane(model, loc));
 		
+		//TPain
+		loc = new Location( 0, 16 );
+		Vehicle tpainBoat = new Boat(model, loc);
+		map.add(loc, tpainBoat);
+		NPC tPain = new NPC("TPain", model, loc, new Smasher() );
+		tpainBoat.setDriver( tPain );
+		map.add( loc,  tPain );
+		rc.addEntityToStream( tpainBoat );
+		rc.addEntityToStream( tPain );
 		
 		return map;
 	}

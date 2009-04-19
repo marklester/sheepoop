@@ -69,6 +69,11 @@ public abstract class Vehicle extends Entity {
 
 		this.driver = character;
 	}
+	
+	public void setDriver( Character driver )
+	{
+		this.driver = driver;
+	}
 
 	public Character getDriver() {
 		return driver;

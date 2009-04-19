@@ -5,6 +5,7 @@ import sheep.model.entities.npc.NPC;
 import sheep.model.items.Takeable;
 
 public class TradeFacilitator {
+	
 	private final Avatar avatar;
 	private final NPC npc;
 
