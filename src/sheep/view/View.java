@@ -4,12 +4,17 @@ import java.awt.Color;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.io.NotSerializableException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import sheep.model.Model;
+import sheep.model.NotSerializable;
 import sheep.model.entities.StatChange;
 import sheep.model.entities.StatChangeObserver;
 import sheep.model.entities.StatType;
@@ -18,7 +23,7 @@ import sheep.model.entities.StatType;
  * The main window during game play
  * @author Phil Freo
  */
-public class View extends JFrame implements StatChangeObserver {
+public class View extends JFrame implements StatChangeObserver, NotSerializable {
 
 	private static final long serialVersionUID = 2015429639828183235L;
 	private static final boolean FULL_SCREEN_MODE = false;
@@ -158,5 +163,13 @@ public class View extends JFrame implements StatChangeObserver {
 			layers.add(interactionViewport, new Integer(400));
 		}
 		this.validate();
+	}
+
+	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+		throw new NotSerializableException();
+	}
+
+	private void writeObject(ObjectOutputStream ois) throws IOException {
+	//	throw new NotSerializableException();
 	}
 }

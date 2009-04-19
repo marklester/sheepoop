@@ -40,6 +40,8 @@ public class WelcomeActionListener implements ActionListener {
 				ModelLoader loader = new ModelLoader( jc.getSelectedFile() );
 				
 				Model model = loader.load();
+				System.out.println("got a model " + model);
+				System.out.println("got a map " + model.getGameMap());
 				View view = new View( model );
 				
 				new Controller( model, view );

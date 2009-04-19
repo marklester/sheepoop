@@ -5,6 +5,10 @@ import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.io.IOException;
+import java.io.NotSerializableException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -92,6 +96,14 @@ public class MessageConsole extends Overlay implements StatChangeObserver, TalkM
 			this.msg = msg;
 			this.timeCreated = timeCreated;
 		}
+	}
+
+	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+		throw new NotSerializableException();
+	}
+
+	private void writeObject(ObjectOutputStream ois) throws IOException {
+	//	throw new NotSerializableException();
 	}
 
 }

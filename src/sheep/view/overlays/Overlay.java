@@ -3,13 +3,14 @@ package sheep.view.overlays;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+import sheep.model.NotSerializable;
 import sheep.view.util.ResourceLoader;
 
 /**
  * 
  * @author Phil Freo
  */
-public abstract class Overlay {
+public abstract class Overlay implements NotSerializable {
 	
 	private int posX;
 	private int posY;
@@ -43,5 +44,6 @@ public abstract class Overlay {
 	public static Font getFont() {
 		return font;
 	}
+	
 	
 }

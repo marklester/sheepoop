@@ -1,5 +1,7 @@
 package sheep.model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.Vector;
 
@@ -14,7 +16,6 @@ import sheep.model.gamemap.GameMap;
 public class Model implements Serializable {
 	private static final long serialVersionUID = -3924966363628308694L;
 
-	private boolean isPaused;
 	private Time time = Time.getInstance();
 	private GameStateType gameState;
 	private Avatar avatar;
@@ -45,10 +46,8 @@ public class Model implements Serializable {
 	}
 
 	public void registerObserver(GameStateObserver observer) {
-		System.out.println(observer);
-		System.out.println(observer instanceof Serializable);
 
-		if (!(observer instanceof Serializable)) {
+		if (observer instanceof NotSerializable) {
 			if (!transientGameStateObservers.contains(observer)) {
 				transientGameStateObservers.add(observer);
 			}
@@ -114,5 +113,9 @@ public class Model implements Serializable {
 
 	public GameMap getGameMap() {
 		return gameMap;
+	}
+	
+	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+		transientGameStateObservers = new Vector<GameStateObserver>();
 	}
 }

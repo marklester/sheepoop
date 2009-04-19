@@ -1,10 +1,12 @@
 package sheep.model.entities;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Phil Freo
  */
-public class TalkMessage {
+public class TalkMessage implements Serializable {
 
 	private final Character talker;
 	private final Character listener;
