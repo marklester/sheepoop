@@ -149,7 +149,7 @@ public class Controller implements GameStateObserver {
 			view.gameOver();
 			break;
 		case PAUSED_ACTION_MENU:
-			model.pauseTime();
+			//model.pauseTime();
 			view.pausedActionMenu();
 			break;
 		default:
