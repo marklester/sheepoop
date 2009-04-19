@@ -7,19 +7,15 @@ import java.io.ObjectOutputStream;
 
 public class SettingsSaver {
 
-	private File file;
+	public static final File CUSTOM_SETTINGS = new File( "res/settings/customSettings.psettings" );
 	
-	public SettingsSaver(File file) {
-		this.file = file;
-	}
-
 	public void save(KeySettings settings) {
 		
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;
 		try
 		{
-			fos = new FileOutputStream(file);
+			fos = new FileOutputStream( CUSTOM_SETTINGS );
 			out = new ObjectOutputStream(fos);
 			out.writeObject(settings);
 			out.close();

@@ -1,6 +1,8 @@
 package sheep.controller;
 
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
@@ -15,7 +17,6 @@ import sheep.controller.actions.StopMovingAction;
 import sheep.controller.actions.ToggleAction;
 import sheep.controller.actions.ToggleGridAction;
 import sheep.controller.actions.TogglePauseGameplayAction;
-import sheep.controller.actions.ToggleViewportAction;
 import sheep.controller.actions.UseSkillAction;
 import sheep.controller.actions.UseWeaponAction;
 import sheep.model.GameStateChange;
@@ -23,6 +24,7 @@ import sheep.model.GameStateObserver;
 import sheep.model.Model;
 import sheep.model.gamemap.Direction;
 import sheep.model.loading.KeySettings;
+import sheep.model.loading.SettingsLoader;
 import sheep.view.View;
 
 /**
@@ -56,9 +58,23 @@ public class Controller implements GameStateObserver {
 	 * Set all keyboard inputs with their corresponding actions
 	 */
 	private void setKeyBindings() {
-		// TODO we need to somehow deal with saving/loading/initial keybindings
 		
-		KeySettings ks = new KeySettings();
+		SettingsLoader loader = new SettingsLoader();
+		KeySettings ks = loader.load();
+		
+		Map<String, KeyStroke> tempKeys = new HashMap<String,KeyStroke>();
+		
+		for( KeyStroke k : ks.getInputMap().allKeys() )
+		{ 
+			tempKeys.put( (String) ks.getInputMap().get(k) , k);
+		}
+		
+		ks.put("stopMoving", KeyStroke.getKeyStroke( tempKeys.get( "moveN" ).getKeyCode(), tempKeys.get( "moveN" ).getModifiers(), true) );
+		ks.put("stopMoving", KeyStroke.getKeyStroke( tempKeys.get( "moveNE" ).getKeyCode(), tempKeys.get( "moveNE" ).getModifiers(), true) );
+		ks.put("stopMoving", KeyStroke.getKeyStroke( tempKeys.get( "moveNW" ).getKeyCode(), tempKeys.get( "moveNW" ).getModifiers(), true) );
+		ks.put("stopMoving", KeyStroke.getKeyStroke( tempKeys.get( "moveS" ).getKeyCode(), tempKeys.get( "moveS" ).getModifiers(), true) );
+		ks.put("stopMoving", KeyStroke.getKeyStroke( tempKeys.get( "moveSE" ).getKeyCode(), tempKeys.get( "moveSE" ).getModifiers(), true) );
+		ks.put("stopMoving", KeyStroke.getKeyStroke( tempKeys.get( "moveSW" ).getKeyCode(), tempKeys.get( "moveSW" ).getModifiers(), true) );
 		
 		// Quit
 		ks.put("quit", KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0) );
@@ -67,47 +83,12 @@ public class Controller implements GameStateObserver {
 		// Movement
 		actionMap.put("stopMoving", new StopMovingAction(model));
 		actionMap.put("moveN", new StartMovingAction(model, Direction.N));
-		
-		ks.put( "moveN", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD8, 0, false) );
-		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD8, 0, true) );
-		ks.put( "moveN",KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, false) );
-		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, true) );		
-
 		actionMap.put("moveNE", new StartMovingAction(model, Direction.NE));
-		
-		ks.put( "moveNE", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD9, 0, false) );
-		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD9, 0, true) );
-		ks.put( "moveNE", KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, false) );
-		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, true) );
-		
 		actionMap.put("moveSE", new StartMovingAction(model, Direction.SE));
-		
-		ks.put( "moveSE", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD3, 0, false) );
-		ks.put( "stopMoving",KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD3, 0, true) );
-		ks.put( "moveSE", KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, false) );
-		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, true) );
-		
 		actionMap.put("moveS", new StartMovingAction(model, Direction.S));
-
-		ks.put( "moveS", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD2, 0, false) );
-		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD2, 0, true) );
-		ks.put( "moveS", KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, false) );
-		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, true) );
-		
 		actionMap.put("moveSW", new StartMovingAction(model, Direction.SW));
-		
-		ks.put( "moveSW", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD1, 0, false) );
-		ks.put("stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD1, 0, true) );
-		ks.put( "moveSW", KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, false) );
-		ks.put("stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, true) );
-		
 		actionMap.put("moveNW", new StartMovingAction(model, Direction.NW));
 
-		ks.put( "moveNW", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD7, 0, false) );
-		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_NUMPAD7, 0, true) );
-		ks.put( "moveNW", KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, false) );
-		ks.put( "stopMoving", KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0, true) );
-		
 		// Saving
 		actionMap.put("saveGame", new SaveGameAction(model));
 		ks.put( "saveGame", KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK) );
@@ -115,10 +96,6 @@ public class Controller implements GameStateObserver {
 		// pause/unpause
 		actionMap.put("togglePause", new TogglePauseGameplayAction(model));
 		ks.put( "togglePause", KeyStroke.getKeyStroke(KeyEvent.VK_P, 0) );
-
-		// Release vehicle
-		actionMap.put("releaseVehicle", new ReleaseVehicleAction(model));
-		ks.put( "releaseVehicle", KeyStroke.getKeyStroke(KeyEvent.VK_R, 0) );
 
 		// Toggling
 		actionMap.put("toggleStatView", new ToggleAction(view.getAreaViewport().getStatConsole()));
@@ -133,17 +110,12 @@ public class Controller implements GameStateObserver {
 		actionMap.put("toggleGrid", new ToggleGridAction(view.getAreaViewport()));
 		ks.put( "toggleGrid", KeyStroke.getKeyStroke(KeyEvent.VK_F9, 0) );
 		
-		actionMap.put("toggleInventory", new ToggleViewportAction(view, view.getInventoryViewport()) );
-		ks.put( "toggleInventory", KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0) );
-		
-		actionMap.put("toggleSkillViewport", new ToggleViewportAction(view, view.getskillPointViewport()) );
-		ks.put( "toggleSkillViewport", KeyStroke.getKeyStroke(KeyEvent.VK_F7, 0) );
-		
-		
-		// Use Weapon
-		actionMap.put("useWeapon", new UseWeaponAction(model.getAvatar()));
-		ks.put( "useWeapon", KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0) );
-		
+        // Release vehicle
+        actionMap.put("releaseVehicle", new ReleaseVehicleAction(model));
+
+        // Use Weapon
+        actionMap.put("useWeapon", new UseWeaponAction(model.getAvatar()));
+        
 		// Use Skill
 		ks.put( "useSkill1", KeyStroke.getKeyStroke(KeyEvent.VK_1, 0) );
 		actionMap.put("useSkill1", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL1));
@@ -157,11 +129,7 @@ public class Controller implements GameStateObserver {
 		actionMap.put("useSkill5", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL5));
 		ks.put( "useSkill6", KeyStroke.getKeyStroke(KeyEvent.VK_6, 0) );
 		actionMap.put("useSkill6", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL6));
-		
-		//used to generate default keybindings
-//		SettingsSaver ss = new SettingsSaver( new File( "res/defaultSettings.psettings" ) );
-//		ss.save( ks );
-		
+
 		view.getAreaViewport().setInputMap( JComponent.WHEN_IN_FOCUSED_WINDOW, ks.getComponentInputMap( view.getAreaViewport() ) );
 		view.getAreaViewport().setActionMap( actionMap );
 	}
