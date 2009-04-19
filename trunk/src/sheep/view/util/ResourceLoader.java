@@ -5,7 +5,6 @@ import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
@@ -98,6 +97,10 @@ public class ResourceLoader {
 		fileMap.put("Fire", WEAP_DIR + "fire.png");
 		fileMap.put("HeavensHand", WEAP_DIR + "heavenshand.png");
 		fileMap.put("HeavensHandEffect", WEAP_DIR + "heavenshandeffect.png");
+		fileMap.put("GaeasCradle", WEAP_DIR + "gaeascradle.png");
+		fileMap.put("GaeasCradleEffect", WEAP_DIR + "gaeascradleeffect.png");
+		fileMap.put("HeavyShroud", WEAP_DIR + "heavyshroud.png");
+		fileMap.put("HeavyShroudEffect", WEAP_DIR + "heavyshroudeffect.png");
 		fileMap.put("Ice", WEAP_DIR + "ice.png");
 		fileMap.put("Flare Gun", WEAP_DIR + "flaregun.png");
 		fileMap.put("flare", WEAP_DIR+"flare.png");
