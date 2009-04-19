@@ -15,8 +15,8 @@ public class ProjectileWeapon extends Weapon
 {
 	private static final long serialVersionUID = 1L;
 	String projectileId;
-	public ProjectileWeapon(String projId, String id, Model model, Location loc, int baseDamage, int speed, PassiveSkill mySkill) {
-		super(id, model, loc, baseDamage, mySkill);
+	public ProjectileWeapon(String projId, String id, Model model, Location loc, int baseDamage, int speed, PassiveSkill mySkill, int value) {
+		super(id, model, loc, baseDamage, mySkill, value);
 		projectileId = projId;
 	}
 

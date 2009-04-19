@@ -8,7 +8,7 @@ public class Hammer extends OneHanded {
 	private static final long serialVersionUID = -5514383778390944563L;
 	
 	public Hammer(Model m, Location loc) {
-		super("Hammer", m, loc, 15);
+		super("Hammer", m, loc, 13, 35);
 	}
 	
 }

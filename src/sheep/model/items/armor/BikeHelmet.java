@@ -10,6 +10,6 @@ public class BikeHelmet extends Armor
 
 	public BikeHelmet(Model model, Location loc)
 	{
-		super("Bike Helmet", model, loc, BodyPart.HEAD, 10);
+		super("Bike Helmet", model, loc, BodyPart.HEAD, 10, 60);
 	}
 }

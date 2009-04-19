@@ -10,6 +10,6 @@ public class SheepSandals extends Armor
 
 	public SheepSandals(Model model, Location loc)
 	{
-		super("Sheep Sandals", model, loc, BodyPart.FEET, 5);
+		super("Sheep Sandals", model, loc, BodyPart.FEET, 5, 10);
 	}
 }

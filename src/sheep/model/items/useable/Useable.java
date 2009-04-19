@@ -9,9 +9,9 @@ public abstract class Useable extends Takeable
 
 	private static final long serialVersionUID = 1L;
 
-	public Useable(String id, Model model, Location loc)
+	public Useable(String id, Model model, Location loc, int value)
 	{
-		super(id, model, loc);
+		super(id, model, loc, value);
 		// TODO Auto-generated constructor stub
 	}
 

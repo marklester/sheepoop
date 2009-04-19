@@ -9,7 +9,7 @@ public class SpearGun extends LongRange {
 	private static final long serialVersionUID = 2843557941067998057L;
 	
 	public SpearGun(Model model, Location loc) {
-		super("spear","Spear Gun", model, loc, 20, 3);
+		super("spear","Spear Gun", model, loc, 20, 3, 35);
 	}
 	
 }

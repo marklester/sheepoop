@@ -10,6 +10,6 @@ public class CrossTrainers extends Armor
 
 	public CrossTrainers(Model model, Location loc)
 	{
-		super("Cross Trainers", model, loc, BodyPart.FEET, 10);
+		super("Cross Trainers", model, loc, BodyPart.FEET, 10, 20);
 	}
 }
