@@ -11,6 +11,7 @@ import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.Location;
 import sheep.model.items.Takeable;
 import sheep.model.occupations.Sneak;
+import sheep.model.skills.PassiveSkill;
 
 public class AreMyRat extends NPC {
 	private static final long serialVersionUID = 6747342338321148905L;
@@ -59,7 +60,8 @@ public class AreMyRat extends NPC {
 			{
 				if( count == rand )
 				{
-					question = "Would you like to buy my " + item.getID() + " for 2 nuggets?";
+					//int value = (int) ( (double) item.getPrice() * ( (double) this.getSkill( PassiveSkill.BARGAIN ) / (double) character.getSkill( PassiveSkill.BARGAIN ) ) );
+					//question = "Would you like to buy my " + item.getID() + " for " + value + " nuggets?";
 					break;
 				}
 				count++;

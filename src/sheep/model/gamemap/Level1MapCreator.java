@@ -62,6 +62,9 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location(0, 17);
 		Vehicle vehicle = new Boat(model, loc);
 		map.add(loc, vehicle);
+		loc = new Location( 1, 16 );
+		map.add( loc , new Decal( "TPain", model, loc) );
+		
 		//add river (first part)
 		RiverCounter rc = new RiverCounter();
 		loc = new Location(16,6);
