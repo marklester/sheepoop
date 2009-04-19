@@ -12,6 +12,7 @@ import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
 import sheep.model.items.Trap;
 import sheep.model.items.weapons.Projectile;
+import sheep.model.items.weapons.SplashDamage;
 import sheep.model.skills.PassiveSkill;
 import sheep.util.math.Vector2D;
 
@@ -24,22 +25,34 @@ public class Fire extends Bane {
 	}
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-			Location center = getUser().getLocation();
-			Map<Location, List<Locatable>> tiles = getUser().getGameMap().getMapSubset(center, 1);
-			for (Entry<Location, List<Locatable>> entry : tiles.entrySet()) {
-				Location loc = entry.getKey();
-				Projectile myProj = new Projectile(getProjectileId(),this.getModel(),loc,this,center.relativeDirectionTo(loc),5,2);
-				List<Locatable> targets = entry.getValue();
-				boolean blocked = false;
-				for(Locatable l: targets){
-					//l.hitWith(this);
-					if(l.blocks(myProj)){
-						blocked = true;
-					}
-				}
-				if(!blocked){
-					getGameMap().add(loc, myProj);
+		Location center = getUser().getLocation();
+		Map<Location, List<Locatable>> tiles = getUser().getGameMap().getMapSubset(center, 1);
+		for (Entry<Location, List<Locatable>> entry : tiles.entrySet()) {
+			Location loc = entry.getKey();
+			Projectile myProj = new Projectile(getProjectileId(),this.getModel(),loc,this,center.relativeDirectionTo(loc),5,2);
+			List<Locatable> targets = entry.getValue();
+			boolean blocked = false;
+			for(Locatable l: targets){
+				//l.hitWith(this);
+				if(l.blocks(myProj)){
+					blocked = true;
 				}
 			}
+			if(!blocked){
+				getGameMap().add(loc, myProj);
+			}
+		}
+	}
+	public void applyEffect(Character c) {
+		int realdmg = baseDamage * user.getSkill(skill);
+		Map<Location, List<Locatable>> tiles = c.getGameMap().getMapSubset(c.getLocation(), 1);
+		c.weaponDamage(realdmg);
+		for (Entry<Location, List<Locatable>> entry : tiles.entrySet()) {
+			List<Locatable> targets = entry.getValue();
+			int splash_dmg = realdmg/2;
+			for(Locatable l: targets){
+				l.hitWith(new SplashDamage("Splash Damage",this.getModel(),this.getLocation(),splash_dmg));
+			}
+		}
 	}
 }
