@@ -52,4 +52,8 @@ public class ProjectileWeapon extends Weapon
 			}
 		}
 	}
+
+	public String getProjectileId() {
+		return projectileId;
+	}
 }
