@@ -2,7 +2,6 @@ package sheep.model.entities;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Vector;
 
 public class CharacterStats implements Cloneable, Serializable {
 

@@ -1,7 +1,6 @@
 package sheep.model.entities;
 
 import java.util.List;
-import java.util.Vector;
 
 import sheep.model.Model;
 import sheep.model.Time;

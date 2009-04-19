@@ -3,8 +3,8 @@ package sheep.model.skills;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 import java.util.Map.Entry;
+
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
 import sheep.model.items.Trap;

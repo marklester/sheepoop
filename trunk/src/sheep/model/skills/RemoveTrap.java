@@ -2,7 +2,6 @@ package sheep.model.skills;
 
 import java.awt.event.ActionEvent;
 import java.util.List;
-import java.util.Vector;
 
 import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.Locatable;

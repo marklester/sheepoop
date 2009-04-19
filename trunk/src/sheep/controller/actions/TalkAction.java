@@ -5,8 +5,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import sheep.model.entities.Avatar;
-import sheep.model.entities.npc.NPC;
 import sheep.model.entities.Character;
+import sheep.model.entities.npc.NPC;
 
 public class TalkAction extends AbstractAction {
 
