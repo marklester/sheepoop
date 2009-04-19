@@ -391,8 +391,8 @@ public class Level1MapCreator extends MapCreator {
 		map.add(loc, new Syringe(model, loc));
 		
 		// Key
-		loc = new Location(5, 16);
-		map.add(loc, new Key(model, loc, new Location(7,25)));
+		loc = new Location(2, 37);
+		map.add(loc, new Key(model, loc, new Location(1,0)));
 		
 		//Weapons
 		loc = new Location(8, 25);
