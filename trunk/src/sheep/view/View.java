@@ -1,6 +1,10 @@
 package sheep.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
@@ -10,12 +14,15 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import sheep.model.Model;
+import sheep.model.entities.StatChange;
+import sheep.model.entities.StatChangeObserver;
+import sheep.model.entities.StatType;
 
 /**
  * The main window during game play
  * @author Phil Freo
  */
-public class View extends JFrame {
+public class View extends JFrame implements StatChangeObserver {
 
 	private static final long serialVersionUID = 2015429639828183235L;
 	private static final boolean FULL_SCREEN_MODE = true;
@@ -32,41 +39,41 @@ public class View extends JFrame {
 	public View(Model model) {
 		this.model = model;
 		setUpFrame();
-
-		// Initialize Viewports
+		model.getAvatar().registerStatChangeObserver(this);
+		//Initialize Viewports
 		invViewport = new InventoryViewport(model.getAvatar(), SIDE_BAR_W, this.getHeight());
 		skillPointViewport = new SkillPointViewport(model.getAvatar(), SIDE_BAR_W, this.getHeight());
 		showSidebarViewport(invViewport);
 	}
-
+	
 	/**
-	 * Setup the dimensions of the JFame and the 2 JPanels, AreaViewport and the
-	 * side bar panel. It then proceeds to create both JPanels and set their
-	 * properties (opacity, bg, etc.)
+	 * Setup the dimensions of the JFame and the 2 JPanels, AreaViewport 
+	 * and the side bar panel. It then proceeds to create both JPanels and
+	 * set their properties (opacity, bg, etc.)
 	 */
 
 	private void setUpFrame() {
-
+		
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice device = ge.getDefaultScreenDevice();
 
 		this.setTitle("Sheepoop");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
 		// Set full screen
 		if (device.isFullScreenSupported() && FULL_SCREEN_MODE) {
 			setUndecorated(true);
 			device.setFullScreenWindow(this);
 		} else {
-			// this.setVisible(true);
-			// this.setExtendedState(Frame.MAXIMIZED_BOTH);
+			//this.setVisible(true);
+			//this.setExtendedState(Frame.MAXIMIZED_BOTH);
 			setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		}
 		this.setResizable(false);
-
+		
 		// Setup layering
 		layers = this.getLayeredPane();
-
+		
 		// Create area viewport
 		areaViewport = new AreaViewport(this.model, this.model.getGameMap());
 		areaViewport.setBackground(Color.BLACK);
@@ -85,7 +92,7 @@ public class View extends JFrame {
 
 		// Tell viewports they can DO THEIR THANG
 		areaViewport.initialize();
-
+		
 		// Show window
 		layers.setFocusable(true);
 
@@ -105,11 +112,11 @@ public class View extends JFrame {
 		sidebar.setVisible(true);
 		theViewP.toggleVisibility();
 	}
-
+	
 	public AreaViewport getAreaViewport() {
 		return areaViewport;
 	}
-
+	
 	public InventoryViewport getInventoryViewport() {
 		return this.invViewport;
 	}
@@ -127,7 +134,15 @@ public class View extends JFrame {
 		this.validate();
 	}
 
+	@Override
+	public void update(StatChange msg) {
+		if (msg.getStatType().equals(StatType.EXPERIENCE)){
+			showSidebarViewport(skillPointViewport);
+			skillPointViewport.setupPanel();
+		}
+		
+	}
+	
 	public void pausedActionMenu() {
 	}
-
 }

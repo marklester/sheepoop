@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import sheep.model.entities.Avatar;
+import sheep.model.entities.StatType;
 import sheep.model.skills.PassiveSkill;
 import sheep.model.skills.PerformableSkill;
 
@@ -37,10 +38,16 @@ public class AddSkillPointActionListener implements ActionListener {
 		if (performableSkill != null) {
 			List<PerformableSkill> list = avatar.getPerformableSkills();
 			avatar.addSkillPoint( list.get(list.indexOf(performableSkill)) );
+			decrimentSkillPoints();
 		}
 		else if (passiveSkill != null) {
 			avatar.addSkillPoint(passiveSkill);
+			decrimentSkillPoints();
 		}
+	}
+	
+	public void decrimentSkillPoints() {
+		avatar.affectStat(StatType.SKILL_POINTS_TO_GIVE, -1);;
 	}
 
 }
