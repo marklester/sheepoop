@@ -13,6 +13,7 @@ public class Summoner extends Occupation {
 		super("Summoner");
 		setInitialCharacterStat(StatType.DAMAGE, 0);
 //		setInitialCharacterStat(StatType.OFFENSIVE_BONUS, 0);
+		setInitialCharacterStat(StatType.ARMOR_RATING, 15);
 		setInitialCharacterStat(StatType.DEFENSIVE_BONUS, 0);
 		setInitialCharacterStat(StatType.EXPERIENCE, 0);
 		setInitialCharacterStat(StatType.AGILITY, 10);
