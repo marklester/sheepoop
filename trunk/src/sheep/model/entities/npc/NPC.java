@@ -1,5 +1,6 @@
 package sheep.model.entities.npc;
 
+import sheep.model.GameStateType;
 import sheep.model.Model;
 import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
@@ -19,9 +20,11 @@ public class NPC extends Character {
 		this.model = model;
 	}
 
+	@Override
 	public boolean blocks(Entity entity) {
 		if (entity == model.getAvatar()) {
 			model.getAvatar().setInteractingCharacter(this);
+			model.setState(GameStateType.PAUSED_ACTION_MENU);
 		}
 		return true;
 	}

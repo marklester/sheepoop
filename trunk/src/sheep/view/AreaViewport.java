@@ -12,17 +12,14 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 import java.util.Map.Entry;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import sheep.model.Model;
-import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
@@ -68,7 +65,6 @@ public class AreaViewport extends JPanel {
 		if (map == null)
 			throw new RuntimeException("AreaViewport was passed a null GameMap.");
 
-		overlays = new ArrayList<Overlay>();	
 	}
 
 	/**
@@ -79,11 +75,7 @@ public class AreaViewport extends JPanel {
 		// Create StatConsole
 		this.stats = new StatConsole(20, this.getHeight() - StatConsole.getHeight() - 20, model.getAvatar());
 		this.messageConsole = new MessageConsole(20, 20, model.getAvatar());
-		this.hotBar = new HotBarConsole(this.getWidth() - HotBarConsole.getWidth() - 20, this.getHeight(), model.getAvatar());
-		
-		overlays.add(hotBar);
-		overlays.add(messageConsole);
-		overlays.add(stats);	
+		this.hotBar = new HotBarConsole(this.getWidth() - HotBarConsole.getWidth() - 20, this.getHeight(), model.getAvatar());	
 		
 		// Setup swing timer for repaints
 		int millisBetweenTicks = 1 / PAINTS_PER_SECOND * 1000;
@@ -92,8 +84,8 @@ public class AreaViewport extends JPanel {
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D) g;
 		
@@ -112,6 +104,7 @@ public class AreaViewport extends JPanel {
 		if (hotBar.isVisible()) {
 			hotBar.paint(g2);
 		}
+		
 	}
 
 	private void drawTiles(Graphics2D g2) {

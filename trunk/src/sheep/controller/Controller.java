@@ -36,7 +36,6 @@ public class Controller implements GameStateObserver {
 	private View view;
 	private Model model;
 	private InteractionViewportListener interactionViewportListener;
-	private InputMap inputMap;
 	private ActionMap actionMap;
 
 	public Controller(Model model, View view) { 
@@ -44,10 +43,7 @@ public class Controller implements GameStateObserver {
 		this.view = view;
 
 		// Get input and action maps
-		inputMap = new InputMap();
 		actionMap = new ActionMap();
-//		inputMap = view.getAreaViewport().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-//		actionMap = view.getAreaViewport().getActionMap();
 
 		setKeyBindings();
 
@@ -137,8 +133,8 @@ public class Controller implements GameStateObserver {
 		ks.put( "useSkill6", KeyStroke.getKeyStroke(KeyEvent.VK_6, 0) );
 		actionMap.put("useSkill6", new UseSkillAction(model.getAvatar(), UseSkillAction.SKILL6));
 
-		view.getAreaViewport().setInputMap( JComponent.WHEN_IN_FOCUSED_WINDOW, ks.getComponentInputMap( view.getAreaViewport() ) );
-		view.getAreaViewport().setActionMap( actionMap );
+		view.getLayeredPane().setInputMap( JComponent.WHEN_IN_FOCUSED_WINDOW, ks.getComponentInputMap( view.getAreaViewport() ) );
+		view.getLayeredPane().setActionMap( actionMap );
 	}
 
 	/**
@@ -151,6 +147,10 @@ public class Controller implements GameStateObserver {
 			// TODO we may need to disable all the keyboard inputs EXCEPT
 			// esc=exit
 			view.gameOver();
+			break;
+		case PAUSED_ACTION_MENU:
+			model.pauseTime();
+			view.pausedActionMenu();
 			break;
 		default:
 

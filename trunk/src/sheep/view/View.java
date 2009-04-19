@@ -8,9 +8,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Point;
 import java.awt.Toolkit;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import sheep.model.Model;
@@ -25,9 +30,11 @@ public class View extends JFrame {
 	private static final boolean FULL_SCREEN_MODE = true;
 	private static final int SIDE_BAR_W = 300;
 	private final Model model;
+	private JLayeredPane layers;
 	private SkillPointViewport skillPointViewport;
 	private AreaViewport areaViewport;
 	private InventoryViewport invViewport;
+	private InteractionViewport interactionViewport;
 	private JPanel sidebar;
 	private boolean gameOver = false; 
 
@@ -38,7 +45,7 @@ public class View extends JFrame {
 		//Initialize Viewports
 		invViewport = new InventoryViewport(model.getAvatar(), SIDE_BAR_W, this.getHeight());
 		skillPointViewport = new SkillPointViewport(model.getAvatar(), SIDE_BAR_W, this.getHeight());
-		showViewport(invViewport);
+		showSidebarViewport(invViewport);
 	}
 	
 	/**
@@ -66,50 +73,52 @@ public class View extends JFrame {
 		}
 		this.setResizable(false);
 		
+		// Setup layering
+		layers = this.getLayeredPane();
+        
 		// Create area viewport
 		areaViewport = new AreaViewport(this.model, this.model.getGameMap());
-		areaViewport.setOpaque(true);
 		areaViewport.setBackground(Color.BLACK);
-		areaViewport.setSize(this.getWidth() - SIDE_BAR_W, this.getHeight());
-		this.getContentPane().add(areaViewport, BorderLayout.CENTER);
+		areaViewport.setBounds(0, 0, this.getWidth() - SIDE_BAR_W, this.getHeight());
+		areaViewport.setOpaque(true);
+		layers.add(areaViewport, new Integer(0));
 		
+
+//		JButton btn = new JButton("hi");
+//		btn.setBackground(Color.RED);
+//		btn.setOpaque(true);
+//		btn.setBounds(900, 200, 300, 40);
+//		layers.add(btn, new Integer(400));
+
 		// Create sidebar placeholder
 		sidebar = new Viewport(model.getAvatar());
 		sidebar.setOpaque(true);
-		sidebar.setSize(new Dimension(SIDE_BAR_W, this.getHeight()));
-		this.getContentPane().add(sidebar, BorderLayout.EAST);
+		sidebar.setBounds(this.getWidth() - SIDE_BAR_W, 0, SIDE_BAR_W, this.getHeight());
+		layers.add(sidebar, new Integer(0));
 
 		// Tell viewports they can DO THEIR THANG
 		areaViewport.initialize();
 		
 		// Show window
 		areaViewport.setFocusable(true);
+		
 		validate();
 		this.setVisible(true);
 	}
 
-	public void showViewport(Viewport theViewP) {
+	public void showSidebarViewport(Viewport theViewP) {
 		this.invalidate();
-		this.remove(sidebar);
+		layers.remove(sidebar);
 		((Viewport)sidebar).toggleVisibility(); //sorta ghetto, sorry.
-		this.sidebar = theViewP;
-		this.getContentPane().add(sidebar, BorderLayout.EAST);
+		sidebar = theViewP;
+		sidebar.setOpaque(true);
+		sidebar.setBounds(this.getWidth() - SIDE_BAR_W, 0, SIDE_BAR_W, this.getHeight());
+		layers.add(sidebar, new Integer(0));
 		this.validate();
 		sidebar.setVisible(true);
 		theViewP.toggleVisibility();
 	}
 
-//	public void showInventoryViewport() {
-//		this.invalidate();
-//		this.remove(sidebar);
-//		this.sidebar = invViewport;
-//		this.getContentPane().add(sidebar, BorderLayout.EAST);
-//		this.validate();
-//		sidebar.setOpaque(false);
-//		sidebar.setVisible(true);
-//		invViewport.toggleVisibility();
-//	}
-	
 	public AreaViewport getAreaViewport() {
 		return areaViewport;
 	}
@@ -118,21 +127,23 @@ public class View extends JFrame {
 		return this.invViewport;
 	}
 	
+//	@Override
+//	public void paint(Graphics g1) {
+//		super.paint(g1);
+//		Graphics2D g = (Graphics2D) g1;
+//		
+//	//	this.layers.paint(g);
+//		
+//		if (gameOver) {
+//			Font myFont = getFont().deriveFont(48f);
+//			g.setFont(myFont);
+//			g.setColor(Color.WHITE);
+//			g.drawString("GAME OVER", this.getWidth() / 2 - 200, this.getHeight() / 2);
+//		}
+//	}
+
 	public SkillPointViewport getskillPointViewport() {
 		return skillPointViewport;
-	}
-	
-	@Override
-	public void paint(Graphics g1) {
-		super.paint(g1);
-		Graphics2D g = (Graphics2D) g1;
-		
-		if (gameOver) {
-			Font myFont = getFont().deriveFont(48f);
-			g.setFont(myFont);
-			g.setColor(Color.WHITE);
-			g.drawString("GAME OVER", this.getWidth() / 2 - 200, this.getHeight() / 2);
-		}
 	}
 
 	public void gameOver() {
@@ -141,4 +152,16 @@ public class View extends JFrame {
 		sidebar.setVisible(false);
 		this.validate();
 	}
+	
+	private JLayeredPane makeLayers() {
+		JLayeredPane j = new JLayeredPane();
+		j.setPreferredSize(this.getSize());
+		j.validate();
+		j.setOpaque(true);
+		return j;
+	}
+
+	public void pausedActionMenu() {
+	}
+
 }

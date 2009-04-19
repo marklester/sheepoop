@@ -37,11 +37,9 @@ public class Viewport extends JPanel {
 	public boolean isVisible() {
 		return isVisible;
 	}
-	
+
 	public ResourceLoader getResLoader() {
 		return this.resLoader;
 	}
-	
-	
-	
+
 }
