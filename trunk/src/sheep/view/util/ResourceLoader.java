@@ -33,6 +33,7 @@ public class ResourceLoader {
 	private static final String WEAP_DIR = ITEMS_DIR + "weapons/";
 	private static final String ONE_SHOT_DIR = ITEMS_DIR + "oneshot/";
 	private static final String USEABLE_DIR = ITEMS_DIR + "useable/";
+	private static final String INTERACTIVE_DIR = ITEMS_DIR + "interactive/";
 	/**
 	 * This will be the central place to input any IO related filenames. The entire application should use this 
 	 * class to access images. Any welcome screen images should be manually put into the imageMap in this 
@@ -124,6 +125,8 @@ public class ResourceLoader {
 		fileMap.put("Happy Meal", USEABLE_DIR + "happymeal.png");
 		fileMap.put("Orange Juice", USEABLE_DIR + "orangejuice.png");
 		
+		//interactive
+		fileMap.put("Pilot License", INTERACTIVE_DIR + "pilotlicense.png");
 		
 	}
 	
