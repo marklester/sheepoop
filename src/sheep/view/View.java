@@ -1,10 +1,6 @@
 package sheep.view;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
@@ -85,7 +81,7 @@ public class View extends JFrame implements StatChangeObserver {
 		gameover = new GameOverViewport(this.getWidth(), this.getHeight());
 		
 		// Create interaction 
-		interactionViewport = new InteractionViewport(model.getAvatar(), model.getAvatar().getInteractingCharacter());
+		interactionViewport = new InteractionViewport(areaViewport.getWidth() / 2, areaViewport.getHeight() / 2);
 		
 		// Create sidebar placeholder
 		sidebar = new Viewport(model.getAvatar());
@@ -124,10 +120,14 @@ public class View extends JFrame implements StatChangeObserver {
 		return this.invViewport;
 	}
 
-	public SkillPointViewport getskillPointViewport() {
+	public SkillPointViewport getSkillPointViewport() {
 		return skillPointViewport;
 	}
 
+	public InteractionViewport getInteractionViewport() {
+		return interactionViewport;
+	}
+	
 	public void gameOver() {
 		layers.add(gameover, new Integer(450));
 		
@@ -146,9 +146,13 @@ public class View extends JFrame implements StatChangeObserver {
 		
 	}
 	
-	public void pausedActionMenu() {
-		layers.add(interactionViewport, new Integer(400));
+	public void toggleActionMenu() {
 		interactionViewport.toggleVisibility();
+		if (interactionViewport.isVisible()) {
+			layers.add(interactionViewport, new Integer(400));
+		} else {
+			layers.remove(interactionViewport);
+		}
 		this.validate();
 	}
 }

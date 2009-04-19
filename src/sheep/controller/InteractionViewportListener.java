@@ -20,5 +20,8 @@ public class InteractionViewportListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Inventory button was clicked: " + e.getActionCommand());
+		
+		view.toggleActionMenu();
+		model.startTime();
 	}
 }
