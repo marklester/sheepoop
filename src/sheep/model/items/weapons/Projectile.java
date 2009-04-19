@@ -71,11 +71,16 @@ public class Projectile extends Locatable implements Moveable
 		List<Locatable> thingsOnTile = this.getGameMap().get(newLoc);
 		if(!thingsOnTile.isEmpty())
 		{
+			boolean hit = false;
 			for (Locatable neighbor : thingsOnTile) {
 				if (neighbor.blocks(this)) {
-					stopMoving();
-					return;
+					hit=true;
+					neighbor.hitWith(myWeapon);
 				}
+			}
+			if(hit == true){
+				stopMoving();
+				return;
 			}
 
 			// If no terrain or anything (edge of map), don't move
@@ -83,16 +88,10 @@ public class Projectile extends Locatable implements Moveable
 				stopMoving();
 				return;
 			}
-
 			// Move is successful, do it
 			this.setLocation(newLoc);
 			duration--;
 			//System.out.println("Entity moved to " + this.getLocation());
-
-			// Hit everything on the location
-			for (Locatable neighbor : thingsOnTile) {
-				neighbor.hitWith(myWeapon);
-			}
 
 			// Reset counter
 			this.tickCounter = speed;
