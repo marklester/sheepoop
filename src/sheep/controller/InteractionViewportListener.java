@@ -8,7 +8,6 @@ import sheep.view.View;
 
 
 public class InteractionViewportListener implements ActionListener {
-	private TradeButtonsActionListener tradeButtonsActionListener;
 
 	private final Model model;
 	private final View view;

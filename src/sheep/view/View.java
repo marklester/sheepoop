@@ -83,7 +83,10 @@ public class View extends JFrame implements StatChangeObserver {
 
 		// Create gameover
 		gameover = new GameOverViewport(this.getWidth(), this.getHeight());
-
+		
+		// Create interaction 
+		interactionViewport = new InteractionViewport(model.getAvatar(), model.getAvatar().getInteractingCharacter());
+		
 		// Create sidebar placeholder
 		sidebar = new Viewport(model.getAvatar());
 		sidebar.setOpaque(true);
@@ -144,5 +147,8 @@ public class View extends JFrame implements StatChangeObserver {
 	}
 	
 	public void pausedActionMenu() {
+		layers.add(interactionViewport, new Integer(400));
+		interactionViewport.toggleVisibility();
+		this.validate();
 	}
 }
