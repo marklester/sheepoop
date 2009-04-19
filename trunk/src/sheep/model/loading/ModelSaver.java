@@ -10,7 +10,7 @@ import sheep.model.Model;
 public class ModelSaver {
 
 	private File file;
-	
+
 	public ModelSaver(File file) {
 		this.file = file;
 	}
@@ -19,19 +19,19 @@ public class ModelSaver {
 
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;
-		try
-		{
+		try {
 			fos = new FileOutputStream(file);
 			out = new ObjectOutputStream(fos);
 			out.writeObject(model);
 			out.close();
-		}
-		catch(IOException ex)
-		{
-			try {
-				if(out != null)
+		} catch (IOException ex) {
+			if (out != null)
+				try {
 					out.close();
-			} catch (IOException e) { }
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
 		}
 	}
 }

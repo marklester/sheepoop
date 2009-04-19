@@ -7,48 +7,43 @@ import java.io.ObjectInputStream;
 
 public class SettingsLoader {
 
-	public static final File CUSTOM_SETTINGS = new File( "res/settings/customSettings.psettings" );
-	public static final File DEFAULT_SETTINGS = new File( "res/settings/defaultSettings.psettings" );
+	public static final File CUSTOM_SETTINGS = new File("res/settings/customSettings.psettings");
+	public static final File DEFAULT_SETTINGS = new File("res/settings/defaultSettings.psettings");
 
 	public KeySettings load() {
 
-		if( CUSTOM_SETTINGS.exists() )
-			return load( CUSTOM_SETTINGS );
+		if (CUSTOM_SETTINGS.exists())
+			return load(CUSTOM_SETTINGS);
 		else
-			return load( DEFAULT_SETTINGS );
+			return load(DEFAULT_SETTINGS);
 
 	}
-	
-	private KeySettings load( File file )
-	{
+
+	private KeySettings load(File file) {
 		KeySettings settings = null;
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
-		
-		try
-		{
+
+		try {
 			fis = new FileInputStream(file);
 			in = new ObjectInputStream(fis);
 			settings = (KeySettings) in.readObject();
 			in.close();
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			ex.printStackTrace();
-		}
-		finally
-		{
-			try {
-				if(in != null)
+		} finally {
+			if (in != null)
+				try {
 					in.close();
-			} catch (IOException e) { }
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		}
 
 		return settings;
 	}
-	
-	public KeySettings loadDefault()
-	{
-		return load( DEFAULT_SETTINGS );
+
+	public KeySettings loadDefault() {
+		return load(DEFAULT_SETTINGS);
 	}
 }
