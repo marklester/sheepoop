@@ -48,23 +48,20 @@ public class NPC extends Character {
 	}
 	
 	public void affectHostility( int changeAmt ) {
-		this.hostility += changeAmt;
+		this.hostility = hostility + changeAmt;
 		this.hostility = ( hostility < 0 ) ? 0 : hostility;
 		this.hostility = ( hostility > 100) ? 100 : hostility;
 	}
 	
-	public void affectStat(StatType stat, int changeAmt) {
+	public void weaponDamage( int damage )
+	{
+		//(hopefully) linear hostility increase as health goes down.
+		int lifeLeft = (int) ( ( ( (double) this.getStat( StatType.MAX_LIFE ) - ( ( double) this.getStat( StatType.DAMAGE) + damage) )   / (double) this.getStat( StatType.MAX_LIFE ) )* 100.0);
 		
-		if( stat == StatType.LIFE && changeAmt < 0 && ai != null)
-		{
-			//(hopefully) linear hostility increase as health goes down.
-			int lifeLeft = ( ( this.getStat( StatType.LIFE) + changeAmt) / this.getStat( StatType.MAX_LIFE ) )* 100;
-			
-			int dx = lifeLeft - this.getHostility();
-			this.affectHostility( (dx > 0) ? dx * -1 : 0  );
-		}
+		int dx = lifeLeft - this.getHostility();
+		this.affectHostility( (dx > 0) ? dx : 0  );
 		
-		super.affectStat(stat, changeAmt);
+		super.weaponDamage( damage );
 	}
 	
 	@Override
