@@ -164,7 +164,11 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	}
 
 	public void hearMessage(Character speaker, String msg) {
-		this.notifyTalkMessageObservers(new TalkMessage(speaker, this, msg));
+		this.notifyTalkMessageObservers(new TalkMessage(speaker, this, msg, false));
+	}
+	
+	public void hearQuestion(Character speaker, String question) {
+		this.notifyTalkMessageObservers(new TalkMessage(speaker, this, question, true));
 	}
 
 	public Character getInteractingCharacter() {

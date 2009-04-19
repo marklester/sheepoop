@@ -13,9 +13,15 @@ public class VillagerAI extends AI {
 	}
 
 	public void tick() {
+		if( this.getNPC().getHostility() >= 75 )
+		{
+			this.getNPC().setAi( new AngryAI( this.getNPC(), this.getModel() ) );
+			return;
+		}
+		
 		int state = (int) (Math.random() * 50);
 		int move = (int) (Math.random() * 6);
-		move = move<3?0:3;
+		move = move < 3 ? 0 : 3;
 		if (state == 25) {
 			this.getNPC().startMoving(Direction.values()[move]);
 		} else if(state<10){

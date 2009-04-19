@@ -4,6 +4,7 @@ import sheep.model.GameStateType;
 import sheep.model.Model;
 import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
+import sheep.model.entities.StatType;
 import sheep.model.entities.npc.ai.AI;
 import sheep.model.gamemap.Location;
 import sheep.model.occupations.Occupation;
@@ -13,11 +14,14 @@ public class NPC extends Character {
 	private static final long serialVersionUID = 3556634534829274948L;
 
 	private final Model model;
+	private int hostility;
 	private AI ai;
-
+	
+	
 	public NPC(String id, Model model, Location loc, Occupation occupation) {
 		super(id, model, loc, occupation);
 		this.model = model;
+		hostility = 0;
 	}
 
 	@Override
@@ -36,6 +40,30 @@ public class NPC extends Character {
 
 	public void setAi(AI ai) {
 		this.ai = ai;
+	}
+	
+	public int getHostility() {
+		return hostility;
+	}
+	
+	public void affectHostility( int changeAmt ) {
+		this.hostility += changeAmt;
+		this.hostility = ( hostility < 0 ) ? 0 : hostility;
+		this.hostility = ( hostility > 100) ? 100 : hostility;
+	}
+	
+	public void affectStat(StatType stat, int changeAmt) {
+		
+		if( stat == StatType.LIFE && changeAmt < 0 && ai != null)
+		{
+			//(hopefully) linear hostility increase as health goes down.
+			int lifeLeft = ( ( this.getStat( StatType.LIFE) + changeAmt) / this.getStat( StatType.MAX_LIFE ) )* 100;
+			
+			int dx = lifeLeft - this.getHostility();
+			this.affectHostility( (dx > 0) ? dx * -1 : 0  );
+		}
+		
+		super.affectStat(stat, changeAmt);
 	}
 	
 	@Override
