@@ -18,10 +18,10 @@ public class Projectile extends Locatable implements Moveable
 	private int speed;
 	private Weapon myWeapon;
 	int tickCounter;
-
+	private int duration=-1;
 	private static final long serialVersionUID = 1L;
 
-	public Projectile(String id, Model model, Location loc, Weapon w, Direction facing, int speed)
+	public Projectile(String id, Model model, Location loc, Weapon w, Direction facing, int speed,int duration)
 	{
 		super (id, model, loc);
 		this.facingDirection = facing;
@@ -29,6 +29,17 @@ public class Projectile extends Locatable implements Moveable
 		this.speed = speed;
 		myWeapon = w;
 		tickCounter = speed;
+		this.duration = duration;
+		Time.getInstance().registerObserver(this);
+	}
+	public Projectile(String id, Model model, Location loc, Weapon w, Direction facing, int speed){
+		super (id, model, loc);
+		this.facingDirection = facing;
+		startMoving(facing);
+		this.speed = speed;
+		myWeapon = w;
+		tickCounter = speed;
+		this.duration = -1;
 		Time.getInstance().registerObserver(this);
 	}
 	public Direction getFacingDirection() {
@@ -51,7 +62,11 @@ public class Projectile extends Locatable implements Moveable
 		// Get ideal destination location
 		Vector2D vector = facingDirection.getVector(this.getLocation());
 		Location newLoc = this.getLocation().addVector(vector);
-
+		//If the duration of the Project has expired kill it
+		if(duration==0){
+			stopMoving();
+			return;
+		}
 		// See if anything blocks
 		List<Locatable> thingsOnTile = this.getGameMap().get(newLoc);
 		if(!thingsOnTile.isEmpty())
@@ -71,6 +86,7 @@ public class Projectile extends Locatable implements Moveable
 
 			// Move is successful, do it
 			this.setLocation(newLoc);
+			duration--;
 			//System.out.println("Entity moved to " + this.getLocation());
 
 			// Hit everything on the location
