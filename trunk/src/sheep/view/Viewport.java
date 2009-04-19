@@ -12,25 +12,22 @@ public class Viewport extends JPanel {
 	private static final long serialVersionUID = -7115001668270029395L;
 	public static final Dimension BUT_SIZE = new Dimension(AreaViewport.TILE_SIZE, AreaViewport.TILE_SIZE);
 	private Avatar avatar;
-	private ResourceLoader resLoader;
 
 	public Viewport(Avatar av){
 		this.avatar = av;
-		this.resLoader = ResourceLoader.getInstance();
 	}
 	
 	public Viewport(Avatar av, int w, int h) {
 		this.avatar = av;
 		this.setPreferredSize(new Dimension(w,h));
-		this.resLoader = ResourceLoader.getInstance();
 	}
 	
 	public Avatar getAvatar() {
 		return this.avatar;
 	}
 	
-	public ResourceLoader getResLoader() {
-		return this.resLoader;
+	public static ResourceLoader getResLoader() {
+		return ResourceLoader.getInstance();
 	}
 	
 }

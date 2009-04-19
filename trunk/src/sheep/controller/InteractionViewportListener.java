@@ -8,6 +8,7 @@ import javax.swing.AbstractAction;
 import sheep.controller.actions.TalkAction;
 import sheep.controller.actions.UseItemAction;
 import sheep.controller.actions.UseWeaponAction;
+import sheep.model.GameStateType;
 import sheep.model.Model;
 import sheep.view.View;
 
@@ -46,6 +47,7 @@ public class InteractionViewportListener implements ActionListener {
 		
 		// Back to game play
 		view.toggleActionMenu();
+		model.setState(GameStateType.PLAYING);
 		model.startTime();
 		view.getLayeredPane().grabFocus();
 	}

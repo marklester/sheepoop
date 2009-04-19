@@ -60,10 +60,9 @@ public class SettingsView extends JPanel {
 		JPanel buttonPane = new JPanel();
 		buttonPane.setOpaque( false );
 		
-		ResourceLoader rl = ResourceLoader.getInstance();
-		ImageIcon okIcon = rl.getImageIcon( "OK" );
-		ImageIcon defaultIcon = rl.getImageIcon( "Default" );
-		ImageIcon cancelIcon = rl.getImageIcon( "Cancel" );
+		ImageIcon okIcon = ResourceLoader.getInstance().getImageIcon( "OK" );
+		ImageIcon defaultIcon = ResourceLoader.getInstance().getImageIcon( "Default" );
+		ImageIcon cancelIcon = ResourceLoader.getInstance().getImageIcon( "Cancel" );
 		Dimension iconDim = new Dimension( okIcon.getIconHeight(), okIcon.getIconWidth() );
 		
 		okButton = new JButton(); //okIcon );
