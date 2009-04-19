@@ -17,6 +17,7 @@ public class UseWeaponAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		//System.out.println("[UseWeaponAction.java] Using weapon");
 		attacker.getEquippedWeapon().actionPerformed(ae);
 	}
 }
