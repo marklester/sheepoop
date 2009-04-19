@@ -92,7 +92,7 @@ public class Controller implements GameStateObserver, NotSerializable {
 		actionMap.put("moveNW", new StartMovingAction(model, Direction.NW));
 
 		// Saving
-		actionMap.put("saveGame", new SaveGameAction(model));
+		actionMap.put("saveGame", new SaveGameAction(model, view));
 		ks.put( "saveGame", KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK) );
 
 		// pause/unpause
