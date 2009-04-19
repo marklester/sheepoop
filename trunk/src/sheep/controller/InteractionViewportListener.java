@@ -43,7 +43,17 @@ public class InteractionViewportListener implements ActionListener {
 		}  else if(cmd.equalsIgnoreCase("trade")) {
 			Avatar av = model.getAvatar();
 			Character c = av.getInteractingCharacter();
-			action = new ToggleTradeAction( view, new TradeViewport( av, c,  new TradeFacilitator(av, c), view.getAreaViewport().getWidth()/2 - 100, view.getAreaViewport().getHeight()/2 - 100 ) );
+			TradeViewport tv = new TradeViewport( av, c,  new TradeFacilitator(av, c), view.getAreaViewport().getWidth()/2 - 250, view.getAreaViewport().getHeight()/2 - 250 );
+			action = new ToggleTradeAction( view );
+			tv.addCloseActionListener( action );
+			tv.addCloseActionListener(  new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent ae) {
+					returnGame();
+				}
+			});
+			view.setTradeViewport( tv );
 		} 
 		
 		// Execute action
@@ -51,8 +61,16 @@ public class InteractionViewportListener implements ActionListener {
 			action.actionPerformed(e);
 		}
 		
-		// Back to game play
 		view.toggleActionMenu();
+		
+		if( !cmd.equalsIgnoreCase( "trade" ) )
+			returnGame();
+	}
+	
+	private void returnGame()
+	{
+		// Back to game play
+		
 		model.setState(GameStateType.PLAYING);
 		model.getAvatar().setInteractingCharacter(null);
 		model.startTime();

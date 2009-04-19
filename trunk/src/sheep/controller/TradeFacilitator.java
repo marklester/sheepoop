@@ -17,21 +17,24 @@ public class TradeFacilitator {
 	}
 
 	public void buyItem(Takeable item) {
-		int price = getItemBuyPrice(item);
+		int price = getItemSellPrice(item);
 		transactItem( avatar, npc, item, price);
 	}
 
 	public int getItemBuyPrice(Takeable item) {
+		System.out.println("Item: " + item + " base: " + item.getPrice() + " npc/avatar: " + npc.getSkill( PassiveSkill.BARGAIN ) + "/" + avatar.getSkill( PassiveSkill.BARGAIN ));
 		return (int) ( (double) item.getPrice() * ( ((double) avatar.getSkill( PassiveSkill.BARGAIN )+1) / ((double) npc.getSkill( PassiveSkill.BARGAIN )+1) ) ); 
 		
 	}
 
 	public int getItemSellPrice(Takeable item) {
+		System.out.println("Item: " + item + " base: " + item.getPrice() + " npc/avatar: " + npc.getSkill( PassiveSkill.BARGAIN ) + "/" + avatar.getSkill( PassiveSkill.BARGAIN ));
 		return (int) ( (double) item.getPrice() * ( ((double) npc.getSkill( PassiveSkill.BARGAIN ) + 1) / ((double) avatar.getSkill( PassiveSkill.BARGAIN ) +1 ) ) );
 	}
 
 	public void sellItem(Takeable item) {
-		int price = getItemSellPrice(item);
+		int price = getItemBuyPrice(item);
+		System.out.println("Price: " + price + " Item: " + item);
 		transactItem(npc, avatar, item, price);
 	}
 	

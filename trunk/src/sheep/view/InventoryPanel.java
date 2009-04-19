@@ -57,7 +57,7 @@ public class InventoryPanel extends Viewport implements InventoryChangeObserver 
 		botPnl.setOpaque(false);
 		botPnl.setFocusable(false);
 
-		short cols = 3;
+		short cols = 2;
 		short x = 0;
 		short y = 0;
 		for (Takeable item : inventory.get()) {
