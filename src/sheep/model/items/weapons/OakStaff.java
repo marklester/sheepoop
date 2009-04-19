@@ -10,4 +10,9 @@ public class OakStaff extends Staff {
 	public OakStaff(Model model, Location loc) {
 		super("Oak Staff", model, loc, 10, 20);
 	}
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

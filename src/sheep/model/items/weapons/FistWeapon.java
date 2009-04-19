@@ -11,4 +11,9 @@ public class FistWeapon extends Weapon {
 	public FistWeapon( String id, Model model, Location loc, int baseDamage) {
 		super(id, model, loc, baseDamage, PassiveSkill.BRAWLING, -1);
 	}
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

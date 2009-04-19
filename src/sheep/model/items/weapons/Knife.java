@@ -10,5 +10,9 @@ public class Knife extends OneHanded {
 		super("Knife", model, loc, 5, 10);
 	}
 
-
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

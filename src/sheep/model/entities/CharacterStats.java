@@ -63,10 +63,10 @@ public class CharacterStats implements Cloneable, Serializable {
 			stats.put(StatType.MANA_USED, 0);
 		}
 		stats.put(StatType.MANA, maxMana - get(StatType.MANA_USED));
-		int baseOffense = strength * 2 + level * strength / 5;
-		int offenseBonus = get(StatType.OFFENSIVE_BONUS);
-		stats.put(StatType.BASE_OFFENSIVE_RATING, baseOffense);
-		stats.put(StatType.OFFENSIVE_RATING, baseOffense + offenseBonus);
+//		int baseOffense = strength * 2 + level * strength / 5;
+//		int offenseBonus = get(StatType.OFFENSIVE_BONUS);
+//		stats.put(StatType.BASE_OFFENSIVE_RATING, baseOffense);
+//		stats.put(StatType.OFFENSIVE_RATING, baseOffense + offenseBonus);
 
 		// See if character is dead and take appropriate actions
 		if ((get(StatType.DAMAGE) > 0) && (get(StatType.DAMAGE) > (get(StatType.MAX_LIFE)))) {

@@ -11,7 +11,7 @@ import sheep.model.gamemap.Location;
 import sheep.model.skills.PassiveSkill;
 import sheep.util.math.Vector2D;
 
-public class ProjectileWeapon extends Weapon 
+public abstract class ProjectileWeapon extends Weapon 
 {
 	private static final long serialVersionUID = 1L;
 	String projectileId;

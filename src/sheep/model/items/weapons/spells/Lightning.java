@@ -10,5 +10,9 @@ public class Lightning extends Bane {
 		super("Lightning", model, loc, 15,2,100);
 	}
 
-
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

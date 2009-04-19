@@ -10,4 +10,9 @@ public class AshStaff extends Staff {
 	public AshStaff(Model model, Location loc) {
 		super("Ash Staff", model, loc, 8, 10);
 	}
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

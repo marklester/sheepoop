@@ -11,5 +11,9 @@ public class ShortSword extends OneHanded {
 	public ShortSword(Model model, Location loc) {
 		super("Short Sword", model, loc, 15, 50);
 	}
-	
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

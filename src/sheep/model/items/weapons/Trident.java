@@ -11,5 +11,9 @@ public class Trident extends TwoHanded {
 	public Trident(Model model, Location loc) {
 		super("Trident", model, loc, 20, 40);
 	}
-	
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

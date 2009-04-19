@@ -10,5 +10,9 @@ public class Hammer extends OneHanded {
 	public Hammer(Model m, Location loc) {
 		super("Hammer", m, loc, 13, 35);
 	}
-	
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

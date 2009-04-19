@@ -11,5 +11,9 @@ public class SpearGun extends LongRange {
 	public SpearGun(Model model, Location loc) {
 		super("spear","Spear Gun", model, loc, 20, 3, 35);
 	}
-	
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }

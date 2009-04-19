@@ -11,4 +11,9 @@ public class Ice extends Bane {
 		super("Ice", model, loc, 10,8,100);
 	}
 
+	@Override
+	public int getDamageWith()
+	{
+		return getBaseDamage() * getUser().getSkill(getSkill());
+	}
 }
