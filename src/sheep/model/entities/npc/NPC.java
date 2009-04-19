@@ -2,6 +2,7 @@ package sheep.model.entities.npc;
 
 import sheep.model.GameStateType;
 import sheep.model.Model;
+import sheep.model.Time;
 import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
 import sheep.model.entities.StatType;
@@ -78,7 +79,9 @@ public class NPC extends Character {
 
 	@Override
 	public void die() {
-		this.setAi(null);
+		Time.getInstance().removeObserver(ai);
+		ai.setNPC(null);
+		ai=null;
 		this.getGameMap().remove(getLocation(),this);
 		setLocation(null);
 	}
