@@ -60,27 +60,53 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location(0, 17);
 		Vehicle vehicle = new Boat(model, loc);
 		map.add(loc, vehicle);
-		//add river
+		//add river (first part)
 		RiverCounter rc = new RiverCounter();
 		loc = new Location(16,6);
 		map.add(loc, new Decal("nearrow", model, loc));
-		map.add(loc,new River(model,loc,Direction.NE,rc));
+		map.add(loc,new River(model,loc,Direction.NE,10,rc));
 		loc = new Location(17,5);
 		map.add(loc, new Decal("nearrow", model, loc));
-		map.add(loc,new River(model,loc,Direction.NE,rc));
+		map.add(loc,new River(model,loc,Direction.NE,10,rc));
 		loc = new Location(18,5);
 		map.add(loc, new Decal("narrow", model, loc));
-		map.add(loc,new River(model,loc,Direction.N,rc));
+		map.add(loc,new River(model,loc,Direction.N,10,rc));
 		loc = new Location(18,4);
 		map.add(loc, new Decal("narrow", model, loc));
-		map.add(loc,new River(model,loc,Direction.N,rc));
+		map.add(loc,new River(model,loc,Direction.N,10,rc));
 		loc = new Location(18,3);
 		map.add(loc, new Decal("narrow", model, loc));
-		map.add(loc,new River(model,loc,Direction.N,rc));
+		map.add(loc,new River(model,loc,Direction.N,10,rc));
 		loc = new Location(18,2);
 		map.add(loc, new Decal("narrow", model, loc));
-		map.add(loc,new River(model,loc,Direction.N,rc));
-		// Add wolfs
+		map.add(loc,new River(model,loc,Direction.N,10,rc));
+		
+		//river two 7,12
+		loc = new Location(0,16);
+		map.add(loc, new Decal("narrow", model, loc));
+		map.add(loc,new River(model,loc,Direction.N,10,rc));
+		loc = new Location(0,15);
+		map.add(loc, new Decal("nearrow", model, loc));
+		map.add(loc,new River(model,loc,Direction.NE,10,rc));
+		loc = new Location(1,14);
+		map.add(loc, new Decal("nearrow", model, loc));
+		map.add(loc,new River(model,loc,Direction.NE,10,rc));
+		loc = new Location(2,14);
+		map.add(loc, new Decal("nearrow", model, loc));
+		map.add(loc,new River(model,loc,Direction.NE,10,rc));
+		loc = new Location(3,13);
+		map.add(loc, new Decal("nearrow", model, loc));
+		map.add(loc,new River(model,loc,Direction.NE,10,rc));
+		loc = new Location(4,13);
+		map.add(loc, new Decal("nearrow", model, loc));
+		map.add(loc,new River(model,loc,Direction.NE,10,rc));
+		loc = new Location(5,12);
+		map.add(loc, new Decal("nearrow", model, loc));
+		map.add(loc,new River(model,loc,Direction.NE,10,rc));
+		loc = new Location(6,12);
+		map.add(loc, new Decal("nearrow", model, loc));
+		map.add(loc,new River(model,loc,Direction.NE,10,rc));
+		// Add wolves
 		loc = new Location(6, 6);
 		map.add(loc, new Wolf(model, loc));
 		loc = new Location(17, 14);

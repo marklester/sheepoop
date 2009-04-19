@@ -84,7 +84,9 @@ public abstract class Vehicle extends Entity {
 	@Override
 	public void setLocation(Location newLoc) {
 		super.setLocation(newLoc);
-		this.driver.setLocation(newLoc);
+		if(driver!=null){
+			this.driver.setLocation(newLoc);
+		}
 	}
 
 	@Override
