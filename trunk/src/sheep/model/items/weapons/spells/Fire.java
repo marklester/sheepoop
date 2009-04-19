@@ -23,6 +23,7 @@ public class Fire extends Bane {
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		//System.out.println("Fire");
 		if (this.getUser().getStat(StatType.MANA) < 20) {
 		} else {
 			Location center = getUser().getLocation();
@@ -51,7 +52,6 @@ public class Fire extends Bane {
 	}
 
 	public void applyEffect(Character c) {
-		// Character enemy = user.getInteractingCharacter();
 		int realdmg = getBaseDamage() * getUser().getSkill(getSkill());
 		Map<Location, List<Locatable>> tiles = c.getGameMap().getMapSubset(c.getLocation(), 1);
 		c.weaponDamage(realdmg);
