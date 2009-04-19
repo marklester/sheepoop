@@ -10,9 +10,9 @@ public class InteractionViewport extends Viewport {
 
 	private ActionListener actionListener;
 
-	private static int width = 400;
+	private static int width = 500;
 	private static int height = 50;
-	private JButton attackBtn, talkBtn, useItemBtn, cancelBtn;
+	private JButton attackBtn, talkBtn, useItemBtn, cancelBtn, tradeBtn;
 
 	public InteractionViewport(int x, int y) {
 		super(null, width, height);
@@ -25,6 +25,10 @@ public class InteractionViewport extends Viewport {
 		talkBtn = new JButton("Talk");
 		talkBtn.setActionCommand("talk");
 		this.add(talkBtn);
+		
+		tradeBtn = new JButton("Trade");
+		tradeBtn.setActionCommand("trade");
+		this.add(tradeBtn);
 
 		useItemBtn = new JButton("Use Item");
 		useItemBtn.setActionCommand("useItem");
@@ -46,6 +50,7 @@ public class InteractionViewport extends Viewport {
 			talkBtn.addActionListener(al);
 			useItemBtn.addActionListener(al);
 			cancelBtn.addActionListener(al);
+			tradeBtn.addActionListener(al);
 		}
 	}
 }
