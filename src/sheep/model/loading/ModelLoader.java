@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import sheep.model.Model;
-import sheep.model.entities.Avatar;
 
 public class ModelLoader {
 
@@ -60,11 +59,7 @@ public class ModelLoader {
 			System.out.println("modelloader made a null model");
 			System.exit(0);
 		}
-		
-		System.out.println("look here:");
-		System.out.println(model.getGameMap());
-		System.out.println("look up");
-		
+				
 		return model;
 	}
 }

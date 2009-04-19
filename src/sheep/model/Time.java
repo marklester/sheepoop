@@ -1,5 +1,7 @@
 package sheep.model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -23,7 +25,8 @@ public class Time implements Serializable {
 	private Time() {
 		this.isPaused = true;
 		this.transientObservers = new ConcurrentLinkedQueue<TimeObserver>();
-		this.observers = new ConcurrentLinkedQueue<TimeObserver>();;
+		this.observers = new ConcurrentLinkedQueue<TimeObserver>();
+		;
 	}
 
 	public static Time getInstance() {
@@ -66,14 +69,14 @@ public class Time implements Serializable {
 	}
 
 	public void registerObserver(TimeObserver observer) {
-		
+
 		if (!(observer instanceof Serializable) || (observer instanceof NotSerializable)) {
 			if (!transientObservers.contains(observer)) {
 				transientObservers.add(observer);
 			}
 			return;
 		}
-		
+
 		if (!observers.contains(observer)) {
 			observers.add(observer);
 		}
@@ -88,27 +91,26 @@ public class Time implements Serializable {
 	public void notifyObservers() {
 
 		for (TimeObserver observer : this.observers) {
-			if(observer!=null)
-			{
+			if (observer != null) {
 				observer.tick();
-			}
-			else
-			{
-				observers.remove(observer);
-			}
-		}
-		
-		for (TimeObserver observer : this.transientObservers) {
-			if(observer!=null)
-			{
-				observer.tick();
-			}
-			else
-			{
+			} else {
 				observers.remove(observer);
 			}
 		}
 
+		for (TimeObserver observer : this.transientObservers) {
+			if (observer != null) {
+				observer.tick();
+			} else {
+				observers.remove(observer);
+			}
+		}
+
+	}
+
+	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+		transientObservers = new ConcurrentLinkedQueue<TimeObserver>();
+		ois.defaultReadObject();
 	}
 
 	private class TickTimeTask extends TimerTask {
