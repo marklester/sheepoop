@@ -33,6 +33,11 @@ public class NPC extends Character {
 		angryAi.attachNPC(this);
 	}
 
+	public AI getActiveAi()
+	{
+		return activeAi;
+	}
+
 	@Override
 	public boolean blocks(Entity entity) {
 		if (entity == model.getAvatar()) {
