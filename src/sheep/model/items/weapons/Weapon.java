@@ -68,8 +68,8 @@ public abstract class Weapon extends Takeable implements ActionListener {
 
 			enemy.affectStat(StatType.LIFE, totalDamage);
 		} else {*/
-		Vector2D myVector = user.getFacingDirection().getVector(getLocation());
-		Location attackingTile = new Location(getLocation().getX() + (int) myVector.getX(), getLocation().getY()
+		Vector2D myVector = user.getFacingDirection().getVector(user.getLocation());
+		Location attackingTile = new Location(user.getLocation().getX() + (int) myVector.getX(), user.getLocation().getY()
 				+ (int) myVector.getY());
 		List<Locatable> targets = getGameMap().get(attackingTile);
 		for (Locatable l : targets) {
