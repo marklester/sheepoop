@@ -118,6 +118,7 @@ public class ResourceLoader {
 		
 		//useable
 		fileMap.put("Wheat Thins", USEABLE_DIR + "wheatthins.png");
+		fileMap.put("Orange Juice", USEABLE_DIR + "orangejuice.png");
 		
 	}
 	
