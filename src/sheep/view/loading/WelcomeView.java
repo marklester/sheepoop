@@ -100,11 +100,10 @@ public class WelcomeView extends JFrame {
 	
 	private void addButtons() {
 		//Grab the resources
-		ResourceLoader rl = ResourceLoader.getInstance();
-		ImageIcon newG_icon = rl.getImageIcon("newGame");
-		ImageIcon loadG_icon = rl.getImageIcon("loadGame");
-		ImageIcon settings_icon = rl.getImageIcon("settings");
-		//ImageIcon quitG_icon = new ImageIcon(rl.getImage("quitGame"));
+		ImageIcon newG_icon = ResourceLoader.getInstance().getImageIcon("newGame");
+		ImageIcon loadG_icon = ResourceLoader.getInstance().getImageIcon("loadGame");
+		ImageIcon settings_icon = ResourceLoader.getInstance().getImageIcon("settings");
+		//ImageIcon quitG_icon = new ImageIcon(ResourceLoader.getInstance().getImage("quitGame"));
 		
 		//Create the buttons
 		ngBtn = new JButton(newG_icon);
@@ -142,10 +141,9 @@ public class WelcomeView extends JFrame {
 	public void displayCharacterSelect() {	
 		
 		//Create the buttons
-		ResourceLoader rl = ResourceLoader.getInstance();
-		ImageIcon sm = new ImageIcon(rl.getImage("smasherBtn")); 
-		ImageIcon su = new ImageIcon(rl.getImage("summonerBtn"));
-		ImageIcon sn = new ImageIcon(rl.getImage("sneakBtn"));
+		ImageIcon sm = new ImageIcon(ResourceLoader.getInstance().getImage("smasherBtn")); 
+		ImageIcon su = new ImageIcon(ResourceLoader.getInstance().getImage("summonerBtn"));
+		ImageIcon sn = new ImageIcon(ResourceLoader.getInstance().getImage("sneakBtn"));
 		Dimension iconDim = new Dimension(sm.getIconWidth(), sm.getIconHeight());
 		
 		smBtn = new JButton(sm);
