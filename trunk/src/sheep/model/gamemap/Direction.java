@@ -1,5 +1,7 @@
 package sheep.model.gamemap;
 
+import java.io.Serializable;
+
 import sheep.util.math.Vector2D;
 
 /**
@@ -8,7 +10,7 @@ import sheep.util.math.Vector2D;
  * @author Bryan Rosander
  */
 
-public enum Direction {
+public enum Direction implements Serializable {
 	N(90, new Vector2D(0, -1), new Vector2D(0,-1)), 
 	NE(30, new Vector2D(1, 0), new Vector2D(1, -1)), 
 	SE(330, new Vector2D(1,1), new Vector2D(1,0)), 

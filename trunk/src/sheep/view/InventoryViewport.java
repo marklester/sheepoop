@@ -10,6 +10,10 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.io.IOException;
+import java.io.NotSerializableException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,7 +35,7 @@ import sheep.view.overlays.Overlay;
 /**
  * 
  * @author Jason Mac
- *
+ * 
  */
 
 public class InventoryViewport extends Viewport implements InventoryChangeObserver {
@@ -43,7 +47,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 	private JPanel botPnl;
 	private Font myFont = Overlay.getFont().deriveFont(20f);
 	private Image bgImage;
-	
+
 	public InventoryViewport(Avatar avatar, int w, int h) {
 		super(avatar, w, h);
 		this.avatar = avatar;
@@ -53,6 +57,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 
 		setUpPanels();
 		avatar.registerInventoryChangeObserver(this);
+
 	}
 
 	public void paintComponent(Graphics g) {
@@ -269,5 +274,13 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 	@Override
 	public void update(InventoryChange msg) {
 		setUpPanels();
+	}
+
+	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+		throw new NotSerializableException();
+	}
+
+	private void writeObject(ObjectOutputStream ois) throws IOException {
+	//	throw new NotSerializableException();
 	}
 }

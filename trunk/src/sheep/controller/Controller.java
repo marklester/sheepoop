@@ -1,6 +1,10 @@
 package sheep.controller;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.io.NotSerializableException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +26,7 @@ import sheep.controller.actions.UseWeaponAction;
 import sheep.model.GameStateChange;
 import sheep.model.GameStateObserver;
 import sheep.model.Model;
+import sheep.model.NotSerializable;
 import sheep.model.gamemap.Direction;
 import sheep.model.loading.KeySettings;
 import sheep.model.loading.SettingsLoader;
@@ -31,7 +36,7 @@ import sheep.view.View;
  * Main controller for game play
  * 
  */
-public class Controller implements GameStateObserver {
+public class Controller implements GameStateObserver, NotSerializable {
 	private View view;
 	private Model model;
 	private InteractionViewportListener interactionViewportListener;
@@ -156,5 +161,13 @@ public class Controller implements GameStateObserver {
 		default:
 
 		}
+	}
+
+	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+		throw new NotSerializableException();
+	}
+
+	private void writeObject(ObjectOutputStream ois) throws IOException {
+	//	throw new NotSerializableException();
 	}
 }

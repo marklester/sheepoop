@@ -1,10 +1,12 @@
 package sheep.model.entities;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Phil Freo
  */
-public enum StatType {
+public enum StatType implements Serializable {
 	SPEED ("Speed"), 
 	LIVES_LEFT("Lives Left"), 
 	STRENGTH("Strength"), 

@@ -1,7 +1,6 @@
 package sheep.model.entities.vehicles;
 
 import sheep.model.Model;
-import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
 import sheep.model.gamemap.Location;
 import sheep.model.items.interactive.PilotLicense;

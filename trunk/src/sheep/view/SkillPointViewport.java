@@ -8,6 +8,10 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.io.IOException;
+import java.io.NotSerializableException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Map.Entry;
 
 import javax.swing.ImageIcon;
@@ -193,6 +197,14 @@ public class SkillPointViewport extends Viewport implements SkillPointChangeObse
 		if (msg.getStatType().equals(StatType.SKILL_POINTS_TO_GIVE) ) {
 			setupPanel();
 		}		
+	}
+
+	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+		throw new NotSerializableException();
+	}
+
+	private void writeObject(ObjectOutputStream ois) throws IOException {
+	//	throw new NotSerializableException();
 	}
 		
 }

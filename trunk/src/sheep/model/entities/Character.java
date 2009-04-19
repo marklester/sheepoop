@@ -1,6 +1,7 @@
 package sheep.model.entities;
 
-import java.io.Serializable;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Vector;
 import java.util.Map.Entry;
 
 import sheep.model.Model;
+import sheep.model.NotSerializable;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
 import sheep.model.items.Takeable;
@@ -18,7 +20,8 @@ import sheep.model.occupations.Occupation;
 import sheep.model.skills.PassiveSkill;
 import sheep.model.skills.PerformableSkill;
 
-public abstract class Character extends Entity implements TalkMessageObservable, InventoryChangeObservable, SkillPointChangeObservable {
+public abstract class Character extends Entity implements TalkMessageObservable, InventoryChangeObservable,
+		SkillPointChangeObservable {
 
 	private static final long serialVersionUID = 1069820547179793745L;
 
@@ -31,18 +34,19 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	private Map<PassiveSkill, Integer> passiveSkills;
 	private List<PerformableSkill> performableSkills;
 	private Character interactingCharacter;
-	
+
 	private Vector<TalkMessageObserver> talkObservers = new Vector<TalkMessageObserver>();
 	transient private Vector<TalkMessageObserver> transientTalkObservers = new Vector<TalkMessageObserver>();
-	
+
 	private Vector<InventoryChangeObserver> inventoryObservers = new Vector<InventoryChangeObserver>();
 	transient private Vector<InventoryChangeObserver> transientInventoryObservers = new Vector<InventoryChangeObserver>();
-	
+
 	private Vector<StatChangeObserver> statChangeObservers = new Vector<StatChangeObserver>();
 	transient private Vector<StatChangeObserver> transientStatChangeObservers = new Vector<StatChangeObserver>();
-	
+
 	private Vector<SkillPointChangeObserver> skillsObservers = new Vector<SkillPointChangeObserver>();
-	
+	transient private Vector<SkillPointChangeObserver> transientSkillsObservers = new Vector<SkillPointChangeObserver>();
+
 	public Character(String id, Model model, Location loc, Occupation occupation) {
 		super(id, model, loc);
 		this.startingLocation = loc;
@@ -51,7 +55,7 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		this.stats = occupation.cloneStats();
 		this.passiveSkills = occupation.clonePassiveSkills();
 		this.inventory = new Inventory();
-		this.armor = new HashMap<BodyPart,Armor>();
+		this.armor = new HashMap<BodyPart, Armor>();
 		for (PerformableSkill ps : performableSkills) {
 			ps.setCharacter(this);
 		}
@@ -60,34 +64,30 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	}
 
 	public abstract boolean isDead();
-	
+
 	@Override
-	public boolean canClimb()
-	{
+	public boolean canClimb() {
 		return false;
 	}
 
 	@Override
-	public boolean canSwim()
-	{
+	public boolean canSwim() {
 		return false;
 	}
 
 	@Override
-	public boolean canWalk()
-	{
+	public boolean canWalk() {
 		return true;
 	}
-	
-	public boolean has(Takeable item)
-	{
+
+	public boolean has(Takeable item) {
 		return inventory.has(item);
 	}
-	
+
 	public void accept(LocatableVisitor v) {
 		v.visit(this);
 	}
-	
+
 	public abstract void die();
 
 	public void equip(Weapon w) {
@@ -149,17 +149,18 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	}
 
 	public boolean blocks(Entity entity) {
-		
+
 		// If a character tries to get off a boat, for example
 		if (entity == this) {
-			return false; 
+			return false;
 		}
-		
-		// Necessary for NPCs to know when they are trying to move into a character
+
+		// Necessary for NPCs to know when they are trying to move into a
+		// character
 		if (entity instanceof Character) {
 			((Character) entity).setInteractingCharacter(this);
 		}
-		
+
 		// Block other entities from sharing a location
 		return true;
 	}
@@ -171,7 +172,7 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	public void hearMessage(Character speaker, String msg) {
 		this.notifyTalkMessageObservers(new TalkMessage(speaker, this, msg, false));
 	}
-	
+
 	public void hearQuestion(Character speaker, String question) {
 		this.notifyTalkMessageObservers(new TalkMessage(speaker, this, question, true));
 	}
@@ -196,13 +197,13 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 
 	@Override
 	public void registerTalkMessageObserver(TalkMessageObserver observer) {
-		if (!(observer instanceof Serializable)) {
+		if (observer instanceof NotSerializable) {
 			if (!transientTalkObservers.contains(observer)) {
 				transientTalkObservers.add(observer);
 			}
 			return;
 		}
-		
+
 		if (!talkObservers.contains(observer)) {
 			talkObservers.add(observer);
 		}
@@ -226,13 +227,14 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 
 	@Override
 	public void registerInventoryChangeObserver(InventoryChangeObserver observer) {
-		if (!(observer instanceof Serializable)) {
+
+		if (observer instanceof NotSerializable) {
 			if (!transientInventoryObservers.contains(observer)) {
 				transientInventoryObservers.add(observer);
 			}
 			return;
 		}
-		
+
 		if (!inventoryObservers.contains(observer)) {
 			inventoryObservers.add(observer);
 		}
@@ -256,13 +258,13 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 
 	@Override
 	public void registerStatChangeObserver(StatChangeObserver observer) {
-		if (!(observer instanceof Serializable)) {
+		if (observer instanceof NotSerializable) {
 			if (!transientStatChangeObservers.contains(observer)) {
 				transientStatChangeObservers.add(observer);
 			}
 			return;
 		}
-		
+
 		if (!statChangeObservers.contains(observer)) {
 			statChangeObservers.add(observer);
 		}
@@ -273,27 +275,36 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		transientStatChangeObservers.remove(observer);
 		statChangeObservers.remove(observer);
 	}
-	
-	
+
 	@Override
 	public void notifySkillPointObservers() {
 		for (SkillPointChangeObserver observer : this.skillsObservers) {
 			observer.update();
-		}		
+		}
+		for (SkillPointChangeObserver observer : this.transientSkillsObservers) {
+			observer.update();
+		}
 	}
 
 	@Override
 	public void registerSkillPointObserver(SkillPointChangeObserver observer) {
-		skillsObservers.add(observer);
-		
+		if (observer instanceof NotSerializable) {
+			if (!transientSkillsObservers.contains(observer)) {
+				transientSkillsObservers.add(observer);
+			}
+			return;
+		}
+
+		if (!skillsObservers.contains(observer)) {
+			skillsObservers.add(observer);
+		}
 	}
 
 	@Override
 	public void removeSkillPointObserver(SkillPointChangeObserver observer) {
 		skillsObservers.remove(observer);
-		
+		transientSkillsObservers.remove(observer);
 	}
-	
 
 	@Override
 	public int getStat(StatType stat) {
@@ -307,7 +318,7 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 
 	@Override
 	public void hitWith(Weapon w) {
-		//System.out.println(getID()+" was hit with "+w.getID());
+		// System.out.println(getID()+" was hit with "+w.getID());
 		w.applyEffect(this);
 	}
 
@@ -322,11 +333,11 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	public List<PerformableSkill> getPerformableSkills() {
 		return this.performableSkills;
 	}
-	
+
 	public Set<Entry<PassiveSkill, Integer>> getPassiveSkills() {
 		return passiveSkills.entrySet();
 	}
-	
+
 	public CharacterStats getStats() {
 		return this.stats;
 	}
@@ -342,20 +353,26 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	public Weapon getEquippedWeapon() {
 		return weapon;
 	}
-	
+
 	public Location getStartingLocation() {
 		return startingLocation;
 	}
-	
+
 	public void addSkillPoint(PerformableSkill pSkill) {
 		pSkill.addPoints(1);
 		notifySkillPointObservers();
 	}
-	
+
 	public void addSkillPoint(PassiveSkill pSkill) {
 		Integer currValue = passiveSkills.get(pSkill);
-		passiveSkills.put(pSkill, currValue+1);
+		passiveSkills.put(pSkill, currValue + 1);
 		notifySkillPointObservers();
 	}
 
+	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+		transientTalkObservers = new Vector<TalkMessageObserver>();
+		transientInventoryObservers = new Vector<InventoryChangeObserver>();
+		transientStatChangeObservers = new Vector<StatChangeObserver>();
+		transientSkillsObservers = new Vector<SkillPointChangeObserver>();
+	}
 }

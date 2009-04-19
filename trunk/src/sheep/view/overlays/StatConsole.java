@@ -5,6 +5,10 @@ import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.io.IOException;
+import java.io.NotSerializableException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import sheep.model.entities.Avatar;
 import sheep.model.entities.CharacterStats;
@@ -103,5 +107,13 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 	
 	public static int getHeight() {
 		return height;
+	}
+
+	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+		throw new NotSerializableException();
+	}
+
+	private void writeObject(ObjectOutputStream ois) throws IOException {
+//		throw new NotSerializableException();
 	}
 }

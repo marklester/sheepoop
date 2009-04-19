@@ -14,7 +14,7 @@ import sheep.model.gamemap.GameMap;
  * @author Phil Freo
  */
 public abstract class AI implements TimeObserver, Serializable {
-	private static final long serialVersionUID = 7551024229134848584L;
+	private static final long serialVersionUID = -8790114564019116399L;
 	private NPC npc;
 	private Model model;
 
