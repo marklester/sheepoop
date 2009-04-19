@@ -3,6 +3,7 @@ package sheep.controller;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.npc.NPC;
 import sheep.model.items.Takeable;
+import sheep.model.skills.PassiveSkill;
 
 public class TradeFacilitator {
 	
@@ -15,18 +16,18 @@ public class TradeFacilitator {
 	}
 
 	public void buyItem(Takeable item) {
-		throw new UnsupportedOperationException();
+		
 	}
 
-	public float getItemBuyPrice(Takeable item) {
-		throw new UnsupportedOperationException();
+	public int getItemBuyPrice(Takeable item) {
+		return (int) ( (double) item.getPrice() * ( (double) avatar.getSkill( PassiveSkill.BARGAIN ) / (double) npc.getSkill( PassiveSkill.BARGAIN ) ) ); 
+		
 	}
 
-	public float getItemSellPrice(Takeable item) {
-		throw new UnsupportedOperationException();
+	public int getItemSellPrice(Takeable item) {
+		return 0;
 	}
 
 	public void sellItem(Takeable item) {
-		throw new UnsupportedOperationException();
 	}
 }

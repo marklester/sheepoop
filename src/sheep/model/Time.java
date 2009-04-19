@@ -67,7 +67,7 @@ public class Time implements Serializable {
 
 	public void registerObserver(TimeObserver observer) {
 		
-		if (!(observer instanceof Serializable)) {
+		if (!(observer instanceof Serializable) || (observer instanceof NotSerializable)) {
 			if (!transientObservers.contains(observer)) {
 				transientObservers.add(observer);
 			}

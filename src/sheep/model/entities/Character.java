@@ -374,5 +374,6 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		transientInventoryObservers = new Vector<InventoryChangeObserver>();
 		transientStatChangeObservers = new Vector<StatChangeObserver>();
 		transientSkillsObservers = new Vector<SkillPointChangeObserver>();
+		ois.defaultReadObject();
 	}
 }
