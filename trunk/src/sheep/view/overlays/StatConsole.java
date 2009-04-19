@@ -24,7 +24,7 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 	BufferedImage myImage;
 	private CharacterStats stats;
 	private static final int width = 300;
-	private static final int height = 220; 
+	private static final int height = 240; 
 	private static final int v_spacer = 21;	//vertical spacer
 	private static final int h_spacer = 200;	//horizontal spacer	
 	private static final int bar_width = 15;
@@ -38,7 +38,7 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 
 	@Override
 	public void update(StatChange msg) {
-		myImage = new BufferedImage(width+25, height, BufferedImage.TYPE_INT_ARGB_PRE);
+		myImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB_PRE);
 		Graphics2D g = myImage.createGraphics();
 		int i = 1;
 		Font myFont = getFont().deriveFont(16f);
@@ -72,6 +72,9 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 		g.drawString("Money", 2, v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.MONEY)), h_spacer, v_spacer*i++);
 		
+		g.drawString("Offensive Rating", 2, v_spacer*i);
+		g.drawString(Integer.toString(stats.get(StatType.OFFENSIVE_RATING)), h_spacer, v_spacer*i++);
+		
 		g.drawString("Defensive Rating", 2, v_spacer*i);
 		g.drawString(Integer.toString(stats.get(StatType.DEFENSIVE_RATING)), h_spacer, v_spacer*i++);
 		
@@ -82,17 +85,17 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 		float max_life = stats.get(StatType.MAX_LIFE);
 		float lifeHeight = ((max_life - stats.get(StatType.LIFE)) / max_life) * (getHeight());
 		g.setColor(Color.red);
-		g.fillRect(getWidth(), 0, bar_width, getHeight());
+		g.fillRect(getWidth()-bar_width-5, 0, bar_width, getHeight());
 		g.setColor(Color.black);
-		g.fillRect(getWidth(), 0, bar_width, (int)lifeHeight);
+		g.fillRect(getWidth()-bar_width-5, 0, bar_width, (int)lifeHeight);
 		
 		//Mana Bar
 		float max_mana = stats.get(StatType.MAX_MANA);
 		float manaHeight = ((max_mana - stats.get(StatType.MANA)) / max_mana) * (getHeight());
 		g.setColor(Color.blue);
-		g.fillRect(getWidth()-bar_width-10, 0, bar_width, getHeight());
+		g.fillRect(getWidth()-bar_width*3, 0, bar_width, getHeight());
 		g.setColor(Color.black);
-		g.fillRect(getWidth()-bar_width-10, 0, bar_width, (int)manaHeight);
+		g.fillRect(getWidth()-bar_width*3, 0, bar_width, (int)manaHeight);
 		
 		
 	}

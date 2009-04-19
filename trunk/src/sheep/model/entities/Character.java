@@ -64,6 +64,16 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		stats.calculateDerivedStatistics();
 	}
 
+	public int getDamageWithWeapon()
+	{
+		Weapon w = getEquippedWeapon();
+		if(w!=null)
+		{
+			return w.getDamageWith();
+		}
+		return 0;
+	}
+	
 	public abstract boolean isDead();
 
 	@Override
