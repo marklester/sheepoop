@@ -96,6 +96,8 @@ public class ResourceLoader {
 		fileMap.put("xbowbolt", WEAP_DIR+"xbowbolt.png");
 		fileMap.put("Lightning", WEAP_DIR + "lightning.png");
 		fileMap.put("Fire", WEAP_DIR + "fire.png");
+		fileMap.put("HeavensHand", WEAP_DIR + "heavenshand.png");
+		fileMap.put("HeavensHandEffect", WEAP_DIR + "heavenshandeffect.png");
 		fileMap.put("Ice", WEAP_DIR + "ice.png");
 		fileMap.put("Flare Gun", WEAP_DIR + "flaregun.png");
 		fileMap.put("flare", WEAP_DIR+"flare.png");
