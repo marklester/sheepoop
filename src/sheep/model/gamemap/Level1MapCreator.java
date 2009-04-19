@@ -19,11 +19,11 @@ import sheep.model.entities.vehicles.Plane;
 import sheep.model.entities.vehicles.Vehicle;
 import sheep.model.items.Trap;
 import sheep.model.items.armor.SteelWool;
+import sheep.model.items.interactive.PilotLicense;
 import sheep.model.items.oneshot.Beer;
 import sheep.model.items.oneshot.Key;
 import sheep.model.items.oneshot.Syringe;
 import sheep.model.items.useable.HappyMeal;
-import sheep.model.items.useable.Mana;
 import sheep.model.items.useable.OrangeJuice;
 import sheep.model.items.useable.WheatThins;
 import sheep.model.items.weapons.AshStaff;
@@ -87,7 +87,7 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location(18,2);
 		map.add(loc, new Decal("narrow", model, loc));
 		map.add(loc,new River(model,loc,Direction.N,10,rc));
-				
+		
 		//river two 7,12
 		loc = new Location(0,16);
 		map.add(loc, new Decal("narrow", model, loc));
@@ -439,19 +439,24 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location(12, 30);
 		map.add(loc, new WheatThins(model, loc));
 		
-		loc = new Location(13,11);
-		map.add(loc, new Mana(model, loc));
+//		loc = new Location(13,11);
+//		map.add(loc, new Mana(model, loc));
 		loc = new Location(8, 31);
 		map.add(loc, new OrangeJuice(model, loc));
+		
 		loc = new Location(10, 31);
 		map.add(loc, new OrangeJuice(model, loc));
+		
 		loc = new Location(12, 31);
 		map.add(loc, new OrangeJuice(model, loc));
+		
+		loc = new Location(0,0);
+		PilotLicense p = new PilotLicense(model, loc);
+		map.add(loc, p);
+		
 		loc = new Location(16, 30);
-		map.add(loc, new Plane(model, loc));
-		loc = new Location(14, 32);
-		map.add(loc, new HappyMeal(model, loc));
-
+		map.add(loc, new Plane(model, loc, p));
+		
 		//TPain
 		loc = new Location( 0, 16 );
 		Vehicle tpainBoat = new Boat(model, loc);
