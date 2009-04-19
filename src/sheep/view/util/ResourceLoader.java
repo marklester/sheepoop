@@ -69,8 +69,9 @@ public class ResourceLoader {
 		fileMap.put("statsFont", FONTS_DIR + "statsFont.ttf");
 		fileMap.put("Boat", SPRITES_DIR + "boat1.gif");
 		fileMap.put("Plane", SPRITES_DIR + "plane.png");
-		fileMap.put("Wolf", SPRITES_DIR+"wolf.png");
+		fileMap.put("Spider", SPRITES_DIR+"spider.png");
 		fileMap.put("AreMyRat", SPRITES_DIR+"rat.png");
+		
 		//Items
 		fileMap.put("Boulder",ITEMS_DIR+ "boulder.png");
 		fileMap.put("Steel Wool",ITEMS_DIR+ "armor/steelwool.png");
