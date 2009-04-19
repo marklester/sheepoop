@@ -25,7 +25,6 @@ import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
 import sheep.view.overlays.HotBarConsole;
 import sheep.view.overlays.MessageConsole;
-import sheep.view.overlays.Overlay;
 import sheep.view.overlays.StatConsole;
 import sheep.view.util.DrawInfo;
 import sheep.view.util.ResourceLoader;
@@ -53,7 +52,6 @@ public class AreaViewport extends JPanel {
 	private HashMap<Location, Long> tilesBirthday = new HashMap<Location, Long>();
 	private HashMap<Location, Integer> tilesTimesUsed = new HashMap<Location, Integer>();
 	private HashMap<String, BufferedImage> prevDrawnTile = new HashMap<String, BufferedImage>();
-	private ArrayList<Overlay> overlays;
 	private boolean isPaused = false; 
 
 	public AreaViewport(Model model, GameMap map) {
