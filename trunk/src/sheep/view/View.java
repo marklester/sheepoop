@@ -36,6 +36,7 @@ public class View extends JFrame implements StatChangeObserver, NotSerializable 
 	private InteractionViewport interactionViewport;
 	private JPanel sidebar;
 	private JPanel gameover;
+	private TradeViewport tradeViewport;
 
 	public View(Model model) {
 		this.model = model;
@@ -174,6 +175,22 @@ public class View extends JFrame implements StatChangeObserver, NotSerializable 
 		} else {
 			interactionViewport.setVisible(true);
 			layers.add(interactionViewport, new Integer(400));
+		}
+		this.validate();
+	}
+	
+	public void setTradeViewport( TradeViewport tv ) {
+		this.tradeViewport = tv;
+		tradeViewport.setVisible( false );
+	}
+	
+	public void toggleTradeViewport() {
+		if (tradeViewport.isVisible()) {
+			tradeViewport.setVisible(false);
+			layers.remove(tradeViewport);
+		} else {
+			tradeViewport.setVisible(true);
+			layers.add(tradeViewport, new Integer(400));
 		}
 		this.validate();
 	}
