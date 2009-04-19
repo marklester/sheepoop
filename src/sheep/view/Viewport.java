@@ -12,7 +12,6 @@ public class Viewport extends JPanel {
 	private static final long serialVersionUID = -7115001668270029395L;
 	public static final Dimension BUT_SIZE = new Dimension(AreaViewport.TILE_SIZE, AreaViewport.TILE_SIZE);
 	private Avatar avatar;
-	private boolean isVisible = false;
 	private ResourceLoader resLoader;
 
 	public Viewport(Avatar av){

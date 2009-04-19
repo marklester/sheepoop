@@ -1,9 +1,5 @@
 package sheep.view;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,13 +7,11 @@ import sheep.model.areaeffects.AreaEffect;
 import sheep.model.entities.Character;
 import sheep.model.entities.vehicles.Vehicle;
 import sheep.model.gamemap.Decal;
-import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.items.Item;
 import sheep.model.items.weapons.Projectile;
 import sheep.model.terrains.Terrain;
 import sheep.view.util.DrawInfo;
-import sheep.view.util.ResourceLoader;
 
 public class LocationStringVisitor implements LocatableVisitor {
 
