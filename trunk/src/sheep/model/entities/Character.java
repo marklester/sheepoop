@@ -302,6 +302,7 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 
 	@Override
 	public void hitWith(Weapon w) {
+		//System.out.println(getID()+" was hit with "+w.getID());
 		w.applyEffect(this);
 	}
 
