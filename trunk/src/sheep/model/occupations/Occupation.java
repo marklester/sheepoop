@@ -30,6 +30,7 @@ public abstract class Occupation implements Serializable {
 		setInitialCharacterStat(StatType.MANA_USED,0);
 		setInitialCharacterStat(StatType.STEALTH,0);
 		setInitialCharacterStat(StatType.MONEY,0);
+		setInitialCharacterStat(StatType.ARMOR_RATING,0);
 	}
 
 	public CharacterStats cloneStats() {

@@ -16,6 +16,7 @@ public class Sneak extends Occupation {
 	public Sneak() {
 		super("Sneak");
 		setInitialCharacterStat(StatType.DAMAGE, 0);
+		setInitialCharacterStat(StatType.ARMOR_RATING, 5);
 //		setInitialCharacterStat(StatType.OFFENSIVE_BONUS, 0);
 		setInitialCharacterStat(StatType.DEFENSIVE_BONUS, 0);
 		setInitialCharacterStat(StatType.EXPERIENCE, 0);
