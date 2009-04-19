@@ -69,7 +69,7 @@ public class AngryAI extends AI {
 
 	@Override
 	public void bumpedIntoAvatar(Avatar avatar) {
-		avatar.hearMessage(getNPC(), "Hi, I am " + getNPC().getID() + " and I'm about to attack you");
+		//avatar.hearMessage(getNPC(), "Hi, I am " + getNPC().getID() + " and I'm about to attack you");
 		avatar.affectStat(StatType.DAMAGE, 1);
 	}
 
