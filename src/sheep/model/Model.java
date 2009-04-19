@@ -21,6 +21,7 @@ public class Model implements Serializable {
 	private Entity mover;
 	private GameMap gameMap;
 	private Vector<GameStateObserver> gameStateObservers = new Vector<GameStateObserver>();
+	transient private Vector<GameStateObserver> transientGameStateObservers = new Vector<GameStateObserver>();
 	
 	public void pauseTime() {
 		time.pause();
@@ -44,6 +45,16 @@ public class Model implements Serializable {
 	}
 
 	public void registerObserver(GameStateObserver observer) {
+		System.out.println(observer);
+		System.out.println(observer instanceof Serializable);
+
+		if (!(observer instanceof Serializable)) {
+			if (!transientGameStateObservers.contains(observer)) {
+				transientGameStateObservers.add(observer);
+			}
+			return;
+		}
+		
 		if (!gameStateObservers.contains(observer)) {
 			gameStateObservers.add(observer);
 		}
@@ -51,10 +62,14 @@ public class Model implements Serializable {
 
 	public void removeObserver(GameStateObserver observer) {
 		gameStateObservers.remove(observer);
+		transientGameStateObservers.remove(observer);
 	}
 
 	public void notifyGameStateChangeObservers(GameStateChange msg) {
 		for (GameStateObserver observer : this.gameStateObservers) {
+			observer.update(msg);
+		}
+		for (GameStateObserver observer : this.transientGameStateObservers) {
 			observer.update(msg);
 		}
 	}
