@@ -44,7 +44,9 @@ import sheep.model.items.weapons.Trident;
 import sheep.model.items.weapons.spells.CalmAnimal;
 import sheep.model.items.weapons.spells.EnrageAnimal;
 import sheep.model.items.weapons.spells.Fire;
+import sheep.model.items.weapons.spells.GaeasCradle;
 import sheep.model.items.weapons.spells.HeavensHand;
+import sheep.model.items.weapons.spells.HeavyShroud;
 import sheep.model.items.weapons.spells.SandMan;
 import sheep.model.occupations.Smasher;
 
@@ -386,6 +388,10 @@ public class Level1MapCreator extends MapCreator {
 		map.add(loc,new Fire(model, loc));
 		loc = new Location(4, 8);
 		map.add(loc,new HeavensHand(model, loc));
+		loc = new Location(4, 7);
+		map.add(loc,new GaeasCradle(model, loc));
+		loc = new Location(4, 6);
+		map.add(loc,new HeavyShroud(model, loc));
 		// Lighting spell
 		loc = new Location(5, 7);
 		map.add(loc, new HeavyAxe(model, loc));
