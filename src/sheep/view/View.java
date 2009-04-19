@@ -178,11 +178,4 @@ public class View extends JFrame implements StatChangeObserver, NotSerializable 
 		this.validate();
 	}
 
-	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
-		throw new NotSerializableException();
-	}
-
-	private void writeObject(ObjectOutputStream ois) throws IOException {
-	//	throw new NotSerializableException();
-	}
 }

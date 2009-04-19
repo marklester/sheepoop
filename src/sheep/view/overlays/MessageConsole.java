@@ -98,12 +98,4 @@ public class MessageConsole extends Overlay implements StatChangeObserver, TalkM
 		}
 	}
 
-	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
-		throw new NotSerializableException();
-	}
-
-	private void writeObject(ObjectOutputStream ois) throws IOException {
-	//	throw new NotSerializableException();
-	}
-
 }

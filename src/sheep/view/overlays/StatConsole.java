@@ -116,11 +116,4 @@ public class StatConsole extends Overlay implements StatChangeObserver {
 		return height;
 	}
 
-	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
-		throw new NotSerializableException();
-	}
-
-	private void writeObject(ObjectOutputStream ois) throws IOException {
-//		throw new NotSerializableException();
-	}
 }
