@@ -13,10 +13,10 @@ public class River extends AreaEffect {
 	private RiverCounter myRivC;
 	private static final long serialVersionUID = -2338346084817804369L;
 
-	public River(Model model, Location loc,Direction d, RiverCounter rc) {
+	public River(Model model, Location loc,Direction d, int frequency, RiverCounter rc) {
 		super("River", model, loc);
 		this.direction =d;
-		this.myFrequency = 10;
+		this.myFrequency = frequency;
 		myRivC = rc;
 		myRivC.addRiverToStream(this);
 	}

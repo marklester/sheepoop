@@ -90,7 +90,7 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 		
 		// Move is successful, do it
 		this.setLocation(dest);
-		//System.out.println("Entity moved to " + this.getLocation());
+		System.out.println("Entity moved to " + this.getLocation());
 
 		// Touch everything on the location
 		

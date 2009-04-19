@@ -31,7 +31,7 @@ public abstract class AreaEffect extends Locatable implements TimeObserver {
 	 * @param the <code>Entity</code> that touches this AreaEffect
 	 */
 	public void touch(Entity entity) {
-		if (entity == getModel().getAvatar()) {
+		if (entity == getModel().getMover()) {
 			this.entity = entity;
 			applyEffect(entity);
 		}

@@ -45,15 +45,20 @@ public class ReleaseVehicleAction extends AbstractAction {
 		Map<Location, List<Locatable>> thingsOnMyTile = model.getGameMap().getMapSubset(vehicle.getLocation(), 1);
 		
 		// Look for a terrain next to vehicle that the avatar can get off
-		boolean avatarCanGetOff = false; 
+		boolean avatarCanGetOff = true; 
 		Location passableLoc = null;
 		for (Entry<Location, List<Locatable>> locatables : thingsOnMyTile.entrySet()) {
+			avatarCanGetOff = true;
 			for (Locatable locatable : locatables.getValue()) {
-				if (locatable != vehicle && locatable != avatar && !locatable.blocks(avatar)) {
-					passableLoc = locatables.getKey();
-					avatarCanGetOff = true;
+				passableLoc = locatable.getLocation();
+				if (locatable != vehicle && locatable != avatar && locatable.blocks(avatar)) {
+					avatarCanGetOff = false;
 					break;
 				}				
+			}
+			if(avatarCanGetOff)
+			{
+				break;
 			}
 		}
 		
