@@ -60,8 +60,8 @@ public class AreMyRat extends NPC {
 			{
 				if( count == rand )
 				{
-					//int value = (int) ( (double) item.getPrice() * ( (double) this.getSkill( PassiveSkill.BARGAIN ) / (double) character.getSkill( PassiveSkill.BARGAIN ) ) );
-					//question = "Would you like to buy my " + item.getID() + " for " + value + " nuggets?";
+					int value = (int) ( (double) item.getPrice() * ( (double) this.getSkill( PassiveSkill.BARGAIN ) / (double) character.getSkill( PassiveSkill.BARGAIN ) ) );
+					question = "Would you like to buy my " + item.getID() + " for " + value + " nuggets?";
 					break;
 				}
 				count++;
