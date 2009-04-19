@@ -48,27 +48,6 @@ public enum Direction implements Serializable {
 			return evenVector;
 		}
 	}
-	public Direction opposite()
-	{
-		switch(this)
-		{
-		case N:
-			return(S);
-		case S:
-			return(N);
-		case NW:
-			return(SE);
-		case NE:
-			return(SW);
-		case SE:
-			return(NW);
-		case SW:
-			return(NE);
-		default:
-			System.out.println("[Direction.java] MAJOR PROBLEM!!");
-		}
-		return null;
-	}
 	@Override
 	public String toString()
 	{
