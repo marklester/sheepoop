@@ -34,6 +34,7 @@ import sheep.model.items.weapons.OakStaff;
 import sheep.model.items.weapons.ShortSword;
 import sheep.model.items.weapons.SpearGun;
 import sheep.model.items.weapons.Trident;
+import sheep.model.items.weapons.spells.Fire;
 
 /**
  * Returns a new GameMap for level1, by loading the mapfile it knows, and adding
@@ -336,7 +337,8 @@ public class Level1MapCreator extends MapCreator {
 		// Steel Wool Armor
 		loc = new Location(5, 8);
 		map.add(loc, new SteelWool(model, loc));
-
+		loc = new Location(5, 9);
+		map.add(loc,new Fire(model, loc));
 		// Lighting spell
 		loc = new Location(5, 7);
 		map.add(loc, new HeavyAxe(model, loc));
