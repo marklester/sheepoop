@@ -58,7 +58,7 @@ public class RiverCounter implements TimeObserver, Serializable
 				{
 					i--;
 					entitiesInStream.put(e, i);
-					System.out.println(e);
+					//System.out.println(e);
 				}
 				else
 				{
