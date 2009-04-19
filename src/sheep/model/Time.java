@@ -88,11 +88,25 @@ public class Time implements Serializable {
 	public void notifyObservers() {
 
 		for (TimeObserver observer : this.observers) {
-			observer.tick();
+			if(observer!=null)
+			{
+				observer.tick();
+			}
+			else
+			{
+				observers.remove(observer);
+			}
 		}
 		
 		for (TimeObserver observer : this.transientObservers) {
-			observer.tick();
+			if(observer!=null)
+			{
+				observer.tick();
+			}
+			else
+			{
+				observers.remove(observer);
+			}
 		}
 
 	}

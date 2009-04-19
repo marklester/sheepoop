@@ -59,6 +59,8 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		stats.calculateDerivedStatistics();
 	}
 
+	public abstract boolean isDead();
+	
 	@Override
 	public boolean canClimb()
 	{

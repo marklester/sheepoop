@@ -10,6 +10,8 @@ public class Avatar extends Character{
 	
 	private Model model;
 	
+	private boolean dead = false;
+	
 	public Avatar(String id, Model model, Location loc, Occupation occupation) {
 		super(id, model, loc, occupation);
 		this.model = model;
@@ -26,12 +28,19 @@ public class Avatar extends Character{
 	 * Teleport back to starting point.  This should only be called by CharacterStats.
 	 */
 	public void die() {
+		dead = true;
 		this.notifyStatChangeObservers(new StatChange(StatType.LIVES_LEFT, -1));
 		if (getStat(StatType.LIVES_LEFT) == 0) {
 			model.setState(GameStateType.GAME_OVER);
 		} else {
 			this.setLocation(getStartingLocation());
 		}
+	}
+
+	@Override
+	public boolean isDead()
+	{
+		return dead;
 	}
 	
 	
