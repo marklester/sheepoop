@@ -106,6 +106,7 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		weapon = w;
 		inventory.remove(w);
 		this.notifyInventoryChangeObservers(new InventoryChange(w, InventoryChangeType.ITEM_EQUIPPED));
+		this.notifyStatChangeObservers(new StatChange(StatType.OFFENSIVE_RATING,0));
 	}
 
 	public void equip(Armor a) {
@@ -123,6 +124,7 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 			weapon = null;
 			this.notifyInventoryChangeObservers(new InventoryChange(theWeapon, InventoryChangeType.ITEM_UNEQUIPPED));
 		}
+		this.notifyStatChangeObservers(new StatChange(StatType.OFFENSIVE_RATING,0));
 	}
 
 	public void unequipArmor(BodyPart fromWhere) {
