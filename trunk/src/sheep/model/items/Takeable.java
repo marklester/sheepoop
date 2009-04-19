@@ -10,7 +10,7 @@ public abstract class Takeable extends Item {
 
 	private static final long serialVersionUID = -7713416405052591178L;
 	
-	int value;
+	private int value;
 	
 	private final Model model;
 	
@@ -29,6 +29,11 @@ public abstract class Takeable extends Item {
 			GameMap theMap = getGameMap();
 			theMap.remove(getLocation(), this);
 		}
+	}
+	
+	public int getPrice()
+	{
+		return value;
 	}
 
 	public abstract void use(Character entity);
