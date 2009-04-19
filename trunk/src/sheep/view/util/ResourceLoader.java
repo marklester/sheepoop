@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
@@ -88,6 +89,7 @@ public class ResourceLoader {
 		fileMap.put("sarrow", DECALS_DIR + "sarrow.png");
 		fileMap.put("searrow", DECALS_DIR + "searrow.png");
 		fileMap.put("swarrow", DECALS_DIR + "swarrow.png");
+		fileMap.put("arrow", DECALS_DIR + "arrow.png");
 		fileMap.put("weed", DECALS_DIR + "weed.png");
 		
 		//Weapons

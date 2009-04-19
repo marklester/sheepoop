@@ -17,7 +17,7 @@ public enum Direction implements Serializable {
 	S(270, new Vector2D(0, 1), new Vector2D(0,1)), 
 	SW(210, new Vector2D(-1, 1), new Vector2D(-1,0)),
 	NW(150, new Vector2D(-1, 0), new Vector2D(-1,-1));
-	
+
 	private int angle;
 	private Vector2D oddVector;
 	private Vector2D evenVector;
@@ -27,7 +27,7 @@ public enum Direction implements Serializable {
 		this.oddVector = oddVec;
 		this.evenVector = evenVec;
 	}
-	
+
 	/**
 	 * Returns the angle of the direction, in degree, where N=90
 	 * @return
@@ -35,7 +35,7 @@ public enum Direction implements Serializable {
 	public int getAngleInDegrees() {
 		return angle;
 	}
-	
+
 	public double getAngleInRadians() {
 		return getAngleInDegrees() * Math.PI / 180;
 	}
@@ -47,6 +47,27 @@ public enum Direction implements Serializable {
 		} else {
 			return evenVector;
 		}
+	}
+	public Direction opposite()
+	{
+		switch(this)
+		{
+		case N:
+			return(S);
+		case S:
+			return(N);
+		case NW:
+			return(SE);
+		case NE:
+			return(SW);
+		case SE:
+			return(NW);
+		case SW:
+			return(NE);
+		default:
+			System.out.println("[Direction.java] MAJOR PROBLEM!!");
+		}
+		return null;
 	}
 	@Override
 	public String toString()

@@ -39,6 +39,16 @@ public class RiverCounter implements TimeObserver, Serializable
 	{
 		riversMakingUpStream.put(r.getLocation(), r);
 	}
+	public void switchAll()
+	{
+		Iterator<Location> myIt = riversMakingUpStream.keySet().iterator();
+		Location loc;
+		while(myIt.hasNext())
+		{
+			loc = myIt.next();
+			riversMakingUpStream.get(loc).reverseFlow();
+		}
+	}
 	@Override
 	public void tick()
 	{

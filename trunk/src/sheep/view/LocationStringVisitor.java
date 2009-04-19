@@ -48,7 +48,7 @@ public class LocationStringVisitor implements LocatableVisitor {
 	}
 
 	public void visit(Decal obj) {
-		fullPicture.add(new DrawInfo(obj.getID(),null));
+		fullPicture.add(new DrawInfo(obj.getID(),obj.getOrientation()));
 	}
 
 	public void visit(AreaEffect obj) {
