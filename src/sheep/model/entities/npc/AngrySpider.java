@@ -15,6 +15,6 @@ public class AngrySpider extends NPC {
 		super("Spider", model, loc, new Summoner(),80, new DumbAI(model), new AngryAI(model));
 		this.getStats().change(StatType.SPEED, - 19);
 		this.getStats().change(StatType.MONEY, 100);
-		
+		affectHostility(0);
 	}
 }
