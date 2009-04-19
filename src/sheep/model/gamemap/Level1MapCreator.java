@@ -404,13 +404,13 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location(12, 30);
 		map.add(loc, new WheatThins(model, loc));
 		
-		loc = new Location(8, 30);
+		loc = new Location(8, 31);
 		map.add(loc, new OrangeJuice(model, loc));
 		
-		loc = new Location(10, 30);
+		loc = new Location(10, 31);
 		map.add(loc, new OrangeJuice(model, loc));
 		
-		loc = new Location(12, 30);
+		loc = new Location(12, 31);
 		map.add(loc, new OrangeJuice(model, loc));
 		
 		loc = new Location(16, 30);
