@@ -7,10 +7,12 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -20,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import sheep.model.Model;
+import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.GameMap;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
@@ -27,6 +30,7 @@ import sheep.view.overlays.HotBarConsole;
 import sheep.view.overlays.MessageConsole;
 import sheep.view.overlays.Overlay;
 import sheep.view.overlays.StatConsole;
+import sheep.view.util.DrawInfo;
 import sheep.view.util.ResourceLoader;
 
 /**
@@ -51,6 +55,7 @@ public class AreaViewport extends JPanel {
 	private HashMap<Location, BufferedImage> tilesCache = new HashMap<Location, BufferedImage>();
 	private HashMap<Location, Long> tilesBirthday = new HashMap<Location, Long>();
 	private HashMap<Location, Integer> tilesTimesUsed = new HashMap<Location, Integer>();
+	private HashMap<String, BufferedImage> prevDrawnTile = new HashMap<String, BufferedImage>();
 	private ArrayList<Overlay> overlays;
 	private boolean isPaused = false; 
 
@@ -123,7 +128,8 @@ public class AreaViewport extends JPanel {
 			newTiles = gameMap.getMapSubset(center, radius);
 		}
 
-		// Loop through each tile, create and cache an image for it
+		// Loop through each tile and get its id and orientation
+		Map<Location, List<DrawInfo>> tileInfo = new HashMap<Location,List<DrawInfo>>();
 		try {
 			for (Entry<Location, List<Locatable>> entry : newTiles.entrySet()) {
 				Location loc = entry.getKey();
@@ -132,15 +138,33 @@ public class AreaViewport extends JPanel {
 				if (locatables.size() == 0) {
 					continue;
 				}
+				//Create the list of DrawInfos
+				tileInfo.put(loc,createTileDrawingString(loc, locatables));
 				
-				BufferedImage tileImage = createTileImage(loc, locatables);
-				addTotilesCache(loc, tileImage);
 			}
 		} catch(Exception e) {
 			// This is one way to stop concurrency exceptions
 			System.out.println("A concurrency exception was caught.");
 		}
-
+		//for all the DrawInfos created, loop through and either draw them or get the image from the cache
+		for (Entry<Location, List<DrawInfo>> entry : tileInfo.entrySet())
+		{
+			String drawKey = "";
+			Location loc = entry.getKey();
+			List<DrawInfo> drawinfos = entry.getValue();
+			
+			for(DrawInfo d: drawinfos)
+			{
+				drawKey+=d.toString()+":";
+			}
+			BufferedImage thisImage = prevDrawnTile.get(drawKey);
+			if(thisImage == null)
+			{
+				thisImage = drawOneTile(drawinfos);
+				prevDrawnTile.put(drawKey, thisImage);
+			}
+			addTotilesCache(loc, thisImage);
+		}
 		// Get all tile locations visible on the screen to draw, regardless of  
 		// whether the Avatar can see them.  
 		List<Location> locationsToDraw = new ArrayList<Location>();
@@ -178,6 +202,28 @@ public class AreaViewport extends JPanel {
 	 * 				 centered on the screen
 	 * @return
 	 */
+	private BufferedImage drawOneTile(List<DrawInfo> myInfo)
+	{
+		BufferedImage myImage = new BufferedImage(TILE_SIZE, TILE_SIZE, BufferedImage.TYPE_INT_ARGB_PRE);
+		Graphics2D g2 = myImage.createGraphics();
+		for(DrawInfo d: myInfo)
+		{
+			if(d.getOrientation() == null)
+			{
+				g2.drawImage((BufferedImage) ResourceLoader.getInstance().getImage(d.getId()), 0, 0, null);
+			}
+			else
+			{
+				BufferedImage tempImage = (BufferedImage)ResourceLoader.getInstance().getImage(d.getId());
+				AffineTransform affineT = g2.getTransform(); 
+				double rotate = -1 * d.getOrientation().getAngleInRadians();
+				g2.rotate(rotate, tempImage.getWidth() / 2, tempImage.getHeight() / 2);
+				g2.drawImage(tempImage, 0, 0, null);
+				g2.setTransform(affineT);
+			}
+		}
+		return myImage;
+	}
 	private Point getTilePosition(Location loc, Location center) {
 		int startX = this.getWidth() / 2 + (loc.getX() - center.getX()) * widthPerTile - (TILE_SIZE / 2);
 		int startY = this.getHeight() / 2 + (loc.getY() - center.getY()) * heightPerTile - (TILE_SIZE / 2);
@@ -211,6 +257,16 @@ public class AreaViewport extends JPanel {
 
 		return (BufferedImage) v.getImage();
 
+	}
+	private List<DrawInfo> createTileDrawingString(Location loc, List<Locatable> locatables)
+	{
+		LocationStringVisitor v = new LocationStringVisitor();
+
+		for (Locatable locatable : locatables) {
+			locatable.accept(v);
+		}
+
+		return (v.getFullPicture());
 	}
 
 	/**
