@@ -82,6 +82,7 @@ public class View extends JFrame implements StatChangeObserver {
 		
 		// Create interaction 
 		interactionViewport = new InteractionViewport(areaViewport.getWidth() / 2, areaViewport.getHeight() / 2);
+		interactionViewport.setVisible(false);
 		
 		// Create sidebar placeholder
 		sidebar = new Viewport(model.getAvatar());
@@ -102,14 +103,12 @@ public class View extends JFrame implements StatChangeObserver {
 	public void showSidebarViewport(Viewport theViewP) {
 		this.invalidate();
 		layers.remove(sidebar);
-		((Viewport) sidebar).toggleVisibility(); // sorta ghetto, sorry.
 		sidebar = theViewP;
 		sidebar.setOpaque(true);
 		sidebar.setBounds(this.getWidth() - SIDE_BAR_W, 0, SIDE_BAR_W, this.getHeight());
 		layers.add(sidebar, new Integer(0));
 		this.validate();
 		sidebar.setVisible(true);
-		theViewP.toggleVisibility();
 	}
 	
 	public AreaViewport getAreaViewport() {
@@ -147,11 +146,12 @@ public class View extends JFrame implements StatChangeObserver {
 	}
 	
 	public void toggleActionMenu() {
-		interactionViewport.toggleVisibility();
 		if (interactionViewport.isVisible()) {
-			layers.add(interactionViewport, new Integer(400));
-		} else {
+			interactionViewport.setVisible(false);
 			layers.remove(interactionViewport);
+		} else {
+			interactionViewport.setVisible(true);
+			layers.add(interactionViewport, new Integer(400));
 		}
 		this.validate();
 	}

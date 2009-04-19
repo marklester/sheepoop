@@ -40,7 +40,8 @@ public class Controller implements GameStateObserver {
 	public Controller(Model model, View view) { 
 		this.model = model;
 		this.view = view;
-
+		this.interactionViewportListener = new InteractionViewportListener(model, view);
+		
 		// Get input and action maps
 		actionMap = new ActionMap();
 
@@ -150,7 +151,7 @@ public class Controller implements GameStateObserver {
 		case PAUSED_ACTION_MENU:
 			model.pauseTime();
 			view.toggleActionMenu();
-			view.getInteractionViewport().setActionListener(new InteractionViewportListener(model, view));
+			view.getInteractionViewport().setActionListener(interactionViewportListener);
 			break;
 		default:
 

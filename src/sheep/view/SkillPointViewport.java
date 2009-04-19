@@ -191,13 +191,8 @@ public class SkillPointViewport extends Viewport implements SkillPointChangeObse
 	@Override
 	public void update(StatChange msg) {
 		if (msg.getStatType().equals(StatType.SKILL_POINTS_TO_GIVE) ) {
-			if (!isVisible())
-				toggleVisibility();
 			setupPanel();
 		}		
 	}
-	
-	
-
-	
+		
 }
