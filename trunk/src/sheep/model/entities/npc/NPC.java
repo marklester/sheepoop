@@ -53,14 +53,16 @@ public class NPC extends Character {
 	
 	public void affectHostility( int changeAmt ) {
 		this.hostility = hostility + changeAmt;
-		this.hostility = ( hostility < 0 ) ? 0 : hostility;
-		this.hostility = ( hostility > 100) ? 100 : hostility;
+		//this.hostility = ( hostility < 0 ) ? 0 : hostility;
+		//this.hostility = ( hostility > 100) ? 100 : hostility;
 		if(hostility > 50)
 		{
+			ai.destroy();
 			ai = new AngryAI(this, getModel());
 		}
 		else if (hostility <= 50)
 		{
+			ai.destroy();
 			ai = new DumbAI(this, getModel());
 		}
 		System.out.println("Hostility: " + hostility);
@@ -69,10 +71,12 @@ public class NPC extends Character {
 	public void weaponDamage( int damage )
 	{
 		//(hopefully) linear hostility increase as health goes down.
-		int lifeLeft = (int) ( ( ( ( double) this.getStat( StatType.DAMAGE) + damage)  / (double) this.getStat( StatType.MAX_LIFE ) )* 100.0);
+		//int lifeLeft = (int) ( ( ( ( double) this.getStat( StatType.DAMAGE) + damage)  / (double) this.getStat( StatType.MAX_LIFE ) )* 100.0);
 		
-		int dx = lifeLeft - this.getHostility();
-		this.affectHostility( (dx > 0) ? dx : 0  );
+		//int dx = lifeLeft - this.getHostility();
+		//this.affectHostility( (dx > 0) ? dx : 0  );
+		
+		affectHostility(damage);
 		
 		super.weaponDamage( damage );
 	}

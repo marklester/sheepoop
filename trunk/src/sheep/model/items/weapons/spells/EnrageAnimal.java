@@ -12,7 +12,9 @@ public class EnrageAnimal extends Enchantment
 	{
 		super("Enrage Animal", model, loc, 0, 8, 100);
 	}
+	@Override
 	public void applyEffect(NPC npc) {
 		npc.affectHostility(100);
+		System.out.println("Applied effect");
 	}
 }
