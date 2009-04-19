@@ -1,7 +1,6 @@
 package sheep.model.items.weapons.spells;
 
 import sheep.model.Model;
-import sheep.model.entities.Character;
 import sheep.model.entities.npc.NPC;
 import sheep.model.gamemap.Location;
 

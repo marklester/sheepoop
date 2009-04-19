@@ -2,12 +2,7 @@ package sheep.controller.loading;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
 
-import javax.swing.KeyStroke;
-
-import sheep.model.loading.KeySettings;
 import sheep.model.loading.SettingsLoader;
 import sheep.model.loading.SettingsSaver;
 import sheep.view.loading.SettingsView;

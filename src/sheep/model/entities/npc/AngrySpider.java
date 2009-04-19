@@ -4,7 +4,6 @@ import sheep.model.Model;
 import sheep.model.entities.StatType;
 import sheep.model.entities.npc.ai.AngryAI;
 import sheep.model.entities.npc.ai.DumbAI;
-import sheep.model.entities.npc.ai.VillagerAI;
 import sheep.model.gamemap.Location;
 import sheep.model.occupations.Summoner;
 

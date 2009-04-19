@@ -1,15 +1,8 @@
 package sheep.model.items.weapons;
 
-import java.awt.event.ActionEvent;
-import java.util.List;
-
 import sheep.model.Model;
-import sheep.model.entities.Character;
-import sheep.model.entities.StatType;
-import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
 import sheep.model.skills.PassiveSkill;
-import sheep.util.math.Vector2D;
 
 public abstract class LongRange extends ProjectileWeapon {
 

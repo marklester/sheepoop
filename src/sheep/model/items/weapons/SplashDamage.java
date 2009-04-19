@@ -2,17 +2,11 @@ package sheep.model.items.weapons;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import sheep.model.Model;
 import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
-import sheep.model.entities.StatType;
-import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
-import sheep.model.items.Takeable;
-import sheep.model.skills.PassiveSkill;
-import sheep.util.math.Vector2D;
 
 public class SplashDamage extends Weapon implements ActionListener {
 	private static final long serialVersionUID = -6972197855931649857L;

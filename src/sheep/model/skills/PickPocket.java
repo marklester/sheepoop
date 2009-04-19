@@ -2,7 +2,6 @@ package sheep.model.skills;
 
 import java.awt.event.ActionEvent;
 import java.util.List;
-import java.util.Vector;
 
 import sheep.model.entities.StatType;
 import sheep.model.entities.npc.NPC;

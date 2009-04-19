@@ -4,14 +4,15 @@ import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import sheep.model.Model;
 import sheep.model.Time;
 import sheep.model.TimeObserver;
+import sheep.model.entities.Character;
 import sheep.model.entities.StatType;
 import sheep.model.gamemap.Decal;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
-import sheep.model.entities.Character;
 public class HeavyShroud extends Boon implements TimeObserver{
 	private static final long serialVersionUID = 8808860811466926293L;
 	int duration=0;

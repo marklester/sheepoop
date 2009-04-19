@@ -1,9 +1,7 @@
 package sheep.model.areaeffects;
 
 import sheep.model.Model;
-import sheep.model.Time;
 import sheep.model.entities.Entity;
-import sheep.model.entities.StatType;
 import sheep.model.gamemap.Decal;
 import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.Location;
