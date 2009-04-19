@@ -35,7 +35,6 @@ public class EquipmentActionListener implements ActionListener {
 			avatar.unequipWeapon();
 		else
 			avatar.unequipArmor(where);
-
 	}
 
 }

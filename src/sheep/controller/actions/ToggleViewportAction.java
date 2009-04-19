@@ -24,7 +24,7 @@ public class ToggleViewportAction extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		view.showViewport(viewport);
+		view.showSidebarViewport(viewport);
 	}
 
 }
