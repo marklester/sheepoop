@@ -88,6 +88,7 @@ public class ResourceLoader {
 		fileMap.put("sarrow", DECALS_DIR + "sarrow.png");
 		fileMap.put("searrow", DECALS_DIR + "searrow.png");
 		fileMap.put("swarrow", DECALS_DIR + "swarrow.png");
+		fileMap.put("weed", DECALS_DIR + "weed.png");
 		
 		//Weapons
 		fileMap.put("Crossbow", WEAP_DIR + "xbow.png");
@@ -119,7 +120,10 @@ public class ResourceLoader {
 		
 		//useable
 		fileMap.put("Wheat Thins", USEABLE_DIR + "wheatthins.png");
+		fileMap.put("Mana", USEABLE_DIR + "mana.png");
+		fileMap.put("Happy Meal", USEABLE_DIR + "happymeal.png");
 		fileMap.put("Orange Juice", USEABLE_DIR + "orangejuice.png");
+		
 		
 	}
 	
