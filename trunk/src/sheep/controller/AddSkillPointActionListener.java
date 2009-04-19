@@ -28,7 +28,7 @@ public class AddSkillPointActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		List<PerformableSkill> list = avatar.getPerformableSkills();
-		list.get(list.indexOf(skill)).addPoints(1);
+		avatar.addSkillPoint( list.get(list.indexOf(skill)) );
 	}
 
 }
