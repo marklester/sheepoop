@@ -77,7 +77,7 @@ public class NPC extends Character {
 			peacefulAi.attachNPC(this);
 			activeAi = peacefulAi;
 		}
-		System.out.println("Hostility: " + hostility);
+		//System.out.println("Hostility: " + hostility);
 	}
 	
 	public void weaponDamage( int damage )
