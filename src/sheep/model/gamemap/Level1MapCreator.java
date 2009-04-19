@@ -40,6 +40,7 @@ import sheep.model.items.weapons.ShortSword;
 import sheep.model.items.weapons.SpearGun;
 import sheep.model.items.weapons.Trident;
 import sheep.model.items.weapons.spells.CalmAnimal;
+import sheep.model.items.weapons.spells.EnrageAnimal;
 import sheep.model.items.weapons.spells.Fire;
 import sheep.model.occupations.Smasher;
 
@@ -462,6 +463,9 @@ public class Level1MapCreator extends MapCreator {
 		
 		loc = new Location (2,0);
 		map.add(loc, new CalmAnimal(model,loc));
+		
+		loc = new Location (3,0);
+		map.add(loc, new EnrageAnimal(model,loc));
 		
 		loc = new Location(16, 30);
 		map.add(loc, new Plane(model, loc, p));
