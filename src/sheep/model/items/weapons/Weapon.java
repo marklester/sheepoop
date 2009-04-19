@@ -39,6 +39,10 @@ public abstract class Weapon extends Takeable implements ActionListener {
 		}
 	}
 
+	protected void setUser(Character user)
+	{
+		this.user = user;
+	}
 	public Character getUser() {
 		return user;
 	}
