@@ -49,6 +49,7 @@ public class InteractionViewportListener implements ActionListener {
 		// Back to game play
 		view.toggleActionMenu();
 		model.setState(GameStateType.PLAYING);
+		model.getAvatar().setInteractingCharacter(null);
 		model.startTime();
 		view.getLayeredPane().grabFocus();
 	}

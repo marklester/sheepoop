@@ -59,19 +59,19 @@ public abstract class Weapon extends Takeable implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		Character enemy = user.getInteractingCharacter();
 
-		if (enemy != null) {
+		/*if (enemy != null) {
 			int totalDamage = (int) Math.floor((double) getBaseDamage() * ((double) user.getSkill(getSkill())));
 
 			enemy.affectStat(StatType.LIFE, totalDamage);
-		} else {
-			Vector2D myVector = user.getFacingDirection().getVector(getLocation());
-			Location attackingTile = new Location(getLocation().getX() + (int) myVector.getX(), getLocation().getY()
-					+ (int) myVector.getY());
-			List<Locatable> targets = getGameMap().get(attackingTile);
-			for (Locatable l : targets) {
-				l.hitWith(this);
-			}
+		} else {*/
+		Vector2D myVector = user.getFacingDirection().getVector(getLocation());
+		Location attackingTile = new Location(getLocation().getX() + (int) myVector.getX(), getLocation().getY()
+				+ (int) myVector.getY());
+		List<Locatable> targets = getGameMap().get(attackingTile);
+		for (Locatable l : targets) {
+			l.hitWith(this);
 		}
+		//		}
 	}
 
 	public void applyEffect(Entity e) {
@@ -81,7 +81,7 @@ public abstract class Weapon extends Takeable implements ActionListener {
 	public void applyEffect(Character c) {
 		c.weaponDamage(baseDamage * user.getSkill(skill));
 	}
-	
+
 	public void applyEffect(NPC npc)
 	{
 		npc.weaponDamage(baseDamage * user.getSkill(skill));
