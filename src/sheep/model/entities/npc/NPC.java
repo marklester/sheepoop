@@ -7,7 +7,10 @@ import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
 import sheep.model.entities.StatType;
 import sheep.model.entities.npc.ai.AI;
+import sheep.model.entities.npc.ai.AngryAI;
+import sheep.model.entities.npc.ai.DumbAI;
 import sheep.model.gamemap.Location;
+import sheep.model.items.weapons.Weapon;
 import sheep.model.occupations.Occupation;
 
 public class NPC extends Character {
@@ -20,10 +23,10 @@ public class NPC extends Character {
 	private AI ai;
 	
 	
-	public NPC(String id, Model model, Location loc, Occupation occupation) {
+	public NPC(String id, Model model, Location loc, Occupation occupation, int initialHostility) {
 		super(id, model, loc, occupation);
 		this.model = model;
-		hostility = 0;
+		hostility = initialHostility;
 	}
 
 	@Override
@@ -52,6 +55,14 @@ public class NPC extends Character {
 		this.hostility = hostility + changeAmt;
 		this.hostility = ( hostility < 0 ) ? 0 : hostility;
 		this.hostility = ( hostility > 100) ? 100 : hostility;
+		if(hostility > 50)
+		{
+			ai = new AngryAI(this, getModel());
+		}
+		else if (hostility <= 50)
+		{
+			ai = new DumbAI(this, getModel());
+		}
 		System.out.println("Hostility: " + hostility);
 	}
 	
@@ -89,5 +100,10 @@ public class NPC extends Character {
 	public boolean isDead()
 	{
 		return dead;
+	}
+	@Override
+	public void hitWith(Weapon w) {
+		//System.out.println(getID()+" was hit with "+w.getID());
+		w.applyEffect(this);
 	}
 }

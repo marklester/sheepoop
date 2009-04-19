@@ -10,7 +10,7 @@ public class AngrySpider extends NPC {
 	private static final long serialVersionUID = 6747342338321148905L;
 
 	public AngrySpider(Model model, Location loc) {
-		super("Spider", model, loc, new Summoner());
+		super("Spider", model, loc, new Summoner(),80);
 		setAi(new AngryAI(this, model));
 		this.getStats().change(StatType.SPEED, - 19);
 		this.getStats().change(StatType.MONEY, 100);
