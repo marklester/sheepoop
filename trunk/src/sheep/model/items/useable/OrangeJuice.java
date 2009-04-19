@@ -11,7 +11,7 @@ public class OrangeJuice extends Useable
 
 	public OrangeJuice(Model model, Location loc)
 	{
-		super("Orange Juice", model, loc);
+		super("Orange Juice", model, loc, 50);
 	}
 
 	@Override

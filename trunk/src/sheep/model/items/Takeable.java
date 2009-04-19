@@ -10,11 +10,14 @@ public abstract class Takeable extends Item {
 
 	private static final long serialVersionUID = -7713416405052591178L;
 	
+	int value;
+	
 	private final Model model;
 	
-	public Takeable(String id, Model model, Location loc) {
+	public Takeable(String id, Model model, Location loc, int value) {
 		super(id, model, loc);
 		this.model = model;
+		this.value = value;
 	}
 
 	@Override

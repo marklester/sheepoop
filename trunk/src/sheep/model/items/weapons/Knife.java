@@ -7,7 +7,7 @@ public class Knife extends OneHanded {
 	private static final long serialVersionUID = 7948706436194784002L;
 
 	public Knife(Model model, Location loc) {
-		super("Knife", model, loc, 10);
+		super("Knife", model, loc, 5, 10);
 	}
 
 

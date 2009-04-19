@@ -21,8 +21,8 @@ public abstract class Weapon extends Takeable implements ActionListener {
 	private Character user;
 	private int baseDamage;
 
-	public Weapon(String id, Model model, Location loc, int baseDamage, PassiveSkill skill) {
-		super(id, model, loc);
+	public Weapon(String id, Model model, Location loc, int baseDamage, PassiveSkill skill, int value) {
+		super(id, model, loc, value);
 		this.skill = skill;
 		this.baseDamage = baseDamage;
 	}

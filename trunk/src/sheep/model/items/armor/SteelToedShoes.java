@@ -10,6 +10,6 @@ public class SteelToedShoes extends Armor
 
 	public SteelToedShoes(Model model, Location loc)
 	{
-		super("Steel Toed Shoes", model, loc, BodyPart.FEET, 15);
+		super("Steel Toed Shoes", model, loc, BodyPart.FEET, 15, 150);
 	}
 }

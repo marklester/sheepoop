@@ -10,6 +10,6 @@ public class IronWool extends Armor
 
 	public IronWool(Model model, Location loc)
 	{
-		super("Iron Wool", model, loc, BodyPart.CHEST, 20);
+		super("Iron Wool", model, loc, BodyPart.CHEST, 20, 30);
 	}
 }

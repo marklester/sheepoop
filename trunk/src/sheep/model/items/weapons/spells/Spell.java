@@ -11,8 +11,8 @@ public abstract class Spell extends ProjectileWeapon {
 
 	private static final long serialVersionUID = -1606083256607931219L;
 	
-	public Spell(String id, Model model, Location loc, int baseDamage, PassiveSkill skill, int speed) {
-		super(id,id, model, loc, baseDamage, speed, skill);
+	public Spell(String id, Model model, Location loc, int baseDamage, PassiveSkill skill, int speed, int value) {
+		super(id,id, model, loc, baseDamage, speed, skill, value);
 		mySpeed = speed;
 	}
 }

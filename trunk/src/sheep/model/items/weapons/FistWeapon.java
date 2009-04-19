@@ -9,6 +9,6 @@ public class FistWeapon extends Weapon {
 	private static final long serialVersionUID = -861392379425276075L;
 
 	public FistWeapon( String id, Model model, Location loc, int baseDamage) {
-		super(id, model, loc, baseDamage, PassiveSkill.BRAWLING);
+		super(id, model, loc, baseDamage, PassiveSkill.BRAWLING, -1);
 	}
 }

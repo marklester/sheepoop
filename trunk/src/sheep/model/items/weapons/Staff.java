@@ -8,7 +8,7 @@ public class Staff extends Weapon {
 
 	private static final long serialVersionUID = 6695844597752750894L;
 
-	public Staff(String id, Model model, Location loc, int baseDamage) {
-		super(id, model, loc, baseDamage, PassiveSkill.STAFF);
+	public Staff(String id, Model model, Location loc, int baseDamage, int value) {
+		super(id, model, loc, baseDamage, PassiveSkill.STAFF, value);
 	}
 }

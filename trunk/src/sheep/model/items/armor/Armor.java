@@ -14,8 +14,8 @@ public abstract class Armor extends Takeable {
 	private static final long serialVersionUID = 6475799713135184079L;
 	private BodyPart where;
 	
-	public Armor(String id, Model model, Location loc, BodyPart bodyLocation, int armorBonus) {
-		super(id, model, loc);
+	public Armor(String id, Model model, Location loc, BodyPart bodyLocation, int armorBonus, int value) {
+		super(id, model, loc, value);
 		where = bodyLocation;
 		this.armorBonus = armorBonus;
 	}

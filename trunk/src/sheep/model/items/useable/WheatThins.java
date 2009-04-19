@@ -11,7 +11,7 @@ public class WheatThins extends Useable
 
 	public WheatThins(Model model, Location loc)
 	{
-		super("Wheat Thins", model, loc);
+		super("Wheat Thins", model, loc, 50);
 	}
 
 	@Override

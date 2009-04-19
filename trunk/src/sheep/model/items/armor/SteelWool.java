@@ -10,6 +10,6 @@ public class SteelWool extends Armor
 
 	public SteelWool(Model model, Location loc)
 	{
-		super("Steel Wool", model, loc, BodyPart.CHEST, 30);
+		super("Steel Wool", model, loc, BodyPart.CHEST, 30, 200);
 	}
 }

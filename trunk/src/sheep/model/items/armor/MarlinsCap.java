@@ -10,6 +10,6 @@ public class MarlinsCap extends Armor
 
 	public MarlinsCap(Model model, Location loc)
 	{
-		super("Marlins Cap", model, loc, BodyPart.HEAD, 5);
+		super("Marlins Cap", model, loc, BodyPart.HEAD, 5, 10);
 	}
 }
