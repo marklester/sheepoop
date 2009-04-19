@@ -26,7 +26,7 @@ import sheep.model.entities.StatType;
 public class View extends JFrame implements StatChangeObserver, NotSerializable {
 
 	private static final long serialVersionUID = 2015429639828183235L;
-	private static final boolean FULL_SCREEN_MODE = false;
+	private static final boolean FULL_SCREEN_MODE = true;
 	private static final int SIDE_BAR_W = 300;
 	private final Model model;
 	private JLayeredPane layers;
@@ -105,6 +105,19 @@ public class View extends JFrame implements StatChangeObserver, NotSerializable 
 		this.setVisible(true);
 	}
 
+	public void fullScreenOff() {
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice device = ge.getDefaultScreenDevice();
+		device.setFullScreenWindow(null);
+	}
+	
+	public void fullScreenOn() {
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice device = ge.getDefaultScreenDevice();
+		device.setFullScreenWindow(this);
+		validate();
+	}
+	
 	public void showSidebarViewport(Viewport theViewP) {
 		this.invalidate();
 		layers.remove(sidebar);
