@@ -78,7 +78,7 @@ public class NPC extends Character {
 	@Override
 	public void die() {
 		Time.getInstance().removeObserver(ai);
-		ai.setNPC(null);
+		//sai.setNPC(null);
 		ai=null;
 		this.getGameMap().remove(getLocation(),this);
 		setLocation(null);
