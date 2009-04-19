@@ -17,6 +17,7 @@ import sheep.controller.actions.StopMovingAction;
 import sheep.controller.actions.ToggleAction;
 import sheep.controller.actions.ToggleGridAction;
 import sheep.controller.actions.TogglePauseGameplayAction;
+import sheep.controller.actions.ToggleViewportAction;
 import sheep.controller.actions.UseSkillAction;
 import sheep.controller.actions.UseWeaponAction;
 import sheep.model.GameStateChange;
@@ -109,6 +110,12 @@ public class Controller implements GameStateObserver {
 		
 		actionMap.put("toggleGrid", new ToggleGridAction(view.getAreaViewport()));
 		ks.put( "toggleGrid", KeyStroke.getKeyStroke(KeyEvent.VK_F9, 0) );
+		
+        actionMap.put("toggleInventory", new ToggleViewportAction(view, view.getInventoryViewport()) );
+        ks.put( "toggleInventory", KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0) );
+        
+        actionMap.put("toggleSkillViewport", new ToggleViewportAction(view, view.getskillPointViewport()) );
+        ks.put( "toggleSkillViewport", KeyStroke.getKeyStroke(KeyEvent.VK_F7, 0) );
 		
         // Release vehicle
         actionMap.put("releaseVehicle", new ReleaseVehicleAction(model));
