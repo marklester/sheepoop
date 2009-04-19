@@ -14,6 +14,8 @@ import sheep.model.entities.npc.AngrySpider;
 import sheep.model.entities.npc.AreMyRat;
 import sheep.model.entities.npc.NPC;
 import sheep.model.entities.npc.Spider;
+import sheep.model.entities.npc.ai.AngryAI;
+import sheep.model.entities.npc.ai.VillagerAI;
 import sheep.model.entities.vehicles.Boat;
 import sheep.model.entities.vehicles.Plane;
 import sheep.model.entities.vehicles.Vehicle;
@@ -474,7 +476,7 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location( 0, 16 );
 		Vehicle tpainBoat = new Boat(model, loc);
 		map.add(loc, tpainBoat);
-		NPC tPain = new NPC("TPain", model, loc, new Smasher(),0 );
+		NPC tPain = new NPC("TPain", model, loc, new Smasher(),0, new VillagerAI(model), new AngryAI(model));
 		tpainBoat.setDriver( tPain );
 		map.add( loc,  tPain );
 		rc.addEntityToStream( tpainBoat );

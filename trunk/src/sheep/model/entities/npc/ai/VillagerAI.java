@@ -8,17 +8,11 @@ import sheep.model.gamemap.Direction;
 public class VillagerAI extends AI {
 	private static final long serialVersionUID = 3836274916586137446L;
 	
-	public VillagerAI(NPC npc, Model model) {
-		super(npc, model);
+	public VillagerAI(Model model) {
+		super(model);
 	}
 
 	public void tick() {
-		if( this.getNPC().getHostility() >= 75 )
-		{
-			this.getNPC().setAi( new AngryAI( this.getNPC(), this.getModel() ) );
-			return;
-		}
-		
 		int state = (int) (Math.random() * 50);
 		int move = (int) (Math.random() * 6);
 		move = move < 3 ? 0 : 3;

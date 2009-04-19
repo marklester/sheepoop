@@ -10,8 +10,8 @@ public class DumbAI extends AI {
 
 	private static final long serialVersionUID = 3836274916586137446L;
 
-	public DumbAI(NPC npc, Model model) {
-		super(npc, model);
+	public DumbAI(Model model) {
+		super(model);
 	}
 
 	public void tick() {
