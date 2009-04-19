@@ -14,4 +14,5 @@ public class Wolf extends NPC {
 		setAi(new DumbAI(this, model));
 		this.getStats().change(StatType.MONEY, 100);
 	}
+	
 }
