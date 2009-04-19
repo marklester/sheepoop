@@ -46,4 +46,11 @@ public enum Direction {
 			return evenVector;
 		}
 	}
+	@Override
+	public String toString()
+	{
+		String s = "";
+		s+= getAngleInDegrees();
+		return s;
+	}
 }
