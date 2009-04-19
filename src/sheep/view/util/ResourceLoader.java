@@ -99,6 +99,8 @@ public class ResourceLoader {
 		fileMap.put("Ice", WEAP_DIR + "ice.png");
 		fileMap.put("Flare Gun", WEAP_DIR + "flaregun.png");
 		fileMap.put("flare", WEAP_DIR+"flare.png");
+		//Boons
+		fileMap.put("Calm Animal", WEAP_DIR + "charmanimal.png");
 		fileMap.put("Spear Gun", WEAP_DIR + "speargun.png");
 		fileMap.put("spear", WEAP_DIR + "spear.png");
 		fileMap.put("Heavy Axe", WEAP_DIR + "heavyaxe.png");

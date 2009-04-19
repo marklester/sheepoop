@@ -14,11 +14,11 @@ public class AngryAI extends AI {
 	public AngryAI(NPC npc, Model model) {
 		super(npc, model);
 		
-		int dx = 100 - npc.getHostility(); 
-		
-		dx = ( dx > 25 ) ? dx - 25 : 0;
-		
-		npc.affectHostility( dx );
+//		int dx = 100 - npc.getHostility(); 
+//		
+//		dx = ( dx > 25 ) ? dx - 25 : 0;
+//		
+//		npc.affectHostility( dx );
 	}
 
 	public void tick() {
