@@ -13,14 +13,33 @@ public class CharacterStats implements Cloneable, Serializable {
 	public CharacterStats(HashMap<StatType, Integer> initialStats) {
 		this.stats = initialStats;
 	}
-	
+
 	public void change(StatType stat, int changeAmt) {
-		int oldAmt = get(stat);
-		int newAmt = oldAmt + changeAmt;
-		this.stats.put(stat, newAmt);
+		if(stat == StatType.DAMAGE)
+		{
+			changeDamage(changeAmt);
+		}
+		else
+		{
+			int oldAmt = get(stat);
+			int newAmt = oldAmt + changeAmt ;
+			this.stats.put(stat, newAmt);
+			calculateDerivedStatistics();
+		}
+	}
+	private void changeDamage(int changeAmt)
+	{
+		int oldAmt = get(StatType.DAMAGE);
+		changeAmt-=stats.get(StatType.ARMOR_RATING);
+		if(changeAmt<0)
+		{
+			changeAmt = 0;
+		}
+		int newAmt = oldAmt + changeAmt ;
+		this.stats.put(StatType.DAMAGE, newAmt);
 		calculateDerivedStatistics();
 	}
-	
+
 	public void setCharacter(Character character) {
 		this.character = character;
 	}
@@ -48,7 +67,7 @@ public class CharacterStats implements Cloneable, Serializable {
 		int defenseBonus = get(StatType.DEFENSIVE_BONUS);
 		stats.put(StatType.DEFENSIVE_RATING, baseDefense + defenseBonus);
 		stats.put(StatType.MAX_LIFE, hardiness * 2 + level * hardiness / 5);
-		
+
 		int maxMana = intellect * 2 + level * intellect / 5;
 		stats.put(StatType.MAX_MANA, maxMana);
 		int manaUsed = get(StatType.MANA_USED);
@@ -63,10 +82,10 @@ public class CharacterStats implements Cloneable, Serializable {
 			stats.put(StatType.MANA_USED, 0);
 		}
 		stats.put(StatType.MANA, maxMana - get(StatType.MANA_USED));
-//		int baseOffense = strength * 2 + level * strength / 5;
-//		int offenseBonus = get(StatType.OFFENSIVE_BONUS);
-//		stats.put(StatType.BASE_OFFENSIVE_RATING, baseOffense);
-//		stats.put(StatType.OFFENSIVE_RATING, baseOffense + offenseBonus);
+		//		int baseOffense = strength * 2 + level * strength / 5;
+		//		int offenseBonus = get(StatType.OFFENSIVE_BONUS);
+		//		stats.put(StatType.BASE_OFFENSIVE_RATING, baseOffense);
+		//		stats.put(StatType.OFFENSIVE_RATING, baseOffense + offenseBonus);
 
 		// See if character is dead and take appropriate actions
 		if ((get(StatType.DAMAGE) > 0) && (get(StatType.DAMAGE) > (get(StatType.MAX_LIFE)))) {
