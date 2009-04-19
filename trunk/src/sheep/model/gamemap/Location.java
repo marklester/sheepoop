@@ -51,4 +51,48 @@ public class Location implements Serializable {
 	public String toString() {
 		return "[Location x=" + x + ",y=" + y + "]";
 	}
+	/**
+	 * This function returns the Direction the passed in location is relative to
+	 * if location(10,3) is passed in and the this location is (10,2) then this will 
+	 * return Direction.N
+	 * @param l2 Location to get Direction relative to this one
+	 * @return Direction
+	 */
+	public Direction relativeDirectionTo(Location l2){
+		//even tiles
+		if(getX()%2==0){//Even Columns
+			if(l2.getY()<getY()){//Northern
+				if(l2.getX()==getX())
+					return Direction.N;
+				if(l2.getX()<getX())
+					return Direction.NW;
+				if(l2.getX()>getX())
+					return Direction.NE;
+			}else{//Souther
+				if(l2.getX()==getX())
+					return Direction.S;
+				if(l2.getX()<getX())
+					return Direction.SW;
+				if(l2.getX()>getX())
+					return Direction.SE;
+			}
+		}else{//Odd Columns
+			if(l2.getY()>getY()){//Southern
+				if(l2.getX()==getX())
+					return Direction.S;
+				if(l2.getX()<getX())
+					return Direction.SW;
+				if(l2.getX()>getX())
+					return Direction.SE;
+			}else{//Northern
+				if(l2.getX()==getX())
+					return Direction.N;
+				if(l2.getX()<getX())
+					return Direction.NW;
+				if(l2.getX()>getX())
+					return Direction.NE;
+			}	
+		}
+		return null;
+	}
 }
