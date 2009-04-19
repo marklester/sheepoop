@@ -242,6 +242,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 			but.setOpaque(false);
 			but.setContentAreaFilled(false);
 			but.setActionCommand(item.getID());
+			but.setToolTipText(item.getID());
 			but.addMouseListener(new InventoryMouseListener(returnToGameAction, this.avatar, item));
 			botPnl.add(but, c);
 		}
