@@ -28,7 +28,7 @@ public class SellTradeListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("clicked");
+		System.out.println("sell click");
 		tf.sellItem( item );
 	}
 }

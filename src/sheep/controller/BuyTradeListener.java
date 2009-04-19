@@ -28,6 +28,7 @@ public class BuyTradeListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println("buy click");
 		tf.buyItem( item );
 	}
 

@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import sheep.view.TradeViewport;
 import sheep.view.View;
 
 public class ToggleTradeAction extends AbstractAction {
@@ -12,10 +11,9 @@ public class ToggleTradeAction extends AbstractAction {
 	private static final long serialVersionUID = -8715010716409447137L;
 	private View view;
 
-	public ToggleTradeAction( View view, TradeViewport tv )
+	public ToggleTradeAction( View view )
 	{
 		this.view = view;
-		view.setTradeViewport(tv);
 	}
 	
 	@Override
