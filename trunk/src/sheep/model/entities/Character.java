@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
+import java.util.Map.Entry;
 
 import sheep.model.CreepTimeObserver;
 import sheep.model.Model;
@@ -311,6 +313,10 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		return this.performableSkills;
 	}
 	
+	public Set<Entry<PassiveSkill, Integer>> getPassiveSkills() {
+		return passiveSkills.entrySet();
+	}
+	
 	public CharacterStats getStats() {
 		return this.stats;
 	}
@@ -337,6 +343,12 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 	
 	public void addSkillPoint(PerformableSkill pSkill) {
 		pSkill.addPoints(1);
+		notifySkillPointObservers();
+	}
+	
+	public void addSkillPoint(PassiveSkill pSkill) {
+		Integer currValue = passiveSkills.get(pSkill);
+		passiveSkills.put(pSkill, currValue+1);
 		notifySkillPointObservers();
 	}
 
