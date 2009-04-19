@@ -33,7 +33,7 @@ public class CharacterStats implements Cloneable, Serializable {
 		if(Math.random()*100 < chanceToHit)
 		{
 			int oldAmt = get(StatType.DAMAGE);
-			changeAmt-=stats.get(StatType.ARMOR_RATING);
+			changeAmt-=get(StatType.ARMOR_RATING);
 			if(changeAmt<0)
 			{
 				changeAmt = 0;

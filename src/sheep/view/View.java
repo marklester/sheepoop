@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import sheep.model.GameStateChange;
+import sheep.model.GameStateObserver;
+import sheep.model.GameStateType;
 import sheep.model.Model;
 import sheep.model.NotSerializable;
 import sheep.model.entities.StatChange;
@@ -169,6 +172,7 @@ public class View extends JFrame implements StatChangeObserver, NotSerializable 
 			interactionViewport.setVisible(false);
 			layers.remove(interactionViewport);
 		} else {
+			//model.setState(GameStateType.PAUSED_ACTION_MENU);
 			interactionViewport.setVisible(true);
 			layers.add(interactionViewport, new Integer(400));
 		}
@@ -190,5 +194,11 @@ public class View extends JFrame implements StatChangeObserver, NotSerializable 
 		}
 		this.validate();
 	}
+
+//	@Override
+//	public void update(GameStateChange msg) {
+//		if (msg.getOldState() == GameStateType.PAUSED_ACTION_MENU && msg.getNewState() == GameStateType.PLAYING)
+//			toggleActionMenu();
+//	}
 
 }

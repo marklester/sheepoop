@@ -543,6 +543,9 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location(14,32);
 		map.add(loc, new HappyMeal(model,loc));
 		
+		loc = new Location(9,6);
+		map.add(loc, new HappyMeal(model,loc));
+		
 		loc = new Location(8, 31);
 		map.add(loc, new OrangeJuice(model, loc));
 		

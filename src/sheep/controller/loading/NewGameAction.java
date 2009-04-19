@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import sheep.controller.Controller;
+import sheep.model.GameStateType;
 import sheep.model.Model;
 import sheep.model.entities.Avatar;
 import sheep.model.gamemap.GameMap;

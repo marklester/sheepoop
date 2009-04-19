@@ -11,6 +11,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 
+import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -43,6 +44,7 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 	private JPanel botPnl;
 	private Font myFont = Overlay.getFont().deriveFont(20f);
 	private Image bgImage;
+	private AbstractAction returnToGameAction;
 
 	public InventoryViewport(Avatar avatar, int w, int h) {
 		super(avatar, w, h);
@@ -240,13 +242,17 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 			but.setOpaque(false);
 			but.setContentAreaFilled(false);
 			but.setActionCommand(item.getID());
-			but.addMouseListener(new InventoryMouseListener(this.avatar, item));
+			but.addMouseListener(new InventoryMouseListener(returnToGameAction, this.avatar, item));
 			botPnl.add(but, c);
 		}
 
 		botPnl.setVisible(true);
 
 		return botPnl;
+	}
+	
+	public void setReturnToGameAction(AbstractAction a) {
+		this.returnToGameAction = a;
 	}
 
 	public void setUpPanels() {
@@ -265,6 +271,10 @@ public class InventoryViewport extends Viewport implements InventoryChangeObserv
 		if (parent != null)
 			parent.requestFocus();
 
+	}
+	
+	public Component[] getBottomComponents() {
+		return botPnl.getComponents();
 	}
 
 	@Override
