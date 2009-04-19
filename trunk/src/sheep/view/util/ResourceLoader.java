@@ -138,6 +138,7 @@ public class ResourceLoader {
 		
 		//interactive
 		fileMap.put("Pilot License", INTERACTIVE_DIR + "pilotlicense.png");
+		fileMap.put("Flow Reverser",INTERACTIVE_DIR+"flowreverser.png");
 		
 	}
 	
