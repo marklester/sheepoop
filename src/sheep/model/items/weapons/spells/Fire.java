@@ -24,14 +24,6 @@ public class Fire extends Bane {
 	}
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		Character enemy = getUser().getInteractingCharacter();
-		
-		if( enemy != null ){
-			int totalDamage = (int) Math.floor( (double) getBaseDamage() * (  (double) getUser().getSkill( getSkill() ) ) );
-			
-			enemy.affectStat( StatType.LIFE, totalDamage );
-		}
-		else{
 			Location center = getUser().getLocation();
 			Map<Location, List<Locatable>> tiles = getUser().getGameMap().getMapSubset(center, 1);
 			for (Entry<Location, List<Locatable>> entry : tiles.entrySet()) {
@@ -40,7 +32,7 @@ public class Fire extends Bane {
 				List<Locatable> targets = entry.getValue();
 				boolean blocked = false;
 				for(Locatable l: targets){
-					l.hitWith(this);
+					//l.hitWith(this);
 					if(l.blocks(myProj)){
 						blocked = true;
 					}
@@ -49,7 +41,5 @@ public class Fire extends Bane {
 					getGameMap().add(loc, myProj);
 				}
 			}
-			
-		}
 	}
 }
