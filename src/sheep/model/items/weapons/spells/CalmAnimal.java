@@ -13,6 +13,7 @@ public class CalmAnimal extends Enchantment
 	{
 		super("Calm Animal", model, loc, 0, 8, 100);
 	}
+	@Override
 	public void applyEffect(NPC npc) {
 		npc.affectHostility(-100);
 	}

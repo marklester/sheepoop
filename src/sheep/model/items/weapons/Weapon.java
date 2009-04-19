@@ -8,6 +8,7 @@ import sheep.model.Model;
 import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
 import sheep.model.entities.StatType;
+import sheep.model.entities.npc.NPC;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
 import sheep.model.items.Takeable;
@@ -79,5 +80,10 @@ public abstract class Weapon extends Takeable implements ActionListener {
 
 	public void applyEffect(Character c) {
 		c.weaponDamage(baseDamage * user.getSkill(skill));
+	}
+	
+	public void applyEffect(NPC npc)
+	{
+		npc.weaponDamage(baseDamage * user.getSkill(skill));
 	}
 }

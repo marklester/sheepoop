@@ -16,7 +16,7 @@ import sheep.model.gamemap.GameMap;
 public abstract class AI implements TimeObserver, Serializable {
 	private static final long serialVersionUID = 7551024229134848584L;
 	private NPC npc;
-	private final Model model;
+	private Model model;
 
 	
 	public AI(NPC npc, Model model) {
@@ -42,4 +42,10 @@ public abstract class AI implements TimeObserver, Serializable {
 		this.npc = npc;
 	}
 	public abstract void bumpedIntoAvatar(Avatar avatar);
+	public void destroy()
+	{
+		Time.getInstance().removeObserver(this);
+		this.npc = null;
+		this.model = null;
+	}
 }
