@@ -30,22 +30,8 @@ public class Viewport extends JPanel {
 		return this.avatar;
 	}
 	
-	public void toggleVisibility() {
-		isVisible = !isVisible;
-	}
-	
-	public boolean isVisible() {
-		return isVisible;
-	}
-
 	public ResourceLoader getResLoader() {
 		return this.resLoader;
 	}
-	
-	public void setVisibility(boolean b) {
-		this.isVisible = b;
-	}
-	
-	
 	
 }
