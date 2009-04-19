@@ -25,9 +25,11 @@ public abstract class Takeable extends Item {
 		
 		if (entity == model.getAvatar()) {
 			Character character = (Character) entity;
-			character.addToInventory(this);
-			GameMap theMap = getGameMap();
-			theMap.remove(getLocation(), this);
+			boolean wasSuccessful = character.addToInventory(this);
+			if (wasSuccessful) {
+				GameMap theMap = getGameMap();
+				theMap.remove(getLocation(), this);
+			}
 		}
 	}
 	

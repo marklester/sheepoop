@@ -135,9 +135,20 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		}
 	}
 
-	public void addToInventory(Takeable item) {
+	/**
+	 * Adds an item to your inventory.  Returns whether or not the adding was
+	 * successful (based on if the inventory is too full.)  This method does not 
+	 * remove the item from the map.
+	 * @param item
+	 * @return 
+	 */
+	public boolean addToInventory(Takeable item) {
+		if (this.inventory.getSize() >= 15) {
+			return false;
+		}
 		this.inventory.add(item);
 		this.notifyInventoryChangeObservers(new InventoryChange(item, InventoryChangeType.ITEM_ADDED));
+		return true;
 	}
 
 	public void drop(Takeable item) {
