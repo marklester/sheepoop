@@ -10,9 +10,9 @@ import sheep.model.areaeffects.River;
 import sheep.model.areaeffects.RiverCounter;
 import sheep.model.areaeffects.TakeDamage;
 import sheep.model.areaeffects.Teleport;
-import sheep.model.entities.npc.AngryWolf;
+import sheep.model.entities.npc.AngrySpider;
 import sheep.model.entities.npc.AreMyRat;
-import sheep.model.entities.npc.Wolf;
+import sheep.model.entities.npc.Spider;
 import sheep.model.entities.vehicles.Boat;
 import sheep.model.entities.vehicles.Plane;
 import sheep.model.entities.vehicles.Vehicle;
@@ -302,9 +302,9 @@ public class Level1MapCreator extends MapCreator {
 		
 		// Add wolves
 		loc = new Location(6, 6);
-		map.add(loc, new Wolf(model, loc));
+		map.add(loc, new Spider(model, loc));
 		loc = new Location(17, 14);
-		//map.add(loc, new AngryWolf(model, loc));
+		map.add(loc, new AngrySpider(model, loc));
 		loc = new Location(13, 14);
 		AreMyRat r = new AreMyRat( model, loc );
 		r.addToInventory( new GoldStaff(model, null) );
