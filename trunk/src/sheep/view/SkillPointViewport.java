@@ -1,6 +1,5 @@
 package sheep.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -9,7 +8,6 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.awt.Insets;
 import java.util.Map.Entry;
 
 import javax.swing.ImageIcon;
@@ -18,15 +16,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import sheep.controller.AddSkillPointActionListener;
-import sheep.controller.InventoryMouseListener;
-import sheep.controller.TradeButtonsActionListener;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.SkillPointChangeObserver;
 import sheep.model.entities.StatChange;
 import sheep.model.entities.StatChangeObserver;
 import sheep.model.entities.StatType;
-import sheep.model.entities.npc.NPC;
-import sheep.model.items.Takeable;
 import sheep.model.skills.PassiveSkill;
 import sheep.model.skills.PerformableSkill;
 import sheep.view.overlays.Overlay;

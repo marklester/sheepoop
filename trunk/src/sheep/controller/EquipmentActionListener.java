@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import sheep.model.entities.Avatar;
 import sheep.model.entities.BodyPart;
-import sheep.model.items.Takeable;
 
 /**
  * 

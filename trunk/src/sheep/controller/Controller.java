@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.ActionMap;
-import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
@@ -150,7 +149,7 @@ public class Controller implements GameStateObserver {
 			break;
 		case PAUSED_ACTION_MENU:
 			//model.pauseTime();
-			view.pausedActionMenu();
+			//view.pausedActionMenu();
 			break;
 		default:
 
