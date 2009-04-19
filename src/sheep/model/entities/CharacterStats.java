@@ -82,6 +82,8 @@ public class CharacterStats implements Cloneable, Serializable {
 	}
 
 	public int get(StatType stat) {
+		if(stat == StatType.OFFENSIVE_RATING)
+			return character.getDamageWithWeapon();
 		Integer ret = stats.get(stat);
 		if (ret == null) {
 			// System.out.println("Character Stat not found");
