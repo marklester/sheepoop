@@ -19,6 +19,7 @@ public abstract class AI implements TimeObserver, Serializable {
 	private final NPC npc;
 	private final Model model;
 
+	
 	public AI(NPC npc, Model model) {
 		this.npc = npc;
 		this.model = model;

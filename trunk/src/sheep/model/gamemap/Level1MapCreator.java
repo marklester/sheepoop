@@ -304,9 +304,11 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location(6, 6);
 		map.add(loc, new Wolf(model, loc));
 		loc = new Location(17, 14);
-		map.add(loc, new AngryWolf(model, loc));
+		//map.add(loc, new AngryWolf(model, loc));
 		loc = new Location(13, 14);
-		map.add(loc, new AreMyRat(model, loc));
+		AreMyRat r = new AreMyRat( model, loc );
+		r.addToInventory( new GoldStaff(model, null) );
+		map.add(loc, r);
 		// add a level up w/ decal
 		loc = new Location(6, 7);
 		map.add(loc, new Decal("LevelUp", model, loc));
