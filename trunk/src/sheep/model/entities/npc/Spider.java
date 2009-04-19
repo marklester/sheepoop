@@ -13,5 +13,6 @@ public class Spider extends NPC {
 	public Spider(Model model, Location loc) {
 		super("Spider", model, loc, new Sneak(), 0, new DumbAI(model), new AngryAI(model));
 		this.getStats().change(StatType.MONEY, 100);
+		affectHostility(0);
 	}
 }

@@ -22,6 +22,7 @@ public class AreMyRat extends NPC {
 	public AreMyRat(Model model, Location loc) {
 		super("AreMyRat", model, loc, new Sneak(), 20, new VillagerAI(model), new AngryAI(model));
 		this.getStats().change(StatType.MONEY, 0);
+		affectHostility(0);
 	}
 	
 	public boolean blocks( Entity ent )

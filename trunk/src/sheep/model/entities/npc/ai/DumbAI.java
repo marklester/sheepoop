@@ -15,12 +15,15 @@ public class DumbAI extends AI {
 	}
 
 	public void tick() {
-		int state = (int) (Math.random() * 50);
-		int move = (int) (Math.random() * 6);
-		if (state == 25) {
-			this.getNPC().startMoving(Direction.values()[move]);
-		} else {
-			this.getNPC().stopMoving();
+		if(getNPC()!=null)
+		{
+			int state = (int) (Math.random() * 50);
+			int move = (int) (Math.random() * 6);
+			if (state == 25) {
+				this.getNPC().startMoving(Direction.values()[move]);
+			} else {
+				this.getNPC().stopMoving();
+			}
 		}
 	}
 

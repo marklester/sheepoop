@@ -29,8 +29,8 @@ public class NPC extends Character {
 		super(id, model, loc, occupation);
 		this.model = model;
 		hostility = initialHostility;
-		peacefulAi.attachNPC(this);
-		angryAi.attachNPC(this);
+		this.peacefulAi = peacefulAi;
+		this.angryAi = angryAi;
 	}
 
 	public AI getActiveAi()
