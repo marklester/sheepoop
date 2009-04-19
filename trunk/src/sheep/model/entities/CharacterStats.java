@@ -29,15 +29,19 @@ public class CharacterStats implements Cloneable, Serializable {
 	}
 	private void changeDamage(int changeAmt)
 	{
-		int oldAmt = get(StatType.DAMAGE);
-		changeAmt-=stats.get(StatType.ARMOR_RATING);
-		if(changeAmt<0)
+		int chanceToHit = 100 - (int)(5 * Math.sqrt(stats.get(StatType.DEFENSIVE_RATING)));
+		if(Math.random()*100 < chanceToHit)
 		{
-			changeAmt = 0;
+			int oldAmt = get(StatType.DAMAGE);
+			changeAmt-=stats.get(StatType.ARMOR_RATING);
+			if(changeAmt<0)
+			{
+				changeAmt = 0;
+			}
+			int newAmt = oldAmt + changeAmt ;
+			this.stats.put(StatType.DAMAGE, newAmt);
+			calculateDerivedStatistics();
 		}
-		int newAmt = oldAmt + changeAmt ;
-		this.stats.put(StatType.DAMAGE, newAmt);
-		calculateDerivedStatistics();
 	}
 
 	public void setCharacter(Character character) {
