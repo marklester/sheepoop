@@ -6,10 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.AbstractAction;
 
 import sheep.controller.actions.TalkAction;
-import sheep.controller.actions.UseItemAction;
+import sheep.controller.actions.ToggleTradeAction;
 import sheep.controller.actions.UseWeaponAction;
 import sheep.model.GameStateType;
 import sheep.model.Model;
+import sheep.model.entities.Avatar;
+import sheep.model.entities.Character;
+import sheep.view.TradeViewport;
 import sheep.view.View;
 
 
@@ -38,7 +41,9 @@ public class InteractionViewportListener implements ActionListener {
 			view.showInventoryViewport();			
 			//action = new UseItemAction(model.getAvatar(), model.getAvatar().getInventory().get().iterator().next());
 		}  else if(cmd.equalsIgnoreCase("trade")) {
-			
+			Avatar av = model.getAvatar();
+			Character c = av.getInteractingCharacter();
+			action = new ToggleTradeAction( view, new TradeViewport( av, c,  new TradeFacilitator(av, c), view.getAreaViewport().getWidth()/2 - 100, view.getAreaViewport().getHeight()/2 - 100 ) );
 		} 
 		
 		// Execute action
