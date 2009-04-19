@@ -79,6 +79,11 @@ public abstract class Character extends Entity implements TalkMessageObservable,
 		return true;
 	}
 	
+	public boolean has(Takeable item)
+	{
+		return inventory.has(item);
+	}
+	
 	public void accept(LocatableVisitor v) {
 		v.visit(this);
 	}

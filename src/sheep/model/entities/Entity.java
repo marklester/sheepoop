@@ -9,6 +9,7 @@ import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.LocatableVisitor;
 import sheep.model.gamemap.Location;
+import sheep.model.items.Takeable;
 import sheep.model.items.armor.Armor;
 import sheep.model.items.weapons.Projectile;
 import sheep.model.items.weapons.Weapon;
@@ -33,6 +34,8 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	public abstract boolean canClimb();
 	
 	public abstract boolean canWalk();
+	
+	public abstract boolean has(Takeable item);
 	
 	private long tickCounter = 0;
 
