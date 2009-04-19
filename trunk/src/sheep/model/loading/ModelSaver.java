@@ -22,37 +22,30 @@ public class ModelSaver {
 		try {
 			fos = new FileOutputStream(file);
 			out = new ObjectOutputStream(fos);
-//			
-//			DebuggingObjectOutputStream out = new DebuggingObjectOutputStream(fos);
-//			try {
-//			  
-//				out.writeObject(model.getAvatar().getLocation());
-//			  System.out.println(model);
-//			  
-//			} catch (Exception e) {
-//			  throw new RuntimeException(
-//			      "Serialization error. Path to bad object: " 
-//			          + out.getStack(), e);
-//			}
-//			
-			System.out.println(model);
-			System.out.println(model);
-			
-			out.writeObject(model.getAvatar());
-			out.close();
-			fos.close();
+			out.writeObject(model);
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
-//
-//			if (out != null)
-//				try {
-//					out.close();
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-
 		}
-		
+		finally
+		{
+			if (out != null)
+			{
+				try {
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+				
+			if( fos != null)
+			{
+				try {
+					fos.close();
+				} catch(IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }

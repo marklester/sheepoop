@@ -14,7 +14,7 @@ import sheep.util.math.Vector2D;
  */
 public class GameMap implements Serializable {
 
-	private static final long serialVersionUID = -6604540494991148223L;
+	private static final long serialVersionUID = -2831843372649040047L;
 
 	private Map<Location, List<Locatable>> map;
 
@@ -32,6 +32,9 @@ public class GameMap implements Serializable {
 	}
 
 	public void add(Location loc, Locatable obj) {
+		if( !(obj instanceof Serializable ))
+			throw new RuntimeException( "This is not serializable!: "  + obj ); 
+			
 		List<Locatable> locationList = get(loc);
 		if (!locationList.contains(obj)) {
 			locationList.add(obj);

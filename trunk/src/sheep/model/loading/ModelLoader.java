@@ -26,10 +26,7 @@ public class ModelLoader {
 		{
 			fis = new FileInputStream(file);
 			in = new ObjectInputStream(fis);
-			Avatar avatar = (Avatar) in.readObject();
-			System.out.println(avatar);
-			in.close();
-			fis.close();
+			model = (Model) in.readObject();
 		}
 		catch(EOFException ex) {
 			System.out.println("eof exceptions");
@@ -40,12 +37,23 @@ public class ModelLoader {
 		}
 		finally
 		{
-			try {
 				if(in != null)
-					in.close();
-			} catch (IOException e) { 
-				e.printStackTrace();
-			}
+				{
+					try {
+						in.close();
+					} catch (IOException e) { 
+						e.printStackTrace();
+					}
+				}
+				
+				if(fis != null)
+				{
+					try {
+						fis.close();
+					} catch (IOException e) { 
+						e.printStackTrace();
+					}
+				}
 		}
 
 		if (model == null) {

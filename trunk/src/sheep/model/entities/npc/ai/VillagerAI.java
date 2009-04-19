@@ -2,7 +2,6 @@ package sheep.model.entities.npc.ai;
 
 import sheep.model.Model;
 import sheep.model.entities.Avatar;
-import sheep.model.entities.npc.NPC;
 import sheep.model.gamemap.Direction;
 
 public class VillagerAI extends AI {

@@ -117,5 +117,6 @@ public class Model implements Serializable {
 	
 	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
 		transientGameStateObservers = new Vector<GameStateObserver>();
+		ois.defaultReadObject();
 	}
 }
