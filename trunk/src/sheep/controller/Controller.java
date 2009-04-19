@@ -16,7 +16,7 @@ import sheep.controller.actions.StopMovingAction;
 import sheep.controller.actions.ToggleAction;
 import sheep.controller.actions.ToggleGridAction;
 import sheep.controller.actions.TogglePauseGameplayAction;
-import sheep.controller.actions.ToggleViewportAction;
+import sheep.controller.actions.ToggleSidebar;
 import sheep.controller.actions.UseSkillAction;
 import sheep.controller.actions.UseWeaponAction;
 import sheep.model.GameStateChange;
@@ -96,23 +96,20 @@ public class Controller implements GameStateObserver, NotSerializable {
 		ks.put( "togglePause", KeyStroke.getKeyStroke(KeyEvent.VK_P, 0) );
 
 		// Toggling
-		actionMap.put("toggleStatView", new ToggleAction(view.getAreaViewport().getStatConsole()));
-		ks.put( "toggleStatView",KeyStroke.getKeyStroke(KeyEvent.VK_F10, 0));
-
 		actionMap.put("toggleMessage", new ToggleAction(view.getAreaViewport().getMessageConsole()));
-		ks.put( "toggleMessage", KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0) );
+		ks.put( "toggleMessage", KeyStroke.getKeyStroke(KeyEvent.VK_7, 0) );
+
+		actionMap.put("toggleStatView", new ToggleAction(view.getAreaViewport().getStatConsole()));
+		ks.put( "toggleStatView",KeyStroke.getKeyStroke(KeyEvent.VK_8, 0));
 		
 		actionMap.put("togglePerformableSkills", new ToggleAction(view.getAreaViewport().getHotBarConsole()));
-		ks.put( "togglePerformableSkills", KeyStroke.getKeyStroke(KeyEvent.VK_F12, 0) );
+		ks.put( "togglePerformableSkills", KeyStroke.getKeyStroke(KeyEvent.VK_9, 0) );
 		
 		actionMap.put("toggleGrid", new ToggleGridAction(view.getAreaViewport()));
-		ks.put( "toggleGrid", KeyStroke.getKeyStroke(KeyEvent.VK_F9, 0) );
+		ks.put( "toggleGrid", KeyStroke.getKeyStroke(KeyEvent.VK_F12, 0) );
 		
-        actionMap.put("toggleInventory", new ToggleViewportAction(view, view.getInventoryViewport()) );
-        ks.put( "toggleInventory", KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0) );
-        
-        actionMap.put("toggleSkillViewport", new ToggleViewportAction(view, view.getSkillPointViewport()) );
-        ks.put( "toggleSkillViewport", KeyStroke.getKeyStroke(KeyEvent.VK_F7, 0) );
+        actionMap.put("toggleSidebar", new ToggleSidebar(view, view.getInventoryViewport(), view.getSkillPointViewport()));
+        ks.put( "toggleSidebar", KeyStroke.getKeyStroke(KeyEvent.VK_0, 0) );
 		
         // Release vehicle
         actionMap.put("releaseVehicle", new ReleaseVehicleAction(model));

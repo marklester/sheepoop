@@ -14,7 +14,7 @@ public abstract class Overlay implements NotSerializable {
 	
 	private int posX;
 	private int posY;
-	private boolean isVisible = false;
+	private boolean isVisible = true;
 	private static Font font = ResourceLoader.getInstance().getFont("statsFont");
 
 	public Overlay(int posX, int posY) {
