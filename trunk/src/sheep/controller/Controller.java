@@ -109,7 +109,7 @@ public class Controller implements GameStateObserver {
         actionMap.put("toggleInventory", new ToggleViewportAction(view, view.getInventoryViewport()) );
         ks.put( "toggleInventory", KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0) );
         
-        actionMap.put("toggleSkillViewport", new ToggleViewportAction(view, view.getskillPointViewport()) );
+        actionMap.put("toggleSkillViewport", new ToggleViewportAction(view, view.getSkillPointViewport()) );
         ks.put( "toggleSkillViewport", KeyStroke.getKeyStroke(KeyEvent.VK_F7, 0) );
 		
         // Release vehicle
@@ -148,8 +148,9 @@ public class Controller implements GameStateObserver {
 			view.gameOver();
 			break;
 		case PAUSED_ACTION_MENU:
-			//model.pauseTime();
-			//view.pausedActionMenu();
+			model.pauseTime();
+			view.toggleActionMenu();
+			view.getInteractionViewport().setActionListener(new InteractionViewportListener(model, view));
 			break;
 		default:
 

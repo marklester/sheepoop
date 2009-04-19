@@ -1,5 +1,7 @@
 package sheep.view;
 
+import java.awt.Color;
+
 import javax.swing.JButton;
 
 import sheep.controller.InteractionViewportListener;
@@ -10,31 +12,41 @@ public class InteractionViewport extends Viewport {
 
 	private static final long serialVersionUID = 5416609943799230081L;
 
-	private final Avatar avatar;
-	private Character npc;
-	
 	private InteractionViewportListener actionListener;
 	
-	public InteractionViewport(Avatar avatar, Character npc) {
-		super(avatar, 250, 100);
-		this.avatar = avatar;
-		this.npc = npc;
-		
-		JButton attackBtn = new JButton("Attack");
+	private static int width = 400;
+	private static int height = 50;
+	private JButton attackBtn, talkBtn, useItemBtn, cancelBtn;
+	
+	public InteractionViewport(int x, int y) {
+		super(null, width, height);
+
+		this.setBackground(new Color(255, 255, 255, 100));
+		attackBtn = new JButton("Attack");
+		attackBtn.setActionCommand("attack");
 		this.add(attackBtn);
 
-		JButton talkBtn = new JButton("Talk");
+		talkBtn = new JButton("Talk");
+		talkBtn.setActionCommand("talk");
 		this.add(talkBtn);
 		
-		JButton useItemBtn = new JButton("Use Item");
+		useItemBtn = new JButton("Use Item");
+		useItemBtn.setActionCommand("useItem");
 		this.add(useItemBtn);
 		
-		this.setBounds(0, 0, 300, 200);
+		cancelBtn = new JButton("Cancel");
+		cancelBtn.setActionCommand("cancel");
+		this.add(cancelBtn);
+		
+		this.setBounds(x - width / 2, y - height / 2, width, height);
 		this.setOpaque(true);
 		this.validate();
 	}
 
 	public void setActionListener(InteractionViewportListener al) {
-		this.actionListener = al;
+		attackBtn.addActionListener(al);
+		talkBtn.addActionListener(al);
+		useItemBtn.addActionListener(al);
+		cancelBtn.addActionListener(al);
 	}
 }
