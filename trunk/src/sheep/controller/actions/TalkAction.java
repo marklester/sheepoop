@@ -6,6 +6,7 @@ import javax.swing.AbstractAction;
 
 import sheep.model.entities.Avatar;
 import sheep.model.entities.npc.NPC;
+import sheep.model.entities.Character;
 
 public class TalkAction extends AbstractAction {
 
@@ -20,6 +21,8 @@ public class TalkAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		System.out.println("going to talk");
+		if (npc instanceof Character) {
+			((NPC) npc).talk(avatar);
+		}
 	}
 }

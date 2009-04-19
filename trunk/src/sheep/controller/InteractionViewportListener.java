@@ -21,7 +21,16 @@ public class InteractionViewportListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Inventory button was clicked: " + e.getActionCommand());
 		
+		String cmd = e.getActionCommand();
+		if (cmd.equalsIgnoreCase("attack")) {
+			
+		} else if(false) {
+			
+		} 
+		
+		
 		view.toggleActionMenu();
 		model.startTime();
+		view.getInteractionViewport().setFocusable(false);
 	}
 }
