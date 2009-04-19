@@ -33,9 +33,14 @@ public class NPC extends Character {
 		this.angryAi = angryAi;
 	}
 
-	public AI getActiveAi()
+	public AI getPeacefulAi()
 	{
-		return activeAi;
+		return peacefulAi;
+	}
+
+	public AI getAngryAi()
+	{
+		return angryAi;
 	}
 
 	@Override

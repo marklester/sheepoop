@@ -9,13 +9,16 @@ import sheep.model.entities.npc.NPC;
 public class SleepState implements TimeObserver, Serializable
 {
 	private static final long serialVersionUID = 6705895317084405268L;
-	private AI sleeper;
+	private AI sleeper1;
+	private AI sleeper2;
 	private int ticks;
 	public SleepState(int ticks, NPC n)
 	{
-		sleeper = n.getActiveAi();
+		sleeper1 = n.getAngryAi();
+		sleeper2 = n.getPeacefulAi();
 		this.ticks = ticks;
-		Time.getInstance().removeObserver(sleeper);
+		Time.getInstance().removeObserver(sleeper1);
+		Time.getInstance().removeObserver(sleeper2);
 		Time.getInstance().registerObserver(this);
 	}
 	@Override
@@ -27,7 +30,8 @@ public class SleepState implements TimeObserver, Serializable
 		}
 		else
 		{
-			Time.getInstance().registerObserver(sleeper);
+			Time.getInstance().registerObserver(sleeper1);
+			Time.getInstance().registerObserver(sleeper2);
 			Time.getInstance().removeObserver(this);
 		}
 	}
