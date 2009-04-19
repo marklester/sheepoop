@@ -3,6 +3,7 @@ package sheep.controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import sheep.model.GameStateType;
 import sheep.model.entities.Avatar;
 import sheep.model.items.Takeable;
 
@@ -25,8 +26,11 @@ public class InventoryMouseListener implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getButton() == MouseEvent.BUTTON1)
-			item.use(avatar);
+		if (e.getButton() == MouseEvent.BUTTON1) {
+			if (avatar.getModel().getGameState().equals(GameStateType.PAUSED_ACTION_MENU))
+				item.use(avatar.getInteractingCharacter());	
+			item.use(avatar);			
+		}
 		else if (e.getButton() == MouseEvent.BUTTON3 || e.getButton() == MouseEvent.BUTTON2)
 			avatar.drop(item);
 		

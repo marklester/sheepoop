@@ -111,6 +111,10 @@ public class View extends JFrame implements StatChangeObserver {
 		sidebar.setVisible(true);
 	}
 	
+	public void showInventoryViewport() {
+		showSidebarViewport(getInventoryViewport());
+	}
+	
 	public AreaViewport getAreaViewport() {
 		return areaViewport;
 	}

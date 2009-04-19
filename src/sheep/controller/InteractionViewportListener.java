@@ -35,7 +35,8 @@ public class InteractionViewportListener implements ActionListener {
 		} else if(cmd.equalsIgnoreCase("talk")) {
 			action = new TalkAction(model.getAvatar(), model.getAvatar().getInteractingCharacter());
 		} else if(cmd.equalsIgnoreCase("useItem")) {
-			action = new UseItemAction(model.getAvatar(), model.getAvatar().getInventory().get().iterator().next());
+			view.showInventoryViewport();			
+			//action = new UseItemAction(model.getAvatar(), model.getAvatar().getInventory().get().iterator().next());
 		}  else if(cmd.equalsIgnoreCase("trade")) {
 			
 		} 
