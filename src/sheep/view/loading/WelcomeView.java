@@ -55,8 +55,8 @@ public class WelcomeView extends JFrame {
 		welcomeListener = new WelcomeActionListener(this);
 		newGameAction = new NewGameAction(this);
 		
-		SettingsLoader sl = new SettingsLoader( new File( "res/defaultSettings.psettings" ) );
-		settingsView = new SettingsView( sl.load() );
+		SettingsLoader sl = new SettingsLoader();
+		settingsView = new SettingsView( this, sl.load() );
 //		settingsView.setOpaque( false );
 		
 		setUpPanels();
@@ -101,9 +101,9 @@ public class WelcomeView extends JFrame {
 	private void addButtons() {
 		//Grab the resources
 		ResourceLoader rl = ResourceLoader.getInstance();
-		ImageIcon newG_icon = new ImageIcon(rl.getImage("newGame"));
-		ImageIcon loadG_icon = new ImageIcon(rl.getImage("loadGame"));
-		//ImageIcon settings_icon = new ImageIcon(rl.getImage("settings"));
+		ImageIcon newG_icon = rl.getImageIcon("newGame");
+		ImageIcon loadG_icon = rl.getImageIcon("loadGame");
+		ImageIcon settings_icon = rl.getImageIcon("settings");
 		//ImageIcon quitG_icon = new ImageIcon(rl.getImage("quitGame"));
 		
 		//Create the buttons
@@ -117,7 +117,7 @@ public class WelcomeView extends JFrame {
 		lgBtn.setActionCommand( LOAD );
 		lgBtn.addActionListener( welcomeListener );
 		
-		settingsBtn = new JButton(loadG_icon);
+		settingsBtn = new JButton(settings_icon);
 		settingsBtn.setPreferredSize(btnDim);
 		settingsBtn.setActionCommand( SETTINGS );
 		settingsBtn.addActionListener( welcomeListener );
@@ -130,6 +130,12 @@ public class WelcomeView extends JFrame {
 	public void displaySettingsView()
 	{
 		this.setContentPane( settingsView );
+		this.validate();
+	}
+	
+	public void displayMainView()
+	{
+		this.setContentPane( mainScreen );
 		this.validate();
 	}
 	

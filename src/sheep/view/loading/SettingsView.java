@@ -1,19 +1,23 @@
 package sheep.view.loading;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 import sheep.controller.loading.SettingsActionListener;
 import sheep.model.loading.KeySettings;
+import sheep.view.util.KeyBindTextField;
 import sheep.view.util.ResourceLoader;
 
 public class SettingsView extends JPanel {
@@ -30,20 +34,20 @@ public class SettingsView extends JPanel {
 	private JButton cancelButton;
 	private JButton okButton;
 	
-	private JTextField attack;
-	private JTextField release;
-	private JTextField north;
-	private JTextField south;
-	private JTextField northEast;
-	private JTextField northWest;
-	private JTextField southEast;
-	private JTextField southWest;
+	private KeyBindTextField attack;
+	private KeyBindTextField release;
+	private KeyBindTextField north;
+	private KeyBindTextField south;
+	private KeyBindTextField northEast;
+	private KeyBindTextField northWest;
+	private KeyBindTextField southEast;
+	private KeyBindTextField southWest;
 
 	private KeySettings keySettings;
 	
-	public SettingsView( KeySettings keys ) {
+	public SettingsView( WelcomeView view, KeySettings keys ) {
 		this.keySettings = keys;
-		settingsListener = new SettingsActionListener();
+		settingsListener = new SettingsActionListener( view, this );
 		
 		setUpPanel();
 	}
@@ -54,6 +58,7 @@ public class SettingsView extends JPanel {
 		
 		//button panel
 		JPanel buttonPane = new JPanel();
+		buttonPane.setOpaque( false );
 		
 		ResourceLoader rl = ResourceLoader.getInstance();
 		ImageIcon okIcon = rl.getImageIcon( "OK" );
@@ -61,20 +66,23 @@ public class SettingsView extends JPanel {
 		ImageIcon cancelIcon = rl.getImageIcon( "Cancel" );
 		Dimension iconDim = new Dimension( okIcon.getIconHeight(), okIcon.getIconWidth() );
 		
-		okButton = new JButton( okIcon );
+		okButton = new JButton(); //okIcon );
 		okButton.setPreferredSize( iconDim );
 		okButton.setActionCommand( SETTINGS_OK );
 		okButton.addActionListener( settingsListener );
+		okButton.setText( "ok" );
 		
-		defaultButton = new JButton( defaultIcon );
+		defaultButton = new JButton();// defaultIcon );
 		defaultButton.setPreferredSize( iconDim );
 		defaultButton.setActionCommand( SETTINGS_DEFAULT );
 		defaultButton.addActionListener( settingsListener );
+		defaultButton.setText( "default" );
 		
-		cancelButton = new JButton( cancelIcon );
+		cancelButton = new JButton();// cancelIcon );
 		cancelButton.setPreferredSize( iconDim );
 		cancelButton.setActionCommand( SETTINGS_CANCEL );
 		cancelButton.addActionListener( settingsListener );
+		cancelButton.setText( "cancel" );
 		
 		buttonPane.add( okButton );
 		buttonPane.add( cancelButton );
@@ -82,30 +90,85 @@ public class SettingsView extends JPanel {
 		
 		//settings panel
 		JPanel settings = new JPanel();
-		settings.setLayout( new GridLayout(2, 3) );
+		settings.setOpaque( false );
+		settings.setLayout( new GridLayout( 8, 1, 0, 20 ) );
 		
+		north = new KeyBindTextField();
+		northEast = new KeyBindTextField();
+		northWest = new KeyBindTextField( );
+		south = new KeyBindTextField();
+		southEast = new KeyBindTextField();
+		southWest = new KeyBindTextField();
+		attack = new KeyBindTextField();
+		release = new KeyBindTextField();
+		
+		loadKeySettings();
+		
+		JTextField[] fields = {north, northEast, northWest, south, southEast, southWest, attack, release };
+		JLabel[] labels = { new JLabel( "North:" ), new JLabel( "North East:" ), new JLabel( "North West:" ),
+							new JLabel( "South:" ), new JLabel( "South East:" ), new JLabel( "South West:" ), new JLabel( "Attack:" ), new JLabel( "Release Vehicle:" ) };
+		
+		layoutGrid( labels, fields, settings );
+//		layoutFields(labels, fields, settings);
+		this.add( Box.createRigidArea( new Dimension( 100, 100 ) ), BorderLayout.NORTH );
+		this.add( Box.createRigidArea( new Dimension( 100, 50 ) ), BorderLayout.EAST );
+		this.add( Box.createRigidArea( new Dimension( 100, 50 ) ), BorderLayout.WEST );
+		this.add( settings, BorderLayout.CENTER );
+		this.add( buttonPane, BorderLayout.SOUTH );
+		
+		this.setOpaque( false );
+	}
+	
+	public KeySettings getKeySettings()
+	{
+		KeySettings k = new KeySettings();
+		k.put("moveN", north.getKeyStroke() );
+		k.put("moveNE", northEast.getKeyStroke() );
+		k.put("moveNW", northWest.getKeyStroke() );
+		k.put("moveS", south.getKeyStroke() );
+		k.put("moveSW", southWest.getKeyStroke() );
+		k.put("moveSE", southEast.getKeyStroke() );
+		k.put("useWeapon", attack.getKeyStroke() );
+		k.put("releaseVehicle", release.getKeyStroke() );
+		
+		this.keySettings = k;
+		loadKeySettings();
+		
+		return keySettings;
+	}
+	
+	public void setKeySettings( KeySettings keySettings )
+	{
+		this.keySettings = keySettings;
+		loadKeySettings();
+	}
+	
+	private void loadKeySettings()
+	{
 		Map<String, KeyStroke> tempKeys = new HashMap<String,KeyStroke>();
 		
 		for( KeyStroke k : keySettings.getInputMap().allKeys() )
-		{
+		{ 
 			tempKeys.put( (String) keySettings.getInputMap().get(k) , k);
 		}
 		
-		north = new JTextField( tempKeys.get( "moveN" ).getKeyChar() );
-		northEast = new JTextField( tempKeys.get( "moveNE" ).getKeyChar() );
-		northWest = new JTextField( tempKeys.get( "moveNW" ).getKeyChar() );
-		south = new JTextField( tempKeys.get( "moveS" ).getKeyChar() );
-		southEast = new JTextField( tempKeys.get( "moveSE" ).getKeyChar() );
-		southWest = new JTextField( tempKeys.get( "moveSW" ).getKeyChar() );
-		
-		settings.add( northWest );
-		settings.add( north );
-		settings.add( northEast );
-		settings.add( southWest );
-		settings.add( south );
-		settings.add( southEast );
-		
-		this.add( settings, BorderLayout.CENTER );
-		this.add( buttonPane, BorderLayout.SOUTH );
+		north.setKeyStroke( tempKeys.get( "moveN" ) );
+		northEast.setKeyStroke( tempKeys.get( "moveNE" ) );
+		northWest.setKeyStroke( tempKeys.get( "moveNW" ) );
+		south.setKeyStroke( tempKeys.get( "moveS" ) );
+		southEast.setKeyStroke( tempKeys.get( "moveSE" ) );
+		southWest.setKeyStroke( tempKeys.get( "moveSW" ) );
+		attack.setKeyStroke( tempKeys.get( "useWeapon" ) );
+		release.setKeyStroke( tempKeys.get( "releaseVehicle" ) );
+	}
+	
+	private void layoutGrid( JLabel[] labels, JTextField[] fields, Container container )
+	{
+		for( int i=0; i<labels.length; i++)
+		{
+//			labels[i].setOpaque( false );
+			container.add( labels[i] );
+			container.add( fields[i] );
+		}
 	}
 }

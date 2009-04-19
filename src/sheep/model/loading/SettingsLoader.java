@@ -7,14 +7,20 @@ import java.io.ObjectInputStream;
 
 public class SettingsLoader {
 
-	private File file;
-	
-	public SettingsLoader(File file) {
-		this.file = file;
-	}
+	public static final File CUSTOM_SETTINGS = new File( "res/settings/customSettings.psettings" );
+	public static final File DEFAULT_SETTINGS = new File( "res/settings/defaultSettings.psettings" );
 
 	public KeySettings load() {
-		
+
+		if( CUSTOM_SETTINGS.exists() )
+			return load( CUSTOM_SETTINGS );
+		else
+			return load( DEFAULT_SETTINGS );
+
+	}
+	
+	private KeySettings load( File file )
+	{
 		KeySettings settings = null;
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
@@ -39,5 +45,10 @@ public class SettingsLoader {
 		}
 
 		return settings;
+	}
+	
+	public KeySettings loadDefault()
+	{
+		return load( DEFAULT_SETTINGS );
 	}
 }
