@@ -108,7 +108,8 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	 * recently according to its getSpeed() and the tick()s.
 	 */
 	private void move() {
-		
+		if(this.getLocation()==null)
+			return;//dont move
 		// Reset counter
 		this.tickCounter = 30 - getSpeed();
 
