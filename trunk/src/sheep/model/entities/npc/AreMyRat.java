@@ -25,40 +25,31 @@ public class AreMyRat extends NPC {
 		affectHostility(0);
 	}
 	
-	public boolean blocks( Entity ent )
-	{
-		if( ent == getModel().getAvatar() )
-			this.talk( (Character) ent );
-		
+	public boolean blocks( Entity ent ){
+		//if( ent == getModel().getAvatar() )
+			//this.talk( (Character) ent );
 		return super.blocks(ent);
 	}
 	
-	public void startMoving( Direction d )
-	{
+	public void startMoving( Direction d ){
 		//do nothing bitches!
 	}
 	
 	public void talk(Character character) {
-		
 		Random r = new Random();
 		String message = "";
-		if( this.getHostility() < 25 )
-		{
-			if( this.getInventory().getSize() < 1)
-			{
+		if( this.getHostility() < 25 ){
+			if( this.getInventory().getSize() < 1){
 				character.hearMessage(this, "I'd love to trade but I'm out of items!");
 				return;
 			}
 			
 			int rand = r.nextInt( this.getInventory().getSize() ) + 1;
-			
 			int count = 1;
 			String question = "";
 			
-			for( Takeable item : this.getInventory().get() )
-			{
-				if( count == rand )
-				{
+			for( Takeable item : this.getInventory().get() ){
+				if( count == rand ){
 					int value = (int) ( (double) item.getPrice() * ( (double) this.getSkill( PassiveSkill.BARGAIN ) / (double) character.getSkill( PassiveSkill.BARGAIN ) ) );
 					question = "Would you like to buy my " + item.getID() + " for " + value + " nuggets?";
 					break;
@@ -68,13 +59,9 @@ public class AreMyRat extends NPC {
 			
 			character.hearQuestion(this, question);
 			return;
-		}
-		else if( this.getHostility() < 50 )
-		{
+		}else if( this.getHostility() < 50 ){
 			message = indifferent[ r.nextInt( indifferent.length ) ];
-		}
-		else if( this.getHostility() < 75 )
-		{
+		}else if( this.getHostility() < 75 ){
 			message = unfriendly[ r.nextInt( unfriendly.length ) ];
 		}
 		character.hearMessage(this, message);
