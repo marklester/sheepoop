@@ -1,8 +1,5 @@
 package sheep.model;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 /**
  * 
@@ -10,5 +7,5 @@ import java.io.ObjectOutputStream;
  */
 public interface GameStateObserver {
 	public void update(GameStateChange msg);
-	
+
 }
