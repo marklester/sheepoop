@@ -10,7 +10,7 @@ public class Spider extends NPC {
 	private static final long serialVersionUID = 6747342338321148905L;
 
 	public Spider(Model model, Location loc) {
-		super("Spider", model, loc, new Sneak());
+		super("Spider", model, loc, new Sneak(), 0);
 		setAi(new DumbAI(this, model));
 		this.getStats().change(StatType.MONEY, 100);
 	}

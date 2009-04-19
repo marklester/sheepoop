@@ -19,7 +19,7 @@ public class AreMyRat extends NPC {
 	private String[] unfriendly = {"ARE MY!", "ARE ARE MYYYYY!" };
 	
 	public AreMyRat(Model model, Location loc) {
-		super("AreMyRat", model, loc, new Sneak());
+		super("AreMyRat", model, loc, new Sneak(), 0);
 		
 		setAi(new VillagerAI(this, model));
 		affectHostility( 20 );

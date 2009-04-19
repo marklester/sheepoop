@@ -466,7 +466,7 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location( 0, 16 );
 		Vehicle tpainBoat = new Boat(model, loc);
 		map.add(loc, tpainBoat);
-		NPC tPain = new NPC("TPain", model, loc, new Smasher() );
+		NPC tPain = new NPC("TPain", model, loc, new Smasher(),0 );
 		tpainBoat.setDriver( tPain );
 		map.add( loc,  tPain );
 		rc.addEntityToStream( tpainBoat );
