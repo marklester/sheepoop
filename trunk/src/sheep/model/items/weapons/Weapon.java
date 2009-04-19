@@ -7,7 +7,6 @@ import java.util.List;
 import sheep.model.Model;
 import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
-import sheep.model.entities.StatType;
 import sheep.model.entities.npc.NPC;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
@@ -18,9 +17,9 @@ import sheep.util.math.Vector2D;
 public abstract class Weapon extends Takeable implements ActionListener {
 
 	private static final long serialVersionUID = -6972197855931649857L;
-	protected PassiveSkill skill;
-	protected Character user;
-	protected int baseDamage;
+	private PassiveSkill skill;
+	private Character user;
+	private int baseDamage;
 
 	public Weapon(String id, Model model, Location loc, int baseDamage, PassiveSkill skill,int value){
 		super(id, model, loc,value);

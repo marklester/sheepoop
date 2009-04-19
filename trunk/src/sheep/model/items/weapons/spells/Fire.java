@@ -16,47 +16,50 @@ import sheep.model.items.weapons.SplashDamage;
 public class Fire extends Bane {
 
 	private static final long serialVersionUID = 2866354681809705242L;
-	
+
 	public Fire(Model model, Location loc) {
 		super("Fire", model, loc, 20, 5, 100);
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		if(this.getUser().getStat(StatType.MANA)<20){	
-		}else{
+		if (this.getUser().getStat(StatType.MANA) < 20) {
+		} else {
 			Location center = getUser().getLocation();
 			Map<Location, List<Locatable>> tiles = getUser().getGameMap().getMapSubset(center, 1);
 			for (Entry<Location, List<Locatable>> entry : tiles.entrySet()) {
 				Location loc = entry.getKey();
-				Projectile myProj = new Projectile(getProjectileId(),this.getModel(),loc,this,center.relativeDirectionTo(loc),5,2);
+				Projectile myProj = new Projectile(getProjectileId(), this.getModel(), loc, this, center
+						.relativeDirectionTo(loc), 5, 2);
 				List<Locatable> targets = entry.getValue();
 				boolean blocked = false;
-				for(Locatable l: targets){
-					if(l.blocks(myProj)){
+				for (Locatable l : targets) {
+					if (l.blocks(myProj)) {
 						blocked = true;
-						if(user!=l){
+						if (getUser() != l) {
 							l.hitWith(this);
 						}
 					}
 				}
-				if(!blocked){
+				if (!blocked) {
 					getGameMap().add(loc, myProj);
 				}
-				
+
 			}
 			this.getUser().affectStat(StatType.MANA_USED, 20);
 		}
 	}
+
 	public void applyEffect(Character c) {
-//		Character enemy = user.getInteractingCharacter();
-		int realdmg = baseDamage * user.getSkill(skill);
+		// Character enemy = user.getInteractingCharacter();
+		int realdmg = getBaseDamage() * getUser().getSkill(getSkill());
 		Map<Location, List<Locatable>> tiles = c.getGameMap().getMapSubset(c.getLocation(), 1);
 		c.weaponDamage(realdmg);
 		for (Entry<Location, List<Locatable>> entry : tiles.entrySet()) {
 			List<Locatable> targets = entry.getValue();
-			int splash_dmg = realdmg/2;
-			for(Locatable l: targets){
-				l.hitWith(new SplashDamage("Splash Damage",this.getModel(),this.getLocation(),splash_dmg));
+			int splash_dmg = realdmg / 2;
+			for (Locatable l : targets) {
+				l.hitWith(new SplashDamage("Splash Damage", this.getModel(), this.getLocation(), splash_dmg));
 			}
 		}
 	}
