@@ -151,7 +151,7 @@ public class AreaViewport extends JPanel {
 			BufferedImage thisImage = prevDrawnTile.get(drawKey);
 			if(thisImage == null)
 			{
-				System.out.println(drawKey);
+//				System.out.println(drawKey);
 				thisImage = drawOneTile(drawinfos);
 				prevDrawnTile.put(drawKey, thisImage);
 			}

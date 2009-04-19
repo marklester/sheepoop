@@ -11,15 +11,17 @@ import sheep.model.gamemap.Location;
 public class River extends AreaEffect {
 	private int myFrequency;
 	private Direction direction;
+	private Direction reverse;
 	private RiverCounter myRivC;
 	private Decal myArrow;
 	private static final long serialVersionUID = -2338346084817804369L;
 
-	public River(Model model, Location loc,Direction d, int frequency, RiverCounter rc, Decal myDec) {
+	public River(Model model, Location loc,Direction d, Direction reverse, int frequency, RiverCounter rc, Decal myDec) {
 		super("River", model, loc);
 		this.direction =d;
 		this.myFrequency = frequency;
 		myRivC = rc;
+		this.reverse = reverse;
 		myRivC.addRiverToStream(this);
 		myArrow = myDec;
 		myArrow.setOrientation(d);
@@ -41,8 +43,10 @@ public class River extends AreaEffect {
 
 	public void reverseFlow()
 	{
-		this.direction = this.direction.opposite();
-		myArrow.setOrientation(this.direction);
+		Direction temp = direction;
+		direction = reverse;
+		reverse = temp;
+		myArrow.setOrientation(direction);
 	}
 	@Override
 	public void tick() {
