@@ -17,16 +17,18 @@ import sheep.util.math.Vector2D;
 public abstract class Weapon extends Takeable implements ActionListener {
 
 	private static final long serialVersionUID = -6972197855931649857L;
-	private PassiveSkill skill;
-	private Character user;
-	private int baseDamage;
+	protected PassiveSkill skill;
+	protected Character user;
+	protected int baseDamage;
 
-	public Weapon(String id, Model model, Location loc, int baseDamage, PassiveSkill skill, int value) {
-		super(id, model, loc, value);
+	public Weapon(String id, Model model, Location loc, int baseDamage, PassiveSkill skill) {
+		super(id, model, loc);
 		this.skill = skill;
 		this.baseDamage = baseDamage;
 	}
-
+	public Weapon(String id, Model model, Location loc){
+		super(id, model, loc);
+	}
 	/**
 	 * this should equip the weapon
 	 */
