@@ -54,11 +54,12 @@ public class AreMyRat extends NPC {
 			
 			int count = 1;
 			String question = "";
+			
 			for( Takeable item : this.getInventory().get() )
 			{
 				if( count == rand )
 				{
-					question = "Would you like to buy my " + item.getID() + " for 2 money?";
+					question = "Would you like to buy my " + item.getID() + " for 2 nuggets?";
 					break;
 				}
 				count++;
