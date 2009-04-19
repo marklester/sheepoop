@@ -38,7 +38,7 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 	public abstract boolean has(Takeable item);
 	
 	private long tickCounter = 0;
-
+	private long bonusCounter=0;
 	public Entity(String id, Model model, Location loc) {
 		super(id, model, loc);
 		Time.getInstance().registerObserver(this);
@@ -151,7 +151,18 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 
 	//@Override
 	public void tick() {
-
+		//Bonus Resetting
+		int dbonus = this.getStat(StatType.DEFENSIVE_BONUS);
+		if(dbonus>0){bonusCounter++;}
+		if(bonusCounter==600){
+			bonusCounter=0;
+			if(this.getStat(StatType.DEFENSIVE_BONUS)<0){
+				this.affectStat(StatType.DEFENSIVE_BONUS, -dbonus);
+			}
+			this.affectStat(StatType.DEFENSIVE_BONUS, -5);
+		}
+		//end of Bonus Resetting
+		
 		if (this.isMoving && tickCounter == 0) {
 			move();
 		}
