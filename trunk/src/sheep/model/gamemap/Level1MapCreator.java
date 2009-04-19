@@ -22,6 +22,8 @@ import sheep.model.items.armor.SteelWool;
 import sheep.model.items.oneshot.Beer;
 import sheep.model.items.oneshot.Key;
 import sheep.model.items.oneshot.Syringe;
+import sheep.model.items.useable.HappyMeal;
+import sheep.model.items.useable.Mana;
 import sheep.model.items.useable.OrangeJuice;
 import sheep.model.items.useable.WheatThins;
 import sheep.model.items.weapons.AshStaff;
@@ -304,6 +306,36 @@ public class Level1MapCreator extends MapCreator {
 		map.add(loc, new Decal("swarrow", model, loc));
 		map.add(loc,new River(model,loc,Direction.SW,10,rc));
 		
+		//Weed Garden
+		loc = new Location(2,37);
+		map.add(loc, new Decal("weed", model, loc));
+		loc = new Location(3,37);
+		map.add(loc, new Decal("weed", model, loc));
+		loc = new Location(4,36);
+		map.add(loc, new Decal("weed", model, loc));
+		loc = new Location(4,37);
+		map.add(loc, new Decal("weed", model, loc));
+		loc = new Location(5,36);
+		map.add(loc, new Decal("weed", model, loc));
+		loc = new Location(5,37);
+		map.add(loc, new Decal("weed", model, loc));
+		loc = new Location(6,36);
+		map.add(loc, new Decal("weed", model, loc));
+		loc = new Location(6,37);
+		map.add(loc, new Decal("weed", model, loc));
+		loc = new Location(7,36);
+		map.add(loc, new Decal("weed", model, loc));
+		loc = new Location(7,37);
+		map.add(loc, new Decal("weed", model, loc));
+		loc = new Location(8,36);
+		map.add(loc, new Spider(model, loc));
+		loc = new Location(8,37);
+		map.add(loc, new Spider(model, loc));
+		loc = new Location(8,35);
+		map.add(loc, new Spider(model, loc));
+		loc = new Location(6,36);
+		map.add(loc, new Spider(model, loc));
+		
 		// Add wolves
 		loc = new Location(6, 6);
 		map.add(loc, new Spider(model, loc));
@@ -407,18 +439,19 @@ public class Level1MapCreator extends MapCreator {
 		loc = new Location(12, 30);
 		map.add(loc, new WheatThins(model, loc));
 		
+		loc = new Location(13,11);
+		map.add(loc, new Mana(model, loc));
 		loc = new Location(8, 31);
 		map.add(loc, new OrangeJuice(model, loc));
-		
 		loc = new Location(10, 31);
 		map.add(loc, new OrangeJuice(model, loc));
-		
 		loc = new Location(12, 31);
 		map.add(loc, new OrangeJuice(model, loc));
-		
 		loc = new Location(16, 30);
 		map.add(loc, new Plane(model, loc));
-		
+		loc = new Location(14, 32);
+		map.add(loc, new HappyMeal(model, loc));
+
 		//TPain
 		loc = new Location( 0, 16 );
 		Vehicle tpainBoat = new Boat(model, loc);
@@ -428,6 +461,7 @@ public class Level1MapCreator extends MapCreator {
 		map.add( loc,  tPain );
 		rc.addEntityToStream( tpainBoat );
 		rc.addEntityToStream( tPain );
+		
 		
 		return map;
 	}
