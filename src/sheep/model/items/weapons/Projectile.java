@@ -1,7 +1,6 @@
 package sheep.model.items.weapons;
 
 import java.util.List;
-import java.util.Vector;
 
 import sheep.model.Model;
 import sheep.model.Time;
