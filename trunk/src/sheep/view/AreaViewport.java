@@ -154,6 +154,7 @@ public class AreaViewport extends JPanel {
 //				System.out.println(drawKey);
 				thisImage = drawOneTile(drawinfos);
 				prevDrawnTile.put(drawKey, thisImage);
+//				System.out.println("[AreaViewport] added " + drawKey + " to prevDrawnTile.");
 			}
 			addTotilesCache(loc, thisImage);
 		}
@@ -272,6 +273,7 @@ public class AreaViewport extends JPanel {
 			tilesCache.put(loc, img);
 			tilesBirthday.put(loc, Calendar.getInstance().getTimeInMillis());
 			tilesTimesUsed.put(loc, 0);
+//			System.out.println("[AreaViewport] size of tilesCach = " + tilesCache.size());
 		}
 	}
 
