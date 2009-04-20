@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import sheep.model.Model;
 import sheep.model.entities.Character;
 import sheep.model.entities.StatType;
+import sheep.model.entities.npc.NPC;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
 import sheep.model.items.weapons.Projectile;
@@ -47,16 +48,20 @@ public class Fire extends Bane {
 				}
 
 			}
-			this.getUser().affectStat(StatType.MANA_USED, 20);
+			this.getUser().affectStat(StatType.MANA_USED, 10);
 		}
 	}
-
-	public void applyEffect(Character c) {
+	public void applyEffect(NPC c){
+		applyEffect((Character)c);
+	}
+	public void applyEffect(Character c){
+		//System.out.println(getID()+"hits "+this.getDamageWith());
 		int realdmg = getDamageWith();
 		Map<Location, List<Locatable>> tiles = c.getGameMap().getMapSubset(c.getLocation(), 1);
 		c.weaponDamage(realdmg);
 		for (Entry<Location, List<Locatable>> entry : tiles.entrySet()) {
 			List<Locatable> targets = entry.getValue();
+			//System.out.println(entry.getKey());
 			int splash_dmg = realdmg / 2;
 			for (Locatable l : targets) {
 				l.hitWith(new SplashDamage("Splash Damage", this.getModel(), this.getLocation(), splash_dmg));
