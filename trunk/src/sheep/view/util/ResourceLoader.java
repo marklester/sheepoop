@@ -150,7 +150,7 @@ public class ResourceLoader {
 		fileMap.put("Flow Reverser",INTERACTIVE_DIR+"flowreverser.png");
 		
 		//tPain Audio
-		fileMap.put("tpain", AUDIO_DIR + "on_a_boat.mp3");
+		fileMap.put("tpain", AUDIO_DIR + "on2.mp3");
 		tPainStream = getAudioInputStream("tpain");
 		
 	}
