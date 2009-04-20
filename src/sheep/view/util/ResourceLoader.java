@@ -47,8 +47,7 @@ public class ResourceLoader {
 	
 	/**
 	 * This will be the central place to input any IO related filenames. The entire application should use this 
-	 * class to access images. Any welcome screen images should be manually put into the imageMap in this 
-	 * constructor
+	 * class to access images.
 	 *  
 	 */
 	
@@ -70,6 +69,10 @@ public class ResourceLoader {
 		fileMap.put("sneakBtn", ICON_DIR + "sneak.png");
 		fileMap.put("invPlaceHolder", ICON_DIR + "placeHolder.png");
 		fileMap.put("addSkillPoint", ICON_DIR + "plus_sign.png");
+		fileMap.put("OK", ICON_DIR + "sneak.png");
+		fileMap.put("Default", ICON_DIR + "default.png");
+		fileMap.put("Cancel", ICON_DIR + "cancel.png");
+		
 		
 		fileMap.put("Water", TERRAIN_DIR + "water2.gif");
 		fileMap.put("Grass", TERRAIN_DIR + "grass.png");
