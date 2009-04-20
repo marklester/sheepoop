@@ -18,7 +18,7 @@ public class UseWeaponAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		if (attacker != null && attacker.getEquippedWeapon() != null && attacker.getModel().getGameState()==GameStateType.PLAYING) {
+		if (attacker != null && attacker.getEquippedWeapon() != null && ((attacker.getModel().getGameState()==null)||(attacker.getModel().getGameState()==GameStateType.PLAYING))) {
 			//System.out.println("Key Hit");
 			attacker.getEquippedWeapon().actionPerformed(ae);
 		}
