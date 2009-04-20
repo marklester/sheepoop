@@ -17,7 +17,6 @@ public class HappyMeal extends Useable {
 		entity.affectStat(StatType.MANA_USED, 20);
 		entity.affectStat(StatType.DAMAGE, 40);
 		entity.affectStat(StatType.AGILITY, -9);
-		System.out.println("entity used on: " + entity.getID());
 	}
 
 }

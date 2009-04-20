@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
@@ -22,6 +23,7 @@ public class ResourceLoader {
 	private HashMap<String, String> fileMap;
 	private HashMap<String, Image> imageMap;
 	private HashMap<String, Font> fontMap;
+//	private HashMap<String, InputStream> audioMap;
 
 	private static final String IMG_DIR = "res/imgs/";
 	private static final String ICON_DIR = IMG_DIR +  "icons/";
@@ -34,6 +36,11 @@ public class ResourceLoader {
 	private static final String ONE_SHOT_DIR = ITEMS_DIR + "oneshot/";
 	private static final String USEABLE_DIR = ITEMS_DIR + "useable/";
 	private static final String INTERACTIVE_DIR = ITEMS_DIR + "interactive/";
+	private static final String AUDIO_DIR = "res/music/";
+	private final ClassLoader loader;
+	
+	private InputStream tPainStream;
+	
 	/**
 	 * This will be the central place to input any IO related filenames. The entire application should use this 
 	 * class to access images. Any welcome screen images should be manually put into the imageMap in this 
@@ -43,6 +50,7 @@ public class ResourceLoader {
 	
 	
 	private ResourceLoader() {
+		this.loader = getClass().getClassLoader();
 		fileMap = new HashMap<String, String>();
 		imageMap = new HashMap<String, Image>();
 		fontMap = new HashMap<String, Font>();
@@ -141,6 +149,10 @@ public class ResourceLoader {
 		fileMap.put("Pilot License", INTERACTIVE_DIR + "pilotlicense.png");
 		fileMap.put("Flow Reverser",INTERACTIVE_DIR+"flowreverser.png");
 		
+		//tPain Audio
+		fileMap.put("tpain", AUDIO_DIR + "on_a_boat.mp3");
+		tPainStream = getAudioInputStream("tpain");
+		
 	}
 	
 	public static ResourceLoader getInstance() {
@@ -192,5 +204,17 @@ public class ResourceLoader {
 			return Font.getFont(Font.SANS_SERIF);
 		}
 		return f;
+	}
+	
+	public InputStream getAudioInputStream(String key) {
+		String filename = fileMap.get(key);
+		if (filename != null)
+			return loader.getResourceAsStream(filename);
+		else
+			return null;
+	}
+	
+	public InputStream getTPainStream() {
+		return tPainStream;
 	}
 }
