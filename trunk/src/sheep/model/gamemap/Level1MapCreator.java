@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import sheep.model.Model;
+import sheep.model.Time;
 import sheep.model.areaeffects.HealDamage;
 import sheep.model.areaeffects.LevelUp;
 import sheep.model.areaeffects.River;
@@ -24,6 +25,7 @@ import sheep.model.entities.vehicles.Vehicle;
 import sheep.model.items.Trap;
 import sheep.model.items.armor.SteelWool;
 import sheep.model.items.interactive.FlowReverser;
+import sheep.model.items.interactive.FreeBoatRideFor3;
 import sheep.model.items.interactive.PilotLicense;
 import sheep.model.items.oneshot.Beer;
 import sheep.model.items.oneshot.Key;
@@ -578,12 +580,15 @@ public class Level1MapCreator extends MapCreator {
 		TPBoat tpainBoat = new TPBoat(model, loc);
 		map.add(loc, tpainBoat);
 		TPayneAI tai = new TPayneAI(model,tpainBoat);
+		Time.getInstance().removeObserver(tai);
 		loc = new Location(15,0);
 		NPC tPain = new NPC("TPain", model, loc,new Smasher(),0, tai, tai);
 		tpainBoat.setTPayne(tPain);
 		tai.setMyNpc(tPain);
 //		tpainBoat.setDriver( tPain );
 		map.add( loc,  tPain );
+		loc = new Location(10,4);
+		map.add(loc, new FreeBoatRideFor3(model,loc,tai));
 		
 		
 		return map;
