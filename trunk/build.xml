@@ -3,6 +3,7 @@
 	<property name="src" location="src"/>
 	<property name="dist" location="dist"/>
 	<property name="debug" value="off"/>
+	<property name="lib" location="lib"/>
 	<property name="build" location="build" />
 	<property name="docs" location="docs" />
 
@@ -12,7 +13,11 @@
 	</target>
 	
     <target name="compile" depends="init">
-		<javac srcdir="${src}" destdir="${build}" debug="${debug}" />
+		<javac srcdir="${src}" destdir="${build}" debug="${debug}">
+			<classpath>
+				  <fileset dir="." />
+    		</classpath>
+		</javac>
 	</target>
 
 	<target name="dist" depends="compile">

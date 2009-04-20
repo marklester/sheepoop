@@ -166,7 +166,11 @@ public class ResourceLoader {
 		//tPain Audio
 		fileMap.put("tpain", AUDIO_DIR + "on3.mp3");
 		try {
-			tPainPlayer = new Player( new BufferedInputStream( getAudioInputStream("tpain") ) );
+			try {
+				tPainPlayer = new Player( new BufferedInputStream( getAudioInputStream("tpain") ) );
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 		} catch (JavaLayerException e) {
 			e.printStackTrace();
 		}
@@ -224,10 +228,10 @@ public class ResourceLoader {
 		return f;
 	}
 	
-	public InputStream getAudioInputStream(String key) {
+	public InputStream getAudioInputStream(String key) throws FileNotFoundException {
 		String filename = fileMap.get(key);
 		if (filename != null)
-			return loader.getResourceAsStream(filename);
+			return new FileInputStream("res/music/on3.mp3");
 		else
 			return null;
 	}
