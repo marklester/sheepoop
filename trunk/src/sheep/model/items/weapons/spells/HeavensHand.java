@@ -13,6 +13,7 @@ import sheep.model.entities.StatType;
 import sheep.model.gamemap.Decal;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
+import sheep.model.gamemap.TemporaryDecal;
 public class HeavensHand extends Boon implements TimeObserver{
 	private static final long serialVersionUID = 8808860811466926293L;
 	int duration=0;
@@ -33,20 +34,7 @@ public class HeavensHand extends Boon implements TimeObserver{
 		Map<Location, List<Locatable>> tiles = getUser().getGameMap().getMapSubset(center, radius);
 		for (Entry<Location, List<Locatable>> entry : tiles.entrySet()) {
 			Location loc = entry.getKey();
-			entry.getValue().add(new Decal("HeavensHandEffect",getModel(),loc));
-		}
-	}
-	public void removeDecals(){
-		//System.out.println("RemoveSkills");
-		Map<Location, List<Locatable>> tiles = getUser().getGameMap().getMapSubset(center, radius);
-		for (Entry<Location, List<Locatable>> entry : tiles.entrySet()) {
-			Location loc = entry.getKey();
-			List<Locatable> locatables = entry.getValue();
-			for(Locatable l : locatables){
-				if(l.getID().compareTo("HeavensHandEffect")==0){
-					getUser().getGameMap().remove(loc, l);
-				}
-			}
+			entry.getValue().add(new TemporaryDecal("HeavensHandEffect",getModel(),loc,100,duration));
 		}
 	}
 	public void applyEffect(Character e) {
@@ -77,14 +65,12 @@ public class HeavensHand extends Boon implements TimeObserver{
 		//System.out.println("Duration:"+duration);
 		if(duration<=0){
 			Time.getInstance().removeObserver(this);
-			removeDecals();
 		}else{
 			duration--;
 		}
 	}
 	@Override
-	public int getDamageWith()
-	{
+	public int getDamageWith(){
 		return -getBaseDamage() * getUser().getSkill(getSkill());
 	}
 }
