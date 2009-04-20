@@ -10,6 +10,6 @@ public class Shield extends Armor
 
 	public Shield(Model model, Location loc)
 	{
-		super("Shield", model, loc, BodyPart.FEET, 25, 100);
+		super("Shield", model, loc, BodyPart.AUX, 25, 100);
 	}
 }
