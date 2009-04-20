@@ -12,7 +12,7 @@ public class VillagerAI extends AI {
 	}
 
 	public void tick() {
-		if(getNPC()!=null)
+		if(getNPC()!=null && (!getNPC().isDead()))
 		{
 			int state = (int) (Math.random() * 50);
 			int move = (int) (Math.random() * 6);

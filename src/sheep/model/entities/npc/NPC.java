@@ -15,6 +15,7 @@ public class NPC extends Character {
 	private static final long serialVersionUID = 3556634534829274948L;
 
 	boolean dead = false;
+	
 	private final Model model;
 	private int hostility;
 	private AI activeAi;
@@ -49,7 +50,10 @@ public class NPC extends Character {
 		}
 		return true;
 	}
-
+	protected void setDead(boolean dead)
+	{
+		this.dead = dead;
+	}
 	public void talk(Character character) {
 		// If we want, we can have this forward talk() onto AI instead
 		character.hearMessage(this, "Hi my name is " + this.getID() + ", what's up?");
