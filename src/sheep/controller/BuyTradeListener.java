@@ -1,34 +1,27 @@
 package sheep.controller;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JButton;
 
 import sheep.model.items.Takeable;
 
-public class BuyTradeListener implements ActionListener {
+public class BuyTradeListener extends TradeListener {
 
-	private TradeFacilitator tf;
-	private Takeable item;
-	private JPanel info;
-	
 	public BuyTradeListener( TradeFacilitator tf, Takeable item )
 	{
-		this.item = item;
-		this.tf = tf;
-		
-		info = new JPanel();
-		info.setLayout( new BoxLayout( info, BoxLayout.Y_AXIS ) );
-		info.add( new JLabel( "Name: " + item.getID() ) );
-		info.add( new JLabel("Price: " + tf.getItemBuyPrice(item)) );
+		super( tf, item);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		tf.buyItem( item );
+		this.getTradeFacilitator().buyItem( this.getItem() );
 	}
 
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		JButton b = (JButton) e.getSource();
+		b.setToolTipText( "Item: " + this.getItem().getID() + "\n Price: " + this.getTradeFacilitator().getItemBuyPrice( this.getItem() ) );
+	}
 }
