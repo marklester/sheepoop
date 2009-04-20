@@ -15,40 +15,53 @@ import sheep.view.util.DrawInfo;
 
 public class LocationStringVisitor implements LocatableVisitor {
 
-	List<DrawInfo> fullPicture;
+	DrawInfo terrain, character, vehicle, item, decal,projectile;
 	
 	public LocationStringVisitor() {
-		fullPicture = new ArrayList<DrawInfo>();
 	}
 	
 	public List<DrawInfo> getFullPicture()
 	{
-		return fullPicture;
+		ArrayList<DrawInfo> fullpic = new ArrayList<DrawInfo>();
+		
+		if(terrain!=null)
+			fullpic.add(terrain);
+		if(item!=null)
+			fullpic.add(item);
+		if(decal!=null)
+			fullpic.add(decal);
+		if(vehicle!=null)
+			fullpic.add(vehicle);
+		if(character!=null)
+			fullpic.add(character);
+		if(projectile!=null)
+			fullpic.add(projectile);
+		return(fullpic);
 	}
 	
 	public void visit(Projectile obj)
 	{
-		fullPicture.add(new DrawInfo(obj.getID(),obj.getFacingDirection()));
+		projectile = new DrawInfo(obj.getID(),obj.getFacingDirection());
 	}
 	
 	public void visit(Item obj) {
-		fullPicture.add(new DrawInfo(obj.getID(),null));
+		item = new DrawInfo(obj.getID(),null);
 	}
 
 	public void visit(Vehicle obj) {
-		fullPicture.add(new DrawInfo(obj.getID(),obj.getFacingDirection()));
+		vehicle = new DrawInfo(obj.getID(),obj.getFacingDirection());
 	}
 
 	public void visit(Character obj) {
-		fullPicture.add(new DrawInfo(obj.getID(),obj.getFacingDirection()));
+		character = new DrawInfo(obj.getID(),obj.getFacingDirection());
 	}
 
 	public void visit(Terrain obj) {
-		fullPicture.add(new DrawInfo(obj.getID(),null));
+		terrain = new DrawInfo(obj.getID(),null);
 	}
 
 	public void visit(Decal obj) {
-		fullPicture.add(new DrawInfo(obj.getID(),obj.getOrientation()));
+		decal = new DrawInfo(obj.getID(),obj.getOrientation());
 	}
 
 	public void visit(AreaEffect obj) {
