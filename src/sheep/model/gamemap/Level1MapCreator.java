@@ -23,6 +23,12 @@ import sheep.model.entities.vehicles.Plane;
 import sheep.model.entities.vehicles.TPBoat;
 import sheep.model.entities.vehicles.Vehicle;
 import sheep.model.items.Trap;
+import sheep.model.items.armor.BikeHelmet;
+import sheep.model.items.armor.BronzeWool;
+import sheep.model.items.armor.CrossTrainers;
+import sheep.model.items.armor.SheepSandals;
+import sheep.model.items.armor.Shield;
+import sheep.model.items.armor.SteelToedShoes;
 import sheep.model.items.armor.SteelWool;
 import sheep.model.items.interactive.FlowReverser;
 import sheep.model.items.interactive.FreeBoatRideFor3;
@@ -463,7 +469,9 @@ public class Level1MapCreator extends MapCreator {
 		// Trap decal (we need to make this a real trap)
 		loc = new Location(14, 8);
 		map.add(loc, new Trap(model, loc,20));
-
+		loc = new Location(20, 10);
+		map.add(loc, new Trap(model, loc,25));
+		
 		// Teleporter
 		loc = new Location(18, 1);
 		map.add(loc, new Teleport(model, loc, new Location(7, 13)));
@@ -574,6 +582,28 @@ public class Level1MapCreator extends MapCreator {
 		
 		loc = new Location(16, 30);
 		map.add(loc, new Plane(model, loc, p));
+		
+		
+		//Other Armor
+		loc = new Location(20, 9);
+		map.add(loc, new BikeHelmet(model, loc));
+		
+		loc = new Location(20, 10);
+		map.add(loc, new BronzeWool(model, loc));
+		
+		loc = new Location(20, 11);
+		map.add(loc, new CrossTrainers(model, loc));
+		
+		loc = new Location(18, 12);
+		map.add(loc, new SheepSandals(model, loc));
+		
+		loc = new Location(19, 13);
+		map.add(loc, new Shield(model, loc));
+		
+		loc = new Location(19, 14);
+		map.add(loc, new SteelToedShoes(model, loc));
+		
+		
 		
 		//TPain
 		loc = new Location( 9, 10 );
