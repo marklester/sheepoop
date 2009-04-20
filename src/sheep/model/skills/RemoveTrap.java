@@ -17,7 +17,7 @@ public class RemoveTrap extends PerformableSkill {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int skill = getCharacter().getSkill(PassiveSkill.DETECT_TRAP);
+		int skill = getPoints();
 		int chance = skill - Math.abs((int)(Math.random()*(10-skill)));
 		Direction facingDirection = getCharacter().getFacingDirection();
 		Vector2D vector = facingDirection.getVector(getCharacter().getLocation());

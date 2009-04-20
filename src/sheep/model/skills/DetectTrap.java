@@ -22,7 +22,7 @@ public class DetectTrap extends PerformableSkill {
 		if (getCharacter().getStat(StatType.MANA) > 10) {
 			getCharacter().affectStat(StatType.MANA_USED, 10);
 			Location center = getCharacter().getLocation();
-			int radius = getCharacter().getSkill(PassiveSkill.DETECT_TRAP);
+			int radius = getPoints();
 			// Get neighboring locatables
 			getCharacter().hearMessage(getCharacter(), " is detecting Traps");
 			Map<Location, List<Locatable>> tiles = getCharacter().getGameMap().getMapSubset(center, radius);
