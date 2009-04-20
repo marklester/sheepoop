@@ -154,7 +154,7 @@ public class ResourceLoader {
 		fileMap.put("Flow Reverser",INTERACTIVE_DIR+"flowreverser.png");
 		
 		//tPain Audio
-		fileMap.put("tpain", AUDIO_DIR + "on2.mp3");
+		fileMap.put("tpain", AUDIO_DIR + "on3.mp3");
 		try {
 			tPainPlayer = new Player( new BufferedInputStream( getAudioInputStream("tpain") ) );
 		} catch (JavaLayerException e) {
