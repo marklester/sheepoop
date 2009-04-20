@@ -47,7 +47,7 @@ public class TPayneAI extends AI
 	public void setMyNpc(NPC myNPC)
 	{
 		this.myNPC = myNPC;
-		Time.getInstance().registerObserver(this);
+//		Time.getInstance().registerObserver(this);
 	}
 	@Override
 	public void tick()

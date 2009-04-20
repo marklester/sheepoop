@@ -152,6 +152,7 @@ public class ResourceLoader {
 		//interactive
 		fileMap.put("Pilot License", INTERACTIVE_DIR + "pilotlicense.png");
 		fileMap.put("Flow Reverser",INTERACTIVE_DIR+"flowreverser.png");
+		fileMap.put("Free boat", INTERACTIVE_DIR + "freeboatride.png");
 		
 		//tPain Audio
 		fileMap.put("tpain", AUDIO_DIR + "on3.mp3");
