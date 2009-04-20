@@ -1,6 +1,5 @@
 package sheep;
 
-import sheep.controller.SoundEngine;
 import sheep.view.loading.WelcomeView;
 
 public class RunGame {

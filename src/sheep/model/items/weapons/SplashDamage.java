@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import sheep.model.Model;
 import sheep.model.entities.Character;
-import sheep.model.entities.Entity;
 import sheep.model.entities.npc.NPC;
 import sheep.model.gamemap.Location;
 

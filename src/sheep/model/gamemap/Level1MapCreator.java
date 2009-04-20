@@ -16,9 +16,7 @@ import sheep.model.entities.npc.AreMyRat;
 import sheep.model.entities.npc.NPC;
 import sheep.model.entities.npc.Spider;
 import sheep.model.entities.npc.TPayne;
-import sheep.model.entities.npc.ai.AngryAI;
 import sheep.model.entities.npc.ai.TPayneAI;
-import sheep.model.entities.npc.ai.VillagerAI;
 import sheep.model.entities.vehicles.Boat;
 import sheep.model.entities.vehicles.Plane;
 import sheep.model.entities.vehicles.TPBoat;
@@ -61,7 +59,6 @@ import sheep.model.items.weapons.spells.GaeasCradle;
 import sheep.model.items.weapons.spells.HeavensHand;
 import sheep.model.items.weapons.spells.HeavyShroud;
 import sheep.model.items.weapons.spells.SandMan;
-import sheep.model.occupations.Smasher;
 
 /**
  * Returns a new GameMap for level1, by loading the mapfile it knows, and adding

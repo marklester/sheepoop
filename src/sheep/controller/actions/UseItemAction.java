@@ -4,10 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import sheep.model.GameStateType;
 import sheep.model.Model;
-import sheep.model.entities.Character;
-import sheep.model.items.Takeable;
 
 public class UseItemAction extends AbstractAction {
 

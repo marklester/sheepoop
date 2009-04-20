@@ -1,9 +1,9 @@
 package sheep.model.items.weapons;
 
 import sheep.model.Model;
+import sheep.model.entities.Character;
 import sheep.model.gamemap.Location;
 import sheep.model.skills.PassiveSkill;
-import sheep.model.entities.Character;
 
 public class Fist extends Weapon {
 

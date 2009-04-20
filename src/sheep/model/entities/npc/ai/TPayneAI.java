@@ -6,12 +6,9 @@ import java.util.Map.Entry;
 
 import sheep.controller.SoundEngine;
 import sheep.model.Model;
-import sheep.model.Time;
 import sheep.model.entities.Avatar;
-import sheep.model.entities.Entity;
 import sheep.model.entities.npc.NPC;
 import sheep.model.entities.vehicles.Boat;
-import sheep.model.entities.vehicles.Vehicle;
 import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
