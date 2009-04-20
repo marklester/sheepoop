@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import sheep.controller.SoundEngine;
 import sheep.model.Model;
 import sheep.model.Time;
 import sheep.model.entities.Avatar;
@@ -61,6 +62,7 @@ public class TPayneAI extends AI
 			{
 				myBoat.setDriver(myNPC);
 				onABoat = true;
+				SoundEngine.getInstance("tpain").start();
 				ticksToMove = 0;
 			}
 			else
