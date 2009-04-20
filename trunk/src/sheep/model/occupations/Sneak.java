@@ -33,7 +33,6 @@ public class Sneak extends Occupation {
 		addPerformableSkill(new RemoveTrap());
 		addPerformableSkill(new DetectTrap());
 		setInitialPassiveSkill(PassiveSkill.BARGAIN, 0);
-		setInitialPassiveSkill(PassiveSkill.DETECT_TRAP, 5);
 		setInitialPassiveSkill(PassiveSkill.RANGED_WEAPON, 0);
 		
 	}
