@@ -26,6 +26,7 @@ import sheep.model.items.Trap;
 import sheep.model.items.armor.BikeHelmet;
 import sheep.model.items.armor.BronzeWool;
 import sheep.model.items.armor.CrossTrainers;
+import sheep.model.items.armor.MarlinsCap;
 import sheep.model.items.armor.SheepSandals;
 import sheep.model.items.armor.Shield;
 import sheep.model.items.armor.SteelToedShoes;
@@ -443,10 +444,22 @@ public class Level1MapCreator extends MapCreator {
 		map.add(loc, new Spider(model, loc));
 		loc = new Location(17, 14);
 		map.add(loc, new AngrySpider(model, loc));
+
 		loc = new Location(13, 14);
 		AreMyRat r = new AreMyRat( model, loc );
 		r.addToInventory( new GoldStaff(model, null) );
 		map.add(loc, r);
+		
+		loc = new Location(13, 15);
+		AreMyRat r2 = new AreMyRat( model, loc );
+		r2.addToInventory( new GoldStaff(model, null) );
+		map.add(loc, r2);
+		
+		loc = new Location(14, 15);
+		AreMyRat r3 = new AreMyRat( model, loc );
+		r3.addToInventory( new MarlinsCap(model, null) );
+		map.add(loc, r3);
+		
 		// add a level up w/ decal
 		loc = new Location(6, 7);
 		map.add(loc, new Decal("LevelUp", model, loc));
@@ -469,7 +482,7 @@ public class Level1MapCreator extends MapCreator {
 		// Trap decal (we need to make this a real trap)
 		loc = new Location(14, 8);
 		map.add(loc, new Trap(model, loc,20));
-		loc = new Location(20, 10);
+		loc = new Location(19, 9);
 		map.add(loc, new Trap(model, loc,25));
 		
 		// Teleporter
