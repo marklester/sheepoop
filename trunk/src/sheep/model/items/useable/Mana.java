@@ -16,7 +16,7 @@ public class Mana extends Useable {
 	public void use(Character entity)
 	{
 		entity.removeItem(this);
-		entity.affectStat(StatType.MANA, +10);
+		entity.affectStat(StatType.MANA_USED, -10);
 	}
 
 
