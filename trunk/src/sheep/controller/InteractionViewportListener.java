@@ -2,18 +2,11 @@ package sheep.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentListener;
-import java.awt.event.ContainerEvent;
-import java.awt.event.ContainerListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.AbstractAction;
 
 import sheep.controller.actions.TalkAction;
 import sheep.controller.actions.ToggleTradeAction;
-import sheep.controller.actions.UseWeaponAction;
-import sheep.model.GameStateType;
 import sheep.model.Model;
 import sheep.model.entities.Avatar;
 import sheep.model.entities.Character;

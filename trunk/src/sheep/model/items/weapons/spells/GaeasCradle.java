@@ -10,7 +10,6 @@ import sheep.model.Time;
 import sheep.model.TimeObserver;
 import sheep.model.entities.Character;
 import sheep.model.entities.StatType;
-import sheep.model.gamemap.Decal;
 import sheep.model.gamemap.Locatable;
 import sheep.model.gamemap.Location;
 import sheep.model.gamemap.TemporaryDecal;

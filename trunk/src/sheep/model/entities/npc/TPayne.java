@@ -1,11 +1,8 @@
 package sheep.model.entities.npc;
 
 import sheep.model.Model;
-import sheep.model.Time;
-import sheep.model.entities.npc.ai.AI;
 import sheep.model.entities.npc.ai.TPayneAI;
 import sheep.model.gamemap.Location;
-import sheep.model.occupations.Occupation;
 import sheep.model.occupations.Smasher;
 import sheep.view.util.ResourceLoader;
 

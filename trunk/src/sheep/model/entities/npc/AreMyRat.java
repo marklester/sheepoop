@@ -1,7 +1,5 @@
 package sheep.model.entities.npc;
 
-import java.util.Random;
-
 import sheep.model.Model;
 import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
@@ -10,9 +8,7 @@ import sheep.model.entities.npc.ai.AngryAI;
 import sheep.model.entities.npc.ai.VillagerAI;
 import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.Location;
-import sheep.model.items.Takeable;
 import sheep.model.occupations.Sneak;
-import sheep.model.skills.PassiveSkill;
 
 public class AreMyRat extends NPC {
 	private static final long serialVersionUID = 6747342338321148905L;
