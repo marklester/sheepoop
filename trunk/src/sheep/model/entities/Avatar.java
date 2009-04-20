@@ -34,6 +34,7 @@ public class Avatar extends Character{
 			model.setState(GameStateType.GAME_OVER);
 		} else {
 			this.setLocation(getStartingLocation());
+			dead = false;
 		}
 	}
 
