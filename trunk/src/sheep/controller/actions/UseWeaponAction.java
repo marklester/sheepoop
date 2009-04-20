@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
+import sheep.model.GameStateType;
 import sheep.model.entities.Avatar;
 
 public class UseWeaponAction extends AbstractAction {
@@ -17,7 +18,7 @@ public class UseWeaponAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		if (attacker != null && attacker.getEquippedWeapon() != null) {
+		if (attacker != null && attacker.getEquippedWeapon() != null && attacker.getModel().getGameState()==GameStateType.PLAYING) {
 			//System.out.println("Key Hit");
 			attacker.getEquippedWeapon().actionPerformed(ae);
 		}
