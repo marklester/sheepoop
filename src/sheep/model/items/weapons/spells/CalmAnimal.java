@@ -1,6 +1,7 @@
 package sheep.model.items.weapons.spells;
 
 import sheep.model.Model;
+import sheep.model.entities.StatType;
 import sheep.model.entities.npc.NPC;
 import sheep.model.gamemap.Location;
 
@@ -14,7 +15,11 @@ public class CalmAnimal extends Enchantment
 	}
 	@Override
 	public void applyEffect(NPC npc) {
-		npc.affectHostility(-100);
+		if(getUser().getStat(StatType.MANA)> 4)
+		{
+			getUser().affectStat(StatType.MANA_USED, -5);
+			npc.affectHostility(-100);
+		}
 	}
 	@Override
 	public int getDamageWith()
