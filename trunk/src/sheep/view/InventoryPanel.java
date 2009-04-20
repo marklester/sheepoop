@@ -73,7 +73,8 @@ public class InventoryPanel extends Viewport implements InventoryChangeObserver 
 			but.setContentAreaFilled(false);
 			but.setFocusable(false);
 			but.setActionCommand(item.getID() );
-			but.addActionListener( (buy) ? new BuyTradeListener(tf, item) : new SellTradeListener(tf, item) );
+			but.setToolTipText( "Item: " + item.getID() + " Price: " + tf.getItemBuyPrice( item ) );
+			but.addActionListener( (buy) ? new BuyTradeListener(tf, item ) : new SellTradeListener(tf, item ) );
 			botPnl.add(but, c);
 		}
 
