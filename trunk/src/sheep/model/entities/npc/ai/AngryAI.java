@@ -22,7 +22,7 @@ public class AngryAI extends AI {
 
 	public void tick() {
 
-		if(getNPC()!=null)
+		if(getNPC()!=null&&!getNPC().isDead())
 		{
 			Direction dirToAvatar = null;
 			Avatar myAv = this.getModel().getAvatar();

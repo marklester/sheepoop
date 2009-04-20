@@ -15,6 +15,7 @@ import sheep.model.entities.npc.AngrySpider;
 import sheep.model.entities.npc.AreMyRat;
 import sheep.model.entities.npc.NPC;
 import sheep.model.entities.npc.Spider;
+import sheep.model.entities.npc.TPayne;
 import sheep.model.entities.npc.ai.AngryAI;
 import sheep.model.entities.npc.ai.TPayneAI;
 import sheep.model.entities.npc.ai.VillagerAI;
@@ -625,7 +626,7 @@ public class Level1MapCreator extends MapCreator {
 		TPayneAI tai = new TPayneAI(model,tpainBoat);
 		Time.getInstance().removeObserver(tai);
 		loc = new Location(15,0);
-		NPC tPain = new NPC("TPain", model, loc,new Smasher(),0, tai, tai);
+		NPC tPain = new TPayne(model, loc, tai);
 		tpainBoat.setTPayne(tPain);
 		tai.setMyNpc(tPain);
 //		tpainBoat.setDriver( tPain );
