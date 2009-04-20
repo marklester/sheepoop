@@ -41,7 +41,8 @@ public class InteractionViewportListener implements ActionListener {
 		String cmd = e.getActionCommand();
 		AbstractAction action = null;
 		if (cmd.equalsIgnoreCase("attack")) {
-			action = new UseWeaponAction(model.getAvatar());
+			if( model.getAvatar().getEquippedWeapon() != null)
+				model.getAvatar().getEquippedWeapon().actionPerformed(null);
 		} else if(cmd.equalsIgnoreCase("talk")) {
 			action = new TalkAction(model.getAvatar(), model.getAvatar().getInteractingCharacter());
 		} 
