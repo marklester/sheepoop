@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import sheep.model.Model;
 import sheep.model.entities.Character;
 import sheep.model.entities.Entity;
+import sheep.model.entities.npc.NPC;
 import sheep.model.gamemap.Location;
 
 public class SplashDamage extends Weapon implements ActionListener {
@@ -20,16 +21,17 @@ public class SplashDamage extends Weapon implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae){}
 
-	public void applyEffect(Entity e) {
-		e.weaponDamage(this.dmg);
+	public void applyEffect(NPC e) {
+		applyEffect((Character)e);
 	}
 
 	public void applyEffect(Character c) {
+		//System.out.println(getID()+"hits "+this.dmg);
 		c.weaponDamage(this.dmg);
 	}
 	@Override
-	public int getDamageWith()
-	{
-		return getBaseDamage() * getUser().getSkill(getSkill());
+	public int getDamageWith(){
+		return getBaseDamage();
+		//return getBaseDamage() * getUser().getSkill(getSkill());
 	}
 }
