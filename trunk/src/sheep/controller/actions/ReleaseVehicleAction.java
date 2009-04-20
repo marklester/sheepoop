@@ -76,6 +76,13 @@ public class ReleaseVehicleAction extends AbstractAction {
 				return;
 			}
 
+			for(Locatable l: model.getGameMap().get(passableLoc))
+			{
+				if((l!=vehicle)&&(l!=avatar)&&l.blocks(avatar))
+				{
+					return;
+				}
+			}
 			// Move vehicle (and avatar) to nearest passable tile
 			mover.setLocation(passableLoc);
 
