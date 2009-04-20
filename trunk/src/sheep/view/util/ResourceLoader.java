@@ -2,6 +2,7 @@ package sheep.view.util;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -9,6 +10,9 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 
 /**
@@ -39,7 +43,7 @@ public class ResourceLoader {
 	private static final String AUDIO_DIR = "res/music/";
 	private final ClassLoader loader;
 	
-	private InputStream tPainStream;
+	private Player tPainPlayer;
 	
 	/**
 	 * This will be the central place to input any IO related filenames. The entire application should use this 
@@ -151,7 +155,11 @@ public class ResourceLoader {
 		
 		//tPain Audio
 		fileMap.put("tpain", AUDIO_DIR + "on2.mp3");
-		tPainStream = getAudioInputStream("tpain");
+		try {
+			tPainPlayer = new Player( new BufferedInputStream( getAudioInputStream("tpain") ) );
+		} catch (JavaLayerException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -214,7 +222,7 @@ public class ResourceLoader {
 			return null;
 	}
 	
-	public InputStream getTPainStream() {
-		return tPainStream;
+	public Player getTPainPlayer() {
+		return tPainPlayer;
 	}
 }

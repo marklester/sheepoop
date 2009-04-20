@@ -39,15 +39,16 @@ public class SoundEngine extends Thread {
 	
 	
 	public void playAudio(String key) {
-		InputStream is;
-		if (key.equals("tpain"))
-			is = ResourceLoader.getInstance().getTPainStream();
-		else 
-			is = ResourceLoader.getInstance().getAudioInputStream("tpain");
 		try {
-            BufferedInputStream bis = new BufferedInputStream(is);
-            player = new Player(bis);
-            player.play();
+			if (key.equals("tpain")) {
+				player = ResourceLoader.getInstance().getTPainPlayer();
+			}
+			else {
+				InputStream is = ResourceLoader.getInstance().getAudioInputStream(key);
+				BufferedInputStream bis = new BufferedInputStream(is);
+				player = new Player(bis);
+			}
+			player.play();
 		}
     	catch (Exception e) {
     		e.printStackTrace();
