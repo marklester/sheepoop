@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import sheep.controller.BuyTradeListener;
 import sheep.controller.SellTradeListener;
 import sheep.controller.TradeFacilitator;
+import sheep.controller.TradeListener;
 import sheep.model.entities.Character;
 import sheep.model.entities.Inventory;
 import sheep.model.entities.InventoryChange;
@@ -73,8 +74,9 @@ public class InventoryPanel extends Viewport implements InventoryChangeObserver 
 			but.setContentAreaFilled(false);
 			but.setFocusable(false);
 			but.setActionCommand(item.getID() );
-			but.setToolTipText( "Item: " + item.getID() + " Price: " + tf.getItemBuyPrice( item ) );
-			but.addActionListener( (buy) ? new BuyTradeListener(tf, item ) : new SellTradeListener(tf, item ) );
+			TradeListener tl = (buy) ? new BuyTradeListener(tf, item ) : new SellTradeListener(tf, item );
+			but.addActionListener( tl );
+			but.addMouseListener( tl );
 			botPnl.add(but, c);
 		}
 

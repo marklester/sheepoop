@@ -47,7 +47,7 @@ public class TradeFacilitator {
 		if( buyer.getStat( StatType.MONEY ) >= price) {
 			buyer.affectStat( StatType.MONEY, price*-1);
 			seller.affectStat(StatType.MONEY, price);
-			seller.removeItem(item);
+			seller.tradeItem(item);
 			buyer.addToInventory(item);
 		}
 	}

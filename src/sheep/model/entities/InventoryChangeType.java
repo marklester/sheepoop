@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Phil Freo
  */
 public enum InventoryChangeType implements Serializable {
-	ITEM_ADDED("added to inventory"), ITEM_EQUIPPED("equipped"), ITEM_UNEQUIPPED("unequipped"), ITEM_USED("used"), ITEM_DROPPED("dropped");
+	ITEM_ADDED("added to inventory"), ITEM_EQUIPPED("equipped"), ITEM_UNEQUIPPED("unequipped"), ITEM_USED("used"), ITEM_REMOVED("removed from inventory"),  ITEM_DROPPED("dropped");
 	
 	private String friendly;
 	
