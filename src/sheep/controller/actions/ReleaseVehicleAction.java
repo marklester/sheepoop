@@ -82,11 +82,13 @@ public class ReleaseVehicleAction extends AbstractAction {
 			// Release vehicle
 			vehicle.clearDriver();
 			model.setMover((Entity)model.getAvatar());
+			vehicle.stopMoving();
 		}
 		else
 		{
 			vehicle.clearDriver();
 			model.setMover((Entity)model.getAvatar());
+			vehicle.stopMoving();
 		}
 	}
 
