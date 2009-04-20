@@ -89,6 +89,15 @@ public class ResourceLoader {
 		//Items
 		fileMap.put("Boulder",ITEMS_DIR+ "boulder.png");
 		fileMap.put("Steel Wool",ITEMS_DIR+ "armor/steelwool.png");
+		fileMap.put("Bike Helmet",ITEMS_DIR+ "armor/bikehelmet.png");
+		fileMap.put("Bronze Wool",ITEMS_DIR+ "armor/bronzewool.png");
+		fileMap.put("Cross Trainers",ITEMS_DIR+ "armor/crosstrainers.png");
+		fileMap.put("Iron Wool",ITEMS_DIR+ "armor/ironwool.png");
+		fileMap.put("Marlins Cap",ITEMS_DIR+ "armor/marlincap.png");
+		fileMap.put("Sheep Sandals",ITEMS_DIR+ "armor/sheepsandals.png");
+		fileMap.put("Steel Toed Shoes",ITEMS_DIR+ "armor/steeltoedshoes.png");
+		fileMap.put("Shield",ITEMS_DIR+ "armor/shield.png");
+		
 		
 		//Decals
 		fileMap.put("LevelUp", DECALS_DIR+"levelup.png");
