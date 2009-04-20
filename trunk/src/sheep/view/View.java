@@ -9,9 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import sheep.model.GameStateChange;
-import sheep.model.GameStateObserver;
-import sheep.model.GameStateType;
 import sheep.model.Model;
 import sheep.model.NotSerializable;
 import sheep.model.entities.StatChange;
@@ -190,7 +187,7 @@ public class View extends JFrame implements StatChangeObserver, NotSerializable 
 			layers.remove(tradeViewport);
 		} else {
 			tradeViewport.setVisible(true);
-			layers.add(tradeViewport, new Integer(400));
+			layers.add(tradeViewport, new Integer(3));
 		}
 		this.validate();
 	}
