@@ -101,7 +101,7 @@ public abstract class Entity extends Locatable implements Moveable, StatChangeOb
 		// Touch everything on the location
 		
 		for (Locatable neighbor : thingsOnTile) {
-			System.out.println(this + " touching: "+neighbor);
+//			System.out.println(this + " touching: "+neighbor);
 			neighbor.touch(this);
 		} 
 
