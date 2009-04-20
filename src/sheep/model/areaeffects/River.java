@@ -37,7 +37,7 @@ public class River extends AreaEffect {
 	}
 
 	public void applyEffect(Entity e) {
-		System.out.println("Adding "+e+" to the stream");
+//		System.out.println("Adding "+e+" to the stream");
 		myRivC.addEntityToStream(e);
 	}
 
