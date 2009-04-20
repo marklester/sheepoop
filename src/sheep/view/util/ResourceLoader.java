@@ -69,7 +69,7 @@ public class ResourceLoader {
 		fileMap.put("sneakBtn", ICON_DIR + "sneak.png");
 		fileMap.put("invPlaceHolder", ICON_DIR + "placeHolder.png");
 		fileMap.put("addSkillPoint", ICON_DIR + "plus_sign.png");
-		fileMap.put("OK", ICON_DIR + "sneak.png");
+		fileMap.put("OK", ICON_DIR + "ok.png");
 		fileMap.put("Default", ICON_DIR + "default.png");
 		fileMap.put("Cancel", ICON_DIR + "cancel.png");
 		

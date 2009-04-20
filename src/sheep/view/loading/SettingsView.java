@@ -68,19 +68,19 @@ public class SettingsView extends JPanel {
 		okButton.setPreferredSize(iconDim);
 		okButton.setActionCommand(SETTINGS_OK);
 		okButton.addActionListener(settingsListener);
-		okButton.setText("ok");
+		//okButton.setText("ok");
 
 		defaultButton = new JButton(defaultIcon);
 		defaultButton.setPreferredSize(iconDim);
 		defaultButton.setActionCommand(SETTINGS_DEFAULT);
 		defaultButton.addActionListener(settingsListener);
-		defaultButton.setText("default");
+		//defaultButton.setText("default");
 
 		cancelButton = new JButton(cancelIcon);
 		cancelButton.setPreferredSize(iconDim);
 		cancelButton.setActionCommand(SETTINGS_CANCEL);
 		cancelButton.addActionListener(settingsListener);
-		cancelButton.setText("cancel");
+		//cancelButton.setText("cancel");
 
 		buttonPane.add(okButton);
 		buttonPane.add(cancelButton);
