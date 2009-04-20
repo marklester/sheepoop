@@ -2,6 +2,7 @@ package sheep.model.areaeffects;
 
 import sheep.model.Model;
 import sheep.model.entities.Entity;
+import sheep.model.entities.vehicles.Vehicle;
 import sheep.model.gamemap.Decal;
 import sheep.model.gamemap.Direction;
 import sheep.model.gamemap.Location;
@@ -36,9 +37,17 @@ public class River extends AreaEffect {
 	}
 
 	public void applyEffect(Entity e) {
+		System.out.println("Adding "+e+" to the stream");
 		myRivC.addEntityToStream(e);
 	}
 
+	@Override
+	//Hack so TPayne can get in river and float
+	public void touch(Entity entity) {
+		if (entity == getModel().getMover()||(entity instanceof Vehicle)) {
+			applyEffect(entity);
+		}
+	}
 	public void reverseFlow()
 	{
 		Direction temp = direction;

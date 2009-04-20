@@ -15,9 +15,11 @@ import sheep.model.entities.npc.AreMyRat;
 import sheep.model.entities.npc.NPC;
 import sheep.model.entities.npc.Spider;
 import sheep.model.entities.npc.ai.AngryAI;
+import sheep.model.entities.npc.ai.TPayneAI;
 import sheep.model.entities.npc.ai.VillagerAI;
 import sheep.model.entities.vehicles.Boat;
 import sheep.model.entities.vehicles.Plane;
+import sheep.model.entities.vehicles.TPBoat;
 import sheep.model.entities.vehicles.Vehicle;
 import sheep.model.items.Trap;
 import sheep.model.items.armor.SteelWool;
@@ -572,14 +574,16 @@ public class Level1MapCreator extends MapCreator {
 		map.add(loc, new Plane(model, loc, p));
 		
 		//TPain
-		loc = new Location( 0, 16 );
-		Vehicle tpainBoat = new Boat(model, loc);
+		loc = new Location( 9, 10 );
+		TPBoat tpainBoat = new TPBoat(model, loc);
 		map.add(loc, tpainBoat);
-		NPC tPain = new NPC("TPain", model, loc, new Smasher(),0, new VillagerAI(model), new AngryAI(model));
-		tpainBoat.setDriver( tPain );
+		TPayneAI tai = new TPayneAI(model,tpainBoat);
+		loc = new Location(15,0);
+		NPC tPain = new NPC("TPain", model, loc,new Smasher(),0, tai, tai);
+		tpainBoat.setTPayne(tPain);
+		tai.setMyNpc(tPain);
+//		tpainBoat.setDriver( tPain );
 		map.add( loc,  tPain );
-		rc.addEntityToStream( tpainBoat );
-		rc.addEntityToStream( tPain );
 		
 		
 		return map;
