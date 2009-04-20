@@ -15,7 +15,7 @@ public class CharacterStats implements Cloneable, Serializable {
 	}
 
 	public void change(StatType stat, int changeAmt) {
-		if(stat == StatType.DAMAGE)
+		if((stat == StatType.DAMAGE) && (changeAmt>0))
 		{
 			changeDamage(changeAmt);
 		}
@@ -33,7 +33,7 @@ public class CharacterStats implements Cloneable, Serializable {
 		if(Math.random()*100 < chanceToHit)
 		{
 			int oldAmt = get(StatType.DAMAGE);
-			changeAmt-=get(StatType.ARMOR_RATING);
+			changeAmt-=(get(StatType.ARMOR_RATING)/8);
 			if(changeAmt<0)
 			{
 				changeAmt = 0;
